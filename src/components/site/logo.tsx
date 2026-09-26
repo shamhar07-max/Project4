@@ -6,7 +6,7 @@ export function Logo({ className, priority = false }: { className?: string; prio
   return (
     <Link href="/" className={cn("inline-flex shrink-0 items-center", className)} aria-label="DigitalBurj home">
       <Image
-        src="/brand/light/wordmark.webp"
+        src="/brand/dark/wordmark.webp"
         alt="DigitalBurj"
         width={800}
         height={152}

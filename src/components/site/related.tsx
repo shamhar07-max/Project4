@@ -9,7 +9,7 @@ export function RelatedLinks({ links, title = "Related", index }: { links: NavLi
     <section className="relative isolate overflow-hidden border-t border-line section-pad" aria-labelledby="related-heading">
       <PhotoBg seed={`related-${title}`} index={index} />
       <div className="container-site">
-        <h2 id="related-heading" className="text-h2 font-extrabold text-ink">
+        <h2 id="related-heading" className="text-h2 font-medium text-ink">
           {title}
         </h2>
         <ul className="mt-8 grid gap-2 rounded-xl border border-line bg-surface/60 p-2 backdrop-blur-md sm:grid-cols-2 lg:grid-cols-3">

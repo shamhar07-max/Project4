@@ -45,9 +45,9 @@ export default async function LearningPathPage({ params }: { params: Promise<{ s
             return (
               <li key={s}>
                 <Link href={`/academy/courses/${t.slug}`} className="card-interactive flex gap-5 rounded-lg border border-line bg-paper p-5 hover:border-line-strong">
-                  <span className="text-lg font-extrabold tabular-nums text-accent-strong">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="text-lg font-medium tabular-nums text-accent-strong">{String(i + 1).padStart(2, "0")}</span>
                   <span>
-                    <span className="block font-extrabold text-ink">{t.title}</span>
+                    <span className="block font-medium text-ink">{t.title}</span>
                     <span className="mt-1 block text-sm text-ink-2">{t.summary}</span>
                   </span>
                 </Link>

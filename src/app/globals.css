@@ -14,29 +14,36 @@
 
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 
-  --color-ink: #051d18;
-  --color-ink-2: #1d2f2a;
-  --color-muted: #55635f;
-  --color-line: #e5e5ea;
-  --color-line-strong: #d1d1d6;
-  --color-surface: #f2f2f7;
-  --color-fill: rgb(118 118 128 / 0.12);
-  --color-paper: #ffffff;
-  --color-night: #051d18;
+  /* Noir theme: near-black canvas, light type, the burj orange as light. */
+  --color-canvas: #080909;
+  --color-ink: #f3f3f0;
+  --color-ink-2: #c4c8c6;
+  --color-muted: #8e9592;
+  --color-line: rgb(255 255 255 / 0.09);
+  --color-line-strong: rgb(255 255 255 / 0.18);
+  --color-surface: #0d0f0e;
+  --color-fill: rgb(255 255 255 / 0.06);
+  --color-paper: #121414;
+  --color-night: #050606;
+  --color-cream: #efeeea;
+  --color-cream-2: #dcdad4;
+  --color-stone: #62605b;
+  --color-coal: #0b0c0c;
   --color-accent: #fc3012;
-  --color-accent-strong: #cd2506;
+  --color-accent-strong: #ff6a45;
   --color-accent-deep: #cd2506;
+  --color-accent-warm: #d6320a;
   --color-accent-hover: #b01f04;
-  --color-ember: #cd2506;
-  --color-accent-soft: #fff1ee;
-  --color-amber: #cd2506;
-  --color-ai: #17683f;
-  --color-ai-soft: #e3f1e8;
-  --color-success: #17683f;
-  --color-success-soft: #e3f1e8;
+  --color-ember: #ff7a1a;
+  --color-accent-soft: #2a110b;
+  --color-amber: #ffb04a;
+  --color-ai: #45c98b;
+  --color-ai-soft: #0f2a1f;
+  --color-success: #45c98b;
+  --color-success-soft: #0f2a1f;
   --color-whatsapp: #25d366;
-  --color-danger: #b42318;
-  --color-danger-soft: #fef3f2;
+  --color-danger: #ff7b6e;
+  --color-danger-soft: #2d1210;
 
   /* Continuous, generous iOS 27 corner radii */
   --radius-sm: 8px;
@@ -44,15 +51,18 @@
   --radius-lg: 22px;
   --radius-xl: 28px;
 
-  --text-display: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
-  --text-display--line-height: 1.04;
-  --text-display--letter-spacing: -0.03em;
-  --text-h1: clamp(2.125rem, 1.6rem + 2.2vw, 3.5rem);
-  --text-h1--line-height: 1.08;
-  --text-h1--letter-spacing: -0.025em;
-  --text-h2: clamp(1.625rem, 1.3rem + 1.3vw, 2.5rem);
-  --text-h2--line-height: 1.15;
-  --text-h2--letter-spacing: -0.02em;
+  --text-display: clamp(2.6rem, 1.2rem + 5.2vw, 6.25rem);
+  --text-display--line-height: 0.96;
+  --text-display--letter-spacing: -0.045em;
+  --text-h1: clamp(2.3rem, 1.4rem + 3.4vw, 4.75rem);
+  --text-h1--line-height: 1;
+  --text-h1--letter-spacing: -0.04em;
+  --text-h2: clamp(1.85rem, 1.25rem + 2.2vw, 3.5rem);
+  --text-h2--line-height: 1.04;
+  --text-h2--letter-spacing: -0.035em;
+  --text-mega: clamp(3rem, 12.5vw, 14rem);
+  --text-mega--line-height: 0.8;
+  --text-mega--letter-spacing: -0.06em;
   --text-h3: 1.1875rem;
   --text-h3--line-height: 1.35;
   --text-body: 1.0625rem;
@@ -90,10 +100,11 @@
     text-rendering: optimizeLegibility;
   }
   html {
-    background: var(--color-paper);
+    background: var(--color-canvas);
+    color-scheme: dark;
   }
   body {
-    background: var(--color-paper);
+    background: var(--color-canvas);
     color: var(--color-ink);
     font-family: var(--font-sans);
     font-feature-settings: "ss01";
@@ -102,6 +113,9 @@
   ::selection {
     background: var(--color-accent);
     color: #fff;
+  }
+  h1, h2 {
+    text-wrap: balance;
   }
   :focus-visible {
     outline: 2px solid var(--color-accent-strong);
@@ -290,31 +304,30 @@
 
   /* Frosted glass with a light edge highlight */
   .glass {
-    background: rgb(255 255 255 / 0.7);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid rgb(255 255 255 / 0.7);
+    background: rgb(18 20 20 / 0.62);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgb(255 255 255 / 0.1);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.8),
-      0 1px 2px rgb(0 0 0 / 0.04),
-      0 12px 36px -14px rgb(5 29 24 / 0.22);
+      inset 0 1px 0 rgb(255 255 255 / 0.08),
+      0 18px 50px -20px rgb(0 0 0 / 0.8);
   }
   .glass-dark {
-    background: rgb(5 29 24 / 0.55);
+    background: rgb(5 6 6 / 0.55);
     -webkit-backdrop-filter: blur(24px) saturate(160%);
     backdrop-filter: blur(24px) saturate(160%);
     border: 1px solid rgb(255 255 255 / 0.14);
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
   }
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .glass { background: rgb(255 255 255 / 0.96); }
-    .glass-dark { background: rgb(5 29 24 / 0.94); }
+    .glass { background: rgb(18 20 20 / 0.96); }
+    .glass-dark { background: rgb(5 6 6 / 0.94); }
   }
 
   /* Interactive card: iOS card with soft elevation, lift and an accent rule */
   .card-interactive {
     position: relative;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 0.03), 0 8px 24px -18px rgb(5 29 24 / 0.18);
+    box-shadow: 0 20px 40px -30px rgb(0 0 0 / 0.9);
     isolation: isolate;
     transition:
       transform 0.35s var(--ease-out-quint),
@@ -328,7 +341,7 @@
     height: 3px;
     margin-inline: 22px;
     border-radius: 0 0 3px 3px;
-    background: linear-gradient(90deg, var(--color-accent), var(--color-amber), var(--color-ai));
+    background: linear-gradient(90deg, var(--color-accent), var(--color-ember));
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.45s var(--ease-out-quint);
@@ -336,7 +349,7 @@
   .card-interactive:hover,
   .card-interactive:focus-visible {
     transform: translateY(-3px) scale(1.005);
-    box-shadow: 0 2px 4px rgb(0 0 0 / 0.03), 0 22px 44px -22px rgb(5 29 24 / 0.32), 0 0 0 1px rgb(23 104 63 / 0.12);
+    box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.95), 0 0 0 1px rgb(252 48 18 / 0.35), 0 0 40px -18px rgb(252 48 18 / 0.45);
   }
   .card-interactive:hover::before,
   .card-interactive:focus-visible::before {
@@ -487,7 +500,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: radial-gradient(380px circle at var(--mx, -999px) var(--my, -999px), rgb(23 104 63 / 0.07), transparent 60%);
+    background: radial-gradient(380px circle at var(--mx, -999px) var(--my, -999px), rgb(252 48 18 / 0.08), transparent 60%);
     opacity: 0;
     transition: opacity 0.3s;
     pointer-events: none;
@@ -500,19 +513,19 @@
   /* Background grid with a soft radial fade */
   .ai-grid {
     background-image:
-      linear-gradient(to right, rgb(5 29 24 / 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(5 29 24 / 0.05) 1px, transparent 1px);
+      linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
     background-size: 56px 56px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
   }
   .ai-dots {
-    background-image: radial-gradient(circle at 1px 1px, rgb(5 29 24 / 0.09) 1px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.08) 1px, transparent 0);
     background-size: 22px 22px;
   }
   .ai-noise {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-    opacity: 0.035;
-    mix-blend-mode: multiply;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
   }
   .aurora-blob {
     position: absolute;
@@ -623,4 +636,46 @@
 
 @media (prefers-reduced-motion: reduce) {
   .aurora-blob, .ai-orb, .ai-orb::before, .text-gradient, .text-shimmer, .beam::before, .metal-outline::before, .marquee-track { animation: none !important; }
+}
+
+/* ------------------------------------------------------------------
+ * Noir: cinematic pieces used across the redesign.
+ * ------------------------------------------------------------------ */
+@layer components {
+  /* Orange light bleeding in from an edge, like a rim-lit studio portrait */
+  .ember-glow {
+    background:
+      radial-gradient(60% 55% at 50% 45%, rgb(252 48 18 / 0.32), transparent 70%),
+      radial-gradient(40% 40% at 70% 70%, rgb(255 122 26 / 0.18), transparent 70%);
+    filter: blur(20px);
+  }
+  /* Giant outlined wordmark that fades out towards the bottom */
+  .mega-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgb(255 255 255 / 0.16);
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.14), rgb(255 255 255 / 0) 85%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  /* Photo that melts into the canvas on every edge */
+  .fade-edges {
+    -webkit-mask-image: radial-gradient(75% 70% at 50% 42%, #000 45%, transparent 100%);
+    mask-image: radial-gradient(75% 70% at 50% 42%, #000 45%, transparent 100%);
+  }
+  .fade-bottom {
+    -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent);
+    mask-image: linear-gradient(180deg, #000 55%, transparent);
+  }
+  /* Two-tone statement copy (Zenrixa): lighter trailing words */
+  .tone-dim {
+    color: var(--color-muted);
+  }
+  /* Thin diagonal "circuit" rule, as in the NeoVision hero */
+  .hairline {
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.18), transparent);
+  }
+  /* Photo treatment: monochrome with a warm lift */
+  .photo-noir {
+    filter: grayscale(0.35) contrast(1.05) brightness(0.9);
+  }
 }

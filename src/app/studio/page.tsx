@@ -73,7 +73,7 @@ export default function StudioPage() {
           {projects.map((p) => (
             <li key={p.slug}>
               <Link href={`/portfolio/${p.slug}`} className="card-interactive flex h-full flex-col rounded-lg border border-line p-5 hover:border-line-strong">
-                <span className="font-extrabold text-ink">{p.name}</span>
+                <span className="font-medium text-ink">{p.name}</span>
                 <span className="mt-1 text-sm text-muted">{p.sector ?? "Sector to be confirmed"}</span>
               </Link>
             </li>

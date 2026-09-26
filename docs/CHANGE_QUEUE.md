@@ -94,3 +94,25 @@ Whole frontend restyled as an AI interface, using patterns from the 21st.dev "AI
 - Readability: each photo's tonal range is compressed with a CSS filter and covered with the brand colour. Light sections use paper at 90%; dark panels use night at 80%. Even the worst-case pixel keeps every text colour at WCAG AA or better. Eyebrows on dark photo panels use accent-soft.
 - Images are hotlinked from images.unsplash.com as Unsplash asks, lazy-loaded with responsive sizes (640–2200px). Photographers are credited on the new `/credits` page, linked from the footer.
 - QA: build passes, check:content 0, 165 pages crawled, no overflow at 375px, axe clean, hero fits 1920×1080 down to 320×568.
+
+## Noir redesign from the NeoVision, Zenrixa and STRUCT references (2026-09-26)
+
+- Whole site moved to a dark, cinematic theme: near-black canvas, light type and the burj orange (#FC3012) as the only colour, used as light (glows, rim light, buttons). Changed at the token level in `globals.css`, so every page follows. Brand colours and the system font are unchanged; headings are now larger and lighter (medium weight, tight tracking).
+- Logo: the header, menu and footer use the light-on-dark wordmark (`/brand/dark/`), so there's no box or halo on dark backgrounds. The footer ends in a giant wordmark fading into the page, and division icons use their dark-background versions.
+- Homepage rebuilt section by section from the references:
+  - STRUCT/Zenrixa hero: rim-lit portrait over a giant outlined "DIGITALBURJ", a glass Business AI card, the five division icons, an orange Academy card, a light Studio card and a glass status strip;
+  - NeoVision about block;
+  - Zenrixa light interlude with the Learn / Build / → / Transform pill row;
+  - NeoVision service carousel;
+  - prompt bar (still display-only);
+  - NeoVision "possibilities" tabs with a photo per division;
+  - STRUCT philosophy block;
+  - hiring cards;
+  - Zenrixa "Explore our works" portfolio tiles;
+  - industries;
+  - insights in the NeoVision "voices" layout. We used our own articles, not testimonials; the references' client logos, testimonials and customer counts were left out.
+  - FAQ;
+  - NeoVision "Dive into the future" CTA over Dubai.
+- Page heroes: the route's photo sits in a panel on the right that fades into the page, with an orange glow and grid. Section backgrounds use a darker, part-monochrome photo treatment. The worst-case backdrop keeps muted text at 4.9:1 or better.
+- New photos are credited on /credits: Jahanzeb Ahsan, Lux Interaction and Kiwihug.
+- QA: build passes, check:content 0, 165 pages crawled, no overflow at 375px, axe clean (including the cookie banner and offer popup), and the hero buttons are on screen at every size from 1920×1080 down to 320×568.

@@ -15,7 +15,7 @@ export const NavigationMenu = React.forwardRef<
     <div className="absolute inset-x-0 top-full flex justify-center">
       <NavigationMenuPrimitive.Viewport
         className={cn(
-          "relative mt-3 h-[var(--radix-navigation-menu-viewport-height)] w-[min(64rem,calc(100vw-2rem))] origin-top overflow-hidden rounded-xl border border-white/70 bg-paper shadow-[0_1px_2px_rgb(0_0_0/0.04),0_24px_60px_-24px_rgb(5_29_24/0.4)]",
+          "relative mt-3 h-[var(--radix-navigation-menu-viewport-height)] w-[min(64rem,calc(100vw-2rem))] origin-top overflow-hidden rounded-xl border border-line-strong bg-paper shadow-[0_30px_80px_-24px_rgb(0_0_0/0.9)]",
           "transition-[height] duration-300 ease-(--ease-out-quint)",
         )}
       />

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { Crumb } from "@/lib/seo";
 import { Breadcrumbs } from "./breadcrumbs";
-import { PhotoBg } from "./photo-bg";
+import { HeroPhoto, PhotoBg } from "./photo-bg";
 import { cn } from "@/lib/utils";
 
 export function PageHero({
@@ -23,12 +23,12 @@ export function PageHero({
 }) {
   return (
     <section className={cn("relative isolate overflow-hidden border-b border-line", className)}>
-      <PhotoBg seed="hero" priority />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 left-1/2 h-80 w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(252_48_18/0.18),transparent)]" />
-        <div className="absolute -right-20 top-10 size-72 rounded-full bg-[radial-gradient(closest-side,rgb(23_104_63/0.12),transparent)]" />
+      {aside ? <PhotoBg seed="hero" priority /> : <HeroPhoto />}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <div className="ember-glow absolute -bottom-1/2 right-[-10%] h-full w-[60%] opacity-70" />
+        <div className="ai-grid absolute inset-0 opacity-70" />
       </div>
-      <div className="container-site relative pb-14 pt-8 sm:pb-16 lg:pb-20">
+      <div className="container-site relative pb-16 pt-8 sm:pb-20 lg:min-h-[30rem] lg:pb-24">
         {crumbs ? <Breadcrumbs items={crumbs} /> : null}
         <div className={cn("mt-10 grid gap-10 lg:mt-14", aside ? "lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-16" : "")}>
           <div className="max-w-3xl">
@@ -38,7 +38,7 @@ export function PageHero({
                 {eyebrow}
               </p>
             ) : null}
-            <h1 className="animate-rise mt-4 text-h1 font-extrabold text-ink" style={{ ["--d" as string]: "80ms" }}>
+            <h1 className="animate-rise mt-5 text-h1 font-medium text-ink" style={{ ["--d" as string]: "80ms" }}>
               {title}
             </h1>
             {lead ? (

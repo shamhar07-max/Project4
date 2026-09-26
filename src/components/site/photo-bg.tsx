@@ -3,13 +3,10 @@
 /**
  * Full-bleed background photo for a section. Place inside a parent with `relative isolate`.
  *
- * Readability is fixed by maths, not by eye: the photo's tonal range is compressed with a CSS
- * filter and then covered by a brand-colour overlay, so the worst-case pixel under any text still
- * gives WCAG AA contrast for every text colour we use.
- *  - light: contrast(.7) brightness(1.2) under paper/90. Darkest possible backdrop is a light grey (about 234/255), where
- *    ink is 14.6:1, muted 5.2:1 and accent-strong 4.5:1.
- *  - dark: contrast(.9) brightness(.55) under night/80. Lightest possible backdrop is a deep green-grey, where
- *    white is 13.5:1 and white/60 is 5.9:1.
+ * Noir treatment: the photo is partly desaturated and darkened (contrast .9, brightness .55, so no
+ * pixel is brighter than about 140/255), then covered with the canvas colour at 80% and a vignette.
+ * The brightest possible backdrop is a deep charcoal (about 34/255), where the muted text colour
+ * is still 4.9:1 and body text is over 10:1. `tone` only changes how dark the overlay is.
  */
 import { usePathname } from "next/navigation";
 import { photoFor, photos, type Photo, type PhotoKey } from "@/content/backgrounds";
@@ -50,10 +47,42 @@ export function PhotoBg({
         style={p.position ? { objectPosition: p.position } : undefined}
         className={cn(
           "size-full object-cover",
-          tone === "light" ? "[filter:contrast(.7)_brightness(1.2)]" : "[filter:contrast(.9)_brightness(.55)]",
+          "[filter:grayscale(.45)_contrast(.9)_brightness(.55)]",
         )}
       />
-      <div className={cn("absolute inset-0", tone === "light" ? "bg-paper/90" : "bg-night/80")} />
+      <div className={cn("absolute inset-0", tone === "light" ? "bg-canvas/80" : "bg-night/78")} />
+      <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_0%,transparent_40%,var(--color-canvas)_100%)]" />
+    </div>
+  );
+}
+
+/**
+ * Page-hero photo panel: the route's hero photo on the right, melting into the canvas on its
+ * left and bottom edges. Large screens only, so it never sits under body text.
+ */
+export function HeroPhoto({ className }: { className?: string }) {
+  const pathname = usePathname() ?? "/";
+  const p: Photo = photoFor(pathname, "hero");
+  return (
+    <div
+      aria-hidden="true"
+      className={cn(
+        "pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[46%] lg:block",
+        "[mask-image:linear-gradient(90deg,transparent,#000_40%),linear-gradient(180deg,#000_60%,transparent)] [mask-composite:intersect]",
+        className,
+      )}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element -- remote Unsplash hotlink with its own resizing */}
+      <img
+        src={url(p.src, 1600)}
+        srcSet={widths.map((w) => `${url(p.src, w)} ${w}w`).join(", ")}
+        sizes="46vw"
+        alt=""
+        fetchPriority="high"
+        decoding="async"
+        style={p.position ? { objectPosition: p.position } : undefined}
+        className="size-full object-cover [filter:grayscale(.4)_contrast(1.05)_brightness(.7)]"
+      />
     </div>
   );
 }

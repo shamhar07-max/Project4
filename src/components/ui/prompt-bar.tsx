@@ -141,7 +141,7 @@ export default function PromptBar({
 
   return (
     <div className={cn("w-full max-w-2xl", className)}>
-      <form onSubmit={submit} className="metal-outline relative rounded-[1.75rem] bg-paper p-2 shadow-[0_12px_40px_-18px_rgb(5_29_24/0.35)]">
+      <form onSubmit={submit} className="metal-outline relative rounded-[1.75rem] bg-paper p-2 shadow-[0_12px_40px_-18px_rgb(0_0_0/0.35)]">
         <label htmlFor="prompt-bar" className="sr-only">
           {placeholder}
         </label>
@@ -190,7 +190,7 @@ export default function PromptBar({
             aria-disabled={!canSend}
             className={cn(
               "ml-auto grid size-9 place-items-center rounded-full transition-colors",
-              canSend ? "bg-ink text-white hover:bg-ink-2" : "cursor-not-allowed bg-fill text-muted",
+              canSend ? "bg-ink text-night hover:bg-ink-2" : "cursor-not-allowed bg-fill text-muted",
             )}
           >
             <ArrowUp className="size-4" aria-hidden="true" />

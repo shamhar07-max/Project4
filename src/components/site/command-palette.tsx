@@ -91,7 +91,7 @@ export function CommandPalette({ className }: { className?: string }) {
         </button>
       </DialogPrimitive.Trigger>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-ink/25 backdrop-blur-sm data-[state=open]:animate-[fade-in_0.2s_ease-out]" />
+        <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm data-[state=open]:animate-[fade-in_0.2s_ease-out]" />
         <DialogPrimitive.Content
           aria-describedby={undefined}
           className="glass fixed left-1/2 top-[12vh] z-50 w-[min(40rem,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden rounded-xl data-[state=open]:animate-[menu-in_0.22s_var(--ease-out-quint)]"
@@ -127,7 +127,7 @@ export function CommandPalette({ className }: { className?: string }) {
                   onClick={() => go(r.path)}
                   className={cn(
                     "flex cursor-pointer items-start gap-3 rounded-md px-3 py-2.5",
-                    i === active ? "bg-ai-soft shadow-[inset_0_0_0_1px_rgb(23_104_63/0.35)]" : "",
+                    i === active ? "bg-accent/15 shadow-[inset_0_0_0_1px_rgb(252_48_18/0.45)]" : "",
                   )}
                 >
                   <FileSearch aria-hidden="true" className={cn("mt-0.5 size-4 shrink-0", i === active ? "text-ai" : "text-muted")} />

@@ -17,7 +17,7 @@ export default function NotFound() {
   return (
     <section className="container-site py-24">
       <p className="eyebrow text-accent-strong">404</p>
-      <h1 className="mt-4 text-h1 font-extrabold text-ink">This page isn&apos;t here.</h1>
+      <h1 className="mt-4 text-h1 font-medium text-ink">This page isn&apos;t here.</h1>
       <p className="mt-5 max-w-xl text-lead text-ink-2">The link may be out of date, or the page may have moved. These are good places to continue:</p>
       <ul className="mt-8 flex flex-wrap gap-3">
         {links.map(([l, h]) => (

@@ -115,6 +115,36 @@ export const photos = {
     page: "https://unsplash.com/photos/BNBA1h-NgdY",
     subject: "Warehouse racking",
   },
+  silhouette: {
+    src: "https://images.unsplash.com/photo-1776548199725-a9d9b506ab29",
+    photographer: "Jahanzeb Ahsan",
+    profile: "https://unsplash.com/@jahan_photobox",
+    page: "https://unsplash.com/photos/dBstXv2eqco",
+    subject: "Portrait silhouetted by warm light",
+    position: "center 20%",
+  },
+  ember: {
+    src: "https://images.unsplash.com/photo-1770335377292-7b9397fbc920",
+    photographer: "Jahanzeb Ahsan",
+    profile: "https://unsplash.com/@jahan_photobox",
+    page: "https://unsplash.com/photos/DySsbpnjwx0",
+    subject: "Silhouette with fiery light",
+    position: "center 25%",
+  },
+  headset: {
+    src: "https://images.unsplash.com/photo-1493496553793-56c1aa2cfcea",
+    photographer: "Lux Interaction",
+    profile: "https://unsplash.com/@luxinteraction",
+    page: "https://unsplash.com/photos/UDETRRE5Mzc",
+    subject: "Person using a virtual reality headset",
+  },
+  corridor: {
+    src: "https://images.unsplash.com/photo-1549133445-3e03f08b4fdc",
+    photographer: "Kiwihug",
+    profile: "https://unsplash.com/@kiwihug",
+    page: "https://unsplash.com/photos/YARzv8FLPFA",
+    subject: "Person walking through a curved building",
+  },
 } satisfies Record<string, Photo>;
 
 export type PhotoKey = keyof typeof photos;

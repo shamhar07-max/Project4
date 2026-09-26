@@ -34,7 +34,7 @@ export default function GetStartedPage() {
             <li key={c.label}>
               <Link href={c.href} className="card-interactive group flex h-full items-center justify-between gap-4 rounded-lg border border-line p-6 hover:border-line-strong">
                 <span>
-                  <span className="block text-lg font-extrabold text-ink">{c.label}</span>
+                  <span className="block text-lg font-medium text-ink">{c.label}</span>
                   <span className="mt-1 block text-sm text-muted">{c.to}</span>
                 </span>
                 <ArrowRight className="size-5 text-accent-strong transition-transform group-hover:translate-x-0.5" aria-hidden="true" />

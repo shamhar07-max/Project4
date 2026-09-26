@@ -13,7 +13,7 @@ export function FaqList({ faqs, title = "Questions", photo, index }: { faqs: Faq
     <section className="relative isolate overflow-hidden border-t border-line section-pad" aria-labelledby="faq-heading">
       <PhotoBg seed={`faq-${title}`} photo={photo} index={index} />
       <div className="container-site grid gap-10 lg:grid-cols-[18rem_1fr]">
-        <h2 id="faq-heading" className="text-h2 font-extrabold text-ink" data-reveal>
+        <h2 id="faq-heading" className="text-h2 font-medium text-ink" data-reveal>
           {title}
         </h2>
         <div className="divide-y divide-line self-start overflow-hidden rounded-lg border border-line bg-surface px-5 sm:px-6">

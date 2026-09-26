@@ -209,7 +209,7 @@ export function BlockSection({ block, index }: { block: Block; index: number }) 
       <PhotoBg seed={block.heading} index={index} />
       <div className="container-site">
         <div className="max-w-3xl" data-reveal>
-          <h2 className="text-h2 font-extrabold text-ink">{block.heading}</h2>
+          <h2 className="text-h2 font-medium text-ink">{block.heading}</h2>
           {"intro" in block && block.intro ? (
             <p className="mt-4 text-lead text-ink-2">{block.intro}</p>
           ) : null}

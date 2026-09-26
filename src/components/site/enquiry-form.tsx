@@ -51,7 +51,7 @@ function Field({ f }: { f: FieldDef }) {
         </AriaButton>
         {description}
         <FieldError className={errorCls} />
-        <Popover className="w-[var(--trigger-width)] overflow-auto rounded-md border border-white/70 bg-paper/95 p-1 shadow-xl backdrop-blur-xl">
+        <Popover className="w-[var(--trigger-width)] overflow-auto rounded-md border border-line-strong bg-paper/95 p-1 shadow-xl backdrop-blur-xl">
           <ListBox className="max-h-72 outline-none">
             {f.options!.map((o) => (
               <ListBoxItem
