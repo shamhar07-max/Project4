@@ -16,7 +16,11 @@ export type AnalyticsEvent =
   | "professional_interest"
   | "employer_interest"
   | "download"
-  | "whatsapp_click";
+  | "whatsapp_click"
+  | "site_guide_query"
+  | "site_guide_source"
+  | "search_open"
+  | "search_select";
 
 type Props = Record<string, string | number | boolean | undefined>;
 

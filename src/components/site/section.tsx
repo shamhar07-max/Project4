@@ -26,8 +26,8 @@ export function Section({
       id={id}
       className={cn(
         "scroll-mt-24 section-pad",
-        tone === "surface" && "bg-surface",
-        tone === "ink" && "bg-ink text-white",
+        tone === "surface" && "border-y border-line bg-surface/55 backdrop-blur-[2px]",
+        tone === "ink" && "relative overflow-hidden border-y border-line bg-night text-white",
         className,
       )}
     >

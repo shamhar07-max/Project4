@@ -16,6 +16,7 @@ import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from 
 import { Button } from "@/components/ui/button";
 import { Logo } from "./logo";
 import { TrackedLink } from "./tracked-link";
+import { CommandPalette } from "./command-palette";
 import { companyNav, mainNav, type NavItem } from "@/lib/site";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -57,7 +58,7 @@ function MegaPanel({ item }: { item: NavItem }) {
       </div>
       <div className="flex flex-col justify-between gap-6 border-t border-line/70 bg-fill/50 p-6 md:border-l md:border-t-0">
         <div>
-          <p className="eyebrow text-accent-strong">DigitalBurj</p>
+          <p className="eyebrow flex items-center gap-2 text-ai"><span aria-hidden="true" className="size-1.5 rounded-full bg-ai shadow-[0_0_8px_var(--color-ai)]" />DigitalBurj</p>
           <p className="mt-2 text-xl font-bold tracking-tight text-ink">{item.title}</p>
           <p className="mt-2 text-sm leading-relaxed text-muted">{item.summary}</p>
         </div>
@@ -85,7 +86,7 @@ function MobileNav() {
       <SheetTrigger asChild>
         <button
           type="button"
-          className="inline-flex size-10 items-center justify-center rounded-full text-ink transition-colors hover:bg-fill lg:hidden"
+          className="inline-flex size-10 items-center justify-center rounded-full text-ink transition-colors hover:bg-fill xl:hidden"
         >
           <Menu className="size-6" aria-hidden="true" />
           <span className="sr-only">Open menu</span>
@@ -163,7 +164,7 @@ export function Header() {
     <header className="sticky top-0 z-40 px-2 pt-2 sm:px-4 sm:pt-3">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-full focus:bg-night focus:px-4 focus:py-2 focus:text-white"
       >
         Skip to content
       </a>
@@ -174,8 +175,8 @@ export function Header() {
         )}
       >
         <MobileNav />
-        <Logo priority className="max-lg:mx-auto" />
-        <NavigationMenu className="mx-auto hidden lg:flex" aria-label="Main">
+        <Logo priority className="max-xl:mx-auto" />
+        <NavigationMenu className="mx-auto hidden xl:flex" aria-label="Main">
           <NavigationMenuList>
             {mainNav.map((item) => (
               <NavigationMenuItem key={item.label}>
@@ -185,7 +186,7 @@ export function Header() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
             ))}
-            <li aria-hidden="true" className="mx-2 h-5 w-px bg-line-strong" />
+            <li aria-hidden="true" className="mx-1 h-5 w-px bg-line-strong" />
             <NavigationMenuItem>
               <NavigationMenuTrigger>{companyNav.label}</NavigationMenuTrigger>
               <NavigationMenuContent className="menu-panel">
@@ -194,6 +195,7 @@ export function Header() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+        <CommandPalette className="shrink-0 max-sm:hidden" />
         <Button asChild size="sm" className="shrink-0 sm:h-10 sm:px-5">
           <TrackedLink href="/get-started" eventLabel="header_get_started">
             Get Started

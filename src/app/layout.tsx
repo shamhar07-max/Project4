@@ -6,6 +6,8 @@ import { JsonLd } from "@/components/site/json-ld";
 import { AttributionCapture } from "@/components/site/attribution";
 import { RevealObserver } from "@/components/site/reveal-observer";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
+import { AiAtmosphere } from "@/components/site/ai-atmosphere";
+import { Toaster } from "@/components/site/toaster";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -30,19 +32,20 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#050d0b",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         {/* Marks JS as available so scroll-reveal styles apply only when they can be undone. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
       </head>
-      <body className="flex min-h-dvh flex-col">
+      <body className="relative isolate flex min-h-dvh flex-col">
+        <AiAtmosphere />
         <Header />
         <main id="main" className="flex-1">
           {children}
@@ -52,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AttributionCapture />
         <RevealObserver />
         <WhatsAppButton />
+        <Toaster />
       </body>
     </html>
   );

@@ -18,10 +18,10 @@ export function FlowDiagram({ steps, caption, tone = "paper" }: { steps: string[
               style={{ ["--i" as string]: i }}
               className={cn(
                 "flow-chip inline-flex min-h-11 items-center gap-2.5 rounded-full border px-4 py-2 text-body-sm font-semibold",
-                tone === "ink" ? "border-white/20 bg-white/5" : "border-line bg-paper",
+                tone === "ink" ? "border-white/20 bg-white/5" : "border-line-strong bg-night/70 backdrop-blur-md",
               )}
             >
-              <span className={cn("text-xs tabular-nums", tone === "ink" ? "text-accent" : "text-accent-strong")}>
+              <span className={cn("font-mono text-xs tabular-nums", tone === "ink" ? "text-accent" : "text-ai")}>
                 {String(i + 1).padStart(2, "0")}
               </span>
               {s}
@@ -74,10 +74,10 @@ export function StepList({ steps }: { steps: { title: string; body: string }[] }
                 )}
               />
             ) : null}
-            <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-line-strong bg-paper text-sm font-bold tabular-nums text-accent-strong">
+            <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-line-strong bg-night font-mono text-sm tabular-nums text-ai shadow-[0_0_18px_-6px_var(--color-ai)]">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <div className="card-interactive flex-1 rounded-lg border border-line bg-paper p-5">
+            <div className="card-interactive flex-1 rounded-lg border border-line bg-surface/70 p-5 backdrop-blur-md">
               <h3 className="text-h3 font-bold text-ink">{s.title}</h3>
               <p className="mt-1.5 text-body-sm leading-relaxed text-ink-2">{s.body}</p>
             </div>
@@ -102,7 +102,7 @@ export function CardGrid({ items, columns = 3 }: { items: Card[]; columns?: 2 | 
           {c.href ? (
             <Link
               href={c.href}
-              className="card-interactive group flex w-full flex-col rounded-lg border border-line bg-paper p-6 hover:border-line-strong"
+              className="card-interactive group flex w-full flex-col rounded-lg border border-line bg-surface/70 p-6 backdrop-blur-md hover:border-line-strong"
             >
               <h3 className="text-h3 font-bold text-ink">{c.title}</h3>
               <p className="mt-2 flex-1 text-body-sm leading-relaxed text-ink-2">{c.body}</p>
@@ -113,7 +113,7 @@ export function CardGrid({ items, columns = 3 }: { items: Card[]; columns?: 2 | 
               </span>
             </Link>
           ) : (
-            <div className="flex w-full flex-col rounded-lg border border-line bg-paper p-6">
+            <div className="flex w-full flex-col rounded-lg border border-line bg-surface/70 p-6 backdrop-blur-md" data-spotlight>
               <h3 className="text-h3 font-bold text-ink">{c.title}</h3>
               <p className="mt-2 text-body-sm leading-relaxed text-ink-2">{c.body}</p>
             </div>
@@ -145,7 +145,7 @@ function BlockBody({ block }: { block: Block }) {
         >
           {block.items.map((item, i) => (
             <li key={item} data-reveal style={{ ["--i" as string]: i % 8 }} className="flex gap-3 border-b border-line pb-3 text-body-sm text-ink-2">
-              <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent" />
+              <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 rounded-full bg-ai shadow-[0_0_8px_var(--color-ai)]" />
               <span>{item}</span>
             </li>
           ))}
@@ -161,9 +161,9 @@ function BlockBody({ block }: { block: Block }) {
       return null;
     case "compare":
       return (
-        <div className="overflow-x-auto rounded-lg border border-line" data-reveal>
+        <div className="overflow-x-auto rounded-lg border border-line bg-night/60 backdrop-blur-md" data-reveal>
           <table className="w-full min-w-[36rem] border-collapse text-left text-body-sm">
-            <thead className="bg-surface">
+            <thead className="bg-surface font-mono text-xs uppercase tracking-[0.12em]">
               <tr>
                 {block.columns.map((c) => (
                   <th key={c} scope="col" className="border-b border-line px-4 py-3 font-semibold text-ink">
@@ -194,7 +194,7 @@ export function BlockSection({ block, index }: { block: Block; index: number }) 
     return (
       <section className="section-pad-compact">
         <div className="container-site">
-          <div className="rounded-lg border border-accent/15 bg-accent-soft px-6 py-7 sm:px-8" data-reveal>
+          <div className="beam relative overflow-hidden rounded-lg border border-accent/25 bg-accent-soft px-6 py-7 sm:px-8" data-reveal>
             <h2 className="text-xl font-bold text-ink sm:text-2xl">{block.heading}</h2>
             <p className="mt-3 max-w-3xl text-body leading-relaxed text-ink-2">{block.body}</p>
           </div>
@@ -204,7 +204,7 @@ export function BlockSection({ block, index }: { block: Block; index: number }) 
   }
   const tinted = block.type === "flow" || block.type === "steps";
   return (
-    <section className={cn("section-pad", tinted ? "bg-surface" : index > 0 && "border-t border-line")}>
+    <section className={cn("section-pad", tinted ? "border-y border-line bg-surface/55" : index > 0 && "border-t border-line")}>
       <div className="container-site">
         <div className="max-w-3xl" data-reveal>
           <h2 className="text-h2 font-extrabold text-ink">{block.heading}</h2>

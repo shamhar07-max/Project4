@@ -17,4 +17,4 @@ export function Tag({ children, tone = "surface", className }: { children: React
 }
 
 export const tagLinkClass =
-  "inline-flex h-10 items-center rounded-full border border-line px-4 text-sm font-semibold text-ink hover:border-ink";
+  "inline-flex h-10 items-center rounded-full border border-line px-4 text-sm font-semibold text-ink transition-colors hover:border-ai/60 hover:bg-ai-soft";

@@ -45,3 +45,16 @@ The user approved restyling the site in the iOS & iPadOS 27 design language (the
 - MyChatBot widget removed from the site (component, layout, env var, check-content allowlist). The WhatsApp button is back at bottom-right. The MyChatBot "DigitalBurj Assistant", its website widget, its one conversation and both DigitalBurj FAQ knowledge bases were then deleted from the MyChatBot account at the owner's request.
 - Home hero: the empty top of the orbit stage is removed and the orbit scales by width *and* viewport height (`.hero-orbit` in globals.css). The stats sit below the orbit at a readable size. Orbit, headline, buttons and division pills now fit in the first screen at 1920×1080, 1440×900, 1366×768, 1280×720, 1024×768, 768×1024 and 390×844.
 - Copy: every content page cut to a short plain answer, one or two sections and at most three FAQs; key-points lists removed; hub pages trimmed (Business AI, Studio, Academy, Talent, Jobs); homepage "gaps" and "ecosystem" sections removed; site description, nav summaries and page leads rewritten in plain language. Slugs, SEO titles, meta descriptions (except the site/home description) and internal links unchanged. Colours, fonts, animation and components unchanged.
+
+## AI-themed makeover (2026-09-26)
+
+Whole frontend restyled as an AI interface, using patterns from the 21st.dev "AI Chats" collection (built in-house; the free 21st.dev code retrievals were used up for the day).
+
+- Theme: dark palette built from the brand (deep green-black background, burj red accent) plus an AI teal signal colour; mono labels; light logo and division icons generated from the brand files (`public/brand/dark/`).
+- Atmosphere: fixed aurora light, grid and grain behind every page; pointer glow and card spotlight; scroll progress beam; border beam; shimmer and gradient text; thinking orb. All motion stops under reduced motion.
+- Home hero: AI chat interface ("site guide"): prompt with typed placeholder, suggestions, tool-call steps, streamed answer, numbered sources and a next step. It searches a static index of this site's pages (`/search-index.json`) in the browser; nothing typed is sent anywhere, and it says so.
+- Header: ⌘K / Ctrl+K / "/" command palette over the same index; full menu from 1280px, hamburger below.
+- Homepage: division dock, marquee, bento grid, KPI numbers and a bar chart built only from real content counts, tabs with steppers, industries carousel, portfolio gallery, timeline, accordion FAQ, beam CTA.
+- Shared UI: gradient glow buttons, glowing form fields, radio/checkbox states, spinner, toast notifications, alert with icon, empty states, badges; footer with ASCII burj and oversized outline wordmark.
+- Not built, because they'd need content that doesn't exist and the content rules forbid inventing it: pricing, testimonials, client logos, team profiles, sign-in/sign-up, calendars/date pickers, maps, videos, dashboards with invented data.
+- QA: build (170), check:content 0, 164 pages crawled, no overflow at 375px, axe clean (incl. guide answer and palette), hero fits 1920×1080 down to 390×844.

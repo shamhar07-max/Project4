@@ -23,7 +23,7 @@ export function WhatsAppButton() {
       className="group fixed bottom-5 right-5 z-40 flex items-center gap-3 print:hidden sm:bottom-6 sm:right-6"
       style={{ animation: "wa-in 0.6s var(--ease-out-quint) 1.2s both" }}
     >
-      <span className="pointer-events-none hidden translate-x-2 rounded-full bg-ink px-3.5 py-2 text-sm font-semibold text-white opacity-0 shadow-lg transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 sm:block">
+      <span className="pointer-events-none hidden translate-x-2 rounded-full bg-night px-3.5 py-2 text-sm font-semibold text-white opacity-0 shadow-lg transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 sm:block">
         Chat on WhatsApp
       </span>
       <span className="relative grid size-14 place-items-center rounded-full bg-whatsapp text-white shadow-[0_10px_30px_-8px_rgb(5_29_24/0.45)] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-105">

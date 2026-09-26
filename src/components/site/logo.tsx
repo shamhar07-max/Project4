@@ -6,12 +6,12 @@ export function Logo({ className, priority = false }: { className?: string; prio
   return (
     <Link href="/" className={cn("inline-flex shrink-0 items-center", className)} aria-label="DigitalBurj home">
       <Image
-        src="/brand/digitalburj-wordmark-400.webp"
+        src="/brand/dark/wordmark.webp"
         alt="DigitalBurj"
-        width={400}
-        height={76}
+        width={800}
+        height={152}
         priority={priority}
-        className="h-7 w-auto mix-blend-multiply sm:h-8"
+        className="h-7 w-auto sm:h-8"
         sizes="170px"
       />
     </Link>

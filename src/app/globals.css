@@ -1,34 +1,44 @@
 @import "tailwindcss";
 
 /*
- * DigitalBurj design tokens.
- * Colours are sampled from the supplied master artwork:
- *   ink    #051D18  (wordmark)
- *   accent #FC3012  (burj mark) — decorative use, large display only
- *   accent-strong #CD2506 (burj shadow) — text, links and buttons (5.4:1 on white)
+ * DigitalBurj design tokens — AI theme (dark).
+ * Brand colours come from the master artwork: burj red #FC3012 and the deep green-black
+ * of the wordmark, which is now the page background. Token names are semantic:
+ *   ink    = primary text (light)      paper   = page background (dark)
+ *   night  = deepest panels            accent  = burj red, decorative
+ *   accent-strong = red for text/icons on dark (AA)
+ *   accent-deep   = red for filled buttons with white text (AA)
+ *   ai     = teal "signal" colour used for AI states and glows
  */
 @theme {
   /* iOS / iPadOS 27 look: the platform system font (SF Pro on Apple devices). No webfont download. */
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  --color-ink: #051d18;
-  --color-ink-2: #1d2f2a;
-  --color-muted: #55635f;
-  --color-line: #e5e5ea;
-  --color-line-strong: #d1d1d6;
-  --color-surface: #f2f2f7;
-  /* iOS fill for text fields and tinted controls */
-  --color-fill: rgb(118 118 128 / 0.12);
-  --color-paper: #ffffff;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  --color-ink: #edf5f2;
+  --color-ink-2: #c2d1cc;
+  --color-muted: #8fa39d;
+  --color-line: #1a2a26;
+  --color-line-strong: #2a3d38;
+  --color-surface: #0b1715;
+  --color-fill: rgb(255 255 255 / 0.06);
+  --color-paper: #050d0b;
+  --color-night: #020605;
   --color-accent: #fc3012;
-  --color-accent-strong: #cd2506;
-  --color-accent-hover: #b01f04;
-  --color-accent-soft: #fff1ee;
-  --color-success: #17683f;
-  --color-success-soft: #e3f1e8;
+  --color-accent-strong: #ff6a4d;
+  --color-accent-deep: #d42a0b;
+  --color-accent-hover: #b52205;
+  --color-ember: #c2410c;
+  --color-accent-soft: rgb(252 48 18 / 0.12);
+  --color-amber: #ffb347;
+  --color-ai: #2de2c4;
+  --color-ai-soft: rgb(45 226 196 / 0.12);
+  --color-success: #3ddc97;
+  --color-success-soft: rgb(61 220 151 / 0.12);
   --color-whatsapp: #25d366;
-  --color-danger: #b42318;
-  --color-danger-soft: #fef3f2;
+  --color-danger: #ff7b72;
+  --color-danger-soft: rgb(255 123 114 / 0.12);
 
   /* Continuous, generous iOS 27 corner radii */
   --radius-sm: 8px;
@@ -80,6 +90,10 @@
   html {
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
+  }
+  html {
+    color-scheme: dark;
+    background: var(--color-paper);
   }
   body {
     background: var(--color-paper);
@@ -137,10 +151,11 @@
   }
 
   .eyebrow {
+    font-family: var(--font-mono);
     font-size: var(--text-eyebrow);
     letter-spacing: var(--text-eyebrow--letter-spacing);
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--color-muted);
   }
 
@@ -236,8 +251,8 @@
   to { transform: scaleY(1); }
 }
 @keyframes chip-highlight {
-  0%, 100% { border-color: var(--color-line); box-shadow: none; }
-  40% { border-color: var(--color-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-accent) 14%, transparent); }
+  0%, 100% { border-color: var(--color-line-strong); box-shadow: none; }
+  40% { border-color: var(--color-ai); box-shadow: 0 0 0 3px var(--color-ai-soft), 0 0 24px -4px var(--color-ai); }
 }
 @keyframes menu-in {
   from { opacity: 0; transform: translateY(-6px) scale(0.99); }
@@ -277,16 +292,15 @@
     will-change: auto;
   }
 
-  /* iOS 27 materials: frosted glass with a light edge highlight */
+  /* Dark frosted glass with a faint top highlight */
   .glass {
-    background: rgb(255 255 255 / 0.66);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid rgb(255 255 255 / 0.7);
+    background: rgb(11 23 21 / 0.62);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+    backdrop-filter: blur(22px) saturate(160%);
+    border: 1px solid rgb(255 255 255 / 0.08);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.8),
-      0 1px 2px rgb(0 0 0 / 0.04),
-      0 12px 36px -14px rgb(5 29 24 / 0.22);
+      inset 0 1px 0 rgb(255 255 255 / 0.06),
+      0 20px 50px -24px rgb(0 0 0 / 0.8);
   }
   .glass-dark {
     background: rgb(5 29 24 / 0.55);
@@ -296,14 +310,14 @@
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
   }
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .glass { background: rgb(255 255 255 / 0.96); }
+    .glass { background: rgb(11 23 21 / 0.96); }
     .glass-dark { background: rgb(5 29 24 / 0.94); }
   }
 
   /* Interactive card: iOS card with soft elevation, lift and an accent rule */
   .card-interactive {
     position: relative;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 0.03), 0 8px 24px -18px rgb(5 29 24 / 0.18);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
     isolation: isolate;
     transition:
       transform 0.35s var(--ease-out-quint),
@@ -317,7 +331,7 @@
     height: 3px;
     margin-inline: 22px;
     border-radius: 0 0 3px 3px;
-    background: var(--color-accent);
+    background: linear-gradient(90deg, var(--color-accent), var(--color-amber), var(--color-ai));
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.45s var(--ease-out-quint);
@@ -325,34 +339,11 @@
   .card-interactive:hover,
   .card-interactive:focus-visible {
     transform: translateY(-3px) scale(1.005);
-    box-shadow: 0 2px 4px rgb(0 0 0 / 0.03), 0 22px 44px -22px rgb(5 29 24 / 0.32);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 24px 60px -28px rgb(252 48 18 / 0.45), 0 0 0 1px rgb(45 226 196 / 0.18);
   }
   .card-interactive:hover::before,
   .card-interactive:focus-visible::before {
     transform: scaleX(1);
-  }
-
-  /* Home hero orbit: one scale factor, stepped by width and by viewport height,
-     so the orbit, headline, buttons and division pills fit in the first screen. */
-  .hero-orbit {
-    --s: 0.46;
-    --h: 235px;
-    height: calc(var(--h) * var(--s));
-  }
-  .hero-orbit-stage {
-    scale: var(--s);
-  }
-  @media (min-width: 640px) {
-    .hero-orbit { --s: 0.56; --h: 375px; }
-  }
-  @media (min-width: 1024px) {
-    .hero-orbit { --s: 0.72; }
-  }
-  @media (min-width: 1024px) and (max-height: 860px) {
-    .hero-orbit { --s: 0.6; }
-  }
-  @media (min-width: 1024px) and (max-height: 760px) {
-    .hero-orbit { --s: 0.5; }
   }
 
   /* Timeline rail draws down as each step is revealed */
@@ -400,4 +391,220 @@
 
 :root {
   interpolate-size: allow-keywords;
+}
+
+/* ------------------------------------------------------------------
+ * AI atmosphere
+ * Patterns adapted from the 21st.dev "AI Chats" collection: border beam,
+ * shimmer text, thinking orbs, glowing input, streaming text, AI loader,
+ * marquee and background grids. All motion stops under reduced motion.
+ * ------------------------------------------------------------------ */
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes beam-spin { to { --beam-angle: 360deg; } }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@keyframes gradient-pan { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes aurora {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(6%, -4%, 0) scale(1.08); }
+  66% { transform: translate3d(-5%, 5%, 0) scale(0.95); }
+}
+@keyframes orb-spin { to { transform: rotate(360deg); } }
+@keyframes orb-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@keyframes caret { 50% { opacity: 0; } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes dot-pulse { 0%, 80%, 100% { opacity: 0.25; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes scan { from { transform: translateY(-100%); } to { transform: translateY(100%); } }
+@keyframes toast-in { from { opacity: 0; transform: translateY(12px) scale(0.97); } to { opacity: 1; transform: none; } }
+
+@layer components {
+  /* Animated brand gradient for display text */
+  .text-gradient {
+    background: linear-gradient(100deg, var(--color-accent-strong), var(--color-amber) 35%, var(--color-ai) 70%, var(--color-accent-strong));
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradient-pan 10s ease-in-out infinite;
+  }
+  /* Shimmer: a light sweep across muted text ("thinking…") */
+  .text-shimmer {
+    background: linear-gradient(90deg, var(--color-muted) 0%, var(--color-muted) 40%, var(--color-ink) 50%, var(--color-muted) 60%, var(--color-muted) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 2.4s linear infinite;
+  }
+
+  /* Border beam: a light that travels around the element's border */
+  .beam {
+    position: relative;
+    isolation: isolate;
+  }
+  .beam::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from var(--beam-angle), transparent 0 70%, var(--color-ai) 80%, var(--color-accent) 88%, transparent 96%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: beam-spin 5s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Cursor spotlight on cards: --mx/--my are set by <PointerGlow /> */
+  [data-spotlight] {
+    position: relative;
+  }
+  [data-spotlight]::after,
+  .card-interactive::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(380px circle at var(--mx, -999px) var(--my, -999px), rgb(45 226 196 / 0.10), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  [data-spotlight]:hover::after,
+  .card-interactive:hover::after {
+    opacity: 1;
+  }
+
+  /* Background grid with a soft radial fade */
+  .ai-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+  .ai-dots {
+    background-image: radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.08) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+  .ai-noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+  }
+  .aurora-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+    animation: aurora 22s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* Thinking orb */
+  .ai-orb {
+    position: relative;
+    border-radius: 9999px;
+    background:
+      radial-gradient(circle at 35% 30%, rgb(255 255 255 / 0.9), transparent 18%),
+      radial-gradient(circle at 70% 70%, var(--color-ai), transparent 55%),
+      radial-gradient(circle at 30% 75%, var(--color-accent), transparent 55%),
+      radial-gradient(circle at 60% 25%, var(--color-amber), transparent 50%),
+      var(--color-night);
+    box-shadow: 0 0 40px -6px rgb(45 226 196 / 0.55), 0 0 80px -20px rgb(252 48 18 / 0.6), inset 0 0 20px rgb(255 255 255 / 0.15);
+    animation: orb-breathe 4s ease-in-out infinite;
+  }
+  .ai-orb::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(from 0deg, transparent, rgb(45 226 196 / 0.7), transparent 40%, rgb(252 48 18 / 0.7), transparent 75%);
+    filter: blur(6px);
+    animation: orb-spin 6s linear infinite;
+    z-index: -1;
+  }
+  .ai-orb[data-state="thinking"] {
+    animation-duration: 1.2s;
+  }
+  .ai-orb[data-state="thinking"]::before {
+    animation-duration: 1.4s;
+  }
+
+  /* Blinking caret for streamed text */
+  .caret::after {
+    content: "";
+    display: inline-block;
+    width: 0.5em;
+    height: 1.05em;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    background: var(--color-ai);
+    animation: caret 1s steps(1) infinite;
+  }
+
+  /* Three-dot AI loader */
+  .ai-dots-loader > span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--color-ai);
+    animation: dot-pulse 1.2s ease-in-out infinite;
+  }
+  .ai-dots-loader > span:nth-child(2) { animation-delay: 0.15s; }
+  .ai-dots-loader > span:nth-child(3) { animation-delay: 0.3s; }
+
+  .spinner {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 9999px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    animation: spin 0.7s linear infinite;
+  }
+
+  /* Marquee */
+  .marquee {
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .animate-toast {
+    animation: toast-in 0.35s var(--ease-out-quint) both;
+  }
+
+  /* Scroll progress (CSS scroll-driven where supported) */
+  .scroll-progress {
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+  }
+  @supports (animation-timeline: scroll()) {
+    .scroll-progress {
+      animation: progress-grow linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+@keyframes progress-grow { to { transform: scaleX(1); } }
+@keyframes bar-grow { from { transform: scaleX(0); } }
+@utility animate-bar {
+  animation: bar-grow 1.4s var(--ease-out-quint) 0.3s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob, .ai-orb, .ai-orb::before, .text-gradient, .text-shimmer, .beam::before, .marquee-track { animation: none !important; }
 }

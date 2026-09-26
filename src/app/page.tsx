@@ -1,21 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BellRing, Check, CircleDashed, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/section";
-import { FlowDiagram, StepList, CardGrid } from "@/components/site/blocks";
+import { StepList } from "@/components/site/blocks";
 import { TrackedLink } from "@/components/site/tracked-link";
 import { JsonLd } from "@/components/site/json-ld";
+import { ArrowLink } from "@/components/site/arrow-link";
+import { AiGuide } from "@/components/site/ai-guide";
+import { DivisionTabs, type DivisionTab } from "@/components/site/division-tabs";
+import { Carousel } from "@/components/site/carousel";
+import { CountUp } from "@/components/site/count-up";
+import { FaqList } from "@/components/site/faq";
 import { articles } from "@/content/insights";
 import { projects } from "@/content/portfolio";
-import { buildMetadata, webPageJsonLd } from "@/lib/seo";
-import { site } from "@/lib/site";
-import { cn } from "@/lib/utils";
-import { ArrowLink } from "@/components/site/arrow-link";
-import { HeroOrbit } from "@/components/site/hero-orbit";
 import { tracks } from "@/content/academy";
 import { businessAiPages } from "@/content/business-ai";
 import { studioPages } from "@/content/studio";
+import { resources } from "@/content/resources";
+import { buildMetadata, webPageJsonLd } from "@/lib/seo";
+import { site } from "@/lib/site";
 
 export const metadata = buildMetadata({
   title: `${site.name} | Business AI, Academy, Studio, Verified Talent & Jobs`,
@@ -26,27 +30,55 @@ export const metadata = buildMetadata({
 });
 
 const pillarList = [
-  { key: "business-ai", name: "Business AI", line: "Automation and AI for operations", icon: "/brand/03_DIVISIONS/DigitalBurj_BusinessAI_Icon.webp", w: 149, h: 164, href: "/business-ai" },
-  { key: "academy", name: "Academy", line: "Project-based technology courses", icon: "/brand/03_DIVISIONS/DigitalBurj_Academy_Icon.webp", w: 154, h: 154, href: "/academy" },
-  { key: "studio", name: "Studio", line: "Software and product development", icon: "/brand/03_DIVISIONS/DigitalBurj_Studio_Icon.webp", w: 159, h: 159, href: "/studio" },
-  { key: "talent", name: "Verified Talent", line: "Skill profiles with the proof attached", icon: "/brand/icons/verifiedtalent.webp", w: 58, h: 50, href: "/talent" },
-  { key: "jobs", name: "Jobs", line: "Job listings and shortlisting", icon: "/brand/icons/jobs.webp", w: 54, h: 50, href: "/jobs" },
+  { key: "business-ai", name: "Business AI", line: "Automation and AI for operations", icon: "/brand/dark/businessai.webp", w: 149, h: 164, href: "/business-ai" },
+  { key: "academy", name: "Academy", line: "Project-based technology courses", icon: "/brand/dark/academy.webp", w: 154, h: 154, href: "/academy" },
+  { key: "studio", name: "Studio", line: "Software and product development", icon: "/brand/dark/studio.webp", w: 159, h: 159, href: "/studio" },
+  { key: "talent", name: "Verified Talent", line: "Skill profiles with the proof attached", icon: "/brand/dark/verifiedtalent.webp", w: 58, h: 50, href: "/talent" },
+  { key: "jobs", name: "Jobs", line: "Job listings and shortlisting", icon: "/brand/dark/jobs.webp", w: 54, h: 50, href: "/jobs" },
 ];
 
 // Real counts from the site's own content, animated in the hero.
-const heroStats = [
-  { value: 5, label: "Connected divisions" },
-  { value: tracks.length, label: "Academy tracks" },
+// Real counts from this site's own content (no invented metrics).
+const kpis = [
+  { value: 5, label: "Divisions" },
   { value: businessAiPages.length, label: "Business AI services" },
   { value: studioPages.length, label: "Studio services" },
+  { value: tracks.length, label: "Academy tracks" },
+  { value: articles.length, label: "Guides & articles" },
+  { value: resources.length, label: "Free checklists & templates" },
 ];
 
-const capabilities = [
-  { title: "DigitalBurj Business AI", body: "We look at how your team handles enquiries, documents and approvals, take out the steps that shouldn't exist, and automate what's left. You see the before and after numbers.", href: "/business-ai", cta: "Business AI" },
-  { title: "DigitalBurj Academy", body: "Technology courses where every module ends in a working project and a review with a person, not a multiple-choice quiz.", href: "/academy", cta: "Academy" },
-  { title: "DigitalBurj Studio", body: "Web apps, internal tools and SaaS products. We check people want it before building the full version, then ship something small first.", href: "/studio", cta: "Studio" },
-  { title: "DigitalBurj Verified Talent", body: "Profiles that show what someone has built and how each skill was checked. Currently in development.", href: "/talent", cta: "Verified Talent" },
-  { title: "DigitalBurj Jobs", body: "Listings where candidates attach project work and employers shortlist on it. We don't guarantee jobs or visas.", href: "/jobs", cta: "Jobs" },
+const marqueeItems = [
+  "Workflow automation", "AI agents", "CRM automation", "Document automation", "Reporting", "Web apps", "SaaS",
+  "MVPs", "System integration", "Cloud deployment", "Web development", "AI engineering", "Data", "Cybersecurity",
+  "Skill verification", "Job listings",
+];
+
+const tabs: DivisionTab[] = [
+  {
+    key: "business-ai", name: "Business AI", icon: { src: "/brand/dark/businessai.webp", w: 149, h: 164 },
+    title: "Most slow processes don't need AI first.",
+    body: "They need fewer handoffs. We map the process, time it, cut what's unnecessary, and only then add automation. Anything that needs judgement stays with a person.",
+    steps: ["Observe", "Measure", "Simplify", "Automate", "Measure again"], href: "/business-ai", cta: "Explore Business AI",
+  },
+  {
+    key: "academy", name: "Academy", icon: { src: "/brand/dark/academy.webp", w: 154, h: 154 },
+    title: "Finish a course with work you can show.",
+    body: "Every track is built around projects. You build it, we break it, you fix it, then you walk a reviewer through what you did and why.",
+    steps: ["Learn", "Build", "Break", "Fix", "Explain"], href: "/academy", cta: "Explore Academy",
+  },
+  {
+    key: "studio", name: "Studio", icon: { src: "/brand/dark/studio.webp", w: 159, h: 159 },
+    title: "Check demand before you build.",
+    body: "Before full development we test whether people want the product, agree the smallest useful version, and write down what we won't build.",
+    steps: ["Problem", "Demand check", "Scope", "Build", "Launch", "Measure"], href: "/studio", cta: "Explore Studio",
+  },
+  {
+    key: "talent", name: "Verified Talent", icon: { src: "/brand/dark/verifiedtalent.webp", w: 58, h: 50 }, badge: "In development",
+    title: "Skills with the proof attached.",
+    body: "Each skill on a profile will say where it came from: self-reported, assessed, or checked by a reviewer.",
+    steps: ["Add a skill", "Attach the work", "Get it assessed", "Reviewed", "Share the profile"], href: "/talent", cta: "Explore Verified Talent",
+  },
 ];
 
 const industries = [
@@ -81,109 +113,55 @@ const finalCtas = [
   { label: "Find Opportunities", href: "/get-started/jobs" },
 ];
 
-function PillarFeature({
-  id,
-  eyebrow,
-  title,
-  body,
-  steps,
-  href,
-  cta,
-  icon,
-  tone = "paper",
-  children,
-}: {
-  id: string;
-  eyebrow: string;
-  title: string;
-  body: string;
-  steps?: string[];
-  href: string;
-  cta: string;
-  icon?: { src: string; w: number; h: number };
-  tone?: "paper" | "surface" | "ink";
-  children?: React.ReactNode;
-}) {
-  return (
-    <Section id={id} tone={tone}>
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,26rem)_1fr] lg:gap-16">
-        <div>
-          {icon ? (
-            <Image src={icon.src} alt="" width={icon.w} height={icon.h} className="mb-6 h-14 w-auto mix-blend-multiply" />
-          ) : null}
-          <p className={cn("eyebrow", tone === "ink" ? "text-accent" : "text-accent-strong")}>{eyebrow}</p>
-          <h2 className={cn("mt-3 text-h2 font-extrabold", tone === "ink" ? "text-white" : "text-ink")}>{title}</h2>
-          <p className={cn("mt-5 text-lead", tone === "ink" ? "text-white/75" : "text-ink-2")}>{body}</p>
-          <Button asChild className="mt-8" variant={tone === "ink" ? "inverse" : "primary"}>
-            <TrackedLink href={href} eventLabel={`home_${id}`}>
-              {cta} <ArrowRight aria-hidden="true" />
-            </TrackedLink>
-          </Button>
-        </div>
-        <div className="lg:pt-14">{steps ? <FlowDiagram steps={steps} tone={tone === "ink" ? "ink" : "paper"} /> : children}</div>
-      </div>
-    </Section>
-  );
-}
-
 export default function HomePage() {
   const featured = articles.slice(0, 3);
+  const maxKpi = Math.max(...kpis.map((k) => k.value));
   return (
     <>
-      {/* 01 Hero — orbit adapted from 21st.dev builders-community-hero. Sized to fit the first screen. */}
-      {/* Negative top margin lets the ambient light run underneath the floating glass header */}
+      {/* 01 Hero: AI chat interface over an aurora, with the division dock */}
       <section className="relative -mt-16 overflow-hidden border-b border-line pt-16 sm:-mt-[4.25rem] sm:pt-[4.25rem] lg:-mt-[4.75rem] lg:pt-[4.75rem]">
-        {/* iOS 27-style ambient light behind the glass elements */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-40 -top-32 size-[34rem] rounded-full bg-accent/10 blur-3xl" />
-          <div className="absolute -right-32 top-20 size-[30rem] rounded-full bg-success/10 blur-3xl" />
+          <div className="absolute left-1/2 top-[-18rem] h-[36rem] w-[64rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(252_48_18/0.22),transparent)]" />
+          <div className="absolute right-[-10rem] top-40 size-[28rem] rounded-full bg-[radial-gradient(closest-side,rgb(45_226_196/0.14),transparent)]" />
+          <div className="ai-grid absolute inset-0" />
         </div>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,var(--color-line)_1px,transparent_0)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,#000_40%,transparent_100%)]"
-        />
-        <div className="container-site relative pb-8 pt-3 sm:pb-10 sm:pt-4">
-          <HeroOrbit stats={heroStats} />
-          <p className="sr-only">
-            {heroStats.map((s) => `${s.value} ${s.label}`).join(", ")}
+        <div className="container-site relative pb-8 pt-6 text-center sm:pb-10 sm:pt-8 [@media(max-height:820px)]:pt-4">
+          <span aria-hidden="true" className="ai-orb animate-rise mx-auto hidden size-12 sm:block [@media(max-height:820px)]:hidden" />
+          <p className="animate-rise mx-auto inline-flex sm:mt-4 [@media(max-height:820px)]:mt-0 items-center gap-2 rounded-full border border-line-strong bg-fill px-3 py-1 font-mono text-xs text-ink-2 backdrop-blur-md" style={{ ["--d" as string]: "80ms" }}>
+            <span className="size-1.5 rounded-full bg-ai shadow-[0_0_8px_var(--color-ai)]" aria-hidden="true" />
+            DigitalBurj <span className="hidden text-muted sm:inline">· {site.tagline}</span>
           </p>
-          <div className="mx-auto mt-4 max-w-6xl text-center sm:mt-5">
-            <p className="eyebrow animate-rise text-accent-strong" style={{ ["--d" as string]: "100ms" }}>
-              DigitalBurj <span className="hidden text-muted sm:inline">· {site.tagline}</span>
-            </p>
-            <h1 className="animate-rise mt-3 text-display font-extrabold text-ink" style={{ ["--d" as string]: "180ms" }}>
-              We build the systems.<br className="hidden sm:block" />{" "}<span className="text-accent-strong">And the skills to run them.</span>
-            </h1>
-            <p className="animate-rise mx-auto mt-4 max-w-2xl text-lead text-ink-2" style={{ ["--d" as string]: "280ms" }}>
-              Automation and AI for operations, custom software, hands-on tech training, and hiring based on work
-              people have actually done.
-            </p>
-            <div className="animate-rise mt-6 flex flex-wrap justify-center gap-2 sm:gap-3" style={{ ["--d" as string]: "380ms" }}>
-              <Button asChild size="lg" className="max-sm:h-11 max-sm:px-4 max-sm:text-body-sm">
-                <a href="#capabilities">
-                  See what we do <ArrowRight aria-hidden="true" />
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="max-sm:h-11 max-sm:px-4 max-sm:text-body-sm">
-                <TrackedLink href="/contact" eventLabel="home_hero_conversation">
-                  Talk to us
-                </TrackedLink>
-              </Button>
-            </div>
+          <h1 className="animate-rise mx-auto mt-4 max-w-6xl text-display font-extrabold text-ink" style={{ ["--d" as string]: "160ms" }}>
+            We build the systems.<br className="hidden sm:block" />{" "}
+            <span className="text-gradient">And the skills to run them.</span>
+          </h1>
+          <p className="animate-rise mx-auto mt-4 max-w-2xl text-lead text-ink-2" style={{ ["--d" as string]: "240ms" }}>
+            Automation and AI for operations, custom software, hands-on tech training, and hiring based on work people
+            have actually done.
+          </p>
+          <div className="animate-rise mt-6" style={{ ["--d" as string]: "320ms" }}>
+            <AiGuide />
           </div>
-          <nav aria-label="DigitalBurj divisions" className="mx-auto mt-6 max-w-4xl">
-            <ul className="flex flex-wrap justify-center gap-2 sm:gap-3">
-              {pillarList.map((p, i) => (
-                <li key={p.key} className="animate-rise" style={{ ["--d" as string]: `${500 + i * 80}ms` }}>
+          <nav aria-label="DigitalBurj divisions" className="animate-rise mt-6" style={{ ["--d" as string]: "420ms" }}>
+            <ul className="glass mx-auto inline-flex max-w-full items-end justify-center gap-0.5 rounded-2xl p-1.5 sm:gap-2 sm:p-2">
+              {pillarList.map((p) => (
+                <li key={p.key}>
                   <TrackedLink
                     href={p.href}
-                    eventLabel={`home_selector_${p.key}`}
-                    className="group flex h-9 items-center gap-2 glass rounded-full pl-1 pr-3 text-sm font-semibold text-ink transition-all duration-300 ease-(--ease-out-quint) hover:-translate-y-0.5 hover:bg-paper active:scale-[0.97] sm:h-11 sm:gap-2.5 sm:pl-1.5 sm:pr-4"
+                    eventLabel={`home_dock_${p.key}`}
+                    className="group flex flex-col items-center gap-1 rounded-xl px-1.5 py-2 text-xs font-semibold text-ink-2 transition-all duration-300 ease-(--ease-out-quint) hover:-translate-y-1.5 hover:bg-fill hover:text-ink sm:px-3"
                   >
-                    <span className="grid size-7 shrink-0 place-items-center overflow-hidden rounded-full bg-surface transition-colors duration-300 group-hover:bg-accent-soft sm:size-8">
-                      <Image src={p.icon} alt="" width={p.w} height={p.h} className="h-4 w-auto mix-blend-multiply sm:h-5" />
+                    <span className="grid size-10 place-items-center rounded-xl border border-line-strong bg-night transition-all duration-300 group-hover:scale-110 group-hover:border-ai/50 group-hover:shadow-[0_0_24px_-6px_var(--color-ai)] sm:size-12">
+                      <Image src={p.icon} alt="" width={p.w} height={p.h} className="h-6 w-auto sm:h-7" />
                     </span>
-                    {p.name}
+                    {p.key === "talent" ? (
+                      <>
+                        <span className="sm:hidden">Talent</span>
+                        <span className="max-sm:hidden">{p.name}</span>
+                      </>
+                    ) : (
+                      p.name
+                    )}
                     <span className="sr-only">: {p.line}</span>
                   </TrackedLink>
                 </li>
@@ -193,117 +171,178 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 02 What DigitalBurj does */}
-      <Section id="capabilities" eyebrow="What we do" title="Five divisions. Use one, or several.">
-        <ul className="grid gap-px overflow-hidden rounded-lg border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
-          {capabilities.map((c) => (
-            <li key={c.title} className="flex flex-col bg-paper p-6">
-              <h3 className="text-h3 font-bold text-ink">{c.title}</h3>
-              <p className="mt-3 flex-1 text-body-sm leading-relaxed text-ink-2">{c.body}</p>
-              <ArrowLink href={c.href} className="mt-6">{c.cta}</ArrowLink>
+      {/* 02 Marquee */}
+      <div className="marquee overflow-hidden border-b border-line bg-night/60 py-4" aria-label="What we work on">
+        <ul className="marquee-track">
+          {[...marqueeItems, ...marqueeItems].map((m, i) => (
+            <li key={i} aria-hidden={i >= marqueeItems.length ? true : undefined} className="flex items-center gap-4 px-4 font-mono text-sm text-muted">
+              <span className="text-accent" aria-hidden="true">✦</span>
+              {m}
             </li>
           ))}
-          <li className="flex flex-col justify-center bg-ink p-6 text-white">
-            <p className="text-sm font-semibold tracking-[0.2em]">LEARN. BUILD. TRANSFORM.</p>
-            <p className="mt-3 text-body-sm leading-relaxed text-white/75">
-              Academy graduates build real projects. Studio and Business AI work needs people who can build. That&apos;s
-              why they sit under one roof.
+        </ul>
+      </div>
+
+      {/* 03 Bento: what we do */}
+      <Section id="capabilities" eyebrow="What we do" title="Five divisions. Use one, or several.">
+        <ul className="grid gap-4 md:grid-cols-6">
+          <li className="card-interactive rounded-xl border border-line bg-surface/70 p-6 backdrop-blur-md md:col-span-4">
+            <p className="eyebrow text-accent-strong">DigitalBurj Business AI</p>
+            <h3 className="mt-2 text-h3 font-bold text-ink">Take the repetitive steps out of operations.</h3>
+            <p className="mt-2 max-w-xl text-body-sm text-ink-2">
+              We look at how your team handles enquiries, documents and approvals, remove the steps that shouldn&apos;t
+              exist, and automate what&apos;s left.
             </p>
+            <ol aria-label="Example automated workflow" className="mt-5 grid gap-2 font-mono text-xs sm:grid-cols-2">
+              {["Enquiry received", "Details extracted", "CRM record created", "Owner assigned", "Draft reply prepared", "Person approves"].map((s, i) => (
+                <li key={s} className="animate-rise flex items-center gap-2 rounded-md border border-line bg-night/60 px-3 py-2 text-ink-2" style={{ ["--d" as string]: `${i * 90}ms` }}>
+                  {i < 5 ? <Check aria-hidden="true" className="size-3.5 text-ai" /> : <CircleDashed aria-hidden="true" className="size-3.5 animate-spin text-amber [animation-duration:3s]" />}
+                  {s}
+                </li>
+              ))}
+            </ol>
+            <ArrowLink href="/business-ai" className="mt-5">Business AI</ArrowLink>
+          </li>
+          <li className="card-interactive rounded-xl border border-line bg-surface/70 p-6 backdrop-blur-md md:col-span-2">
+            <p className="eyebrow text-accent-strong">DigitalBurj Academy</p>
+            <h3 className="mt-2 text-h3 font-bold text-ink">Courses that end in a project.</h3>
+            <pre aria-label="How a module runs" className="mt-4 overflow-x-auto rounded-md border border-line bg-night p-3 font-mono text-xs leading-relaxed text-ink-2">
+{`$ academy run module
+`}<span className="text-ai">✓</span>{` build   your project
+`}<span className="text-accent-strong">✗</span>{` break   we add bugs
+`}<span className="text-ai">✓</span>{` fix     tests pass
+`}<span className="text-amber">→</span>{` explain to a reviewer`}
+            </pre>
+            <ArrowLink href="/academy" className="mt-5">Academy</ArrowLink>
+          </li>
+          <li className="card-interactive rounded-xl border border-line bg-surface/70 p-6 backdrop-blur-md md:col-span-2">
+            <p className="eyebrow text-accent-strong">DigitalBurj Studio</p>
+            <h3 className="mt-2 text-h3 font-bold text-ink">Web apps, SaaS and internal tools.</h3>
+            <div aria-hidden="true" className="mt-4 space-y-2 rounded-md border border-line bg-night p-3">
+              <div className="flex gap-1.5"><span className="size-2 rounded-full bg-accent/70" /><span className="size-2 rounded-full bg-amber/70" /><span className="size-2 rounded-full bg-ai/70" /></div>
+              <div className="text-shimmer h-2.5 w-3/4 rounded bg-line-strong" />
+              <div className="h-2.5 w-1/2 rounded bg-line-strong/70" />
+              <div className="grid grid-cols-3 gap-1.5 pt-1"><div className="h-8 rounded bg-line" /><div className="h-8 rounded bg-line" /><div className="h-8 rounded bg-ai-soft" /></div>
+            </div>
+            <ArrowLink href="/studio" className="mt-5">Studio</ArrowLink>
+          </li>
+          <li className="card-interactive rounded-xl border border-line bg-surface/70 p-6 backdrop-blur-md md:col-span-2">
+            <div className="flex items-center justify-between gap-2">
+              <p className="eyebrow text-accent-strong">Verified Talent</p>
+              <span className="rounded-full border border-amber/40 bg-amber/10 px-2 py-0.5 font-mono text-[length:0.6875rem] text-amber">In development</span>
+            </div>
+            <h3 className="mt-2 text-h3 font-bold text-ink">Skills with the proof attached.</h3>
+            <ul aria-label="Verification labels" className="mt-4 flex flex-wrap gap-2 font-mono text-xs">
+              <li className="rounded-full border border-line-strong px-2.5 py-1 text-muted">self-declared</li>
+              <li className="rounded-full border border-amber/40 px-2.5 py-1 text-amber">assessed</li>
+              <li className="rounded-full border border-ai/50 bg-ai-soft px-2.5 py-1 text-ai">verified</li>
+            </ul>
+            <ArrowLink href="/talent" className="mt-5">Verified Talent</ArrowLink>
+          </li>
+          <li className="card-interactive rounded-xl border border-line bg-surface/70 p-6 backdrop-blur-md md:col-span-2">
+            <p className="eyebrow text-accent-strong">DigitalBurj Jobs</p>
+            <h3 className="mt-2 text-h3 font-bold text-ink">Jobs, with the work attached.</h3>
+            <div className="mt-4 flex items-center gap-3 rounded-md border border-dashed border-line-strong p-3">
+              <BellRing aria-hidden="true" className="size-5 shrink-0 text-muted" />
+              <p className="text-sm text-muted">No open listings right now. We don&apos;t guarantee jobs or visas.</p>
+            </div>
+            <ArrowLink href="/jobs" className="mt-5">Jobs</ArrowLink>
           </li>
         </ul>
       </Section>
 
-      {/* 03–06 Division features */}
-      <PillarFeature
-        id="business-ai"
-        tone="surface"
-        eyebrow="DigitalBurj Business AI"
-        title="Most slow processes don't need AI first."
-        body="They need fewer handoffs. We map the process, time it, cut what's unnecessary, and only then add automation. Anything that needs judgement stays with a person."
-        steps={["Observe", "Measure", "Simplify", "Automate", "Measure again"]}
-        href="/business-ai"
-        cta="Explore Business AI"
-        icon={{ src: "/brand/03_DIVISIONS/DigitalBurj_BusinessAI_Icon.webp", w: 149, h: 164 }}
-      />
-      <PillarFeature
-        id="academy"
-        eyebrow="DigitalBurj Academy"
-        title="Finish a course with work you can show."
-        body="Every track is built around projects. You build it, we break it, you fix it, then you walk a reviewer through what you did and why."
-        steps={["Learn", "Build", "Break", "Fix", "Explain"]}
-        href="/academy"
-        cta="Explore Academy"
-        icon={{ src: "/brand/03_DIVISIONS/DigitalBurj_Academy_Icon.webp", w: 154, h: 154 }}
-      />
-      <PillarFeature
-        id="studio"
-        tone="surface"
-        eyebrow="DigitalBurj Studio"
-        title="Check demand before you build."
-        body="Before full development we test whether people want the product, agree the smallest useful version, and write down what we won't build. After each stage you decide: carry on, change direction or stop."
-        steps={["Problem", "Demand check", "Scope", "Build", "Launch", "Measure"]}
-        href="/studio"
-        cta="Explore Studio"
-        icon={{ src: "/brand/03_DIVISIONS/DigitalBurj_Studio_Icon.webp", w: 159, h: 159 }}
-      />
-      <PillarFeature
-        id="talent"
-        eyebrow="DigitalBurj Verified Talent"
-        title="Skills with the proof attached."
-        body="Verified Talent is still in development. Each skill on a profile will say where it came from: self-reported, assessed, or checked by a reviewer."
-        href="/talent"
-        cta="Explore Verified Talent"
-      >
-        <p className="flex flex-wrap items-center gap-2 text-lg font-bold text-ink" aria-label="Skills plus projects plus reviews equals a profile">
-          {["Skills", "Projects", "Reviews"].map((t, i) => (
-            <span key={t} className="inline-flex items-center gap-2">
-              <span className="rounded-full border border-line px-3.5 py-2">{t}</span>
-              <span aria-hidden="true" className="text-accent-strong">
-                {i < 2 ? "+" : "="}
-              </span>
-            </span>
-          ))}
-          <span className="rounded-full bg-ink px-3.5 py-2 text-white">Profile</span>
-        </p>
-      </PillarFeature>
+      {/* 04 Stats & chart: counts from this site's own content */}
+      <Section tone="surface" eyebrow="By the numbers" title="What's on this site today.">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr]">
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3">
+            {kpis.map((k) => (
+              <div key={k.label} className="bg-night/80 p-5">
+                <dd className="text-stat font-extrabold tabular-nums text-ink">
+                  <CountUp to={k.value} />
+                </dd>
+                <dt className="mt-2 text-sm text-muted">{k.label}</dt>
+              </div>
+            ))}
+          </dl>
+          <figure className="rounded-xl border border-line bg-night/80 p-6">
+            <figcaption className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Pages by type</figcaption>
+            <ul className="mt-5 space-y-3">
+              {kpis.slice(1).map((k) => (
+                <li key={k.label} className="grid grid-cols-[9rem_1fr_2rem] items-center gap-3 text-sm">
+                  <span className="truncate text-ink-2">{k.label}</span>
+                  <span className="h-2.5 overflow-hidden rounded-full bg-line">
+                    <span
+                      className="animate-bar block h-full origin-left rounded-full bg-[linear-gradient(90deg,var(--color-accent),var(--color-amber),var(--color-ai))]"
+                      style={{ width: `${(k.value / maxKpi) * 100}%` }}
+                    />
+                  </span>
+                  <span className="text-right font-mono tabular-nums text-ink">{k.value}</span>
+                </li>
+              ))}
+            </ul>
+          </figure>
+        </div>
+      </Section>
 
-      {/* 07 Jobs */}
+      {/* 05 Tabs + stepper per division */}
+      <Section eyebrow="How each division works" title="Pick a division.">
+        <DivisionTabs tabs={tabs} />
+      </Section>
+
+      {/* 06 Jobs */}
       <Section tone="surface" eyebrow="DigitalBurj Jobs" title="Jobs, with the work attached.">
         <div className="grid gap-4 md:grid-cols-2">
-          <div className="rounded-lg border border-line bg-paper p-6">
+          <div className="card-interactive rounded-xl border border-line bg-night/70 p-6">
             <h3 className="text-h3 font-bold text-ink">Looking for work</h3>
             <p className="mt-3 text-ink-2">Apply to open roles and attach projects you&apos;ve built.</p>
             <ArrowLink href="/jobs/for-job-seekers" className="mt-5">For job seekers</ArrowLink>
           </div>
-          <div className="rounded-lg border border-line bg-paper p-6">
+          <div className="card-interactive rounded-xl border border-line bg-night/70 p-6">
             <h3 className="text-h3 font-bold text-ink">Hiring</h3>
             <p className="mt-3 text-ink-2">List the skills a role needs and look at candidates&apos; work before you interview.</p>
             <ArrowLink href="/jobs/for-employers" className="mt-5">For employers</ArrowLink>
           </div>
         </div>
-        <p className="mt-6 max-w-3xl text-sm text-muted">
-          We introduce candidates and employers. We don&apos;t guarantee jobs or visas, and employers make their own
-          hiring decisions.
+        <p className="mt-6 flex max-w-3xl items-start gap-2 text-sm text-muted">
+          <X aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-accent-strong" />
+          We introduce candidates and employers. We don&apos;t guarantee jobs or visas, and employers make their own hiring decisions.
         </p>
       </Section>
 
-      {/* 08 Industries */}
+      {/* 07 Industries carousel */}
       <Section eyebrow="Industries" title="Sectors we design for.">
-        <CardGrid items={industries} />
-        <Button asChild variant="outline" className="mt-8">
-          <Link href="/industries">All industries</Link>
-        </Button>
+        <Carousel label="Industries">
+          {industries.map((ind) => (
+            <li key={ind.href} className="w-[17rem] shrink-0 snap-start sm:w-[20rem]">
+              <Link href={ind.href} className="card-interactive group flex h-full flex-col rounded-xl border border-line bg-surface/70 p-6 backdrop-blur-md">
+                <span className="font-mono text-xs text-ai">/industries</span>
+                <span className="mt-3 text-h3 font-bold text-ink">{ind.title}</span>
+                <span className="mt-2 flex-1 text-body-sm text-ink-2">{ind.body}</span>
+                <ArrowRight aria-hidden="true" className="mt-5 size-4 text-muted transition-transform group-hover:translate-x-1 group-hover:text-accent-strong" />
+              </Link>
+            </li>
+          ))}
+        </Carousel>
       </Section>
 
-      {/* 09 Portfolio */}
+      {/* 08 Portfolio gallery */}
       <Section tone="surface" eyebrow="Portfolio" title="Our own products and ventures.">
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {projects.map((p) => (
+          {projects.map((p, i) => (
             <li key={p.slug}>
-              <Link href={`/portfolio/${p.slug}`} className="card-interactive flex h-full flex-col rounded-lg border border-line bg-paper p-5 hover:border-line-strong">
-                <span className="text-lg font-extrabold text-ink">{p.name}</span>
-                <span className="mt-1 text-sm text-muted">{p.sector ?? "Sector to be confirmed"}</span>
-                <span className="mt-auto pt-4 text-xs font-semibold uppercase tracking-wider text-muted">Details coming soon</span>
+              <Link href={`/portfolio/${p.slug}`} className="card-interactive group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-night/70">
+                <span aria-hidden="true" className="relative grid h-24 place-items-center overflow-hidden border-b border-line bg-[linear-gradient(135deg,rgb(252_48_18/0.18),rgb(45_226_196/0.12))]">
+                  <span className="ai-dots absolute inset-0 opacity-60" />
+                  <span className="relative font-mono text-3xl font-bold text-ink/80 transition-transform duration-500 group-hover:scale-110">
+                    {p.name.slice(0, 2)}
+                  </span>
+                  <span className="absolute right-2 top-2 font-mono text-[length:0.6875rem] text-muted">{String(i + 1).padStart(2, "0")}</span>
+                </span>
+                <span className="flex flex-1 flex-col p-4">
+                  <span className="font-bold text-ink">{p.name}</span>
+                  <span className="mt-1 text-sm text-muted">{p.sector ?? "Sector to be confirmed"}</span>
+                  <span className="mt-auto pt-3 font-mono text-[length:0.6875rem] uppercase tracking-wider text-muted">Details coming soon</span>
+                </span>
               </Link>
             </li>
           ))}
@@ -313,20 +352,20 @@ export default function HomePage() {
         </Button>
       </Section>
 
-      {/* 10 How we work */}
+      {/* 09 Timeline */}
       <Section eyebrow="How we work" title="How a project runs.">
         <StepList steps={framework} />
         <ArrowLink href="/company/how-we-work" className="mt-8">More on how we work</ArrowLink>
       </Section>
 
-      {/* 11 Insights */}
+      {/* 10 Insights */}
       <Section tone="surface" eyebrow="Insights" title="Guides and articles.">
         <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {featured.map((a) => (
             <li key={a.slug}>
-              <Link href={`/insights/${a.slug}`} className="card-interactive group flex h-full flex-col rounded-lg border border-line bg-paper p-6 hover:border-line-strong">
-                <span className="eyebrow">{a.kind}</span>
-                <span className="mt-3 text-h3 font-bold text-ink group-hover:underline">{a.title}</span>
+              <Link href={`/insights/${a.slug}`} className="card-interactive group flex h-full flex-col rounded-xl border border-line bg-night/70 p-6">
+                <span className="w-fit rounded-full border border-ai/40 bg-ai-soft px-2.5 py-0.5 font-mono text-xs text-ai">{a.kind}</span>
+                <span className="mt-4 text-h3 font-bold text-ink group-hover:underline">{a.title}</span>
                 <span className="mt-2 text-body-sm leading-relaxed text-ink-2">{a.description}</span>
               </Link>
             </li>
@@ -337,33 +376,28 @@ export default function HomePage() {
         </Button>
       </Section>
 
-      {/* 12 Direct answers */}
-      <Section eyebrow="Questions" title="Quick answers">
-        <dl className="grid gap-x-12 gap-y-10 md:grid-cols-2">
-          {answers.map((x) => (
-            <div key={x.q} className="border-t border-line pt-6">
-              <dt>
-                <h3 className="text-h3 font-bold text-ink">{x.q}</h3>
-              </dt>
-              <dd className="mt-3 leading-relaxed text-ink-2">{x.a}</dd>
-            </div>
-          ))}
-        </dl>
-      </Section>
+      {/* 11 Accordion FAQ */}
+      <FaqList title="Quick answers" faqs={answers} />
 
-      {/* Final CTA */}
+      {/* 12 Final CTA */}
       <section className="pb-4 pt-8">
         <div className="container-site">
-          <div className="relative overflow-hidden rounded-xl bg-ink px-6 py-14 sm:px-12">
-            <h2 className="max-w-2xl text-h2 font-extrabold text-white">Tell us what isn&apos;t working.</h2>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {finalCtas.map((c, i) => (
-                <Button key={c.href} asChild size="lg" variant={i === 0 ? "primary" : "outline-inverse"}>
-                  <TrackedLink href={c.href} eventLabel={`home_final_${c.label}`}>
-                    {c.label}
-                  </TrackedLink>
-                </Button>
-              ))}
+          <div className="beam relative overflow-hidden rounded-xl border border-line bg-night px-6 py-14 sm:px-12">
+            <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-24 size-96 rounded-full bg-accent/20 blur-3xl" />
+            <div aria-hidden="true" className="pointer-events-none absolute -bottom-40 left-10 size-96 rounded-full bg-ai/10 blur-3xl" />
+            <div aria-hidden="true" className="ai-grid pointer-events-none absolute inset-0" />
+            <div className="relative">
+              <p className="font-mono text-sm text-ai">&gt; next_step()</p>
+              <h2 className="mt-3 max-w-2xl text-h2 font-extrabold text-white">Tell us what isn&apos;t working.</h2>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {finalCtas.map((c, i) => (
+                  <Button key={c.href} asChild size="lg" variant={i === 0 ? "primary" : "outline"}>
+                    <TrackedLink href={c.href} eventLabel={`home_final_${c.label}`}>
+                      {c.label}
+                    </TrackedLink>
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
         </div>

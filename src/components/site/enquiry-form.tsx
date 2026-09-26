@@ -20,7 +20,8 @@ import {
   TextArea,
   TextField,
 } from "react-aria-components";
-import { Check, ChevronDown, CircleCheck, LoaderCircle } from "lucide-react";
+import { Check, ChevronDown, CircleAlert, CircleCheck } from "lucide-react";
+import { toast } from "./toaster";
 import { Button } from "@/components/ui/button";
 import { forms, type FieldDef } from "@/lib/forms";
 import { readAttribution, track } from "@/lib/analytics";
@@ -28,7 +29,7 @@ import { cn } from "@/lib/utils";
 
 const labelCls = "block text-sm font-semibold text-ink";
 const controlCls =
-  "mt-1.5 block w-full rounded-md border border-line-strong bg-surface px-3.5 text-body-sm text-ink placeholder:text-muted outline-none transition-colors data-[hovered]:border-ink-2 data-[focused]:border-ink data-[focused]:bg-paper data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent-strong/30 data-[invalid]:border-danger";
+  "mt-1.5 block w-full rounded-md border border-line-strong bg-fill px-3.5 text-body-sm text-ink placeholder:text-muted outline-none transition-[border-color,box-shadow,background-color] duration-300 data-[hovered]:border-muted data-[focused]:border-ai data-[focused]:bg-surface data-[focused]:shadow-[0_0_0_3px_var(--color-ai-soft),0_0_28px_-8px_var(--color-ai)] data-[invalid]:border-danger";
 const descCls = "mt-1.5 block text-sm text-muted";
 const errorCls = "mt-1.5 block text-sm font-medium text-danger";
 
@@ -50,7 +51,7 @@ function Field({ f }: { f: FieldDef }) {
         </AriaButton>
         {description}
         <FieldError className={errorCls} />
-        <Popover className="w-[var(--trigger-width)] overflow-auto rounded-md border border-white/70 bg-paper/95 p-1 shadow-xl backdrop-blur-xl">
+        <Popover className="w-[var(--trigger-width)] overflow-auto rounded-md border border-line-strong bg-surface/95 p-1 shadow-2xl backdrop-blur-xl">
           <ListBox className="max-h-72 outline-none">
             {f.options!.map((o) => (
               <ListBoxItem
@@ -82,13 +83,13 @@ function Field({ f }: { f: FieldDef }) {
             <Radio
               key={o}
               value={o}
-              className="flex h-11 cursor-pointer items-center gap-2.5 rounded-full border border-line-strong px-4 transition-colors text-body-sm text-ink data-[hovered]:border-ink-2 data-[selected]:border-ink data-[selected]:bg-surface data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent-strong/30 data-[invalid]:border-danger"
+              className="flex h-11 cursor-pointer items-center gap-2.5 rounded-full border border-line-strong px-4 transition-colors text-body-sm text-ink data-[hovered]:border-muted data-[selected]:border-ai data-[selected]:bg-ai-soft data-[selected]:shadow-[0_0_20px_-8px_var(--color-ai)] data-[focus-visible]:ring-2 data-[focus-visible]:ring-ai/40 data-[invalid]:border-danger"
             >
               {({ isSelected }) => (
                 <>
                   <span
                     aria-hidden="true"
-                    className={cn("size-4 rounded-full border-2", isSelected ? "border-[5px] border-accent-strong" : "border-line-strong")}
+                    className={cn("size-4 rounded-full border-2", isSelected ? "border-[5px] border-ai" : "border-line-strong")}
                   />
                   {o}
                 </>
@@ -160,6 +161,7 @@ export function EnquiryForm({ intent }: { intent: string }) {
         track(def.submitEvent, { intent: def.intent });
         if (def.submitEvent !== "form_completed") track("form_completed", { intent: def.intent });
         setStatus({ state: "success" });
+        toast({ tone: "success", title: "Message sent", body: "We'll reply by email." });
         requestAnimationFrame(() => successRef.current?.focus());
         return;
       }
@@ -172,8 +174,9 @@ export function EnquiryForm({ intent }: { intent: string }) {
 
   if (status.state === "success") {
     return (
-      <div ref={successRef} tabIndex={-1} role="status" className="rounded-lg border border-line bg-surface p-8 outline-none">
-        <CircleCheck className="size-8 text-success" aria-hidden="true" />
+      <div ref={successRef} tabIndex={-1} role="status" className="beam relative overflow-hidden rounded-lg border border-line bg-surface p-8 outline-none">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-success/15 blur-3xl" />
+        <CircleCheck className="relative size-8 text-success drop-shadow-[0_0_12px_var(--color-success)]" aria-hidden="true" />
         <h2 className="mt-4 text-h3 font-bold text-ink">Thank you. We have received your message.</h2>
         <p className="mt-3 max-w-xl text-ink-2">{def.nextSteps}</p>
         <Link href="/" className="link mt-6 inline-block font-semibold">
@@ -209,8 +212,8 @@ export function EnquiryForm({ intent }: { intent: string }) {
             <span
               aria-hidden="true"
               className={cn(
-                "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded border-2 group-data-[focus-visible]:ring-2 group-data-[focus-visible]:ring-accent-strong/30 group-data-[invalid]:border-danger",
-                isSelected ? "border-accent-strong bg-accent-strong" : "border-line-strong",
+                "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded border-2 group-data-[focus-visible]:ring-2 group-data-[focus-visible]:ring-ai/40 group-data-[invalid]:border-danger",
+                isSelected ? "border-accent-strong bg-accent-deep" : "border-line-strong",
               )}
             >
               {isSelected ? <Check className="size-3.5 text-white" strokeWidth={3} /> : null}
@@ -227,14 +230,15 @@ export function EnquiryForm({ intent }: { intent: string }) {
       </Checkbox>
 
       {status.state === "error" ? (
-        <p id="form-error" role="alert" className="rounded-md border border-danger/30 bg-danger-soft px-4 py-3 text-sm font-medium text-danger sm:col-span-2">
+        <p id="form-error" role="alert" className="flex items-start gap-2.5 rounded-md border border-danger/30 bg-danger-soft px-4 py-3 text-sm font-medium text-danger sm:col-span-2">
+          <CircleAlert className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
           {status.message}
         </p>
       ) : null}
 
       <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
         <Button type="submit" size="lg" disabled={status.state === "submitting"}>
-          {status.state === "submitting" ? <LoaderCircle className="animate-spin" aria-hidden="true" /> : null}
+          {status.state === "submitting" ? <span className="spinner" aria-hidden="true" /> : null}
           {status.state === "submitting" ? "Sending…" : def.submitLabel}
         </Button>
         <p className="text-sm text-muted">All fields are required unless marked optional.</p>
