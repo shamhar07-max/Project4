@@ -64,7 +64,7 @@ export default function StudioPage() {
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {projects.map((p) => (
             <li key={p.slug}>
-              <Link href={`/portfolio/${p.slug}`} className="flex h-full flex-col rounded-lg border border-line p-5 hover:border-ink">
+              <Link href={`/portfolio/${p.slug}`} className="card-interactive flex h-full flex-col rounded-lg border border-line p-5 hover:border-line-strong">
                 <span className="font-extrabold text-ink">{p.name}</span>
                 <span className="mt-1 text-sm text-muted">{p.sector ?? "Sector to be confirmed"}</span>
               </Link>

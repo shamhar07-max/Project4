@@ -67,7 +67,7 @@ export default async function AcademyCategoryPage({ params }: { params: Promise<
       </Section>
       {lp ? (
         <Section title="Learning pathway">
-          <Link href={`/academy/learning-paths/${lp.slug}`} className="block max-w-2xl rounded-lg border border-line p-6 hover:border-ink">
+          <Link href={`/academy/learning-paths/${lp.slug}`} className="card-interactive block max-w-2xl rounded-lg border border-line p-6 hover:border-line-strong">
             <span className="text-h3 font-bold text-ink">{lp.title} Learning Path</span>
             <span className="mt-2 block text-ink-2">{lp.overview}</span>
           </Link>

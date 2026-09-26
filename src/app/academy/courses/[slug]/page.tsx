@@ -72,7 +72,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
       </Section>
       {next ? (
         <Section title="Recommended next course">
-          <Link href={`/academy/courses/${next.slug}`} className="block max-w-2xl rounded-lg border border-line p-6 hover:border-ink">
+          <Link href={`/academy/courses/${next.slug}`} className="card-interactive block max-w-2xl rounded-lg border border-line p-6 hover:border-line-strong">
             <span className="text-h3 font-bold text-ink">{next.title}</span>
             <span className="mt-2 block text-ink-2">{next.summary}</span>
           </Link>

@@ -29,7 +29,7 @@ export default function GetStartedPage() {
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {choices.map((c) => (
             <li key={c.label}>
-              <Link href={c.href} className="group flex h-full items-center justify-between gap-4 rounded-lg border border-line p-6 hover:border-ink">
+              <Link href={c.href} className="card-interactive group flex h-full items-center justify-between gap-4 rounded-lg border border-line p-6 hover:border-line-strong">
                 <span>
                   <span className="block text-lg font-extrabold text-ink">{c.label}</span>
                   <span className="mt-1 block text-sm text-muted">{c.to}</span>

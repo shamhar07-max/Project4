@@ -27,16 +27,30 @@ export function PageHero({
         <div className={cn("mt-10 grid gap-10 lg:mt-14", aside ? "lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-16" : "")}>
           <div className="max-w-3xl">
             {eyebrow ? (
-              <p className="eyebrow flex items-center gap-3 text-accent-strong">
+              <p className="eyebrow animate-rise flex items-center gap-3 text-accent-strong">
                 <span aria-hidden="true" className="h-px w-8 bg-accent" />
                 {eyebrow}
               </p>
             ) : null}
-            <h1 className="mt-4 text-h1 font-extrabold text-ink">{title}</h1>
-            {lead ? <p className="mt-6 max-w-2xl text-lead text-ink-2">{lead}</p> : null}
-            {children ? <div className="mt-8 flex flex-wrap gap-3">{children}</div> : null}
+            <h1 className="animate-rise mt-4 text-h1 font-extrabold text-ink" style={{ ["--d" as string]: "80ms" }}>
+              {title}
+            </h1>
+            {lead ? (
+              <p className="animate-rise mt-6 max-w-2xl text-lead text-ink-2" style={{ ["--d" as string]: "160ms" }}>
+                {lead}
+              </p>
+            ) : null}
+            {children ? (
+              <div className="animate-rise mt-8 flex flex-wrap gap-3" style={{ ["--d" as string]: "240ms" }}>
+                {children}
+              </div>
+            ) : null}
           </div>
-          {aside ? <div className="lg:pt-2">{aside}</div> : null}
+          {aside ? (
+            <div className="animate-rise lg:pt-2" style={{ ["--d" as string]: "300ms" }}>
+              {aside}
+            </div>
+          ) : null}
         </div>
       </div>
     </section>

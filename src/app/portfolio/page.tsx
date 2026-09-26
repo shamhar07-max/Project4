@@ -23,7 +23,7 @@ export default function PortfolioPage() {
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p) => (
             <li key={p.slug}>
-              <Link href={`/portfolio/${p.slug}`} className="flex h-full flex-col rounded-lg border border-line p-6 hover:border-ink">
+              <Link href={`/portfolio/${p.slug}`} className="card-interactive flex h-full flex-col rounded-lg border border-line p-6 hover:border-line-strong">
                 <span className="eyebrow">{p.sector ?? "Sector to be confirmed"}</span>
                 <span className="mt-3 text-h3 font-bold text-ink">{p.name}</span>
                 <span className="mt-2 text-ink-2">{p.summary}</span>

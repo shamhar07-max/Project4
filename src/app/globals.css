@@ -22,6 +22,8 @@
   --color-accent-hover: #b01f04;
   --color-accent-soft: #fff1ee;
   --color-success: #17683f;
+  --color-success-soft: #e3f1e8;
+  --color-whatsapp: #25d366;
   --color-danger: #b42318;
   --color-danger-soft: #fef3f2;
 
@@ -44,6 +46,8 @@
   --text-body--line-height: 1.7;
   --text-body-sm: 0.9375rem;
   --text-body-sm--line-height: 1.6;
+  --text-stat: 3.25rem;
+  --text-stat--line-height: 1;
   --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
   --text-lead--line-height: 1.6;
   --text-eyebrow: 0.75rem;
@@ -199,4 +203,147 @@
     color: var(--color-ink);
     font-weight: 600;
   }
+}
+
+/* ------------------------------------------------------------------
+ * Motion system
+ * Subtle, fast, purposeful. Everything is disabled by the
+ * prefers-reduced-motion rule in @layer base.
+ * Reveal-on-scroll only hides content when JS is running (html.js),
+ * so pages stay fully readable without JavaScript and for crawlers.
+ * ------------------------------------------------------------------ */
+@theme {
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes draw-down {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+@keyframes chip-highlight {
+  0%, 100% { border-color: var(--color-line); box-shadow: none; }
+  40% { border-color: var(--color-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-accent) 14%, transparent); }
+}
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.99); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes wa-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.9); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes wa-ring {
+  0% { transform: scale(1); opacity: 0.45; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+@utility animate-rise {
+  animation: rise 0.7s var(--ease-out-quint) both;
+  animation-delay: var(--d, 0ms);
+}
+@utility animate-page {
+  animation: fade-in 0.35s ease-out both;
+}
+
+@layer components {
+  /* Scroll reveal */
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.7s var(--ease-out-quint),
+      transform 0.7s var(--ease-out-quint);
+    transition-delay: calc(var(--i, 0) * 70ms);
+    will-change: opacity, transform;
+  }
+  .js [data-reveal][data-revealed] {
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
+
+  /* Interactive card: lift, shadow and an accent rule that draws across */
+  .card-interactive {
+    position: relative;
+    isolation: isolate;
+    transition:
+      transform 0.35s var(--ease-out-quint),
+      box-shadow 0.35s var(--ease-out-quint),
+      border-color 0.35s var(--ease-out-quint);
+  }
+  .card-interactive::before {
+    content: "";
+    position: absolute;
+    inset: -1px -1px auto -1px;
+    height: 3px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s var(--ease-out-quint);
+  }
+  .card-interactive:hover,
+  .card-interactive:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -22px rgb(5 29 24 / 0.35);
+  }
+  .card-interactive:hover::before,
+  .card-interactive:focus-visible::before {
+    transform: scaleX(1);
+  }
+
+  /* Timeline rail draws down as each step is revealed */
+  .timeline-rail {
+    transform-origin: top;
+  }
+  .js [data-revealed] > .timeline-rail {
+    animation: draw-down 0.8s var(--ease-out-quint) both;
+    animation-delay: calc(var(--i, 0) * 70ms + 200ms);
+  }
+
+  /* Flow steps highlight in sequence once visible */
+  .js [data-revealed] .flow-chip {
+    animation: chip-highlight 1.1s ease-in-out both;
+    animation-delay: calc(var(--i, 0) * 140ms + 300ms);
+  }
+
+  /* Menus */
+  .menu-panel[data-state="open"] {
+    animation: menu-in 0.22s var(--ease-out-quint) both;
+  }
+
+  /* Animated underline for text links */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s var(--ease-out-quint);
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  /* Smooth FAQ open where supported */
+  details.faq-item::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition: block-size 0.35s var(--ease-out-quint), content-visibility 0.35s allow-discrete;
+  }
+  details.faq-item[open]::details-content {
+    block-size: auto;
+  }
+}
+
+:root {
+  interpolate-size: allow-keywords;
 }

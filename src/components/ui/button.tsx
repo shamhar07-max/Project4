@@ -5,11 +5,11 @@ import { cn } from "@/lib/utils";
 
 // shadcn/ui Button, restyled to DigitalBurj tokens.
 export const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
+  "group/btn inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-semibold transition-[color,background-color,border-color,box-shadow,transform] duration-300 ease-out hover:-translate-y-px active:translate-y-0 [&_svg]:transition-transform hover:[&_svg]:translate-x-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        primary: "bg-accent-strong text-white hover:bg-accent-hover",
+        primary: "bg-accent-strong text-white shadow-[0_8px_20px_-10px_rgb(205_37_6/0.6)] hover:bg-accent-hover hover:shadow-[0_12px_26px_-10px_rgb(205_37_6/0.7)]",
         ink: "bg-ink text-white hover:bg-ink-2",
         outline: "border border-line-strong bg-paper text-ink hover:border-ink",
         ghost: "text-ink hover:bg-surface",

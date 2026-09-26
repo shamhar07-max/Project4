@@ -9,12 +9,12 @@ export function FaqList({ faqs, title = "Questions" }: { faqs: Faq[]; title?: st
   return (
     <section className="border-t border-line section-pad" aria-labelledby="faq-heading">
       <div className="container-site grid gap-10 lg:grid-cols-[18rem_1fr]">
-        <h2 id="faq-heading" className="text-h2 font-extrabold text-ink">
+        <h2 id="faq-heading" className="text-h2 font-extrabold text-ink" data-reveal>
           {title}
         </h2>
         <div className="divide-y divide-line border-y border-line">
-          {faqs.map((f) => (
-            <details key={f.q} className="group">
+          {faqs.map((f, i) => (
+            <details key={f.q} className="faq-item group" data-reveal style={{ ["--i" as string]: i % 6 }}>
               <summary className="flex items-start justify-between gap-6 py-5 text-left">
                 <h3 className="text-body font-bold text-ink">{f.q}</h3>
                 <Plus

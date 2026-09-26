@@ -15,7 +15,8 @@ export type AnalyticsEvent =
   | "enroll_click"
   | "professional_interest"
   | "employer_interest"
-  | "download";
+  | "download"
+  | "whatsapp_click";
 
 type Props = Record<string, string | number | boolean | undefined>;
 

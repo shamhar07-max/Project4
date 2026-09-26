@@ -11,11 +11,11 @@ export function RelatedLinks({ links, title = "Related" }: { links: NavLink[]; t
           {title}
         </h2>
         <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {links.map((l) => (
-            <li key={l.href}>
+          {links.map((l, i) => (
+            <li key={l.href} data-reveal style={{ ["--i" as string]: i % 6 }}>
               <Link
                 href={l.href}
-                className="group flex h-full items-start justify-between gap-4 rounded-lg border border-line p-5 hover:border-ink"
+                className="card-interactive group flex h-full items-start justify-between gap-4 rounded-lg border border-line bg-paper p-5 hover:border-line-strong"
               >
                 <span>
                   <span className="block font-bold text-ink">{l.label}</span>

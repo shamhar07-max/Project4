@@ -13,6 +13,10 @@ import { buildMetadata, webPageJsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { ArrowLink } from "@/components/site/arrow-link";
+import { HeroOrbit } from "@/components/site/hero-orbit";
+import { tracks } from "@/content/academy";
+import { businessAiPages } from "@/content/business-ai";
+import { studioPages } from "@/content/studio";
 
 export const metadata = buildMetadata({
   title: `${site.name} | Business AI, Academy, Studio, Verified Talent & Jobs`,
@@ -28,6 +32,14 @@ const pillarList = [
   { key: "studio", name: "Studio", line: "Build digital products", icon: "/brand/03_DIVISIONS/DigitalBurj_Studio_Icon.webp", w: 159, h: 159, href: "/studio" },
   { key: "talent", name: "Verified Talent", line: "Discover demonstrated capability", icon: "/brand/icons/verifiedtalent.webp", w: 58, h: 50, href: "/talent" },
   { key: "jobs", name: "Jobs", line: "Connect talent and opportunity", icon: "/brand/icons/jobs.webp", w: 54, h: 50, href: "/jobs" },
+];
+
+// Real counts from the site's own content, animated in the hero.
+const heroStats = [
+  { value: 5, label: "Connected divisions" },
+  { value: tracks.length, label: "Academy tracks" },
+  { value: businessAiPages.length, label: "Business AI services" },
+  { value: studioPages.length, label: "Studio services" },
 ];
 
 const capabilities = [
@@ -140,25 +152,35 @@ export default function HomePage() {
   const featured = articles.slice(0, 6);
   return (
     <>
-      {/* 01 Hero */}
+      {/* 01 Hero — orbit adapted from 21st.dev builders-community-hero */}
       <section className="relative overflow-hidden border-b border-line">
-        <div className="container-site grid gap-12 pb-16 pt-12 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_25rem] lg:gap-16 lg:pb-24 lg:pt-24">
-          <div>
-            <p className="eyebrow flex flex-wrap items-center gap-x-3 gap-y-1 text-accent-strong">
-              <span aria-hidden="true" className="h-px w-8 bg-accent" />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,var(--color-line)_1px,transparent_0)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,#000_40%,transparent_100%)]"
+        />
+        <div className="container-site relative pb-16 pt-6 sm:pt-10 lg:pb-24">
+          <HeroOrbit stats={heroStats} />
+          <p className="sr-only">
+            {heroStats.map((s) => `${s.value} ${s.label}`).join(", ")}
+          </p>
+          <div className="mx-auto max-w-4xl text-center sm:-mt-2">
+            <p className="eyebrow animate-rise flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-accent-strong" style={{ ["--d" as string]: "100ms" }}>
               DigitalBurj
+              <span aria-hidden="true" className="hidden h-px w-6 bg-accent sm:inline-block" />
               <span className="text-muted">Technology • Capability • Business</span>
             </p>
-            <h1 className="mt-6 max-w-3xl text-display font-extrabold text-ink">
+            <h1 className="animate-rise mt-5 text-display font-extrabold text-ink" style={{ ["--d" as string]: "180ms" }}>
               Technology built around <span className="text-accent-strong">real capability.</span>
             </h1>
-            <p className="mt-7 max-w-2xl text-lead text-ink-2">
+            <p className="animate-rise mx-auto mt-6 max-w-2xl text-lead text-ink-2" style={{ ["--d" as string]: "280ms" }}>
               DigitalBurj brings together business transformation, practical education, software engineering, verified
               professional capability and employment opportunities within one connected technology ecosystem.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="animate-rise mt-8 flex flex-wrap justify-center gap-3" style={{ ["--d" as string]: "380ms" }}>
               <Button asChild size="lg">
-                <a href="#capabilities">Explore DigitalBurj</a>
+                <a href="#capabilities">
+                  Explore DigitalBurj <ArrowRight aria-hidden="true" />
+                </a>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <TrackedLink href="/contact" eventLabel="home_hero_conversation">
@@ -167,29 +189,20 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
-          <nav aria-label="DigitalBurj divisions" className="lg:pt-4">
-            <ul className="divide-y divide-line overflow-hidden rounded-lg border border-line bg-paper">
-              {pillarList.map((p) => (
-                <li key={p.key}>
+          <nav aria-label="DigitalBurj divisions" className="mx-auto mt-10 max-w-4xl">
+            <ul className="flex flex-wrap justify-center gap-3">
+              {pillarList.map((p, i) => (
+                <li key={p.key} className="animate-rise" style={{ ["--d" as string]: `${500 + i * 80}ms` }}>
                   <TrackedLink
                     href={p.href}
                     eventLabel={`home_selector_${p.key}`}
-                    className="group flex items-center gap-4 px-5 py-4 hover:bg-surface"
+                    className="group flex h-11 items-center gap-2.5 rounded-full border border-line bg-paper pl-1.5 pr-4 text-sm font-semibold text-ink shadow-[0_1px_2px_rgb(5_29_24/0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-[0_10px_24px_-12px_rgb(5_29_24/0.35)]"
                   >
-                    <span className="flex size-11 shrink-0 items-center justify-center overflow-hidden">
-                      <Image
-                        src={p.icon}
-                        alt=""
-                        width={p.w}
-                        height={p.h}
-                        className="h-9 w-auto mix-blend-multiply"
-                      />
+                    <span className="grid size-8 shrink-0 place-items-center overflow-hidden rounded-full bg-surface transition-colors duration-300 group-hover:bg-accent-soft">
+                      <Image src={p.icon} alt="" width={p.w} height={p.h} className="h-5 w-auto mix-blend-multiply" />
                     </span>
-                    <span className="flex-1">
-                      <span className="block text-sm font-extrabold uppercase tracking-[0.08em] text-ink">{p.name}</span>
-                      <span className="block text-sm text-muted">{p.line}</span>
-                    </span>
-                    <ArrowRight className="size-4 text-line-strong transition-colors group-hover:text-accent-strong" aria-hidden="true" />
+                    {p.name}
+                    <span className="sr-only">: {p.line}</span>
                   </TrackedLink>
                 </li>
               ))}
@@ -241,7 +254,7 @@ export default function HomePage() {
         <ol className="grid gap-3 sm:grid-cols-5">
           {ecosystem.map((e, i) => (
             <li key={e.name} className="relative">
-              <Link href={e.href} className="group flex h-full flex-col rounded-lg border border-line p-5 hover:border-ink">
+              <Link href={e.href} className="card-interactive group flex h-full flex-col rounded-lg border border-line p-5 hover:border-line-strong">
                 <span className="eyebrow text-accent-strong">{e.verb}</span>
                 <span className="mt-2 text-lg font-extrabold text-ink">{e.name}</span>
                 <ArrowRight className="mt-auto size-4 pt-0 text-line-strong group-hover:text-accent-strong" aria-hidden="true" />
@@ -341,7 +354,7 @@ export default function HomePage() {
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {projects.map((p) => (
             <li key={p.slug}>
-              <Link href={`/portfolio/${p.slug}`} className="flex h-full flex-col rounded-lg border border-line bg-paper p-5 hover:border-ink">
+              <Link href={`/portfolio/${p.slug}`} className="card-interactive flex h-full flex-col rounded-lg border border-line bg-paper p-5 hover:border-line-strong">
                 <span className="text-lg font-extrabold text-ink">{p.name}</span>
                 <span className="mt-1 text-sm text-muted">{p.sector ?? "Sector to be confirmed"}</span>
                 <span className="mt-4 text-sm text-ink-2">{p.summary}</span>
@@ -366,7 +379,7 @@ export default function HomePage() {
         <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {featured.map((a) => (
             <li key={a.slug}>
-              <Link href={`/insights/${a.slug}`} className="group flex h-full flex-col rounded-lg border border-line bg-paper p-6 hover:border-ink">
+              <Link href={`/insights/${a.slug}`} className="card-interactive group flex h-full flex-col rounded-lg border border-line bg-paper p-6 hover:border-line-strong">
                 <span className="eyebrow">{a.kind}</span>
                 <span className="mt-3 text-h3 font-bold text-ink group-hover:underline">{a.title}</span>
                 <span className="mt-2 text-body-sm leading-relaxed text-ink-2">{a.description}</span>

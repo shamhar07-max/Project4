@@ -5,6 +5,9 @@ import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { JsonLd } from "@/components/site/json-ld";
 import { AttributionCapture } from "@/components/site/attribution";
+import { RevealObserver } from "@/components/site/reveal-observer";
+import { WhatsAppButton } from "@/components/site/whatsapp-button";
+import { ChatWidget } from "@/components/site/chat-widget";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -36,7 +39,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Marks JS as available so scroll-reveal styles apply only when they can be undone. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className="flex min-h-dvh flex-col">
         <Header />
         <main id="main" className="flex-1">
@@ -45,6 +52,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
         <AttributionCapture />
+        <RevealObserver />
+        <WhatsAppButton />
+        <ChatWidget />
       </body>
     </html>
   );

@@ -172,7 +172,12 @@ export function Header() {
       >
         Skip to content
       </a>
-      <div className="container-site flex h-16 items-center gap-3 lg:h-[4.5rem]">
+      <div
+        className={cn(
+          "container-site flex items-center gap-3 transition-[height] duration-300 ease-out",
+          scrolled ? "h-14 lg:h-16" : "h-16 lg:h-[4.5rem]",
+        )}
+      >
         <MobileNav />
         <Logo priority className="max-lg:mx-auto" />
         <NavigationMenu className="mx-auto hidden lg:flex" aria-label="Main">
@@ -180,7 +185,7 @@ export function Header() {
             {mainNav.map((item) => (
               <NavigationMenuItem key={item.label}>
                 <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
-                <NavigationMenuContent>
+                <NavigationMenuContent className="menu-panel">
                   <MegaPanel item={item} />
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -188,7 +193,7 @@ export function Header() {
             <li aria-hidden="true" className="mx-2 h-5 w-px bg-line" />
             <NavigationMenuItem>
               <NavigationMenuTrigger>{companyNav.label}</NavigationMenuTrigger>
-              <NavigationMenuContent>
+              <NavigationMenuContent className="menu-panel">
                 <MegaPanel item={companyNav} />
               </NavigationMenuContent>
             </NavigationMenuItem>

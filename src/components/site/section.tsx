@@ -33,7 +33,7 @@ export function Section({
     >
       <div className="container-site">
         {title ? (
-          <div className="max-w-3xl">
+          <div className="max-w-3xl" data-reveal>
             {eyebrow ? (
               <p className={cn("eyebrow", tone === "ink" ? "text-accent" : "text-accent-strong")}>{eyebrow}</p>
             ) : null}
@@ -43,7 +43,9 @@ export function Section({
             ) : null}
           </div>
         ) : null}
-        <div className={title ? "mt-10 sm:mt-12" : ""}>{children}</div>
+        <div className={title ? "mt-10 sm:mt-12" : ""} data-reveal style={{ ["--i" as string]: 1 }}>
+          {children}
+        </div>
       </div>
     </section>
   );
