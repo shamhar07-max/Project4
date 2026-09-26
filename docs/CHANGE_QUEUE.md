@@ -42,6 +42,6 @@ The user approved restyling the site in the iOS & iPadOS 27 design language (the
 
 ## Remove MyChatBot, fit hero, cut and rewrite copy (2026-09-26)
 
-- MyChatBot widget removed from the site (component, layout, env var, check-content allowlist). The WhatsApp button is back at bottom-right. The MyChatBot assistant itself still exists in the MyChatBot account; it just isn't on the site.
+- MyChatBot widget removed from the site (component, layout, env var, check-content allowlist). The WhatsApp button is back at bottom-right. The MyChatBot "DigitalBurj Assistant", its website widget, its one conversation and both DigitalBurj FAQ knowledge bases were then deleted from the MyChatBot account at the owner's request.
 - Home hero: the empty top of the orbit stage is removed and the orbit scales by width *and* viewport height (`.hero-orbit` in globals.css). The stats sit below the orbit at a readable size. Orbit, headline, buttons and division pills now fit in the first screen at 1920×1080, 1440×900, 1366×768, 1280×720, 1024×768, 768×1024 and 390×844.
 - Copy: every content page cut to a short plain answer, one or two sections and at most three FAQs; key-points lists removed; hub pages trimmed (Business AI, Studio, Academy, Talent, Jobs); homepage "gaps" and "ecosystem" sections removed; site description, nav summaries and page leads rewritten in plain language. Slugs, SEO titles, meta descriptions (except the site/home description) and internal links unchanged. Colours, fonts, animation and components unchanged.
