@@ -12,7 +12,7 @@ export const metadata = buildMetadata({ title: "Insights", description, path: "/
 export default function InsightsPage() {
   return (
     <>
-      <PageHero crumbs={[{ name: "Insights", path: "/insights" }]} eyebrow="DigitalBurj Insights" title="Knowledge you can use." lead="Definitions, how-to guides, comparisons and decision guides. Every article starts with a direct answer, then explains, gives an example and states its limitations." />
+      <PageHero crumbs={[{ name: "Insights", path: "/insights" }]} eyebrow="DigitalBurj Insights" title="Guides and articles." lead="Short answers first, then the detail. Each article also says where its advice stops working." />
       <Section title="Categories">
         <ul className="flex flex-wrap gap-2">
           {insightCategories.map((c) => (

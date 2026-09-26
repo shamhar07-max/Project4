@@ -135,7 +135,7 @@ export const forms: Record<string, FormDef> = {
   jobs: {
     intent: "jobs",
     title: "Jobs: register interest",
-    intro: "Tell us what kind of role you are looking for. We will contact you when genuine opportunities that match are listed.",
+    intro: "Tell us what kind of role you are looking for. We'll get in touch when a matching role is listed.",
     submitLabel: "Register interest",
     nextSteps: "We will email you when matching opportunities are published. DigitalBurj does not charge job seekers and does not guarantee employment or visas.",
     startEvent: "professional_interest",

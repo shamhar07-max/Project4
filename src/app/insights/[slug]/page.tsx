@@ -57,12 +57,16 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
       <article className="container-site grid gap-12 section-pad lg:grid-cols-[minmax(0,1fr)_18rem]">
         <div className="prose-db">
           <p className="!text-lead font-medium text-ink">{a.answer}</p>
-          <h2>Key points</h2>
-          <ul>
-            {a.keyPoints.map((k) => (
-              <li key={k}>{k}</li>
-            ))}
-          </ul>
+          {a.keyPoints.length ? (
+            <>
+              <h2>Key points</h2>
+              <ul>
+                {a.keyPoints.map((k) => (
+                  <li key={k}>{k}</li>
+                ))}
+              </ul>
+            </>
+          ) : null}
           {a.sections.map((s) => (
             <section key={s.heading}>
               <h2>{s.heading}</h2>

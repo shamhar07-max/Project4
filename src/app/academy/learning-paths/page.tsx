@@ -13,7 +13,7 @@ export default function LearningPathsPage() {
   const soon = learningPaths.filter((l) => !l.indexable);
   return (
     <>
-      <PageHero crumbs={[{ name: "Academy", path: "/academy" }, { name: "Learning Paths", path: "/academy/learning-paths" }]} eyebrow="DigitalBurj Academy" title="Learning paths" lead="A learning path is a recommended sequence of courses and projects toward a type of role. Paths describe the capabilities you build; they do not promise employment." />
+      <PageHero crumbs={[{ name: "Academy", path: "/academy" }, { name: "Learning Paths", path: "/academy/learning-paths" }]} eyebrow="DigitalBurj Academy" title="Learning paths" lead="Tracks in a sensible order for a particular kind of role. They build skills. They don't promise a job." />
       <Section title="Technology paths">
         <CardGrid items={ready.map((l) => ({ title: l.title, body: l.overview, href: `/academy/learning-paths/${l.slug}` }))} />
       </Section>

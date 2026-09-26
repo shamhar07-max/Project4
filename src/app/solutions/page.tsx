@@ -11,8 +11,8 @@ export default function SolutionsPage() {
       path="/solutions"
       name="Solutions"
       eyebrow="Solutions"
-      title="Start from the problem, not the technology."
-      lead="Each solution describes a common operational problem, the symptoms that reveal it, and which DigitalBurj Business AI and Studio services address it."
+      title="What's going wrong?"
+      lead="Start from the problem you've got. Each page says how to spot it and what we'd do about it."
       description={description}
       pages={solutionPages}
       listTitle="Solutions by problem"

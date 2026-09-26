@@ -5,7 +5,8 @@
  * (@makviesainte/builders-community-hero): arcs draw in, items pop onto two orbits and
  * float gently, stats count up. Content is DigitalBurj's own: division icons, process
  * milestones and real counts from the site. No stock avatars, no invented metrics.
- * Scaling is done with CSS breakpoints (not measured in JS) so the hero never shifts layout.
+ * Scaling is done in CSS (.hero-orbit in globals.css, by width and height) so the hero never shifts
+ * layout and the whole hero fits in the first screen.
  */
 import Image from "next/image";
 import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
@@ -20,8 +21,8 @@ type Item =
   | { kind: "check"; ring: Ring; angle: number };
 
 const STAGE_W = 1200;
-const STAGE_H = 470;
-const CENTER = { x: 600, y: 610 };
+const STAGE_H = 375;
+const CENTER = { x: 600, y: 515 };
 const RADIUS: Record<Ring, number> = { outer: 492, inner: 404 };
 
 function pos(ring: Ring, angle: number): CSSProperties {
@@ -100,10 +101,10 @@ export function HeroOrbit({ stats }: { stats: { value: number; label: string }[]
     <MotionConfig reducedMotion="user">
       <div
         aria-hidden="true"
-        className="relative mx-auto h-[calc(330px*0.46)] w-full max-w-[1200px] overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)] sm:h-[calc(470px*0.72)] md:h-[calc(470px*0.85)] lg:h-[470px]"
+        className="hero-orbit relative mx-auto w-full max-w-[1200px] overflow-hidden [mask-image:linear-gradient(to_right,transparent,#000_8%,#000_92%,transparent)]"
       >
         <div
-          className="absolute left-1/2 top-0 origin-top -translate-x-1/2 scale-[0.46] sm:scale-[0.72] md:scale-[0.85] lg:scale-100"
+          className="hero-orbit-stage absolute left-1/2 top-0 origin-top -translate-x-1/2"
           style={{ width: STAGE_W, height: STAGE_H }}
         >
           <svg
@@ -136,34 +137,24 @@ export function HeroOrbit({ stats }: { stats: { value: number; label: string }[]
             </motion.div>
           ))}
 
-          <div className="absolute left-1/2 top-[352px] hidden -translate-x-1/2 auto-cols-fr grid-flow-col gap-8 sm:grid">
-            {stats.map((s, i) => (
-              <motion.div
-                key={s.label}
-                className="flex flex-col items-center"
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <span className="text-stat font-extrabold tracking-[-0.03em] text-ink tabular-nums">
-                  <CountUp to={s.value} delay={0.8 + i * 0.12} />
-                </span>
-                <span className="mt-3 whitespace-nowrap text-sm font-semibold text-muted">{s.label}</span>
-              </motion.div>
-            ))}
-          </div>
+        </div>
+        <div className="absolute inset-x-0 bottom-0 hidden justify-center gap-6 sm:flex lg:gap-10">
+          {stats.map((s, i) => (
+            <motion.div
+              key={s.label}
+              className="flex flex-col items-center"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="text-h2 font-extrabold text-ink tabular-nums">
+                <CountUp to={s.value} delay={0.8 + i * 0.12} />
+              </span>
+              <span className="mt-1 whitespace-nowrap text-xs font-semibold text-muted lg:text-sm">{s.label}</span>
+            </motion.div>
+          ))}
         </div>
       </div>
-      <dl aria-hidden="true" className="mx-auto mb-10 mt-4 grid max-w-sm grid-cols-2 gap-x-6 gap-y-5 sm:hidden">
-        {stats.map((s, i) => (
-          <div key={s.label} className="animate-rise text-center" style={{ ["--d" as string]: `${300 + i * 90}ms` }}>
-            <dd className="text-h2 font-extrabold tabular-nums text-ink">
-              <CountUp to={s.value} delay={0.3 + i * 0.09} />
-            </dd>
-            <dt className="mt-1 text-sm font-semibold text-muted">{s.label}</dt>
-          </div>
-        ))}
-      </dl>
     </MotionConfig>
   );
 }

@@ -6,7 +6,6 @@ import { JsonLd } from "@/components/site/json-ld";
 import { AttributionCapture } from "@/components/site/attribution";
 import { RevealObserver } from "@/components/site/reveal-observer";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
-import { ChatWidget } from "@/components/site/chat-widget";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -53,7 +52,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AttributionCapture />
         <RevealObserver />
         <WhatsAppButton />
-        <ChatWidget />
       </body>
     </html>
   );

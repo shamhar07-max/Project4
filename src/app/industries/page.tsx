@@ -11,8 +11,8 @@ export default function IndustriesPage() {
       path="/industries"
       name="Industries"
       eyebrow="Industries"
-      title="Technology in operational context."
-      lead="Technology only helps when it fits how an industry actually works. These pages describe the operational challenges we see in each sector and where DigitalBurj can help."
+      title="Industries"
+      lead="The day-to-day problems in each sector, and where we can help with them."
       description={description}
       pages={industryPages}
       listTitle="Industries we work with"

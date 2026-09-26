@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { academyCategories, learningLoop, learningPaths, tracks } from "@/content/academy";
+import { academyCategories, learningPaths, tracks } from "@/content/academy";
 import { PageHero } from "@/components/site/page-hero";
 import { Section } from "@/components/site/section";
 import { CardGrid, FlowDiagram } from "@/components/site/blocks";
@@ -9,7 +9,6 @@ import { JsonLd } from "@/components/site/json-ld";
 import { TrackedLink } from "@/components/site/tracked-link";
 import { Button } from "@/components/ui/button";
 import { buildMetadata, webPageJsonLd } from "@/lib/seo";
-import { Tag } from "@/components/ui/tag";
 
 const description = "DigitalBurj Academy: practical technology and professional education built around skills, projects, assessment and evidence of capability.";
 export const metadata = buildMetadata({ title: "DigitalBurj Academy | Practical Technology & Professional Courses", absoluteTitle: true, description, path: "/academy" });
@@ -22,8 +21,8 @@ export default function AcademyPage() {
       <PageHero
         crumbs={[{ name: "Academy", path: "/academy" }]}
         eyebrow="DigitalBurj Academy"
-        title="Learn by doing. Prove what you can do."
-        lead="Practical technology and professional education built around skills, projects, assessment and evidence."
+        title="Finish a course with work you can show."
+        lead="Technology courses built around projects. You build it, we break it, you fix it, then you explain it to a reviewer."
       >
         <Button asChild size="lg">
           <TrackedLink href="/academy/courses" event="enroll_click" eventLabel="academy_hero_courses">
@@ -35,20 +34,20 @@ export default function AcademyPage() {
         </Button>
       </PageHero>
 
-      <Section id="how-learning-works" tone="surface" eyebrow="How learning works" title="Every track ends in evidence." intro="Academy learning follows one loop. Breaking and fixing are deliberate: diagnosing failure is one of the most valuable professional skills.">
-        <FlowDiagram steps={learningLoop} caption="The DigitalBurj Academy learning loop." />
+      <Section id="how-learning-works" tone="surface" eyebrow="How learning works" title="The same loop in every track." intro="We break your work on purpose. Working out why something failed is most of the job.">
+        <FlowDiagram steps={["Brief", "Learn", "Build", "Break", "Fix", "Explain", "Ship"]} />
       </Section>
 
-      <Section eyebrow="Technology Academy" title="Technology learning">
+      <Section eyebrow="Technology" title="Technology tracks">
         <CardGrid items={tech.map((c) => ({ title: c.title, body: c.description, href: `/academy/${c.slug}` }))} />
         <Link href="/academy/technology" className="link mt-6 inline-block text-sm font-semibold">Technology overview</Link>
       </Section>
 
-      <Section tone="surface" eyebrow="Professional Career Academy" title="Professional career learning" intro="Professional tracks are in preparation. Each category page describes the role and its skills; register interest to hear when courses open.">
+      <Section tone="surface" eyebrow="Professional careers" title="Coming later" intro="These courses are still being prepared. Register to hear when they open.">
         <CardGrid items={pro.map((c) => ({ title: c.title, body: c.description, href: `/academy/${c.slug}` }))} />
       </Section>
 
-      <Section eyebrow="Tracks" title="Curriculum tracks">
+      <Section eyebrow="Tracks" title="All tracks">
         <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {tracks.map((t) => (
             <li key={t.slug}>
@@ -60,16 +59,16 @@ export default function AcademyPage() {
         </ul>
       </Section>
 
-      <Section tone="surface" eyebrow="Learning paths" title="Structured routes toward a role">
+      <Section tone="surface" eyebrow="Learning paths" title="Tracks in order, for a specific role">
         <CardGrid items={learningPaths.filter((l) => l.indexable).map((l) => ({ title: l.title, body: l.overview, href: `/academy/learning-paths/${l.slug}` }))} />
       </Section>
 
       <Section eyebrow="Assessment & evidence" title="What you leave with">
         <div className="grid gap-4 md:grid-cols-3">
           {[
-            ["Practical missions", "Realistic briefs where you build, break, fix and test real work."],
-            ["Assessment", "You explain and defend your decisions to a reviewer."],
-            ["Credentials & evidence", "A record of what you built and how it was assessed, usable with DigitalBurj Verified Talent."],
+            ["Projects", "Things you built, broke and fixed, with your code or files attached."],
+            ["A review", "A record of how you explained and defended your choices."],
+            ["A profile entry", "Usable on DigitalBurj Verified Talent once it opens."],
           ].map(([t, b]) => (
             <div key={t} className="rounded-lg border border-line p-6">
               <h3 className="text-h3 font-bold text-ink">{t}</h3>
@@ -77,23 +76,16 @@ export default function AcademyPage() {
             </div>
           ))}
         </div>
-        <h3 className="mt-12 text-h3 font-bold text-ink">Who Academy is for</h3>
-        <ul className="mt-4 flex flex-wrap gap-2">
-          {["Career starters", "Career changers", "Working professionals upskilling", "Teams adopting new systems", "Founders and operators"].map((w) => (
-            <li key={w}><Tag>{w}</Tag></li>
-          ))}
-        </ul>
       </Section>
 
       <FaqList
         faqs={[
-          { q: "Is DigitalBurj Academy a video-course platform?", a: "No. Lessons support the work, but learners complete practical missions and assessments, and must explain and defend what they built." },
-          { q: "Do Academy courses guarantee a job?", a: "No. Academy learning builds capability and evidence, which can strengthen applications. DigitalBurj does not promise employment or visas." },
-          { q: "Can organisations train their teams?", a: "Yes. Contact us to discuss training built around your processes and systems." },
-          { q: "Where are course durations and prices?", a: "They are published with each course when enrollment opens. Register interest to be notified." },
+          { q: "Is it a video-course platform?", a: "No. There are lessons, but the course is the projects and the review." },
+          { q: "Will a course get me a job?", a: "We don't promise jobs or visas. What you build can make your applications stronger." },
+          { q: "Where are durations and prices?", a: "On each course page once enrolment opens. Register and we'll let you know." },
         ]}
       />
-      <CtaBand heading="Build capability you can prove." label="Register Interest" href="/get-started/academy" secondary={{ label: "Explore Courses", href: "/academy/courses" }} />
+      <CtaBand heading="Want to hear when enrolment opens?" label="Register Interest" href="/get-started/academy" secondary={{ label: "Explore Courses", href: "/academy/courses" }} />
       <JsonLd data={webPageJsonLd({ title: "DigitalBurj Academy", description, path: "/academy" })} />
     </>
   );

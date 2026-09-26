@@ -10,7 +10,7 @@ export const metadata = buildMetadata({ title: "Resources: Checklists, Templates
 export default function ResourcesPage() {
   return (
     <>
-      <PageHero crumbs={[{ name: "Resources", path: "/resources" }]} eyebrow="Resources" title="Practical tools, free to use." lead="Checklists and templates based on the methods DigitalBurj uses in its own work. Use them before you invest in automation, software or learning." />
+      <PageHero crumbs={[{ name: "Resources", path: "/resources" }]} eyebrow="Resources" title="Practical tools, free to use." lead="The checklists and templates we use ourselves. Worth ten minutes before you spend money on automation or software." />
       {resourceCategories.filter((c) => c.slug === "checklists" || c.slug === "templates").map((c, i) => (
         <Section key={c.slug} tone={i ? "surface" : "paper"} title={c.title} intro={c.description}>
           <CardGrid items={resources.filter((r) => r.category === c.slug).map((r) => ({ title: r.title, body: r.description, href: `/resources/${r.category}/${r.slug}` }))} />

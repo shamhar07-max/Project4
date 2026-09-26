@@ -8,7 +8,7 @@ export const site = {
   tagline: "Learn. Build. Transform.",
   /** Canonical one-sentence definition. Reuse verbatim; do not paraphrase per page. */
   description:
-    "DigitalBurj is a technology company combining Business AI, practical education, software engineering, verified professional capability and employment infrastructure.",
+    "DigitalBurj is a technology company that automates business operations, builds software, runs hands-on tech training, and helps employers hire on real work.",
   logo: "/brand/02_LOGO_LOCKUPS/DigitalBurj_Primary_Wordmark.png",
   ogImage: "/brand/05_WEB_SOCIAL/OpenGraph_1200x630.png",
   locale: "en",
@@ -74,7 +74,7 @@ export const mainNav: NavItem[] = [
     label: "Academy",
     href: "/academy",
     title: "Academy",
-    summary: "Learn it. Apply it. Prove it.",
+    summary: "Courses you finish with a project to show.",
     groups: [
       {
         heading: "Technology",
@@ -112,7 +112,7 @@ export const mainNav: NavItem[] = [
     label: "Studio",
     href: "/studio",
     title: "Studio",
-    summary: "Build what deserves to exist.",
+    summary: "Check it's wanted. Then build it well.",
     groups: [
       {
         heading: "Studio",
@@ -144,7 +144,7 @@ export const mainNav: NavItem[] = [
     label: "Talent",
     href: "/talent",
     title: "Verified Talent",
-    summary: "Capability backed by evidence.",
+    summary: "Skills with the proof attached.",
     groups: [
       {
         heading: "Verified Talent",
@@ -166,7 +166,7 @@ export const mainNav: NavItem[] = [
     label: "Jobs",
     href: "/jobs",
     title: "Jobs",
-    summary: "Connect capability to opportunity.",
+    summary: "Jobs, with the work attached.",
     groups: [
       {
         heading: "Jobs",
@@ -192,7 +192,7 @@ export const mainNav: NavItem[] = [
     label: "Insights",
     href: "/insights",
     title: "Insights",
-    summary: "Original thinking on AI, software, learning and careers.",
+    summary: "Guides on AI, software, learning and careers.",
     groups: [
       {
         heading: "Insights",

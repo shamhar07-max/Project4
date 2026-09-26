@@ -18,8 +18,8 @@ export default function TalentPage() {
       <PageHero
         crumbs={[{ name: "Verified Talent", path: "/talent" }]}
         eyebrow="DigitalBurj Verified Talent"
-        title="Capability backed by evidence."
-        lead="DigitalBurj Verified Talent is being built to show what professionals can actually do: skills supported by assessments, projects and evidence, each labelled with how it was verified."
+        title="Skills with the proof attached."
+        lead="We're building profiles where each skill links to the work behind it, and says plainly how it was checked. It's not live yet. Register and we'll let you know."
       >
         <Button asChild size="lg">
           <TrackedLink href="/get-started/talent" event="professional_interest" eventLabel="talent_hero">
@@ -32,17 +32,16 @@ export default function TalentPage() {
           </TrackedLink>
         </Button>
       </PageHero>
-      <Section eyebrow="The model" title="From claim to evidence.">
+      <Section eyebrow="How it works" title="Three kinds of skill, labelled differently.">
         <StepList
           steps={[
-            { title: "Claim", body: "\"I know this.\" Stated by the professional." },
-            { title: "Assessment", body: "\"I demonstrated this.\" Completed under defined conditions." },
-            { title: "Evidence", body: "\"Here is what demonstrates it.\" Examinable artefacts of the work." },
+            { title: "Self-reported", body: "The person says they can do it. Useful, but unchecked." },
+            { title: "Assessed", body: "They passed a set task under set conditions." },
+            { title: "Reviewed", body: "Someone independent looked at their actual work and agreed." },
           ]}
         />
         <p className="mt-6 max-w-3xl text-ink-2">
-          Verification is the final step: an independent check that the evidence supports the claim. Approval and
-          verification are labelled separately so that every label means exactly what happened.
+          Every label on a profile will say exactly which of these happened. No vague &ldquo;verified&rdquo; badges.
         </p>
       </Section>
       <Section tone="surface" title="Explore Verified Talent">
@@ -50,12 +49,12 @@ export default function TalentPage() {
       </Section>
       <FaqList
         faqs={[
-          { q: "Is Verified Talent available now?", a: "Verified Talent is in development. Registering interest adds you to the list of early professionals and employers we contact as features become available." },
-          { q: "Does DigitalBurj guarantee candidate quality?", a: "No. Verification labels describe what was checked and how. Employers remain responsible for their hiring decisions." },
-          { q: "How does Verified Talent relate to the Academy?", a: "Academy learning produces evidence that can support a profile, but evidence from other learning and work will also be accepted." },
+          { q: "Is it live?", a: "Not yet. Register and we'll contact you when the first features open." },
+          { q: "Do you guarantee candidates?", a: "No. Labels describe what was checked. Employers still make their own hiring decisions." },
+          { q: "Do I have to take Academy courses?", a: "No. Academy projects can go on a profile, but so can work from anywhere else." },
         ]}
       />
-      <CtaBand heading="Be among the first on Verified Talent." label="Register Interest" href="/get-started/talent" secondary={{ label: "Employer Enquiry", href: "/get-started/hire" }} />
+      <CtaBand heading="Want to be on the early list?" label="Register Interest" href="/get-started/talent" secondary={{ label: "Employer Enquiry", href: "/get-started/hire" }} />
       <JsonLd data={webPageJsonLd({ title: "Verified Talent", description, path: "/talent" })} />
     </>
   );

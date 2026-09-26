@@ -16,24 +16,32 @@ const description = "DigitalBurj Studio validates, designs, engineers and deploy
 export const metadata = buildMetadata({ title: "Software Development & Product Studio", description, path: "/studio" });
 
 const process = [
-  { title: "Understand the problem", body: "Who has it, how often, and what they do today." },
-  { title: "Validate demand", body: "Evidence that people will use or pay for a solution." },
-  { title: "Define the smallest buildable version", body: "The core action and nothing more." },
-  { title: "Define what will not be built", body: "An explicit no-build list." },
-  { title: "Architecture", body: "A structure as simple as the problem allows." },
-  { title: "Product design", body: "Flows and interfaces built from a consistent system." },
-  { title: "Development", body: "Engineering to DigitalBurj standards." },
-  { title: "Testing", body: "Automated and manual testing on real devices." },
-  { title: "Assurance", body: "Independent review before release." },
-  { title: "Deployment", body: "Automated, monitored and reversible." },
-  { title: "Measurement", body: "What real users actually do." },
-  { title: "Improvement", body: "Build further, reshape or stop, on evidence." },
+  { title: "The problem", body: "Who has it, how often, and what they do about it today." },
+  { title: "Demand", body: "Signs people would use or pay for a fix. Sign-ups, not compliments." },
+  { title: "Scope", body: "The one core action, plus a written list of what we won't build." },
+  { title: "Build and test", body: "Engineered, tested on real devices and reviewed before release." },
+  { title: "Launch", body: "Automated, monitored, and easy to roll back." },
+  { title: "Decide", body: "Look at what users actually did. Build more, change course or stop." },
 ];
 
+const blurbs: Record<string, string> = {
+  "software-development": "Custom platforms, portals and internal tools.",
+  "web-app-development": "Browser apps that are fast on ordinary phones.",
+  "mobile-app-development": "iOS and Android, when the phone really matters.",
+  "saas-development": "One platform, many paying customers.",
+  "mvp-development": "The smallest version real users can use for real.",
+  "enterprise-software": "Internal systems many people rely on daily.",
+  "ai-product-development": "AI features that are tested and have a budget.",
+  "api-development": "APIs partners can build on without surprises.",
+  "system-integration": "Your existing tools, connected properly.",
+  "product-validation": "Find out if it's wanted before paying to build it.",
+  "software-modernization": "Update an old system without stopping the business.",
+  "cloud-deployment": "Releases, monitoring, backups and recovery.",
+};
+
 const faqs = [
-  { q: "What does DigitalBurj Studio build?", a: "Web platforms, business applications, customer portals, SaaS products, MVPs, mobile applications, AI-enabled products, APIs and integrations." },
-  { q: "Do you build without validation?", a: "We recommend validation for any new product. For well-understood internal systems, a shorter discovery stage may be enough. Either way, we confirm the problem before building." },
-  { q: "What happens if validation shows the product should not be built?", a: "We recommend stopping or reshaping it. That is a successful outcome: it saves the cost of building something people will not use." },
+  { q: "Do you build without validation?", a: "For new products we recommend it. For well-understood internal tools, a short discovery phase is usually enough." },
+  { q: "What if validation says don't build it?", a: "Then we'll say so. It's the cheapest outcome you can get." },
 ];
 
 export default function StudioPage() {
@@ -42,8 +50,8 @@ export default function StudioPage() {
       <PageHero
         crumbs={[{ name: "Studio", path: "/studio" }]}
         eyebrow="DigitalBurj Studio"
-        title="Validate. Build. Launch. Learn."
-        lead="DigitalBurj Studio helps businesses and founders turn problems into validated, buildable digital products, from discovery and product architecture through engineering, deployment and measurement."
+        title="Check it’s wanted. Then build it well."
+        lead="We build web apps, SaaS products and internal tools for businesses and founders, starting with whether anyone needs the thing."
       >
         <Button asChild size="lg">
           <TrackedLink href="/get-started/studio" event="project_enquiry_start" eventLabel="studio_hero">
@@ -55,12 +63,12 @@ export default function StudioPage() {
         </Button>
       </PageHero>
       <Section eyebrow="Services" title="What Studio builds">
-        <CardGrid items={studioPages.map((p) => ({ title: p.label, body: p.description, href: `/studio/${p.slug}` }))} />
+        <CardGrid items={studioPages.map((p) => ({ title: p.label, body: blurbs[p.slug] ?? p.description, href: `/studio/${p.slug}` }))} />
       </Section>
-      <Section tone="surface" eyebrow="Process" title="Twelve stages, with a decision at each one." intro="Validation comes before full development. Every stage can end in build, reshape or stop.">
+      <Section tone="surface" eyebrow="Process" title="How a Studio project runs.">
         <StepList steps={process} />
       </Section>
-      <Section eyebrow="Portfolio" title="DigitalBurj ventures">
+      <Section eyebrow="Portfolio" title="Our own ventures">
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {projects.map((p) => (
             <li key={p.slug}>

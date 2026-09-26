@@ -64,7 +64,7 @@ export default async function LearningPathPage({ params }: { params: Promise<{ s
           ))}
         </ul>
         <h3 className="mt-10 text-h3 font-bold text-ink">Assessment approach</h3>
-        <p className="mt-3 max-w-3xl text-ink-2">Each project is assessed: you explain and defend your work to a reviewer, and the result becomes evidence of capability.</p>
+        <p className="mt-3 max-w-3xl text-ink-2">Each project ends with a review: you explain your work and answer questions about it.</p>
         <h3 className="mt-10 text-h3 font-bold text-ink">Possible entry-level roles</h3>
         <ul className="mt-4 flex flex-wrap gap-2">
           {l.roles.map((r) => (

@@ -75,9 +75,8 @@ export default async function AcademyCategoryPage({ params }: { params: Promise<
       ) : null}
       <Section tone="surface" title="Practical exercises and assessment">
         <p className="max-w-3xl text-lead text-ink-2">
-          Every DigitalBurj Academy track follows the same learning loop: learners build, break, fix and test real work, then
-          explain and defend it to a reviewer. Assessment produces evidence of capability that can be shared through
-          DigitalBurj Verified Talent.
+          Every track works the same way: you build something, we break it, you fix it, then you talk a reviewer
+          through what you did. The finished work can go on your DigitalBurj Verified Talent profile once it opens.
         </p>
         <h3 className="mt-10 text-h3 font-bold text-ink">Related professional roles</h3>
         <ul className="mt-4 flex flex-wrap gap-2">

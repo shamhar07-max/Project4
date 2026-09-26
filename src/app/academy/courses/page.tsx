@@ -12,7 +12,7 @@ export default function CoursesPage() {
   const groups = Array.from(new Set(tracks.map((t) => t.category)));
   return (
     <>
-      <PageHero crumbs={[{ name: "Academy", path: "/academy" }, { name: "All Courses", path: "/academy/courses" }]} eyebrow="DigitalBurj Academy" title="All courses" lead="DigitalBurj Academy curriculum tracks. Each track is practical and ends with assessed evidence of capability. Durations, schedules and enrollment details are published per course." />
+      <PageHero crumbs={[{ name: "Academy", path: "/academy" }, { name: "All Courses", path: "/academy/courses" }]} eyebrow="DigitalBurj Academy" title="All courses" lead="Every track ends with a project and a review. Durations and prices go on each course page when enrolment opens." />
       {groups.map((g, i) => {
         const cat = academyCategories.find((c) => c.slug === g);
         return (

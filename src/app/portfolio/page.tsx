@@ -13,7 +13,7 @@ export default function PortfolioPage() {
   const used = new Set(projects.map((p) => p.filter).filter(Boolean));
   return (
     <>
-      <PageHero crumbs={[{ name: "Portfolio", path: "/portfolio" }]} eyebrow="Portfolio" title="Selected DigitalBurj systems and ventures." lead="Every project here is genuine DigitalBurj work. We publish architecture, status and lessons only once they have been verified, and we never publish invented traction or customer figures." />
+      <PageHero crumbs={[{ name: "Portfolio", path: "/portfolio" }]} eyebrow="Portfolio" title="Our own products and ventures." lead="These are projects DigitalBurj is building or running. Details go up once they're confirmed. We don't publish made-up traction or customer numbers." />
       <Section title="Projects">
         <ul aria-label="Sectors" className="mb-8 flex flex-wrap gap-2">
           {portfolioFilters.filter((f) => used.has(f)).map((f) => (

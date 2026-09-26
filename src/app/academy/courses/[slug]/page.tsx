@@ -67,7 +67,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
           </div>
         </div>
       </Section>
-      <Section tone="surface" title="How this course is assessed" intro="Learners complete the DigitalBurj learning loop and finish by explaining and defending their work. The assessed output becomes evidence of capability.">
+      <Section tone="surface" title="How this course is assessed" intro="You finish by walking a reviewer through your work and answering their questions.">
         <FlowDiagram steps={learningLoop} />
       </Section>
       {next ? (
