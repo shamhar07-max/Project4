@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+/*
+ * DigitalBurj design tokens.
+ * Colours are sampled from the supplied master artwork:
+ *   ink    #051D18  (wordmark)
+ *   accent #FC3012  (burj mark) — decorative use, large display only
+ *   accent-strong #CD2506 (burj shadow) — text, links and buttons (5.4:1 on white)
+ */
+@theme {
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --color-ink: #051d18;
+  --color-ink-2: #1d2f2a;
+  --color-muted: #55635f;
+  --color-line: #e2e6e4;
+  --color-line-strong: #c9d0cd;
+  --color-surface: #f5f7f6;
+  --color-paper: #ffffff;
+  --color-accent: #fc3012;
+  --color-accent-strong: #cd2506;
+  --color-accent-hover: #b01f04;
+  --color-accent-soft: #fff1ee;
+  --color-success: #17683f;
+  --color-danger: #b42318;
+  --color-danger-soft: #fef3f2;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+
+  --text-display: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.03em;
+  --text-h1: clamp(2.125rem, 1.6rem + 2.2vw, 3.5rem);
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h2: clamp(1.625rem, 1.3rem + 1.3vw, 2.5rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: 1.1875rem;
+  --text-h3--line-height: 1.35;
+  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--letter-spacing: 0.16em;
+
+  --container-site: 76rem;
+  --container-prose: 44rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent-strong);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  a {
+    color: inherit;
+  }
+  summary {
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: var(--container-site);
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .container-site {
+      padding-inline: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-site {
+      padding-inline: 2rem;
+    }
+  }
+
+  .eyebrow {
+    font-size: var(--text-eyebrow);
+    letter-spacing: var(--text-eyebrow--letter-spacing);
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--color-muted);
+  }
+
+  .link {
+    color: var(--color-accent-strong);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+  .link:hover {
+    text-decoration-thickness: 2px;
+  }
+
+  /* Long-form content (articles, legal, glossary) */
+  .prose-db {
+    max-width: var(--container-prose);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-ink-2);
+  }
+  .prose-db > * + * {
+    margin-top: 1.1em;
+  }
+  .prose-db h2 {
+    font-size: 1.625rem;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-top: 2.2em;
+  }
+  .prose-db h3 {
+    font-size: 1.1875rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-top: 1.8em;
+  }
+  .prose-db ul,
+  .prose-db ol {
+    padding-left: 1.25rem;
+  }
+  .prose-db ul {
+    list-style: disc;
+  }
+  .prose-db ol {
+    list-style: decimal;
+  }
+  .prose-db li + li {
+    margin-top: 0.4em;
+  }
+  .prose-db li::marker {
+    color: var(--color-accent-strong);
+  }
+  .prose-db a {
+    color: var(--color-accent-strong);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-db strong {
+    color: var(--color-ink);
+  }
+  .prose-db blockquote {
+    border-left: 3px solid var(--color-accent);
+    padding-left: 1rem;
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+}

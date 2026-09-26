@@ -1,0 +1,44 @@
+import { Button } from "@/components/ui/button";
+import { TrackedLink } from "./tracked-link";
+
+export function CtaBand({
+  heading = "Start with the problem you need to solve.",
+  body,
+  label,
+  href,
+  secondary,
+}: {
+  heading?: string;
+  body?: string;
+  label: string;
+  href: string;
+  secondary?: { label: string; href: string };
+}) {
+  return (
+    <section className="py-12 sm:py-16">
+      <div className="container-site">
+        <div className="relative overflow-hidden rounded-lg bg-ink px-6 py-12 sm:px-12 sm:py-14">
+          <span aria-hidden="true" className="absolute inset-y-0 right-0 w-2 bg-accent" />
+          <div className="max-w-2xl">
+            <h2 className="text-h2 font-extrabold text-white">{heading}</h2>
+            {body ? <p className="mt-4 text-lead text-white/75">{body}</p> : null}
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild size="lg">
+                <TrackedLink href={href} eventLabel={label}>
+                  {label}
+                </TrackedLink>
+              </Button>
+              {secondary ? (
+                <Button asChild size="lg" variant="outline-inverse">
+                  <TrackedLink href={secondary.href} eventLabel={secondary.label}>
+                    {secondary.label}
+                  </TrackedLink>
+                </Button>
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
