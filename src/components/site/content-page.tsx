@@ -49,8 +49,8 @@ export function ContentPageView({ page, path, crumbs }: { page: ContentPage; pat
       {page.blocks.map((b, i) => (
         <BlockSection key={b.heading} block={b} index={i} />
       ))}
-      {page.faqs?.length ? <FaqList faqs={page.faqs} /> : null}
-      <RelatedLinks links={related} />
+      {page.faqs?.length ? <FaqList faqs={page.faqs} index={page.blocks.length} /> : null}
+      <RelatedLinks links={related} index={page.blocks.length + (page.faqs?.length ? 1 : 0)} />
       {page.cta ? <CtaBand heading={page.cta.heading} body={page.cta.body} label={page.cta.label} href={page.cta.href} /> : null}
       <JsonLd data={webPageJsonLd({ title: page.h1, description: page.description, path })} />
     </>

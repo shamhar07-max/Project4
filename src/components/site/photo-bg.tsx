@@ -21,18 +21,21 @@ const url = (src: string, w: number) => `${src}?auto=format&fit=crop&q=60&w=${w}
 export function PhotoBg({
   seed = "section",
   photo,
+  index,
   tone = "light",
   priority = false,
   className,
 }: {
   seed?: string;
   photo?: PhotoKey;
+  /** Position on the page; spreads neighbouring sections across the pool. */
+  index?: number;
   tone?: "light" | "dark";
   priority?: boolean;
   className?: string;
 }) {
   const pathname = usePathname() ?? "/";
-  const p: Photo = photo ? photos[photo] : photoFor(pathname, seed);
+  const p: Photo = photo ? photos[photo] : photoFor(pathname, seed, index);
   return (
     <div aria-hidden="true" className={cn("pointer-events-none absolute inset-0 -z-10 overflow-hidden", className)}>
       {/* eslint-disable-next-line @next/next/no-img-element -- remote Unsplash hotlink with its own resizing */}

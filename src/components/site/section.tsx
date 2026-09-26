@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { PhotoKey } from "@/content/backgrounds";
 import { PhotoBg } from "./photo-bg";
 import { cn } from "@/lib/utils";
 
@@ -11,6 +12,7 @@ export function Section({
   tone = "paper",
   className,
   headingLevel = 2,
+  photo,
 }: {
   id?: string;
   eyebrow?: string;
@@ -20,6 +22,7 @@ export function Section({
   tone?: "paper" | "surface" | "ink";
   className?: string;
   headingLevel?: 2 | 3;
+  photo?: PhotoKey;
 }) {
   const H = headingLevel === 2 ? "h2" : "h3";
   return (
@@ -32,7 +35,7 @@ export function Section({
         className,
       )}
     >
-      <PhotoBg seed={title ?? id} tone={tone === "ink" ? "dark" : "light"} />
+      <PhotoBg seed={title ?? id} photo={photo} tone={tone === "ink" ? "dark" : "light"} />
       <div className="container-site">
         {title ? (
           <div className="max-w-3xl" data-reveal>

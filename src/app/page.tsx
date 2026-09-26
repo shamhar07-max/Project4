@@ -182,7 +182,7 @@ export default function HomePage() {
       </div>
 
       {/* 03 Bento: what we do */}
-      <Section id="capabilities" eyebrow="What we do" title="Five divisions. Use one, or several.">
+      <Section id="capabilities" photo="dashboard" eyebrow="What we do" title="Five divisions. Use one, or several.">
         <ul className="grid gap-4 md:grid-cols-6">
           <li className="card-interactive rounded-xl border border-line bg-paper/85 p-6 backdrop-blur-md md:col-span-4">
             <p className="eyebrow text-accent-strong">DigitalBurj Business AI</p>
@@ -256,12 +256,12 @@ export default function HomePage() {
       </Section>
 
       {/* 05 Tabs + stepper per division */}
-      <Section eyebrow="How each division works" title="Pick a division.">
+      <Section photo="whiteboard" eyebrow="How each division works" title="Pick a division.">
         <DivisionTabs tabs={tabs} />
       </Section>
 
       {/* 06 Jobs */}
-      <Section tone="surface" eyebrow="DigitalBurj Jobs" title="Job listings where you can show your work.">
+      <Section tone="surface" photo="handshake" eyebrow="DigitalBurj Jobs" title="Job listings where you can show your work.">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="card-interactive rounded-xl border border-line bg-paper p-6">
             <h3 className="text-h3 font-bold text-ink">Looking for work</h3>
@@ -281,7 +281,7 @@ export default function HomePage() {
       </Section>
 
       {/* 07 Industries carousel */}
-      <Section eyebrow="Industries" title="Sectors we design for.">
+      <Section photo="warehouse" eyebrow="Industries" title="Sectors we design for.">
         <Carousel label="Industries">
           {industries.map((ind) => (
             <li key={ind.href} className="w-[17rem] shrink-0 snap-start sm:w-[20rem]">
@@ -297,7 +297,7 @@ export default function HomePage() {
       </Section>
 
       {/* 08 Portfolio gallery */}
-      <Section tone="surface" eyebrow="Portfolio" title="Our own products and ventures.">
+      <Section tone="surface" photo="sketch" eyebrow="Portfolio" title="Our own products and ventures.">
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {projects.map((p, i) => (
             <li key={p.slug}>
@@ -324,13 +324,13 @@ export default function HomePage() {
       </Section>
 
       {/* 09 Timeline */}
-      <Section eyebrow="How we work" title="How a project runs.">
+      <Section photo="startup" eyebrow="How we work" title="How a project runs.">
         <StepList steps={framework} />
         <ArrowLink href="/company/how-we-work" className="mt-8">More on how we work</ArrowLink>
       </Section>
 
       {/* 10 Insights */}
-      <Section tone="surface" eyebrow="Insights" title="Guides and articles.">
+      <Section tone="surface" photo="desk" eyebrow="Insights" title="Guides and articles.">
         <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {featured.map((a) => (
             <li key={a.slug}>
@@ -348,13 +348,13 @@ export default function HomePage() {
       </Section>
 
       {/* 11 Accordion FAQ */}
-      <FaqList title="Quick answers" faqs={answers} />
+      <FaqList title="Quick answers" faqs={answers} photo="students" />
 
       {/* 12 Final CTA */}
       <section className="pb-4 pt-8">
         <div className="container-site">
           <div className="relative isolate overflow-hidden rounded-xl bg-night px-6 py-14 sm:px-12">
-            <PhotoBg photo="whiteboard" tone="dark" />
+            <PhotoBg photo="code" tone="dark" />
             <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-24 size-96 rounded-full bg-accent/20 blur-3xl" />
             <div aria-hidden="true" className="pointer-events-none absolute -bottom-40 left-10 size-96 rounded-full bg-ai/10 blur-3xl" />
             <div aria-hidden="true" className="ai-grid pointer-events-none absolute inset-0" />

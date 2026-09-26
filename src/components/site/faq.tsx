@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import type { Faq } from "@/content/types";
+import type { PhotoKey } from "@/content/backgrounds";
 import { PhotoBg } from "./photo-bg";
 
 /**
@@ -7,10 +8,10 @@ import { PhotoBg } from "./photo-bg";
  * (readable by search and answer engines) and keyboard accessible without JavaScript.
  * Styled as an iOS inset grouped list.
  */
-export function FaqList({ faqs, title = "Questions" }: { faqs: Faq[]; title?: string }) {
+export function FaqList({ faqs, title = "Questions", photo, index }: { faqs: Faq[]; title?: string; photo?: PhotoKey; index?: number }) {
   return (
     <section className="relative isolate overflow-hidden border-t border-line section-pad" aria-labelledby="faq-heading">
-      <PhotoBg seed={`faq-${title}`} />
+      <PhotoBg seed={`faq-${title}`} photo={photo} index={index} />
       <div className="container-site grid gap-10 lg:grid-cols-[18rem_1fr]">
         <h2 id="faq-heading" className="text-h2 font-extrabold text-ink" data-reveal>
           {title}

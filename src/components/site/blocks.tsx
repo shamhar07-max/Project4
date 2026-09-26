@@ -206,7 +206,7 @@ export function BlockSection({ block, index }: { block: Block; index: number }) 
   const tinted = block.type === "flow" || block.type === "steps";
   return (
     <section className={cn("relative isolate overflow-hidden section-pad", tinted ? "border-y border-line" : index > 0 && "border-t border-line")}>
-      <PhotoBg seed={block.heading} />
+      <PhotoBg seed={block.heading} index={index} />
       <div className="container-site">
         <div className="max-w-3xl" data-reveal>
           <h2 className="text-h2 font-extrabold text-ink">{block.heading}</h2>

@@ -145,12 +145,14 @@ function hash(s: string) {
 }
 
 /** Picks a photo for a section: the route decides the subject, the seed spreads sections across the pool. */
-export function photoFor(pathname: string, seed: string): Photo {
+export function photoFor(pathname: string, seed: string, index?: number): Photo {
   const top = pathname.split("/")[1] ?? "";
   const pool = pools[top] ?? fallback;
   if (seed === "hero") return photos[pool[0]];
   const rest = pool.length > 1 ? pool.slice(1) : pool;
-  return photos[rest[hash(`${pathname}|${seed}`) % rest.length]];
+  // With a position, neighbouring sections never share a photo.
+  const i = index ?? hash(`${pathname}|${seed}`);
+  return photos[rest[i % rest.length]];
 }
 
 /** Unique photographer credits, for /credits. */
