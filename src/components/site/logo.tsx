@@ -11,7 +11,7 @@ export function Logo({ className, priority = false }: { className?: string; prio
         width={400}
         height={76}
         priority={priority}
-        className="h-7 w-auto sm:h-8"
+        className="h-7 w-auto mix-blend-multiply sm:h-8"
         sizes="170px"
       />
     </Link>

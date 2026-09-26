@@ -153,7 +153,13 @@ export default function HomePage() {
   return (
     <>
       {/* 01 Hero — orbit adapted from 21st.dev builders-community-hero */}
-      <section className="relative overflow-hidden border-b border-line">
+      {/* Negative top margin lets the ambient light run underneath the floating glass header */}
+      <section className="relative -mt-16 overflow-hidden border-b border-line pt-16 sm:-mt-[4.25rem] sm:pt-[4.25rem] lg:-mt-[4.75rem] lg:pt-[4.75rem]">
+        {/* iOS 27-style ambient light behind the glass elements */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -left-40 -top-32 size-[34rem] rounded-full bg-accent/10 blur-3xl" />
+          <div className="absolute -right-32 top-20 size-[30rem] rounded-full bg-success/10 blur-3xl" />
+        </div>
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,var(--color-line)_1px,transparent_0)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,#000_40%,transparent_100%)]"
@@ -196,7 +202,7 @@ export default function HomePage() {
                   <TrackedLink
                     href={p.href}
                     eventLabel={`home_selector_${p.key}`}
-                    className="group flex h-11 items-center gap-2.5 rounded-full border border-line bg-paper pl-1.5 pr-4 text-sm font-semibold text-ink shadow-[0_1px_2px_rgb(5_29_24/0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-line-strong hover:shadow-[0_10px_24px_-12px_rgb(5_29_24/0.35)]"
+                    className="group flex h-11 items-center gap-2.5 glass rounded-full pl-1.5 pr-4 text-sm font-semibold text-ink transition-all duration-300 ease-(--ease-out-quint) hover:-translate-y-0.5 hover:bg-paper active:scale-[0.97]"
                   >
                     <span className="grid size-8 shrink-0 place-items-center overflow-hidden rounded-full bg-surface transition-colors duration-300 group-hover:bg-accent-soft">
                       <Image src={p.icon} alt="" width={p.w} height={p.h} className="h-5 w-auto mix-blend-multiply" />
@@ -311,13 +317,13 @@ export default function HomePage() {
         <p className="flex flex-wrap items-center gap-2 text-lg font-bold text-ink" aria-label="Skills plus assessments plus projects plus evidence plus verification equals a capability profile">
           {["Skills", "Assessments", "Projects", "Evidence", "Verification"].map((t, i) => (
             <span key={t} className="inline-flex items-center gap-2">
-              <span className="rounded-md border border-line px-3.5 py-2">{t}</span>
+              <span className="rounded-full border border-line px-3.5 py-2">{t}</span>
               <span aria-hidden="true" className="text-accent-strong">
                 {i < 4 ? "+" : "="}
               </span>
             </span>
           ))}
-          <span className="rounded-md bg-ink px-3.5 py-2 text-white">Capability Profile</span>
+          <span className="rounded-full bg-ink px-3.5 py-2 text-white">Capability Profile</span>
         </p>
       </PillarFeature>
 
@@ -409,7 +415,7 @@ export default function HomePage() {
       {/* Final CTA */}
       <section className="pb-4 pt-8">
         <div className="container-site">
-          <div className="relative overflow-hidden rounded-lg bg-ink px-6 py-14 sm:px-12">
+          <div className="relative overflow-hidden rounded-xl bg-ink px-6 py-14 sm:px-12">
             <span aria-hidden="true" className="absolute inset-y-0 right-0 w-2 bg-accent" />
             <h2 className="max-w-2xl text-h2 font-extrabold text-white">Start with the problem you need to solve.</h2>
             <div className="mt-8 flex flex-wrap gap-3">

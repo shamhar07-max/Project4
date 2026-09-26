@@ -44,7 +44,7 @@ function MegaPanel({ item }: { item: NavItem }) {
                     <Link
                       href={link.href}
                       onClick={() => track("nav_click", { menu: item.label, label: link.label })}
-                      className="block rounded-md px-2 py-1.5 -mx-2 text-body-sm text-ink-2 hover:bg-surface hover:text-ink"
+                      className="-mx-2 block rounded-sm px-2 py-1.5 text-body-sm text-ink-2 transition-colors hover:bg-fill hover:text-ink"
                     >
                       {link.label}
                     </Link>
@@ -55,7 +55,7 @@ function MegaPanel({ item }: { item: NavItem }) {
           </div>
         ))}
       </div>
-      <div className="flex flex-col justify-between gap-6 border-t border-line bg-surface p-6 md:border-l md:border-t-0">
+      <div className="flex flex-col justify-between gap-6 border-t border-line/70 bg-fill/50 p-6 md:border-l md:border-t-0">
         <div>
           <p className="eyebrow text-accent-strong">DigitalBurj</p>
           <p className="mt-2 text-xl font-bold tracking-tight text-ink">{item.title}</p>
@@ -85,26 +85,26 @@ function MobileNav() {
       <SheetTrigger asChild>
         <button
           type="button"
-          className="inline-flex size-10 items-center justify-center rounded-md text-ink hover:bg-surface lg:hidden"
+          className="inline-flex size-10 items-center justify-center rounded-full text-ink transition-colors hover:bg-fill lg:hidden"
         >
           <Menu className="size-6" aria-hidden="true" />
           <span className="sr-only">Open menu</span>
         </button>
       </SheetTrigger>
       <SheetContent aria-describedby="mobile-nav-desc">
-        <div className="flex h-16 items-center border-b border-line px-4">
+        <div className="flex h-16 items-center px-5">
           <SheetTitle className="sr-only">Menu</SheetTitle>
           <SheetDescription id="mobile-nav-desc" className="sr-only">
             Site navigation
           </SheetDescription>
           <Logo />
         </div>
-        <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-2 py-3">
-          <ul>
+        <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-3 py-4">
+          <ul className="overflow-hidden rounded-lg bg-paper">
             {items.map((item) => (
-              <li key={item.label} className="border-b border-line last:border-0">
+              <li key={item.label} className="border-b border-line last:border-0 ml-4 [&>details>summary]:-ml-4">
                 <details className="group">
-                  <summary className="flex min-h-12 items-center justify-between rounded-md px-3 text-base font-semibold text-ink">
+                  <summary className="flex min-h-12 items-center justify-between pl-4 pr-3 text-base font-semibold text-ink">
                     {item.label}
                     <ChevronDown
                       className="size-4 text-muted transition-transform group-open:rotate-180"
@@ -120,7 +120,7 @@ function MobileNav() {
                             <li key={link.href + link.label}>
                               <Link
                                 href={link.href}
-                                className="flex min-h-11 items-center rounded-md px-3 text-body-sm text-ink-2 hover:bg-surface"
+                                className="flex min-h-11 items-center rounded-sm px-3 text-body-sm text-ink-2 hover:bg-fill"
                               >
                                 {link.label}
                               </Link>
@@ -133,14 +133,14 @@ function MobileNav() {
                 </details>
               </li>
             ))}
-            <li>
-              <Link href="/contact" className="flex min-h-12 items-center px-3 text-base font-semibold text-ink">
+            <li className="ml-4">
+              <Link href="/contact" className="-ml-4 flex min-h-12 items-center pl-4 pr-3 text-base font-semibold text-ink">
                 Contact
               </Link>
             </li>
           </ul>
         </nav>
-        <div className="border-t border-line p-4">
+        <div className="p-4">
           <Button asChild className="w-full">
             <Link href="/get-started">Get Started</Link>
           </Button>
@@ -160,22 +160,17 @@ export function Header() {
   }, []);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-40 bg-paper/95 backdrop-blur supports-[backdrop-filter]:bg-paper/85 transition-shadow",
-        scrolled ? "border-b border-line shadow-[0_1px_0_rgba(5,29,24,0.02)]" : "border-b border-transparent",
-      )}
-    >
+    <header className="sticky top-0 z-40 px-2 pt-2 sm:px-4 sm:pt-3">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-white"
       >
         Skip to content
       </a>
       <div
         className={cn(
-          "container-site flex items-center gap-3 transition-[height] duration-300 ease-out",
-          scrolled ? "h-14 lg:h-16" : "h-16 lg:h-[4.5rem]",
+          "glass mx-auto flex max-w-(--container-site) items-center gap-3 rounded-full pl-2 pr-2 transition-[height,box-shadow,background-color] duration-500 ease-(--ease-out-quint) sm:pl-5",
+          scrolled ? "h-13 lg:h-14" : "h-14 lg:h-16",
         )}
       >
         <MobileNav />
@@ -190,7 +185,7 @@ export function Header() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
             ))}
-            <li aria-hidden="true" className="mx-2 h-5 w-px bg-line" />
+            <li aria-hidden="true" className="mx-2 h-5 w-px bg-line-strong" />
             <NavigationMenuItem>
               <NavigationMenuTrigger>{companyNav.label}</NavigationMenuTrigger>
               <NavigationMenuContent className="menu-panel">
@@ -199,7 +194,7 @@ export function Header() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-        <Button asChild size="sm" className="shrink-0 sm:h-10 sm:px-4">
+        <Button asChild size="sm" className="shrink-0 sm:h-10 sm:px-5">
           <TrackedLink href="/get-started" eventLabel="header_get_started">
             Get Started
           </TrackedLink>

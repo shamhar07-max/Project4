@@ -51,7 +51,7 @@ const items: Item[] = [
 
 function Pill({ label, dot }: { label: string; dot?: boolean }) {
   return (
-    <div className="flex h-8 items-center gap-2 whitespace-nowrap rounded-full border border-line bg-paper px-3 text-sm font-semibold text-ink-2 shadow-[0_2px_8px_rgb(5_29_24/0.06)]">
+    <div className="glass flex h-8 items-center gap-2 whitespace-nowrap rounded-full px-3 text-sm font-semibold text-ink-2">
       {dot ? <span className="size-1.5 rounded-full bg-accent" aria-hidden="true" /> : null}
       {label}
     </div>
@@ -62,7 +62,7 @@ function renderItem(item: Item): ReactNode {
   switch (item.kind) {
     case "icon":
       return (
-        <div className="grid size-[58px] place-items-center rounded-2xl border border-line bg-paper shadow-[0_4px_14px_rgb(5_29_24/0.08)]">
+        <div className="glass grid size-[58px] place-items-center rounded-[18px]">
           <Image src={item.src} alt="" width={item.w} height={item.h} className="h-8 w-auto mix-blend-multiply" />
         </div>
       );
@@ -125,7 +125,7 @@ export function HeroOrbit({ stats }: { stats: { value: number; label: string }[]
               style={pos(item.ring, item.angle)}
               initial={{ opacity: 0, scale: 0.7 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ type: "spring", stiffness: 260, damping: 22, delay: 0.4 + i * 0.07 }}
             >
               <motion.div
                 animate={{ y: [0, -5, 0] }}

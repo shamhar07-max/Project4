@@ -8,14 +8,17 @@
  *   accent-strong #CD2506 (burj shadow) — text, links and buttons (5.4:1 on white)
  */
 @theme {
-  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* iOS / iPadOS 27 look: the platform system font (SF Pro on Apple devices). No webfont download. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   --color-ink: #051d18;
   --color-ink-2: #1d2f2a;
   --color-muted: #55635f;
-  --color-line: #e2e6e4;
-  --color-line-strong: #c9d0cd;
-  --color-surface: #f5f7f6;
+  --color-line: #e5e5ea;
+  --color-line-strong: #d1d1d6;
+  --color-surface: #f2f2f7;
+  /* iOS fill for text fields and tinted controls */
+  --color-fill: rgb(118 118 128 / 0.12);
   --color-paper: #ffffff;
   --color-accent: #fc3012;
   --color-accent-strong: #cd2506;
@@ -27,9 +30,11 @@
   --color-danger: #b42318;
   --color-danger-soft: #fef3f2;
 
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 10px;
+  /* Continuous, generous iOS 27 corner radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
 
   --text-display: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
   --text-display--line-height: 1.04;
@@ -213,7 +218,8 @@
  * so pages stay fully readable without JavaScript and for crawlers.
  * ------------------------------------------------------------------ */
 @theme {
-  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Apple-style spring curve */
+  --ease-out-quint: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -271,9 +277,33 @@
     will-change: auto;
   }
 
-  /* Interactive card: lift, shadow and an accent rule that draws across */
+  /* iOS 27 materials: frosted glass with a light edge highlight */
+  .glass {
+    background: rgb(255 255 255 / 0.66);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgb(255 255 255 / 0.7);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.8),
+      0 1px 2px rgb(0 0 0 / 0.04),
+      0 12px 36px -14px rgb(5 29 24 / 0.22);
+  }
+  .glass-dark {
+    background: rgb(5 29 24 / 0.55);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgb(255 255 255 / 0.14);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass { background: rgb(255 255 255 / 0.96); }
+    .glass-dark { background: rgb(5 29 24 / 0.94); }
+  }
+
+  /* Interactive card: iOS card with soft elevation, lift and an accent rule */
   .card-interactive {
     position: relative;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.03), 0 8px 24px -18px rgb(5 29 24 / 0.18);
     isolation: isolate;
     transition:
       transform 0.35s var(--ease-out-quint),
@@ -285,7 +315,8 @@
     position: absolute;
     inset: -1px -1px auto -1px;
     height: 3px;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    margin-inline: 22px;
+    border-radius: 0 0 3px 3px;
     background: var(--color-accent);
     transform: scaleX(0);
     transform-origin: left;
@@ -293,8 +324,8 @@
   }
   .card-interactive:hover,
   .card-interactive:focus-visible {
-    transform: translateY(-3px);
-    box-shadow: 0 18px 40px -22px rgb(5 29 24 / 0.35);
+    transform: translateY(-3px) scale(1.005);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 0.03), 0 22px 44px -22px rgb(5 29 24 / 0.32);
   }
   .card-interactive:hover::before,
   .card-interactive:focus-visible::before {

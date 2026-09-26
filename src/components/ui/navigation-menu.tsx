@@ -15,8 +15,8 @@ export const NavigationMenu = React.forwardRef<
     <div className="absolute inset-x-0 top-full flex justify-center">
       <NavigationMenuPrimitive.Viewport
         className={cn(
-          "relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-[min(64rem,calc(100vw-2rem))] origin-top overflow-hidden rounded-lg border border-line bg-paper shadow-[0_18px_50px_-20px_rgba(5,29,24,0.35)]",
-          "transition-[height] duration-200",
+          "relative mt-3 h-[var(--radix-navigation-menu-viewport-height)] w-[min(64rem,calc(100vw-2rem))] origin-top overflow-hidden rounded-xl border border-white/70 bg-paper shadow-[0_1px_2px_rgb(0_0_0/0.04),0_24px_60px_-24px_rgb(5_29_24/0.4)]",
+          "transition-[height] duration-300 ease-(--ease-out-quint)",
         )}
       />
     </div>
@@ -35,7 +35,7 @@ NavigationMenuList.displayName = "NavigationMenuList";
 export const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
 export const navigationMenuTriggerStyle =
-  "group inline-flex h-10 items-center gap-1 rounded-md px-3 text-body-sm font-semibold text-ink transition-colors hover:bg-surface data-[state=open]:bg-surface";
+  "group inline-flex h-10 items-center gap-1 rounded-full px-3.5 text-body-sm font-semibold text-ink transition-colors hover:bg-fill data-[state=open]:bg-fill";
 
 export const NavigationMenuTrigger = React.forwardRef<
   React.ComponentRef<typeof NavigationMenuPrimitive.Trigger>,

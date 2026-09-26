@@ -17,7 +17,7 @@ export function FlowDiagram({ steps, caption, tone = "paper" }: { steps: string[
             <span
               style={{ ["--i" as string]: i }}
               className={cn(
-                "flow-chip inline-flex min-h-11 items-center gap-2.5 rounded-md border px-3.5 py-2 text-body-sm font-semibold",
+                "flow-chip inline-flex min-h-11 items-center gap-2.5 rounded-full border px-4 py-2 text-body-sm font-semibold",
                 tone === "ink" ? "border-white/20 bg-white/5" : "border-line bg-paper",
               )}
             >
@@ -145,7 +145,7 @@ function BlockBody({ block }: { block: Block }) {
         >
           {block.items.map((item, i) => (
             <li key={item} data-reveal style={{ ["--i" as string]: i % 8 }} className="flex gap-3 border-b border-line pb-3 text-body-sm text-ink-2">
-              <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 bg-accent" />
+              <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-accent" />
               <span>{item}</span>
             </li>
           ))}
@@ -194,7 +194,7 @@ export function BlockSection({ block, index }: { block: Block; index: number }) 
     return (
       <section className="section-pad-compact">
         <div className="container-site">
-          <div className="rounded-lg border-l-4 border-accent bg-accent-soft px-6 py-7 sm:px-8" data-reveal>
+          <div className="rounded-lg border border-accent/15 bg-accent-soft px-6 py-7 sm:px-8" data-reveal>
             <h2 className="text-xl font-bold text-ink sm:text-2xl">{block.heading}</h2>
             <p className="mt-3 max-w-3xl text-body leading-relaxed text-ink-2">{block.body}</p>
           </div>

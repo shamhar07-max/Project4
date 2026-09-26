@@ -26,3 +26,16 @@ Standing item carried from earlier: temporary Cloudflare link. Blocked by the en
 - Live: https://digitalburj-preview.shamhar07.workers.dev (Worker `digitalburj-preview` on the shamhar07 account; the existing `digitalburj` Worker was not touched).
 - Serves the static export pushed to branch `preview-static` (from raw.githubusercontent.com, 5-minute edge cache). Marked `noindex` so it does not compete with the real domain. Enquiry forms report "not connected" on the preview.
 - To refresh after changes: rebuild the static export and force-push `preview-static`; the Worker needs no redeploy. To remove: delete the Worker in the Cloudflare dashboard (or ask Claude).
+
+## iOS & iPadOS 27 restyle (2026-09-26)
+
+The user approved restyling the site in the iOS & iPadOS 27 design language (the Figma Community file can't be read through the connector, so the language was applied directly in code). DigitalBurj colours, logo, content and SEO are unchanged.
+
+- Tokens: system font stack (SF Pro on Apple devices, no webfont download); grouped background `#f2f2f7`; iOS fill colour; radii 8 / 12 / 22 / 28px; Apple-style spring curve.
+- Materials: `.glass` / `.glass-dark` frosted surfaces with an opaque fallback where `backdrop-filter` isn't supported.
+- Header: floating glass capsule with pill navigation triggers; opaque rounded mega-menu; mobile menu as a floating sheet with an inset grouped list.
+- Buttons and chips: capsule shape with a press-scale; flow chips and topic chips are pills.
+- FAQ: inset grouped list with rotating chevrons. Related links: tiles grouped on a tinted panel.
+- Forms: filled fields that turn white on focus; select popover with a glass finish; radio options as pills.
+- Home hero: ambient light behind glass orbit items and division pills, running under the header; orbit items pop in on a spring.
+- QA: build (169 pages), `check:content` 0 findings, 164 pages crawled with no broken links, no overflow at 375px, axe clean.

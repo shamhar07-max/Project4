@@ -25,7 +25,7 @@ export function Footer() {
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">{site.description}</p>
             <Link
               href="/get-started"
-              className="mt-6 inline-flex h-10 items-center rounded-md bg-accent-strong px-4 text-sm font-semibold text-white hover:bg-accent-hover"
+              className="mt-6 inline-flex h-10 items-center rounded-full bg-accent-strong px-4 text-sm font-semibold text-white hover:bg-accent-hover"
             >
               Get Started
             </Link>

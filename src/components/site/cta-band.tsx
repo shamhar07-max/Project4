@@ -17,12 +17,12 @@ export function CtaBand({
   return (
     <section className="section-pad-compact">
       <div className="container-site">
-        <div className="relative overflow-hidden rounded-lg bg-ink px-6 py-12 sm:px-12 sm:py-14" data-reveal>
+        <div className="relative overflow-hidden rounded-xl bg-ink px-6 py-12 sm:px-12 sm:py-14" data-reveal>
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-accent/15 blur-3xl"
           />
-          <span aria-hidden="true" className="absolute inset-y-0 right-0 w-2 bg-accent" />
+          
           <div className="max-w-2xl">
             <h2 className="text-h2 font-extrabold text-white">{heading}</h2>
             {body ? <p className="mt-4 text-lead text-white/75">{body}</p> : null}

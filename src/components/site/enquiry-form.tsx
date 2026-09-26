@@ -28,7 +28,7 @@ import { cn } from "@/lib/utils";
 
 const labelCls = "block text-sm font-semibold text-ink";
 const controlCls =
-  "mt-1.5 block w-full rounded-md border border-line-strong bg-paper px-3.5 text-body-sm text-ink placeholder:text-muted outline-none transition-colors data-[hovered]:border-ink-2 data-[focused]:border-ink data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent-strong/30 data-[invalid]:border-danger";
+  "mt-1.5 block w-full rounded-md border border-line-strong bg-surface px-3.5 text-body-sm text-ink placeholder:text-muted outline-none transition-colors data-[hovered]:border-ink-2 data-[focused]:border-ink data-[focused]:bg-paper data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent-strong/30 data-[invalid]:border-danger";
 const descCls = "mt-1.5 block text-sm text-muted";
 const errorCls = "mt-1.5 block text-sm font-medium text-danger";
 
@@ -50,14 +50,14 @@ function Field({ f }: { f: FieldDef }) {
         </AriaButton>
         {description}
         <FieldError className={errorCls} />
-        <Popover className="w-[var(--trigger-width)] overflow-auto rounded-md border border-line bg-paper p-1 shadow-lg">
+        <Popover className="w-[var(--trigger-width)] overflow-auto rounded-md border border-white/70 bg-paper/95 p-1 shadow-xl backdrop-blur-xl">
           <ListBox className="max-h-72 outline-none">
             {f.options!.map((o) => (
               <ListBoxItem
                 key={o}
                 id={o}
                 textValue={o}
-                className="flex cursor-default items-center justify-between rounded px-3 py-2 text-body-sm text-ink outline-none data-[focused]:bg-surface data-[selected]:font-semibold"
+                className="flex cursor-default items-center justify-between rounded-sm px-3 py-2 text-body-sm text-ink outline-none data-[focused]:bg-fill data-[selected]:font-semibold"
               >
                 {({ isSelected }) => (
                   <>
@@ -82,7 +82,7 @@ function Field({ f }: { f: FieldDef }) {
             <Radio
               key={o}
               value={o}
-              className="flex h-11 cursor-pointer items-center gap-2.5 rounded-md border border-line-strong px-4 text-body-sm text-ink data-[hovered]:border-ink-2 data-[selected]:border-ink data-[selected]:bg-surface data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent-strong/30 data-[invalid]:border-danger"
+              className="flex h-11 cursor-pointer items-center gap-2.5 rounded-full border border-line-strong px-4 transition-colors text-body-sm text-ink data-[hovered]:border-ink-2 data-[selected]:border-ink data-[selected]:bg-surface data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent-strong/30 data-[invalid]:border-danger"
             >
               {({ isSelected }) => (
                 <>
