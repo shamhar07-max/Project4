@@ -17,8 +17,6 @@ export type AnalyticsEvent =
   | "employer_interest"
   | "download"
   | "whatsapp_click"
-  | "site_guide_query"
-  | "site_guide_source"
   | "search_open"
   | "search_select";
 

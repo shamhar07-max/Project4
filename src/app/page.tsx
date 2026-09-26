@@ -7,7 +7,7 @@ import { StepList } from "@/components/site/blocks";
 import { TrackedLink } from "@/components/site/tracked-link";
 import { JsonLd } from "@/components/site/json-ld";
 import { ArrowLink } from "@/components/site/arrow-link";
-import { AiGuide } from "@/components/site/ai-guide";
+import { TechStack } from "@/components/site/tech-stack";
 import { DivisionTabs, type DivisionTab } from "@/components/site/division-tabs";
 import { Carousel } from "@/components/site/carousel";
 import { CountUp } from "@/components/site/count-up";
@@ -139,8 +139,20 @@ export default function HomePage() {
             Automation and AI for operations, custom software, hands-on tech training, and hiring based on work people
             have actually done.
           </p>
-          <div className="animate-rise mt-6 max-sm:[@media(max-height:740px)]:mt-4" style={{ ["--d" as string]: "320ms" }}>
-            <AiGuide />
+          <div className="animate-rise mt-6 flex flex-wrap justify-center gap-2 sm:gap-3 max-sm:[@media(max-height:740px)]:mt-4" style={{ ["--d" as string]: "320ms" }}>
+            <Button asChild size="lg" className="max-sm:h-11 max-sm:px-4 max-sm:text-body-sm max-[359px]:px-3! max-[359px]:text-sm! max-[359px]:[&_svg]:hidden">
+              <a href="#capabilities">
+                See what we do <ArrowRight aria-hidden="true" />
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="max-sm:h-11 max-sm:px-4 max-sm:text-body-sm max-[359px]:px-3! max-[359px]:text-sm!">
+              <TrackedLink href="/contact" eventLabel="home_hero_conversation">
+                Talk to us
+              </TrackedLink>
+            </Button>
+          </div>
+          <div className="animate-rise mt-6 max-sm:[@media(max-height:740px)]:mt-3" style={{ ["--d" as string]: "380ms" }}>
+            <TechStack />
           </div>
           <nav aria-label="DigitalBurj divisions" className="animate-rise mt-6 max-sm:[@media(max-height:740px)]:mt-4" style={{ ["--d" as string]: "420ms" }}>
             <ul className="glass mx-auto inline-flex max-w-full items-end justify-center gap-0.5 rounded-2xl p-1.5 sm:gap-2 sm:p-2">
@@ -149,7 +161,7 @@ export default function HomePage() {
                   <TrackedLink
                     href={p.href}
                     eventLabel={`home_dock_${p.key}`}
-                    className="group flex flex-col items-center gap-1 rounded-xl px-1.5 py-2 text-xs font-semibold text-ink-2 transition-all duration-300 ease-(--ease-out-quint) hover:-translate-y-1.5 hover:bg-fill hover:text-ink sm:px-3"
+                    className="group flex flex-col items-center gap-1 whitespace-nowrap rounded-xl px-1.5 py-2 text-xs font-semibold text-ink-2 transition-all duration-300 ease-(--ease-out-quint) hover:-translate-y-1.5 hover:bg-fill hover:text-ink sm:px-3"
                   >
                     <span className="grid size-10 place-items-center rounded-xl border border-line-strong bg-paper transition-all duration-300 group-hover:scale-110 group-hover:border-ai/50 group-hover:shadow-[0_0_24px_-6px_var(--color-ai)] sm:size-12">
                       <Image src={p.icon} alt="" width={p.w} height={p.h} className="h-6 w-auto sm:h-7" />

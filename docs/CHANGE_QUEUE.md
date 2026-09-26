@@ -66,3 +66,10 @@ Whole frontend restyled as an AI interface, using patterns from the 21st.dev "AI
 - Logo and division icons: transparent versions of the original artwork (`public/brand/light/`), so they sit cleanly on glass and tinted backgrounds.
 - Everything else from the AI makeover kept: site guide, command palette, atmosphere, bento, tabs, carousel, marquee, chart, toasts, etc.
 - Hero fits the first screen from 1920×1080 down to 320×568 (short phones hide the brand pill and suggestion chips; ≤600px tall also hides the intro line).
+
+## Hero: chat removed, tech stack dock added (2026-09-26)
+
+- Removed the site-guide chat from the hero (component deleted; the ⌘K search stays in the header). Hero buttons "See what we do" / "Talk to us" are back.
+- Added the 21st.dev "techstack" dock by @carolinaraulino with the owner's list (Claude Code, Codex, VS Code, GitHub, Figma, Supabase, Slack, Vercel, PostHog, Cursor, Cloudflare, Sentry). The component source is a paid 21st.dev download (free quota used up), so `src/components/ui/techstack.tsx` recreates it with the same API from its published description, using `motion`: tilted overlapping tiles that swell under the pointer, one shared gliding tooltip driven by pointer position, keyboard focus support, no swelling under reduced motion, smaller tiles on phones.
+- Logos from svgl.app are stored locally in `public/brand/stack/` (fetched from the svgl GitHub repo) instead of hot-linking svgl.app.
+- Hero still fits the first screen from 1920×1080 down to 320×568.
