@@ -11,13 +11,13 @@ export const companyPages: ContentPage[] = [
     h1: "About DigitalBurj",
     seoTitle: "About DigitalBurj",
     description: site.description,
-    answer: `${site.description} Its five connected divisions, Business AI, Academy, Studio, Verified Talent and Jobs, can each operate independently, while sharing one approach: understand the real problem, produce evidence, and measure the result.`,
+    answer: `${site.description} Its five connected divisions, Business AI, Academy, Studio, Verified Talent and Jobs, can each operate independently, while sharing one approach: find out what the problem actually is, show the work, and check whether it helped.`,
     blocks: [
       {
         type: "cards",
         heading: "What DigitalBurj does",
         items: [
-          { title: "DigitalBurj Business AI", body: "Diagnoses operational problems, redesigns processes and introduces automation where it produces measurable value.", href: "/business-ai" },
+          { title: "DigitalBurj Business AI", body: "Diagnoses operational problems, redesigns processes and automates the steps where the gain can be measured.", href: "/business-ai" },
           { title: "DigitalBurj Academy", body: "Practical technology and professional education built around projects, assessment and evidence.", href: "/academy" },
           { title: "DigitalBurj Studio", body: "Validates, designs, engineers and deploys software products.", href: "/studio" },
           { title: "DigitalBurj Verified Talent", body: "Makes professional capability visible through evidence and verification.", href: "/talent" },
@@ -149,7 +149,7 @@ export const companyPages: ContentPage[] = [
     description:
       "How DigitalBurj uses AI responsibly: human oversight, privacy, data handling, evaluation, stated limitations, auditing and care in sensitive workflows.",
     answer:
-      "DigitalBurj uses AI where it produces measurable value and keeps people responsible for decisions that involve judgment, risk or sensitive data. AI components are evaluated before use, limited to the data and actions they need, logged and monitored. We are open about their limitations.",
+      "DigitalBurj uses AI where it clearly earns its keep and keeps people responsible for decisions that involve judgment, risk or sensitive data. AI components are evaluated before use, limited to the data and actions they need, logged and monitored. We are open about their limitations.",
     blocks: [
       {
         type: "list",
@@ -226,7 +226,7 @@ export const companyPages: ContentPage[] = [
       {
         type: "list",
         heading: "What we look for",
-        items: ["Evidence of real work", "Clear reasoning and communication", "Care for users and quality", "Honesty about what you know and do not know", "Willingness to measure and improve"],
+        items: ["Work you can show us", "Clear reasoning and communication", "Care for users and quality", "Honesty about what you know and do not know", "Willingness to measure and improve"],
       },
       {
         type: "callout",

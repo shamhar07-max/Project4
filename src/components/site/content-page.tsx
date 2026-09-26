@@ -28,7 +28,7 @@ export function ContentPageView({ page, path, crumbs }: { page: ContentPage; pat
               <p className="eyebrow">Key points</p>
               <ul className="mt-4 space-y-3">
                 {page.keyPoints.map((k) => (
-                  <li key={k} className="flex gap-3 text-[0.9375rem] leading-relaxed text-ink-2">
+                  <li key={k} className="flex gap-3 text-body-sm leading-relaxed text-ink-2">
                     <Check className="mt-0.5 size-4 shrink-0 text-accent-strong" aria-hidden="true" />
                     {k}
                   </li>

@@ -40,6 +40,10 @@
   --text-h2--letter-spacing: -0.02em;
   --text-h3: 1.1875rem;
   --text-h3--line-height: 1.35;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.7;
+  --text-body-sm: 0.9375rem;
+  --text-body-sm--line-height: 1.6;
   --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
   --text-lead--line-height: 1.6;
   --text-eyebrow: 0.75rem;
@@ -47,6 +51,20 @@
 
   --container-site: 76rem;
   --container-prose: 44rem;
+}
+
+/* Vertical rhythm: every full-width section uses one of these two. */
+@utility section-pad {
+  padding-block: 3.5rem;
+  @media (width >= 40rem) {
+    padding-block: 5rem;
+  }
+}
+@utility section-pad-compact {
+  padding-block: 2.5rem;
+  @media (width >= 40rem) {
+    padding-block: 3.5rem;
+  }
 }
 
 @layer base {

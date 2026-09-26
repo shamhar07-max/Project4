@@ -16,7 +16,7 @@ export function FlowDiagram({ steps, caption, tone = "paper" }: { steps: string[
           <li key={s + i} className="flex items-center gap-2 sm:contents">
             <span
               className={cn(
-                "inline-flex min-h-11 items-center gap-2.5 rounded-md border px-3.5 py-2 text-[0.9375rem] font-semibold",
+                "inline-flex min-h-11 items-center gap-2.5 rounded-md border px-3.5 py-2 text-body-sm font-semibold",
                 tone === "ink" ? "border-white/20 bg-white/5" : "border-line bg-paper",
               )}
             >
@@ -41,16 +41,43 @@ export function FlowDiagram({ steps, caption, tone = "paper" }: { steps: string[
   );
 }
 
+/**
+ * Numbered process timeline. Adapted from the 21st.dev "Vertical How It Works Timeline"
+ * (ln-dev7/how-it-works-02): a connecting rail with numbered nodes. Used for every
+ * sequential process on the site so steps always read the same way.
+ */
 export function StepList({ steps }: { steps: { title: string; body: string }[] }) {
+  const twoCol = steps.length > 6;
+  const half = Math.ceil(steps.length / 2);
   return (
-    <ol className="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-      {steps.map((s, i) => (
-        <li key={s.title} className="bg-paper p-6">
-          <span className="text-sm font-bold tabular-nums text-accent-strong">{String(i + 1).padStart(2, "0")}</span>
-          <h3 className="mt-3 text-h3 font-bold text-ink">{s.title}</h3>
-          <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-2">{s.body}</p>
-        </li>
-      ))}
+    <ol
+      className={cn("grid gap-x-12", twoCol && "lg:grid-flow-col")}
+      style={twoCol ? { gridTemplateRows: `repeat(${half}, auto)` } : undefined}
+    >
+      {steps.map((s, i) => {
+        const last = i === steps.length - 1;
+        const columnEnd = twoCol && i === half - 1;
+        return (
+          <li key={s.title} className={cn("relative flex gap-5", !last && "pb-6", columnEnd && "lg:pb-0")}>
+            {!last ? (
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "absolute bottom-0 left-[1.1875rem] top-10 border-l border-dashed border-line-strong",
+                  columnEnd && "lg:hidden",
+                )}
+              />
+            ) : null}
+            <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-line-strong bg-paper text-sm font-bold tabular-nums text-accent-strong">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div className="flex-1 rounded-lg border border-line bg-paper p-5">
+              <h3 className="text-h3 font-bold text-ink">{s.title}</h3>
+              <p className="mt-1.5 text-body-sm leading-relaxed text-ink-2">{s.body}</p>
+            </div>
+          </li>
+        );
+      })}
     </ol>
   );
 }
@@ -72,7 +99,7 @@ export function CardGrid({ items, columns = 3 }: { items: Card[]; columns?: 2 | 
               className="group flex w-full flex-col rounded-lg border border-line bg-paper p-6 transition-colors hover:border-ink"
             >
               <h3 className="text-h3 font-bold text-ink">{c.title}</h3>
-              <p className="mt-2 flex-1 text-[0.9375rem] leading-relaxed text-ink-2">{c.body}</p>
+              <p className="mt-2 flex-1 text-body-sm leading-relaxed text-ink-2">{c.body}</p>
               <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-strong">
                 Learn more
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
@@ -82,7 +109,7 @@ export function CardGrid({ items, columns = 3 }: { items: Card[]; columns?: 2 | 
           ) : (
             <div className="flex w-full flex-col rounded-lg border border-line bg-paper p-6">
               <h3 className="text-h3 font-bold text-ink">{c.title}</h3>
-              <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink-2">{c.body}</p>
+              <p className="mt-2 text-body-sm leading-relaxed text-ink-2">{c.body}</p>
             </div>
           )}
         </li>
@@ -111,7 +138,7 @@ function BlockBody({ block }: { block: Block }) {
           )}
         >
           {block.items.map((item) => (
-            <li key={item} className="flex gap-3 border-b border-line pb-3 text-[0.9875rem] text-ink-2">
+            <li key={item} className="flex gap-3 border-b border-line pb-3 text-body-sm text-ink-2">
               <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 bg-accent" />
               <span>{item}</span>
             </li>
@@ -129,7 +156,7 @@ function BlockBody({ block }: { block: Block }) {
     case "compare":
       return (
         <div className="overflow-x-auto rounded-lg border border-line">
-          <table className="w-full min-w-[36rem] border-collapse text-left text-[0.9375rem]">
+          <table className="w-full min-w-[36rem] border-collapse text-left text-body-sm">
             <thead className="bg-surface">
               <tr>
                 {block.columns.map((c) => (
@@ -159,11 +186,11 @@ function BlockBody({ block }: { block: Block }) {
 export function BlockSection({ block, index }: { block: Block; index: number }) {
   if (block.type === "callout") {
     return (
-      <section className="py-10 sm:py-12">
+      <section className="section-pad-compact">
         <div className="container-site">
           <div className="rounded-lg border-l-4 border-accent bg-accent-soft px-6 py-7 sm:px-8">
             <h2 className="text-xl font-bold text-ink sm:text-2xl">{block.heading}</h2>
-            <p className="mt-3 max-w-3xl text-[1.0625rem] leading-relaxed text-ink-2">{block.body}</p>
+            <p className="mt-3 max-w-3xl text-body leading-relaxed text-ink-2">{block.body}</p>
           </div>
         </div>
       </section>
@@ -171,7 +198,7 @@ export function BlockSection({ block, index }: { block: Block; index: number }) 
   }
   const tinted = block.type === "flow" || block.type === "steps";
   return (
-    <section className={cn("py-14 sm:py-16", tinted ? "bg-surface" : index > 0 && "border-t border-line")}>
+    <section className={cn("section-pad", tinted ? "bg-surface" : index > 0 && "border-t border-line")}>
       <div className="container-site">
         <div className="max-w-3xl">
           <h2 className="text-h2 font-extrabold text-ink">{block.heading}</h2>

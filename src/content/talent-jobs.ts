@@ -13,7 +13,7 @@ export const talentPages: ContentPage[] = [
     h1: "Verified Talent for Professionals",
     seoTitle: "Verified Talent for Professionals",
     description:
-      "Make your real capability visible through skills, projects, assessments and evidence. How DigitalBurj Verified Talent will work for professionals.",
+      "Show what you can actually do through skills, projects, assessments and evidence. How DigitalBurj Verified Talent will work for professionals.",
     answer:
       "DigitalBurj Verified Talent is being built for professionals whose ability is not captured by a CV. Instead of listing claims, your profile will show the skills you have demonstrated, the projects you have delivered, assessments you have completed and the evidence behind each, with its verification level clearly labelled.",
     blocks: [
@@ -58,7 +58,7 @@ export const talentPages: ContentPage[] = [
     h1: "Verified Talent for Employers",
     seoTitle: "Evidence-Based Hiring with Verified Talent",
     description:
-      "Search and assess professionals by demonstrated capability and evidence, not only CV claims. Learn how DigitalBurj Verified Talent will support employers.",
+      "Search and assess professionals by what they have shown they can do, with the evidence attached. Learn how DigitalBurj Verified Talent will support employers.",
     answer:
       "DigitalBurj Verified Talent is being designed to help employers find professionals by what they have demonstrated rather than what they claim. Employers will be able to search by capability, review the evidence behind each skill, see how it was verified, request further assessment and shortlist candidates before interview.",
     blocks: [
@@ -290,7 +290,7 @@ export const jobsPages: ContentPage[] = [
     description:
       "How DigitalBurj Jobs works for job seekers: profiles, evidence, applications, assessments, interviews, status updates, professional conduct and privacy.",
     answer:
-      "DigitalBurj Jobs connects job seekers with genuine opportunities and lets them support applications with evidence of capability, not only a CV. It does not charge job seekers to apply, and it does not guarantee employment or visas. Employers make their own hiring decisions.",
+      "DigitalBurj Jobs connects job seekers with genuine opportunities and lets them back up applications with evidence of their work alongside a CV. It does not charge job seekers to apply, and it does not guarantee employment or visas. Employers make their own hiring decisions.",
     blocks: [
       {
         type: "steps",

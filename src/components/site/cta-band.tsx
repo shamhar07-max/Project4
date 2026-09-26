@@ -15,7 +15,7 @@ export function CtaBand({
   secondary?: { label: string; href: string };
 }) {
   return (
-    <section className="py-12 sm:py-16">
+    <section className="section-pad-compact">
       <div className="container-site">
         <div className="relative overflow-hidden rounded-lg bg-ink px-6 py-12 sm:px-12 sm:py-14">
           <span aria-hidden="true" className="absolute inset-y-0 right-0 w-2 bg-accent" />

@@ -10,6 +10,7 @@ import { RelatedLinks } from "@/components/site/related";
 import { CtaBand } from "@/components/site/cta-band";
 import { JsonLd } from "@/components/site/json-ld";
 import { buildMetadata, webPageJsonLd } from "@/lib/seo";
+import { Tag } from "@/components/ui/tag";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -42,7 +43,7 @@ export default async function AcademyCategoryPage({ params }: { params: Promise<
             ["Who this is for", c.forWho],
           ].map(([h, items]) => (
             <div key={h as string}>
-              <h3 className="text-h3 font-extrabold text-ink">{h as string}</h3>
+              <h3 className="text-h3 font-bold text-ink">{h as string}</h3>
               <ul className="mt-4 space-y-2.5">
                 {(items as string[]).map((i) => (
                   <li key={i} className="flex gap-3 text-ink-2">
@@ -67,7 +68,7 @@ export default async function AcademyCategoryPage({ params }: { params: Promise<
       {lp ? (
         <Section title="Learning pathway">
           <Link href={`/academy/learning-paths/${lp.slug}`} className="block max-w-2xl rounded-lg border border-line p-6 hover:border-ink">
-            <span className="text-h3 font-extrabold text-ink">{lp.title} Learning Path</span>
+            <span className="text-h3 font-bold text-ink">{lp.title} Learning Path</span>
             <span className="mt-2 block text-ink-2">{lp.overview}</span>
           </Link>
         </Section>
@@ -78,10 +79,10 @@ export default async function AcademyCategoryPage({ params }: { params: Promise<
           explain and defend it to a reviewer. Assessment produces evidence of capability that can be shared through
           DigitalBurj Verified Talent.
         </p>
-        <h3 className="mt-10 text-h3 font-extrabold text-ink">Related professional roles</h3>
+        <h3 className="mt-10 text-h3 font-bold text-ink">Related professional roles</h3>
         <ul className="mt-4 flex flex-wrap gap-2">
           {c.roles.map((r) => (
-            <li key={r} className="rounded-full bg-paper px-3.5 py-1.5 text-sm text-ink-2 ring-1 ring-line">{r}</li>
+            <li key={r}><Tag tone="paper">{r}</Tag></li>
           ))}
         </ul>
       </Section>

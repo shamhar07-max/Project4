@@ -54,7 +54,7 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
         eyebrow={`${category.title} · ${a.kind}`}
         title={a.title}
       />
-      <article className="container-site grid gap-12 py-14 lg:grid-cols-[minmax(0,1fr)_18rem]">
+      <article className="container-site grid gap-12 section-pad lg:grid-cols-[minmax(0,1fr)_18rem]">
         <div className="prose-db">
           <p className="!text-lead font-medium text-ink">{a.answer}</p>
           <h2>Key points</h2>

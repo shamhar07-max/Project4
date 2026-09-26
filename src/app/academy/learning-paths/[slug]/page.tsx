@@ -8,6 +8,7 @@ import { FaqList } from "@/components/site/faq";
 import { CtaBand } from "@/components/site/cta-band";
 import { JsonLd } from "@/components/site/json-ld";
 import { buildMetadata, webPageJsonLd } from "@/lib/seo";
+import { Tag } from "@/components/ui/tag";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -62,12 +63,12 @@ export default async function LearningPathPage({ params }: { params: Promise<{ s
             <li key={p} className="rounded-lg border border-line p-5 text-ink-2">{p}</li>
           ))}
         </ul>
-        <h3 className="mt-10 text-h3 font-extrabold text-ink">Assessment approach</h3>
+        <h3 className="mt-10 text-h3 font-bold text-ink">Assessment approach</h3>
         <p className="mt-3 max-w-3xl text-ink-2">Each project is assessed: you explain and defend your work to a reviewer, and the result becomes evidence of capability.</p>
-        <h3 className="mt-10 text-h3 font-extrabold text-ink">Possible entry-level roles</h3>
+        <h3 className="mt-10 text-h3 font-bold text-ink">Possible entry-level roles</h3>
         <ul className="mt-4 flex flex-wrap gap-2">
           {l.roles.map((r) => (
-            <li key={r} className="rounded-full bg-surface px-3.5 py-1.5 text-sm text-ink-2">{r}</li>
+            <li key={r}><Tag>{r}</Tag></li>
           ))}
         </ul>
       </Section>

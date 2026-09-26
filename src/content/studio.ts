@@ -170,7 +170,7 @@ export const studioPages: ContentPage[] = [
     description:
       "An MVP is the smallest product that tests your riskiest assumption with real users. DigitalBurj Studio scopes, builds and measures MVPs.",
     answer:
-      "An MVP (minimum viable product) is the smallest version of a product that lets real users complete the core action, so you can test your most important assumption with evidence. It is not a cheap or unfinished version of the full product. A good MVP is small in scope but works properly for what it does.",
+      "An MVP (minimum viable product) is the smallest version of a product that lets real users complete the core action, so you can test your most important assumption with evidence. That doesn't make it cheap or half-built. A good MVP is small in scope but works properly for what it does.",
     blocks: [
       {
         type: "steps",
@@ -183,7 +183,7 @@ export const studioPages: ContentPage[] = [
           { title: "What to build", body: "Only what is needed to deliver the core action and test the assumptions." },
           { title: "What not to build", body: "An explicit list of features deliberately left out." },
           { title: "Measurement", body: "The signals that will tell you whether the assumption held." },
-          { title: "Launch", body: "Real users, real use, with support in place." },
+          { title: "Launch", body: "Put it in front of the first users, with support ready." },
           { title: "Next decision", body: "Build further, reshape or stop, based on what was learned." },
         ],
       },

@@ -4,6 +4,7 @@ import { PageHero } from "@/components/site/page-hero";
 import { Section } from "@/components/site/section";
 import { CtaBand } from "@/components/site/cta-band";
 import { buildMetadata } from "@/lib/seo";
+import { Tag } from "@/components/ui/tag";
 
 const description = "Selected DigitalBurj systems and ventures across logistics, documents, procurement and more. Project details are published as they are verified.";
 export const metadata = buildMetadata({ title: "Portfolio", description, path: "/portfolio" });
@@ -16,7 +17,7 @@ export default function PortfolioPage() {
       <Section title="Projects">
         <ul aria-label="Sectors" className="mb-8 flex flex-wrap gap-2">
           {portfolioFilters.filter((f) => used.has(f)).map((f) => (
-            <li key={f} className="rounded-full bg-surface px-3.5 py-1.5 text-sm font-semibold text-ink-2">{f}</li>
+            <li key={f}><Tag>{f}</Tag></li>
           ))}
         </ul>
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -24,7 +25,7 @@ export default function PortfolioPage() {
             <li key={p.slug}>
               <Link href={`/portfolio/${p.slug}`} className="flex h-full flex-col rounded-lg border border-line p-6 hover:border-ink">
                 <span className="eyebrow">{p.sector ?? "Sector to be confirmed"}</span>
-                <span className="mt-3 text-h3 font-extrabold text-ink">{p.name}</span>
+                <span className="mt-3 text-h3 font-bold text-ink">{p.name}</span>
                 <span className="mt-2 text-ink-2">{p.summary}</span>
                 <span className="mt-auto pt-5 text-sm text-muted">Status: {p.status}</span>
               </Link>

@@ -12,13 +12,13 @@ export default function HtmlSitemapPage() {
   return (
     <>
       <PageHero crumbs={[{ name: "Sitemap", path: "/sitemap" }]} title="Sitemap" lead="Every public page on this website, by section." />
-      <div className="container-site grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="container-site grid gap-10 section-pad sm:grid-cols-2 lg:grid-cols-3">
         {order.map((s) => {
           const items = routes.filter((r) => r.section === s);
           if (!items.length) return null;
           return (
             <section key={s}>
-              <h2 className="text-h3 font-extrabold text-ink">{s === "Utility" ? "More" : s}</h2>
+              <h2 className="text-h3 font-bold text-ink">{s === "Utility" ? "More" : s}</h2>
               <ul className="mt-4 space-y-2">
                 {items.map((r) => (
                   <li key={r.path}>

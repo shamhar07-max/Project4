@@ -19,6 +19,15 @@ npm run check:content   # brand-voice, promise and design-token checks (P0 fails
 Copy `.env.example` to `.env.local` and set `ENQUIRY_WEBHOOK_URL` so form submissions reach your CRM or
 automation platform. In development, submissions without a webhook are logged instead.
 
+## Design system
+
+- Figma: [DigitalBurj Web Design System](https://www.figma.com/design/MDcYuMHppBlvhTqmDB7Pzg): colour and
+  spacing variables, Manrope text styles, and Button / Card / Timeline Step / Flow Chip components that map
+  1:1 to `globals.css` and `src/components`.
+- Consistency: [docs/ui-consistency-report.md](docs/ui-consistency-report.md) (P0–P3 findings, fixes, rules).
+  `npm run check:content` enforces the rules.
+- The process timeline (`StepList`) is adapted from the 21st.dev component `ln-dev7/how-it-works-02`.
+
 ## Where things live
 
 | Path | What |

@@ -10,8 +10,8 @@ export function ArticleList({ items }: { items: typeof articles }) {
             <span className="eyebrow">
               {insightCategories.find((c) => c.slug === a.category)?.title} · {a.kind}
             </span>
-            <span className="mt-3 text-h3 font-extrabold text-ink group-hover:underline">{a.title}</span>
-            <span className="mt-2 text-[0.9375rem] leading-relaxed text-ink-2">{a.description}</span>
+            <span className="mt-3 text-h3 font-bold text-ink group-hover:underline">{a.title}</span>
+            <span className="mt-2 text-body-sm leading-relaxed text-ink-2">{a.description}</span>
           </Link>
         </li>
       ))}

@@ -44,7 +44,7 @@ function MegaPanel({ item }: { item: NavItem }) {
                     <Link
                       href={link.href}
                       onClick={() => track("nav_click", { menu: item.label, label: link.label })}
-                      className="block rounded-md px-2 py-1.5 -mx-2 text-[0.9375rem] text-ink-2 hover:bg-surface hover:text-ink"
+                      className="block rounded-md px-2 py-1.5 -mx-2 text-body-sm text-ink-2 hover:bg-surface hover:text-ink"
                     >
                       {link.label}
                     </Link>
@@ -120,7 +120,7 @@ function MobileNav() {
                             <li key={link.href + link.label}>
                               <Link
                                 href={link.href}
-                                className="flex min-h-11 items-center rounded-md px-3 text-[0.9375rem] text-ink-2 hover:bg-surface"
+                                className="flex min-h-11 items-center rounded-md px-3 text-body-sm text-ink-2 hover:bg-surface"
                               >
                                 {link.label}
                               </Link>

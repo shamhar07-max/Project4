@@ -25,7 +25,7 @@ export default function GetStartedPage() {
   return (
     <>
       <PageHero crumbs={[{ name: "Get Started", path: "/get-started" }]} eyebrow="Get started" title="What would you like to do?" lead="Choose the option closest to your goal and we will take you to the right team." />
-      <div className="container-site py-14">
+      <div className="container-site section-pad">
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {choices.map((c) => (
             <li key={c.label}>

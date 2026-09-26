@@ -44,9 +44,9 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
       <Section title="Overview">
         <div className="grid gap-10 md:grid-cols-2">
           <div>
-            <h3 className="text-h3 font-extrabold text-ink">Who this course is for</h3>
+            <h3 className="text-h3 font-bold text-ink">Who this course is for</h3>
             <p className="mt-3 text-ink-2">{t.forWho}</p>
-            <h3 className="mt-8 text-h3 font-extrabold text-ink">Skills covered</h3>
+            <h3 className="mt-8 text-h3 font-bold text-ink">Skills covered</h3>
             <ul className="mt-4 space-y-2.5">
               {t.skills.map((s) => (
                 <li key={s} className="flex gap-3 text-ink-2">
@@ -57,7 +57,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
             </ul>
           </div>
           <div className="rounded-lg border border-line bg-surface p-6">
-            <h3 className="text-h3 font-extrabold text-ink">Example practical missions</h3>
+            <h3 className="text-h3 font-bold text-ink">Example practical missions</h3>
             <ul className="mt-4 space-y-3">
               {t.missions.map((m) => (
                 <li key={m} className="border-b border-line pb-3 text-ink-2 last:border-0">{m}</li>
@@ -73,7 +73,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
       {next ? (
         <Section title="Recommended next course">
           <Link href={`/academy/courses/${next.slug}`} className="block max-w-2xl rounded-lg border border-line p-6 hover:border-ink">
-            <span className="text-h3 font-extrabold text-ink">{next.title}</span>
+            <span className="text-h3 font-bold text-ink">{next.title}</span>
             <span className="mt-2 block text-ink-2">{next.summary}</span>
           </Link>
         </Section>

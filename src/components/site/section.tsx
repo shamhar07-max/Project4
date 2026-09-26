@@ -25,7 +25,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "scroll-mt-24 py-16 sm:py-20",
+        "scroll-mt-24 section-pad",
         tone === "surface" && "bg-surface",
         tone === "ink" && "bg-ink text-white",
         className,

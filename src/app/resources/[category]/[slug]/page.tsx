@@ -32,7 +32,7 @@ export default async function ResourcePage({ params }: { params: Promise<{ categ
       <PageHero crumbs={[{ name: "Resources", path: "/resources" }, { name: cat.title, path: `/resources/${category}` }, { name: r.title, path }]} eyebrow={`DigitalBurj ${cat.title.replace(/s$/, "")}`} title={r.title} lead={r.intro}>
         <PrintButton label={r.slug} />
       </PageHero>
-      <div className="container-site py-14">
+      <div className="container-site section-pad">
         <p className="max-w-3xl rounded-lg bg-surface p-5 text-ink-2">
           <strong className="text-ink">How to use it: </strong>
           {r.howToUse}
@@ -40,7 +40,7 @@ export default async function ResourcePage({ params }: { params: Promise<{ categ
         <div className="mt-10 grid gap-10 lg:grid-cols-2">
           {r.sections.map((s) => (
             <section key={s.heading}>
-              <h2 className="text-h3 font-extrabold text-ink">{s.heading}</h2>
+              <h2 className="text-h3 font-bold text-ink">{s.heading}</h2>
               {isChecklist ? (
                 <ul className="mt-4 space-y-2">
                   {s.items.map((i) => (

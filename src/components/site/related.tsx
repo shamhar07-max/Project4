@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { NavLink } from "@/lib/site";
 
 export function RelatedLinks({ links, title = "Related" }: { links: NavLink[]; title?: string }) {
   if (!links.length) return null;
   return (
-    <section className="border-t border-line py-14 sm:py-16" aria-labelledby="related-heading">
+    <section className="border-t border-line section-pad" aria-labelledby="related-heading">
       <div className="container-site">
         <h2 id="related-heading" className="text-h2 font-extrabold text-ink">
           {title}
@@ -21,7 +21,7 @@ export function RelatedLinks({ links, title = "Related" }: { links: NavLink[]; t
                   <span className="block font-bold text-ink">{l.label}</span>
                   {l.description ? <span className="mt-1 block text-sm text-muted">{l.description}</span> : null}
                 </span>
-                <ArrowUpRight
+                <ArrowRight
                   className="size-4 shrink-0 text-accent-strong transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                   aria-hidden="true"
                 />

@@ -4,6 +4,7 @@ import { ArticleList } from "@/components/site/article-list";
 import { PageHero } from "@/components/site/page-hero";
 import { Section } from "@/components/site/section";
 import { buildMetadata } from "@/lib/seo";
+import { tagLinkClass } from "@/components/ui/tag";
 
 const description = "DigitalBurj Insights: direct, practical writing on business AI, software engineering, product development, education and careers.";
 export const metadata = buildMetadata({ title: "Insights", description, path: "/insights" });
@@ -16,7 +17,7 @@ export default function InsightsPage() {
         <ul className="flex flex-wrap gap-2">
           {insightCategories.map((c) => (
             <li key={c.slug}>
-              <Link href={`/insights/${c.slug}`} className="inline-flex h-10 items-center rounded-full border border-line px-4 text-sm font-semibold text-ink hover:border-ink">
+              <Link href={`/insights/${c.slug}`} className={tagLinkClass}>
                 {c.title}
               </Link>
             </li>

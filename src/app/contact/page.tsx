@@ -22,7 +22,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHero crumbs={[{ name: "Contact", path: "/contact" }]} eyebrow="Contact" title="Contact DigitalBurj" lead="Send a general message below, or use a dedicated form so we can respond with the right people." />
-      <div className="container-site py-14">
+      <div className="container-site section-pad">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <EnquiryForm intent="contact" />
           <aside className="h-fit rounded-lg border border-line bg-surface p-6">

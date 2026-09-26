@@ -5,7 +5,7 @@ export function LegalPage({ title, path, updated, children }: { title: string; p
   return (
     <>
       <PageHero crumbs={[{ name: title, path }]} title={title} lead={`Last updated ${updated}.`} />
-      <div className="container-site py-14">
+      <div className="container-site section-pad">
         <div className="prose-db">{children}</div>
       </div>
     </>

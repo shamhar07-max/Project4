@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/section";
 import { FlowDiagram, StepList, CardGrid } from "@/components/site/blocks";
@@ -12,6 +12,7 @@ import { learningLoop } from "@/content/academy";
 import { buildMetadata, webPageJsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import { ArrowLink } from "@/components/site/arrow-link";
 
 export const metadata = buildMetadata({
   title: `${site.name} | Business AI, Academy, Studio, Verified Talent & Jobs`,
@@ -30,7 +31,7 @@ const pillarList = [
 ];
 
 const capabilities = [
-  { title: "DigitalBurj Business AI", body: "Fix the process, then automate it. We diagnose where operations lose time and customers, redesign the workflow, and introduce automation and AI where it produces measurable value.", href: "/business-ai", cta: "Explore Business AI" },
+  { title: "DigitalBurj Business AI", body: "Fix the process, then automate it. We diagnose where operations lose time and customers, redesign the workflow, and bring in automation or AI where we can show it pays off.", href: "/business-ai", cta: "Explore Business AI" },
   { title: "DigitalBurj Academy", body: "Learn it, apply it, prove it. Practical technology and professional learning built around projects, assessment and evidence of capability.", href: "/academy", cta: "Explore Academy" },
   { title: "DigitalBurj Studio", body: "Build what deserves to exist. Product validation, design, engineering and deployment for software that people need.", href: "/studio", cta: "Explore Studio" },
   { title: "DigitalBurj Verified Talent", body: "Capability you can see, evidence you can trust. Professional profiles built on demonstrated skills rather than claims.", href: "/talent", cta: "Explore Verified Talent" },
@@ -76,9 +77,9 @@ const answers = [
   { q: "What is DigitalBurj?", a: `${site.description} Its divisions are DigitalBurj Business AI, DigitalBurj Academy, DigitalBurj Studio, DigitalBurj Verified Talent and DigitalBurj Jobs.` },
   { q: "What does DigitalBurj do?", a: "DigitalBurj helps organisations improve and automate operations, builds software products, provides practical education, makes professional capability verifiable, and connects capability with employment opportunities. Each service starts from a defined problem and is measured by its result." },
   { q: "Is DigitalBurj a software company?", a: "Partly. DigitalBurj Studio is a software engineering and product studio, but DigitalBurj also operates Business AI consulting and implementation, an Academy, and Verified Talent and Jobs. It is best described as a technology company with five connected divisions." },
-  { q: "What is DigitalBurj Academy?", a: "DigitalBurj Academy provides practical technology and professional education. Learners complete realistic missions, including breaking and fixing systems, and must explain and defend their work. Learning ends with evidence of capability, not only a completion record." },
+  { q: "What is DigitalBurj Academy?", a: "DigitalBurj Academy provides practical technology and professional education. Learners complete realistic missions, including breaking and fixing systems, and must explain and defend their work. A course is finished when there is evidence of what the learner can do, not when the last video ends." },
   { q: "What is DigitalBurj Studio?", a: "DigitalBurj Studio validates, designs, builds and deploys software products for businesses and founders. It begins with product validation and ends each stage with a build, reshape or stop decision based on evidence." },
-  { q: "What is Business AI?", a: "Business AI is the use of AI, automation and process redesign to improve how an organisation operates. DigitalBurj Business AI observes and measures the process first, redesigns it, and automates only where it produces measurable value, with human review where judgment matters." },
+  { q: "What is Business AI?", a: "Business AI is the use of AI, automation and process redesign to improve how an organisation operates. DigitalBurj Business AI observes and measures the process first, redesigns it, and automates only the steps where the benefit shows up in the numbers. People keep the decisions that need judgment." },
   { q: "What is Verified Talent?", a: "DigitalBurj Verified Talent is a platform in development for showing professional capability through evidence. Profiles distinguish self-declared, assessed, approved and independently verified skills, so employers can see what has actually been demonstrated." },
 ];
 
@@ -201,17 +202,15 @@ export default function HomePage() {
       <Section id="capabilities" eyebrow="What DigitalBurj does" title="One company. Five connected capabilities.">
         <ul className="grid gap-px overflow-hidden rounded-lg border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((c) => (
-            <li key={c.title} className="flex flex-col bg-paper p-7">
-              <h3 className="text-h3 font-extrabold text-ink">{c.title}</h3>
-              <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-ink-2">{c.body}</p>
-              <Link href={c.href} className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-strong hover:underline">
-                {c.cta} <ArrowRight className="size-4" aria-hidden="true" />
-              </Link>
+            <li key={c.title} className="flex flex-col bg-paper p-6">
+              <h3 className="text-h3 font-bold text-ink">{c.title}</h3>
+              <p className="mt-3 flex-1 text-body-sm leading-relaxed text-ink-2">{c.body}</p>
+              <ArrowLink href={c.href} className="mt-6">{c.cta}</ArrowLink>
             </li>
           ))}
-          <li className="flex flex-col justify-center bg-ink p-7 text-white">
+          <li className="flex flex-col justify-center bg-ink p-6 text-white">
             <p className="text-sm font-semibold tracking-[0.2em]">LEARN. BUILD. TRANSFORM.</p>
-            <p className="mt-3 text-[0.9375rem] leading-relaxed text-white/75">
+            <p className="mt-3 text-body-sm leading-relaxed text-white/75">
               Each division can be engaged on its own. Together they reinforce one another.
             </p>
           </li>
@@ -245,7 +244,7 @@ export default function HomePage() {
               <Link href={e.href} className="group flex h-full flex-col rounded-lg border border-line p-5 hover:border-ink">
                 <span className="eyebrow text-accent-strong">{e.verb}</span>
                 <span className="mt-2 text-lg font-extrabold text-ink">{e.name}</span>
-                <ArrowUpRight className="mt-auto size-4 pt-0 text-line-strong group-hover:text-accent-strong" aria-hidden="true" />
+                <ArrowRight className="mt-auto size-4 pt-0 text-line-strong group-hover:text-accent-strong" aria-hidden="true" />
               </Link>
               {i < ecosystem.length - 1 ? (
                 <ArrowRight aria-hidden="true" className="absolute -right-3 top-1/2 z-10 hidden size-4 -translate-y-1/2 bg-paper text-accent sm:block" />
@@ -261,7 +260,7 @@ export default function HomePage() {
         tone="surface"
         eyebrow="DigitalBurj Business AI"
         title="Improve the business before automating it."
-        body="Business AI at DigitalBurj starts with the leak, not the demo: observe how work actually happens, measure it, redesign the process, and automate only what produces measurable value, with people kept where judgment matters."
+        body="Business AI at DigitalBurj starts with the leak, not the demo: observe how work actually happens, measure it, redesign the process, and automate only what earns its place. Decisions that need judgment stay with people."
         steps={["Observe", "Diagnose", "Measure", "Redesign", "Automate", "Review", "Measure again"]}
         href="/business-ai"
         cta="Explore Business AI"
@@ -271,7 +270,7 @@ export default function HomePage() {
         id="academy"
         eyebrow="DigitalBurj Academy"
         title="Learning should produce evidence."
-        body="Academy learning is built around practical missions: learners build, break, fix and test real work, then explain and defend it. The outcome is evidence of what they can do, not only a completion record."
+        body="Academy learning is built around practical missions: learners build, break, fix and test real work, then explain and defend it. What they leave with is proof of what they can do."
         steps={learningLoop.slice(1)}
         href="/academy"
         cta="Explore Academy"
@@ -312,19 +311,15 @@ export default function HomePage() {
       {/* 09 Jobs */}
       <Section tone="surface" eyebrow="DigitalBurj Jobs" title="Connect capability to opportunity.">
         <div className="grid gap-4 md:grid-cols-2">
-          <div className="rounded-lg border border-line bg-paper p-7">
-            <h3 className="text-h3 font-extrabold text-ink">For professionals</h3>
-            <p className="mt-3 text-ink-2">Apply to genuine opportunities with evidence of what you can do, not only a CV.</p>
-            <Link href="/jobs/for-job-seekers" className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-strong hover:underline">
-              For job seekers <ArrowRight className="size-4" aria-hidden="true" />
-            </Link>
+          <div className="rounded-lg border border-line bg-paper p-6">
+            <h3 className="text-h3 font-bold text-ink">For professionals</h3>
+            <p className="mt-3 text-ink-2">Apply to genuine openings and back your CV with proof of your work.</p>
+            <ArrowLink href="/jobs/for-job-seekers" className="mt-5">For job seekers</ArrowLink>
           </div>
-          <div className="rounded-lg border border-line bg-paper p-7">
-            <h3 className="text-h3 font-extrabold text-ink">For employers</h3>
+          <div className="rounded-lg border border-line bg-paper p-6">
+            <h3 className="text-h3 font-bold text-ink">For employers</h3>
             <p className="mt-3 text-ink-2">Define the capability a role needs, review evidence and shortlist before interview.</p>
-            <Link href="/jobs/for-employers" className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-strong hover:underline">
-              For employers <ArrowRight className="size-4" aria-hidden="true" />
-            </Link>
+            <ArrowLink href="/jobs/for-employers" className="mt-5">For employers</ArrowLink>
           </div>
         </div>
         <p className="mt-6 max-w-3xl text-sm text-muted">
@@ -363,9 +358,7 @@ export default function HomePage() {
       {/* 12 How we work */}
       <Section eyebrow="How we work" title="One framework across everything we do.">
         <StepList steps={framework} />
-        <Link href="/company/how-we-work" className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-strong hover:underline">
-          How DigitalBurj works <ArrowRight className="size-4" aria-hidden="true" />
-        </Link>
+        <ArrowLink href="/company/how-we-work" className="mt-8">How DigitalBurj works</ArrowLink>
       </Section>
 
       {/* 13 Insights */}
@@ -375,8 +368,8 @@ export default function HomePage() {
             <li key={a.slug}>
               <Link href={`/insights/${a.slug}`} className="group flex h-full flex-col rounded-lg border border-line bg-paper p-6 hover:border-ink">
                 <span className="eyebrow">{a.kind}</span>
-                <span className="mt-3 text-h3 font-extrabold text-ink group-hover:underline">{a.title}</span>
-                <span className="mt-2 text-[0.9375rem] leading-relaxed text-ink-2">{a.description}</span>
+                <span className="mt-3 text-h3 font-bold text-ink group-hover:underline">{a.title}</span>
+                <span className="mt-2 text-body-sm leading-relaxed text-ink-2">{a.description}</span>
               </Link>
             </li>
           ))}
@@ -392,7 +385,7 @@ export default function HomePage() {
           {answers.map((x) => (
             <div key={x.q} className="border-t border-line pt-6">
               <dt>
-                <h3 className="text-h3 font-extrabold text-ink">{x.q}</h3>
+                <h3 className="text-h3 font-bold text-ink">{x.q}</h3>
               </dt>
               <dd className="mt-3 leading-relaxed text-ink-2">{x.a}</dd>
             </div>

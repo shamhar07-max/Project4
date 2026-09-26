@@ -35,7 +35,7 @@ NavigationMenuList.displayName = "NavigationMenuList";
 export const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
 export const navigationMenuTriggerStyle =
-  "group inline-flex h-10 items-center gap-1 rounded-md px-3 text-[0.9375rem] font-semibold text-ink transition-colors hover:bg-surface data-[state=open]:bg-surface";
+  "group inline-flex h-10 items-center gap-1 rounded-md px-3 text-body-sm font-semibold text-ink transition-colors hover:bg-surface data-[state=open]:bg-surface";
 
 export const NavigationMenuTrigger = React.forwardRef<
   React.ComponentRef<typeof NavigationMenuPrimitive.Trigger>,

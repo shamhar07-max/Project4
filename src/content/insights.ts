@@ -96,7 +96,7 @@ export const articles: Article[] = [
     category: "ai",
     kind: "Comparison",
     description: "A chatbot replies in conversation; an AI agent takes actions using tools. The practical differences, risks and when to use each.",
-    answer: "A chatbot answers questions in a conversation. An AI agent works toward a goal by deciding which steps to take and using tools it has been given, such as reading a CRM record or drafting an email. Because an agent can act in real systems, it needs tighter controls: limited permissions, approval steps and logging.",
+    answer: "A chatbot answers questions in a conversation. An AI agent works toward a goal by deciding which steps to take and using tools it has been given, such as reading a CRM record or drafting an email. An agent can change things in your systems, so it needs tighter controls: limited permissions, approval steps and logging.",
     keyPoints: ["Chatbots reply; agents act.", "An agent's risk is defined by its tools and permissions.", "Start agents narrow, with human approval, and widen scope only with evidence."],
     sections: [
       { heading: "Side by side", list: ["Chatbot output: a message. Agent output: a changed record, a routed request, a prepared document.", "Chatbot risk: a wrong answer. Agent risk: a wrong action in a real system.", "Chatbot controls: content guidelines. Agent controls: permissions, approvals, logs, limits."] },
@@ -133,7 +133,7 @@ export const articles: Article[] = [
     category: "software",
     kind: "Framework",
     description: "Production-ready software is correct, secure, observable, recoverable and maintainable. A checklist of what that means in practice.",
-    answer: "Software is production-ready when it can be relied on by real users with real data: it enforces permissions correctly, keeps data consistent, handles errors, is monitored, can be recovered after failure, and can be understood and changed by someone other than its author. Working on a developer's machine is not the same thing.",
+    answer: "Software is production-ready when it can be relied on by real users with real data: it enforces permissions correctly, keeps data consistent, handles errors, is monitored, can be recovered after failure, and can be understood and changed by someone other than its author. “It works on my laptop” doesn’t count.",
     keyPoints: ["Correctness includes security and data integrity, not just features.", "If you cannot see it failing, it is not production-ready.", "A backup is only proven once restored."],
     sections: [
       { heading: "The checklist", list: ["Permissions enforced on the server for every action", "Related data changes succeed or fail together", "Inputs validated, errors handled with clear messages", "Automated tests for critical paths", "Secrets kept out of code", "Private files served only to authorised users", "Logging, metrics and alerts in place", "Automated backups and a tested restore", "Deployment is automated and reversible", "Documentation for running and changing the system"] },
@@ -166,8 +166,8 @@ export const articles: Article[] = [
     title: "MVP vs prototype: what is the difference?",
     category: "software",
     kind: "Comparison",
-    description: "A prototype explores and communicates an idea; an MVP tests it with real users doing real work. When to use each.",
-    answer: "A prototype is a model of a product used to explore or communicate an idea, often with simulated functionality. An MVP is a working product, small in scope, that real users use for real so you can learn whether your core assumption holds. Prototypes answer 'does this make sense?'; MVPs answer 'will people actually use it?'",
+    description: "A prototype explores and communicates an idea; an MVP puts it in front of users doing their normal work. When to use each.",
+    answer: "A prototype is a model of a product used to explore or communicate an idea, often with simulated functionality. An MVP is a working product, small in scope, that people actually use, so you can learn whether your core assumption holds. Prototypes answer 'does this make sense?'; MVPs answer 'will people actually use it?'",
     keyPoints: ["Prototypes are for learning about design and understanding.", "MVPs are for learning about real behaviour.", "Prototype first when the concept is unclear; build an MVP when you need behavioural evidence."],
     sections: [
       { heading: "When to prototype", list: ["Stakeholders cannot picture the idea", "You need feedback on a workflow or interface", "Several design options must be compared quickly"] },
@@ -200,12 +200,12 @@ export const articles: Article[] = [
     title: "What is evidence-based learning?",
     category: "education",
     kind: "Framework",
-    description: "Evidence-based learning means learners finish with evidence of what they can do, not only a completion record. How DigitalBurj Academy applies it.",
+    description: "Evidence-based learning means learners finish with proof of what they can do, not just a certificate of attendance. How DigitalBurj Academy applies it.",
     answer: "In the DigitalBurj Academy sense, evidence-based learning means that learning is complete only when the learner has produced evidence of capability: work they built, tested, explained and defended. It contrasts with completion-based learning, where watching lessons or passing a recall quiz counts as finishing.",
     keyPoints: ["Completion is not capability.", "Learners must explain and defend their work, not only produce it.", "The evidence is useful to learners and employers after the course ends."],
     sections: [
       { heading: "The DigitalBurj learning loop", paragraphs: ["Brief → Learn → Investigate → Try → Build → Break → Fix → Test → Explain → Defend → Ship → Evidence. Breaking and fixing are deliberate: diagnosing failure is one of the most valuable professional skills and one of the least taught."] },
-      { heading: "Example", paragraphs: ["In a backend track, a learner does not only build an API. They are given a version with a permissions bug, must find and fix it, write a test proving the fix, and explain to a reviewer why the bug happened and how they would prevent it."] },
+      { heading: "Example", paragraphs: ["In a backend track, a learner doesn't just build an API. They are given a version with a permissions bug, must find and fix it, write a test proving the fix, and explain to a reviewer why the bug happened and how they would prevent it."] },
       { heading: "Why it matters to employers", paragraphs: ["A certificate says someone attended. Evidence shows what they can do. That is the link between DigitalBurj Academy and Verified Talent."] },
     ],
     limitations: ["Evidence-based learning takes longer than watching videos and requires human review capacity."],

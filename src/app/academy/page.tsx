@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/site/json-ld";
 import { TrackedLink } from "@/components/site/tracked-link";
 import { Button } from "@/components/ui/button";
 import { buildMetadata, webPageJsonLd } from "@/lib/seo";
+import { Tag } from "@/components/ui/tag";
 
 const description = "DigitalBurj Academy: practical technology and professional education built around skills, projects, assessment and evidence of capability.";
 export const metadata = buildMetadata({ title: "DigitalBurj Academy | Practical Technology & Professional Courses", absoluteTitle: true, description, path: "/academy" });
@@ -71,15 +72,15 @@ export default function AcademyPage() {
             ["Credentials & evidence", "A record of what you built and how it was assessed, usable with DigitalBurj Verified Talent."],
           ].map(([t, b]) => (
             <div key={t} className="rounded-lg border border-line p-6">
-              <h3 className="text-h3 font-extrabold text-ink">{t}</h3>
+              <h3 className="text-h3 font-bold text-ink">{t}</h3>
               <p className="mt-2 text-ink-2">{b}</p>
             </div>
           ))}
         </div>
-        <h3 className="mt-12 text-h3 font-extrabold text-ink">Who Academy is for</h3>
+        <h3 className="mt-12 text-h3 font-bold text-ink">Who Academy is for</h3>
         <ul className="mt-4 flex flex-wrap gap-2">
           {["Career starters", "Career changers", "Working professionals upskilling", "Teams adopting new systems", "Founders and operators"].map((w) => (
-            <li key={w} className="rounded-full bg-surface px-3.5 py-1.5 text-sm text-ink-2">{w}</li>
+            <li key={w}><Tag>{w}</Tag></li>
           ))}
         </ul>
       </Section>

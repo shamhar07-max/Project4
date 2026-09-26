@@ -28,7 +28,7 @@ import { cn } from "@/lib/utils";
 
 const labelCls = "block text-sm font-semibold text-ink";
 const controlCls =
-  "mt-1.5 block w-full rounded-md border border-line-strong bg-paper px-3.5 text-[0.9875rem] text-ink placeholder:text-muted outline-none transition-colors data-[hovered]:border-ink-2 data-[focused]:border-ink data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent-strong/30 data-[invalid]:border-danger";
+  "mt-1.5 block w-full rounded-md border border-line-strong bg-paper px-3.5 text-body-sm text-ink placeholder:text-muted outline-none transition-colors data-[hovered]:border-ink-2 data-[focused]:border-ink data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent-strong/30 data-[invalid]:border-danger";
 const descCls = "mt-1.5 block text-sm text-muted";
 const errorCls = "mt-1.5 block text-sm font-medium text-danger";
 
@@ -57,7 +57,7 @@ function Field({ f }: { f: FieldDef }) {
                 key={o}
                 id={o}
                 textValue={o}
-                className="flex cursor-default items-center justify-between rounded px-3 py-2 text-[0.9375rem] text-ink outline-none data-[focused]:bg-surface data-[selected]:font-semibold"
+                className="flex cursor-default items-center justify-between rounded px-3 py-2 text-body-sm text-ink outline-none data-[focused]:bg-surface data-[selected]:font-semibold"
               >
                 {({ isSelected }) => (
                   <>
@@ -82,7 +82,7 @@ function Field({ f }: { f: FieldDef }) {
             <Radio
               key={o}
               value={o}
-              className="flex h-11 cursor-pointer items-center gap-2.5 rounded-md border border-line-strong px-4 text-[0.9375rem] text-ink data-[hovered]:border-ink-2 data-[selected]:border-ink data-[selected]:bg-surface data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent-strong/30 data-[invalid]:border-danger"
+              className="flex h-11 cursor-pointer items-center gap-2.5 rounded-md border border-line-strong px-4 text-body-sm text-ink data-[hovered]:border-ink-2 data-[selected]:border-ink data-[selected]:bg-surface data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent-strong/30 data-[invalid]:border-danger"
             >
               {({ isSelected }) => (
                 <>
@@ -174,7 +174,7 @@ export function EnquiryForm({ intent }: { intent: string }) {
     return (
       <div ref={successRef} tabIndex={-1} role="status" className="rounded-lg border border-line bg-surface p-8 outline-none">
         <CircleCheck className="size-8 text-success" aria-hidden="true" />
-        <h2 className="mt-4 text-h3 font-extrabold text-ink">Thank you. We have received your message.</h2>
+        <h2 className="mt-4 text-h3 font-bold text-ink">Thank you. We have received your message.</h2>
         <p className="mt-3 max-w-xl text-ink-2">{def.nextSteps}</p>
         <Link href="/" className="link mt-6 inline-block font-semibold">
           Return to the homepage

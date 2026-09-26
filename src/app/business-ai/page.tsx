@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { businessAiPages } from "@/content/business-ai";
 import { PageHero } from "@/components/site/page-hero";
 import { Section } from "@/components/site/section";
@@ -9,6 +8,8 @@ import { JsonLd } from "@/components/site/json-ld";
 import { TrackedLink } from "@/components/site/tracked-link";
 import { Button } from "@/components/ui/button";
 import { buildMetadata, webPageJsonLd } from "@/lib/seo";
+import { ArrowLink } from "@/components/site/arrow-link";
+import { Tag } from "@/components/ui/tag";
 
 const description =
   "Explore DigitalBurj Business AI services for workflow automation, business systems, AI agents, customer operations and measurable digital transformation.";
@@ -65,7 +66,7 @@ export default function BusinessAiPage() {
         crumbs={[{ name: "Business AI", path: "/business-ai" }]}
         eyebrow="DigitalBurj Business AI"
         title="Business AI built around real operations."
-        lead="DigitalBurj helps organisations identify operational friction, redesign workflows, connect systems and introduce AI or automation where it produces measurable value."
+        lead="DigitalBurj helps organisations identify operational friction, redesign workflows, connect systems and bring in AI or automation where the difference can be measured."
       >
         <Button asChild size="lg">
           <TrackedLink href="/get-started/business" event="consultation_start" eventLabel="business_hero">
@@ -80,7 +81,7 @@ export default function BusinessAiPage() {
       <Section eyebrow="The starting point" title="AI is not the starting point. The business problem is." intro="These are the problems we are usually asked to solve. None of them start with a model.">
         <ul className="grid grid-cols-2 gap-3 md:grid-cols-5">
           {problems.map((p) => (
-            <li key={p} className="rounded-md border border-line px-4 py-3 text-[0.9375rem] font-semibold text-ink">
+            <li key={p} className="rounded-md border border-line px-4 py-3 text-body-sm font-semibold text-ink">
               {p}
             </li>
           ))}
@@ -101,22 +102,18 @@ export default function BusinessAiPage() {
             { t: "Real Estate", h: "/industries/real-estate", items: ["Lead capture", "Customer qualification", "CRM", "Follow-up", "Document handling", "Reporting"] },
             { t: "Logistics", h: "/industries/logistics", items: ["Document flows", "Shipment communication", "Customer updates", "Operations reporting", "Exception management"] },
           ].map((x) => (
-            <div key={x.t} className="rounded-lg border border-line bg-paper p-7">
-              <h3 className="text-h3 font-extrabold text-ink">{x.t}</h3>
+            <div key={x.t} className="rounded-lg border border-line bg-paper p-6">
+              <h3 className="text-h3 font-bold text-ink">{x.t}</h3>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {x.items.map((i) => (
-                  <li key={i} className="rounded-full bg-surface px-3 py-1 text-sm text-ink-2">{i}</li>
+                  <li key={i}><Tag>{i}</Tag></li>
                 ))}
               </ul>
-              <TrackedLink href={x.h} className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-strong hover:underline">
-                {x.t} <ArrowRight className="size-4" aria-hidden="true" />
-              </TrackedLink>
+              <ArrowLink href={x.h} className="mt-6">{x.t}</ArrowLink>
             </div>
           ))}
         </div>
-        <TrackedLink href="/industries" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-strong hover:underline">
-          All industries <ArrowRight className="size-4" aria-hidden="true" />
-        </TrackedLink>
+        <ArrowLink href="/industries" className="mt-6">All industries</ArrowLink>
       </Section>
 
       <Section eyebrow="Control" title="Automation requires control." intro="Every Business AI system we deliver includes the controls below. Where judgment, privacy or risk makes full automation inappropriate, a person stays in the loop.">
@@ -136,9 +133,7 @@ export default function BusinessAiPage() {
             </li>
           ))}
           <li className="flex items-center rounded-lg bg-surface p-5">
-            <TrackedLink href="/company/responsible-ai" className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent-strong hover:underline">
-              Responsible AI at DigitalBurj <ArrowRight className="size-4" aria-hidden="true" />
-            </TrackedLink>
+            <ArrowLink href="/company/responsible-ai">Responsible AI at DigitalBurj</ArrowLink>
           </li>
         </ul>
       </Section>

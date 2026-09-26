@@ -25,7 +25,7 @@ export default async function IntentPage({ params }: { params: Promise<{ intent:
   return (
     <>
       <PageHero crumbs={[{ name: "Get Started", path: "/get-started" }, { name: intentTitle(intent) ?? def.title, path: `/get-started/${intent}` }]} eyebrow="Get started" title={def.title} lead={def.intro} />
-      <div className="container-site py-14">
+      <div className="container-site section-pad">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <EnquiryForm intent={intent} />
           <aside className="h-fit rounded-lg border border-line bg-surface p-6 text-sm text-ink-2">

@@ -26,6 +26,11 @@ const promises = /\b(guaranteed (job|employment|placement|visa)|job guarantee|10
 const offBrand = /\b(DB Academy|Digital Burj|Burj Academy|DB Learn)\b/;
 // UI consistency: colours must come from design tokens in globals.css.
 const rawHex = /#[0-9a-fA-F]{6}\b/;
+// Design-system drift rules (see docs/ui-consistency-report.md).
+const arbitrarySize = /text-\[[0-9.]+(rem|px)\]/;
+const h3Weight = /text-h3 font-(extrabold|semibold)/;
+const adHocSectionPad = /\bpy-(1[0-9]|2[0-9]) sm:py-/;
+const wrongArrow = /ArrowUpRight/;
 const hexAllowed = new Set(["src/app/globals.css", "src/app/layout.tsx"]);
 
 for (const f of files) {
@@ -34,6 +39,12 @@ for (const f of files) {
     if (promises.test(l) && !/does not|do not|no |not /i.test(l)) add("P0", f, i + 1, `Outcome promise: ${l.match(promises)[0]}`);
     if (offBrand.test(l) && !/^\s*(\/\/|\*|\/\*)/.test(l)) add("P0", f, i + 1, `Unofficial product name: ${l.match(offBrand)[0]}`);
     if (hype.test(l) && !f.endsWith("check-content.mjs")) add("P1", f, i + 1, `Hype word: ${l.match(hype)[0]}`);
+    if (f.endsWith(".tsx")) {
+      if (arbitrarySize.test(l)) add("P1", f, i + 1, `Ad-hoc font size ${l.match(arbitrarySize)[0]} (use text-body / text-body-sm)`);
+      if (h3Weight.test(l)) add("P1", f, i + 1, "H3 must be font-bold");
+      if (adHocSectionPad.test(l)) add("P2", f, i + 1, "Ad-hoc section padding (use section-pad / section-pad-compact)");
+      if (wrongArrow.test(l)) add("P2", f, i + 1, "Use ArrowRight for internal links");
+    }
     if (rawHex.test(l) && !hexAllowed.has(f.replaceAll("\\", "/"))) add("P2", f, i + 1, `Raw colour ${l.match(rawHex)[0]} (prefer a token)`);
   });
 }

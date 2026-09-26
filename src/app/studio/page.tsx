@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { studioPages } from "@/content/studio";
 import { projects } from "@/content/portfolio";
 import { PageHero } from "@/components/site/page-hero";
@@ -11,6 +10,7 @@ import { JsonLd } from "@/components/site/json-ld";
 import { TrackedLink } from "@/components/site/tracked-link";
 import { Button } from "@/components/ui/button";
 import { buildMetadata, webPageJsonLd } from "@/lib/seo";
+import { ArrowLink } from "@/components/site/arrow-link";
 
 const description = "DigitalBurj Studio validates, designs, engineers and deploys software products: web and mobile apps, SaaS, MVPs, enterprise software, AI products and integrations.";
 export const metadata = buildMetadata({ title: "Software Development & Product Studio", description, path: "/studio" });
@@ -71,9 +71,7 @@ export default function StudioPage() {
             </li>
           ))}
         </ul>
-        <Link href="/portfolio" className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-strong hover:underline">
-          Portfolio <ArrowRight className="size-4" aria-hidden="true" />
-        </Link>
+        <ArrowLink href="/portfolio" className="mt-6">Portfolio</ArrowLink>
       </Section>
       <FaqList faqs={faqs} />
       <CtaBand heading="Test the idea before you build it." label="Start a Project" href="/get-started/studio" secondary={{ label: "Product Validation", href: "/studio/product-validation" }} />
