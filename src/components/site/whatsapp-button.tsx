@@ -1,19 +1,13 @@
 "use client";
 
 import { track } from "@/lib/analytics";
+import { whatsappHref } from "@/lib/whatsapp";
 
-const number = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(/[^\d]/g, "");
-const message = process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ?? "Hello DigitalBurj, I'd like to talk about ";
-
-/**
- * Floating WhatsApp chat button, shown on every page once NEXT_PUBLIC_WHATSAPP_NUMBER is set
- * (international format, digits only, e.g. 9715XXXXXXXX). Hidden otherwise, so the site never
- * links to an unconfigured number.
- */
+/** Floating WhatsApp chat button on every page (demo number until NEXT_PUBLIC_WHATSAPP_NUMBER is set). */
 export function WhatsAppButton() {
-  if (!number) return null;
-  const href = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+  const href = whatsappHref();
   return (
+    <aside aria-label="WhatsApp">
     <a
       href={href}
       target="_blank"
@@ -37,5 +31,6 @@ export function WhatsAppButton() {
         </svg>
       </span>
     </a>
+    </aside>
   );
 }

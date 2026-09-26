@@ -174,7 +174,7 @@ export function EnquiryForm({ intent }: { intent: string }) {
 
   if (status.state === "success") {
     return (
-      <div ref={successRef} tabIndex={-1} role="status" className="beam relative overflow-hidden rounded-lg border border-line bg-surface p-8 outline-none">
+      <div ref={successRef} tabIndex={-1} role="status" className="relative overflow-hidden rounded-lg border border-line bg-surface p-8 outline-none">
         <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-success/15 blur-3xl" />
         <CircleCheck className="relative size-8 text-success drop-shadow-[0_0_12px_var(--color-success)]" aria-hidden="true" />
         <h2 className="mt-4 text-h3 font-bold text-ink">Thank you. We have received your message.</h2>

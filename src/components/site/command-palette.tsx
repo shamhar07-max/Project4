@@ -8,7 +8,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState, type KeyboardEvent } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { CornerDownLeft, FileSearch, Search, Sparkles } from "lucide-react";
+import { CornerDownLeft, FileSearch, Search } from "lucide-react";
 import { loadIndex, search, type IndexEntry } from "@/lib/site-search";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -94,11 +94,11 @@ export function CommandPalette({ className }: { className?: string }) {
         <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-ink/25 backdrop-blur-sm data-[state=open]:animate-[fade-in_0.2s_ease-out]" />
         <DialogPrimitive.Content
           aria-describedby={undefined}
-          className="beam glass fixed left-1/2 top-[12vh] z-50 w-[min(40rem,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden rounded-xl data-[state=open]:animate-[menu-in_0.22s_var(--ease-out-quint)]"
+          className="glass fixed left-1/2 top-[12vh] z-50 w-[min(40rem,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden rounded-xl data-[state=open]:animate-[menu-in_0.22s_var(--ease-out-quint)]"
         >
           <DialogPrimitive.Title className="sr-only">Search DigitalBurj</DialogPrimitive.Title>
           <div className="flex items-center gap-3 border-b border-line px-4">
-            <Sparkles className="size-5 shrink-0 text-ai" aria-hidden="true" />
+            <Search className="size-5 shrink-0 text-muted" aria-hidden="true" />
             <input
               autoFocus
               value={q}
@@ -141,7 +141,7 @@ export function CommandPalette({ className }: { className?: string }) {
             </ul>
           ) : (
             <div className="px-6 py-10 text-center">
-              <span aria-hidden="true" className="ai-orb mx-auto block size-10" />
+              <Search aria-hidden="true" className="mx-auto size-8 text-muted" />
               <p className="mt-4 font-semibold text-ink">Nothing matches &ldquo;{q}&rdquo;</p>
               <p className="mt-1 text-sm text-muted">Try fewer words, or ask us directly on the contact page.</p>
             </div>

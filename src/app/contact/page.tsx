@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { whatsappHref } from "@/lib/whatsapp";
 import { PageHero } from "@/components/site/page-hero";
 import { EnquiryForm } from "@/components/site/enquiry-form";
 import { buildMetadata } from "@/lib/seo";
@@ -26,7 +27,16 @@ export default function ContactPage() {
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <EnquiryForm intent="contact" />
           <aside className="h-fit rounded-lg border border-line bg-surface p-6">
-            <p className="eyebrow">Dedicated forms</p>
+            <p className="eyebrow">Prefer WhatsApp?</p>
+            <a
+              href={whatsappHref()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex h-10 items-center gap-2 rounded-full bg-whatsapp px-4 text-sm font-semibold text-ink hover:brightness-95"
+            >
+              Chat on WhatsApp
+            </a>
+            <p className="eyebrow mt-8">Dedicated forms</p>
             <ul className="mt-4 space-y-2">
               {routes.map(([l, h]) => (
                 <li key={h}>

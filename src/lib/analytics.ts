@@ -18,7 +18,10 @@ export type AnalyticsEvent =
   | "download"
   | "whatsapp_click"
   | "search_open"
-  | "search_select";
+  | "search_select"
+  | "offer_view"
+  | "offer_click"
+  | "announcement_click";
 
 type Props = Record<string, string | number | boolean | undefined>;
 
@@ -28,8 +31,21 @@ declare global {
   }
 }
 
+export const CONSENT_KEY = "db_consent";
+
+/** "accepted" | "rejected" | null (not decided yet). */
+export function readConsent(): string | null {
+  try {
+    return window.localStorage.getItem(CONSENT_KEY);
+  } catch {
+    return null;
+  }
+}
+
 export function track(event: AnalyticsEvent, props: Props = {}) {
   if (typeof window === "undefined") return;
+  // Respect the cookie banner: nothing is recorded after "Reject".
+  if (readConsent() === "rejected") return;
   window.dataLayer = window.dataLayer ?? [];
   window.dataLayer.push({ event, ...props });
 }

@@ -8,6 +8,8 @@ import { RevealObserver } from "@/components/site/reveal-observer";
 import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { AiAtmosphere } from "@/components/site/ai-atmosphere";
 import { Toaster } from "@/components/site/toaster";
+import { AnnouncementBar } from "@/components/site/announcement-bar";
+import { Engagement } from "@/components/site/engagement";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -46,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="relative isolate flex min-h-dvh flex-col">
         <AiAtmosphere />
+        <AnnouncementBar />
         <Header />
         <main id="main" className="flex-1">
           {children}
@@ -56,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <RevealObserver />
         <WhatsAppButton />
         <Toaster />
+        <Engagement />
       </body>
     </html>
   );

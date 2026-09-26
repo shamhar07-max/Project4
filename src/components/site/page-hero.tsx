@@ -32,7 +32,7 @@ export function PageHero({
           <div className="max-w-3xl">
             {eyebrow ? (
               <p className="eyebrow animate-rise flex items-center gap-3 text-accent-strong">
-                <span aria-hidden="true" className="relative flex size-2"><span className="absolute inset-0 animate-ping rounded-full bg-ai/60" /><span className="relative size-2 rounded-full bg-ai" /></span>
+                <span aria-hidden="true" className="h-px w-8 bg-accent" />
                 {eyebrow}
               </p>
             ) : null}

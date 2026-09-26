@@ -113,7 +113,7 @@ export function CardGrid({ items, columns = 3 }: { items: Card[]; columns?: 2 | 
               </span>
             </Link>
           ) : (
-            <div className="flex w-full flex-col rounded-lg border border-line bg-paper p-6" data-spotlight>
+            <div className="flex w-full flex-col rounded-lg border border-line bg-paper p-6">
               <h3 className="text-h3 font-bold text-ink">{c.title}</h3>
               <p className="mt-2 text-body-sm leading-relaxed text-ink-2">{c.body}</p>
             </div>
@@ -194,7 +194,7 @@ export function BlockSection({ block, index }: { block: Block; index: number }) 
     return (
       <section className="section-pad-compact">
         <div className="container-site">
-          <div className="beam relative overflow-hidden rounded-lg border border-accent/25 bg-accent-soft px-6 py-7 sm:px-8" data-reveal>
+          <div className="relative overflow-hidden rounded-lg border border-accent/25 bg-accent-soft px-6 py-7 sm:px-8" data-reveal>
             <h2 className="text-xl font-bold text-ink sm:text-2xl">{block.heading}</h2>
             <p className="mt-3 max-w-3xl text-body leading-relaxed text-ink-2">{block.body}</p>
           </div>

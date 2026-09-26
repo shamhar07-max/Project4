@@ -31,8 +31,7 @@ const arbitrarySize = /text-\[[0-9.]+(rem|px)\]/;
 const h3Weight = /text-h3 font-(extrabold|semibold)/;
 const adHocSectionPad = /\bpy-(1[0-9]|2[0-9]) sm:py-/;
 const wrongArrow = /ArrowUpRight/;
-// tech-stack.tsx uses third-party brand tile colours, which are not DigitalBurj tokens.
-const hexAllowed = new Set(["src/app/globals.css", "src/app/layout.tsx", "src/components/site/tech-stack.tsx"]);
+const hexAllowed = new Set(["src/app/globals.css", "src/app/layout.tsx"]);
 
 for (const f of files) {
   const lines = fs.readFileSync(f, "utf8").split("\n");

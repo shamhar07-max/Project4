@@ -75,7 +75,6 @@ export function DivisionTabs({ tabs }: { tabs: DivisionTab[] }) {
         aria-labelledby={`tab-${t.key}`}
         tabIndex={0}
         className="animate-rise mt-8 grid gap-10 rounded-xl border border-line bg-paper/80 p-6 backdrop-blur-md sm:p-10 lg:grid-cols-[minmax(0,24rem)_1fr] lg:gap-16"
-        data-spotlight
       >
         <div>
           <div className="flex items-center gap-3">

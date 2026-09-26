@@ -73,3 +73,16 @@ Whole frontend restyled as an AI interface, using patterns from the 21st.dev "AI
 - Added the 21st.dev "techstack" dock by @carolinaraulino with the owner's list (Claude Code, Codex, VS Code, GitHub, Figma, Supabase, Slack, Vercel, PostHog, Cursor, Cloudflare, Sentry). The component source is a paid 21st.dev download (free quota used up), so `src/components/ui/techstack.tsx` recreates it with the same API from its published description, using `motion`: tilted overlapping tiles that swell under the pointer, one shared gliding tooltip driven by pointer position, keyboard focus support, no swelling under reduced motion, smaller tiles on phones.
 - Logos from svgl.app are stored locally in `public/brand/stack/` (fetched from the svgl GitHub repo) instead of hot-linking svgl.app.
 - Hero still fits the first screen from 1920×1080 down to 320×568.
+
+## Prompt bar, less generic, WhatsApp everywhere, offers & notifications (2026-09-26)
+
+- Hero: tech stack removed; added the 21st.dev "Prompt Bar" by @marcellinleclercq, recreated with the same API in `src/components/ui/prompt-bar.tsx` (source is a paid download). Used as a display piece (`demo`): people can type and use the two menus, a sample prompt types itself when idle, but nothing is submitted. Enter/send shows a note pointing to WhatsApp and the contact form.
+- Less generic: removed the glowing orb, sparkle bullets, spinning gradient borders, cursor glow and card spotlight, animated gradient headline, the "What's on this site today" stats section, and the footer's ASCII art and giant outline wordmark. Page-hero eyebrow back to a plain line.
+- WhatsApp: floating button on every page, plus the contact page and footer. Uses NEXT_PUBLIC_WHATSAPP_NUMBER; until set, a DEMO number +44 7700 900123 (Ofcom fiction range, can't reach a real person). `src/lib/whatsapp.ts`.
+- Offers & notifications (`src/content/promotions.ts`; OWNER TO CONFIRM the offers):
+  - rotating announcement bar above the header (closable for the session);
+  - cookie banner on first visit (Accept/Reject; analytics stops after Reject);
+  - timed notifications at 15s (new guide) and 55s (free checklist), once per session;
+  - offer popup (free 30-minute process review) after 25s or on exit intent, snoozed 3 days after closing;
+  - none of these appear on form or legal pages.
+- QA: build (170), check:content 0, 164 pages crawled, no overflow at 375px, axe clean (incl. cookie banner and offer popup), hero fits 1920×1080 down to 320×568.

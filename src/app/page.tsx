@@ -7,16 +7,12 @@ import { StepList } from "@/components/site/blocks";
 import { TrackedLink } from "@/components/site/tracked-link";
 import { JsonLd } from "@/components/site/json-ld";
 import { ArrowLink } from "@/components/site/arrow-link";
-import { TechStack } from "@/components/site/tech-stack";
+import { HeroPrompt } from "@/components/site/hero-prompt";
 import { DivisionTabs, type DivisionTab } from "@/components/site/division-tabs";
 import { Carousel } from "@/components/site/carousel";
-import { CountUp } from "@/components/site/count-up";
 import { FaqList } from "@/components/site/faq";
 import { articles } from "@/content/insights";
 import { projects } from "@/content/portfolio";
-import { tracks } from "@/content/academy";
-import { businessAiPages } from "@/content/business-ai";
-import { studioPages } from "@/content/studio";
 import { resources } from "@/content/resources";
 import { buildMetadata, webPageJsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -38,16 +34,6 @@ const pillarList = [
 ];
 
 // Real counts from the site's own content, animated in the hero.
-// Real counts from this site's own content (no invented metrics).
-const kpis = [
-  { value: 5, label: "Divisions" },
-  { value: businessAiPages.length, label: "Business AI services" },
-  { value: studioPages.length, label: "Studio services" },
-  { value: tracks.length, label: "Academy tracks" },
-  { value: articles.length, label: "Guides & articles" },
-  { value: resources.length, label: "Free checklists & templates" },
-];
-
 const marqueeItems = [
   "Workflow automation", "AI agents", "CRM automation", "Document automation", "Reporting", "Web apps", "SaaS",
   "MVPs", "System integration", "Cloud deployment", "Web development", "AI engineering", "Data", "Cybersecurity",
@@ -115,7 +101,6 @@ const finalCtas = [
 
 export default function HomePage() {
   const featured = articles.slice(0, 3);
-  const maxKpi = Math.max(...kpis.map((k) => k.value));
   return (
     <>
       {/* 01 Hero: AI chat interface over an aurora, with the division dock */}
@@ -126,14 +111,13 @@ export default function HomePage() {
           <div className="ai-grid absolute inset-0" />
         </div>
         <div className="container-site relative pb-8 pt-6 text-center sm:pb-10 sm:pt-8 [@media(max-height:820px)]:pt-4 max-sm:[@media(max-height:740px)]:pb-4">
-          <span aria-hidden="true" className="ai-orb animate-rise mx-auto hidden size-12 sm:block [@media(max-height:820px)]:hidden" />
           <p className="animate-rise mx-auto inline-flex sm:mt-4 [@media(max-height:820px)]:mt-0 max-sm:[@media(max-height:740px)]:hidden items-center gap-2 rounded-full border border-line-strong bg-fill px-3 py-1 text-xs text-ink-2 backdrop-blur-md" style={{ ["--d" as string]: "80ms" }}>
             <span className="size-1.5 rounded-full bg-ai shadow-[0_0_8px_var(--color-ai)]" aria-hidden="true" />
             DigitalBurj <span className="hidden text-muted sm:inline">· {site.tagline}</span>
           </p>
           <h1 className="animate-rise mx-auto mt-4 max-w-6xl text-display max-sm:[@media(max-height:740px)]:mt-0 font-extrabold text-ink" style={{ ["--d" as string]: "160ms" }}>
             We build the systems.<br className="hidden sm:block" />{" "}
-            <span className="text-gradient">And the skills to run them.</span>
+            <span className="text-accent-strong">And the skills to run them.</span>
           </h1>
           <p className="animate-rise mx-auto mt-4 max-w-2xl text-lead text-ink-2 max-sm:[@media(max-height:740px)]:mt-3 max-sm:[@media(max-height:600px)]:hidden" style={{ ["--d" as string]: "240ms" }}>
             Automation and AI for operations, custom software, hands-on tech training, and hiring based on work people
@@ -152,7 +136,7 @@ export default function HomePage() {
             </Button>
           </div>
           <div className="animate-rise mt-6 max-sm:[@media(max-height:740px)]:mt-3" style={{ ["--d" as string]: "380ms" }}>
-            <TechStack />
+            <HeroPrompt />
           </div>
           <nav aria-label="DigitalBurj divisions" className="animate-rise mt-6 max-sm:[@media(max-height:740px)]:mt-4" style={{ ["--d" as string]: "420ms" }}>
             <ul className="glass mx-auto inline-flex max-w-full items-end justify-center gap-0.5 rounded-2xl p-1.5 sm:gap-2 sm:p-2">
@@ -188,7 +172,7 @@ export default function HomePage() {
         <ul className="marquee-track">
           {[...marqueeItems, ...marqueeItems].map((m, i) => (
             <li key={i} aria-hidden={i >= marqueeItems.length ? true : undefined} className="flex items-center gap-4 px-4 text-sm text-muted">
-              <span className="text-accent" aria-hidden="true">✦</span>
+              <span className="size-1 rounded-full bg-accent" aria-hidden="true" />
               {m}
             </li>
           ))}
@@ -269,46 +253,13 @@ export default function HomePage() {
         </ul>
       </Section>
 
-      {/* 04 Stats & chart: counts from this site's own content */}
-      <Section tone="surface" eyebrow="By the numbers" title="What's on this site today.">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr]">
-          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3">
-            {kpis.map((k) => (
-              <div key={k.label} className="bg-paper p-5">
-                <dd className="text-stat font-extrabold tabular-nums text-ink">
-                  <CountUp to={k.value} />
-                </dd>
-                <dt className="mt-2 text-sm text-muted">{k.label}</dt>
-              </div>
-            ))}
-          </dl>
-          <figure className="rounded-xl border border-line bg-paper p-6">
-            <figcaption className="text-xs uppercase tracking-[0.14em] text-muted">Pages by type</figcaption>
-            <ul className="mt-5 space-y-3">
-              {kpis.slice(1).map((k) => (
-                <li key={k.label} className="grid grid-cols-[9rem_1fr_2rem] items-center gap-3 text-sm">
-                  <span className="truncate text-ink-2">{k.label}</span>
-                  <span className="h-2.5 overflow-hidden rounded-full bg-line">
-                    <span
-                      className="animate-bar block h-full origin-left rounded-full bg-[linear-gradient(90deg,var(--color-accent),var(--color-amber),var(--color-ai))]"
-                      style={{ width: `${(k.value / maxKpi) * 100}%` }}
-                    />
-                  </span>
-                  <span className="text-right tabular-nums text-ink">{k.value}</span>
-                </li>
-              ))}
-            </ul>
-          </figure>
-        </div>
-      </Section>
-
       {/* 05 Tabs + stepper per division */}
       <Section eyebrow="How each division works" title="Pick a division.">
         <DivisionTabs tabs={tabs} />
       </Section>
 
       {/* 06 Jobs */}
-      <Section tone="surface" eyebrow="DigitalBurj Jobs" title="Jobs, with the work attached.">
+      <Section tone="surface" eyebrow="DigitalBurj Jobs" title="Job listings where you can show your work.">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="card-interactive rounded-xl border border-line bg-paper p-6">
             <h3 className="text-h3 font-bold text-ink">Looking for work</h3>
@@ -400,7 +351,7 @@ export default function HomePage() {
       {/* 12 Final CTA */}
       <section className="pb-4 pt-8">
         <div className="container-site">
-          <div className="beam relative overflow-hidden rounded-xl bg-night px-6 py-14 sm:px-12">
+          <div className="relative overflow-hidden rounded-xl bg-night px-6 py-14 sm:px-12">
             <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-24 size-96 rounded-full bg-accent/20 blur-3xl" />
             <div aria-hidden="true" className="pointer-events-none absolute -bottom-40 left-10 size-96 rounded-full bg-ai/10 blur-3xl" />
             <div aria-hidden="true" className="ai-grid pointer-events-none absolute inset-0" />

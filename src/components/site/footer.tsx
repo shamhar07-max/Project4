@@ -1,18 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { footerNav, legalNav, site } from "@/lib/site";
+import { whatsappHref, whatsappNumber } from "@/lib/whatsapp";
 
-/* ASCII art of the burj mark (decorative). */
-const burj = String.raw`
-            ▲
-           ▐█▌
-           ▐█▌▐▌
-         ▐▌▐█▌▐█▌
-         ▐█▌▐█▌▐█▌
-       ▐▌▐█▌▐█▌▐█▌
-       ▐█▌▐█▌▐█▌▐█▌▐▌
-     ▐▌▐█▌▐█▌▐█▌▐█▌▐█▌
-  ═══╩═══╩═══╩═══╩═══╩═══`;
+function formatNumber(n: string) {
+  return `+${n}`;
+}
 
 export function Footer() {
   return (
@@ -20,8 +13,7 @@ export function Footer() {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,var(--color-accent),var(--color-ai),transparent)]" />
-      <div aria-hidden="true" className="ai-dots pointer-events-none absolute inset-0 opacity-40 [mask-image:linear-gradient(to_bottom,#000,transparent_70%)]" />
+      
       <div className="container-site relative py-16">
         <div className="grid gap-12 lg:grid-cols-[18rem_1fr]">
           <div>
@@ -30,15 +22,18 @@ export function Footer() {
             </Link>
             <p className="mt-5 text-sm font-semibold tracking-[0.2em] text-white">LEARN. BUILD. TRANSFORM.</p>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">{site.description}</p>
-            <pre
-              aria-hidden="true"
-              className="mt-6 hidden select-none font-mono [font-size:0.625rem] leading-[1.15] text-accent/70 sm:block"
+            <a
+              href={whatsappHref()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 flex w-fit items-center gap-2 text-sm font-semibold text-white hover:underline"
             >
-              {burj}
-            </pre>
+              <span aria-hidden="true" className="size-2 rounded-full bg-whatsapp" />
+              WhatsApp {formatNumber(whatsappNumber)}
+            </a>
             <Link
               href="/get-started"
-              className="mt-6 inline-flex h-10 items-center rounded-full bg-[linear-gradient(110deg,var(--color-accent-deep),var(--color-ember))] px-4 text-sm font-semibold text-white shadow-[0_10px_30px_-10px_rgb(252_48_18/0.7)] hover:brightness-110"
+              className="mt-6 inline-flex h-10 items-center rounded-full bg-accent-strong px-4 text-sm font-semibold text-white hover:bg-accent-hover"
             >
               Get Started
             </Link>
@@ -73,12 +68,6 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <p
-        aria-hidden="true"
-        className="pointer-events-none select-none text-center font-extrabold leading-none tracking-tighter text-transparent [-webkit-text-stroke:1px_rgb(255_255_255/0.06)] [font-size:clamp(3rem,15vw,13rem)] -mb-[0.18em]"
-      >
-        DIGITALBURJ
-      </p>
     </footer>
   );
 }
