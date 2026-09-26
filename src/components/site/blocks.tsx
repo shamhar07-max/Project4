@@ -18,10 +18,10 @@ export function FlowDiagram({ steps, caption, tone = "paper" }: { steps: string[
               style={{ ["--i" as string]: i }}
               className={cn(
                 "flow-chip inline-flex min-h-11 items-center gap-2.5 rounded-full border px-4 py-2 text-body-sm font-semibold",
-                tone === "ink" ? "border-white/20 bg-white/5" : "border-line-strong bg-night/70 backdrop-blur-md",
+                tone === "ink" ? "border-white/20 bg-white/5" : "border-line bg-paper",
               )}
             >
-              <span className={cn("font-mono text-xs tabular-nums", tone === "ink" ? "text-accent" : "text-ai")}>
+              <span className={cn(" text-xs tabular-nums", tone === "ink" ? "text-accent" : "text-ai")}>
                 {String(i + 1).padStart(2, "0")}
               </span>
               {s}
@@ -74,10 +74,10 @@ export function StepList({ steps }: { steps: { title: string; body: string }[] }
                 )}
               />
             ) : null}
-            <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-line-strong bg-night font-mono text-sm tabular-nums text-ai shadow-[0_0_18px_-6px_var(--color-ai)]">
+            <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-line-strong bg-paper text-sm tabular-nums text-ai shadow-[0_0_18px_-6px_var(--color-ai)]">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <div className="card-interactive flex-1 rounded-lg border border-line bg-surface/70 p-5 backdrop-blur-md">
+            <div className="card-interactive flex-1 rounded-lg border border-line bg-paper p-5">
               <h3 className="text-h3 font-bold text-ink">{s.title}</h3>
               <p className="mt-1.5 text-body-sm leading-relaxed text-ink-2">{s.body}</p>
             </div>
@@ -102,7 +102,7 @@ export function CardGrid({ items, columns = 3 }: { items: Card[]; columns?: 2 | 
           {c.href ? (
             <Link
               href={c.href}
-              className="card-interactive group flex w-full flex-col rounded-lg border border-line bg-surface/70 p-6 backdrop-blur-md hover:border-line-strong"
+              className="card-interactive group flex w-full flex-col rounded-lg border border-line bg-paper p-6 hover:border-line-strong"
             >
               <h3 className="text-h3 font-bold text-ink">{c.title}</h3>
               <p className="mt-2 flex-1 text-body-sm leading-relaxed text-ink-2">{c.body}</p>
@@ -113,7 +113,7 @@ export function CardGrid({ items, columns = 3 }: { items: Card[]; columns?: 2 | 
               </span>
             </Link>
           ) : (
-            <div className="flex w-full flex-col rounded-lg border border-line bg-surface/70 p-6 backdrop-blur-md" data-spotlight>
+            <div className="flex w-full flex-col rounded-lg border border-line bg-paper p-6" data-spotlight>
               <h3 className="text-h3 font-bold text-ink">{c.title}</h3>
               <p className="mt-2 text-body-sm leading-relaxed text-ink-2">{c.body}</p>
             </div>
@@ -161,9 +161,9 @@ function BlockBody({ block }: { block: Block }) {
       return null;
     case "compare":
       return (
-        <div className="overflow-x-auto rounded-lg border border-line bg-night/60 backdrop-blur-md" data-reveal>
+        <div className="overflow-x-auto rounded-lg border border-line bg-paper" data-reveal>
           <table className="w-full min-w-[36rem] border-collapse text-left text-body-sm">
-            <thead className="bg-surface font-mono text-xs uppercase tracking-[0.12em]">
+            <thead className="bg-surface text-xs uppercase tracking-[0.12em]">
               <tr>
                 {block.columns.map((c) => (
                   <th key={c} scope="col" className="border-b border-line px-4 py-3 font-semibold text-ink">

@@ -15,7 +15,7 @@ export function RelatedLinks({ links, title = "Related" }: { links: NavLink[]; t
             <li key={l.href} data-reveal style={{ ["--i" as string]: i % 6 }}>
               <Link
                 href={l.href}
-                className="card-interactive group flex h-full items-center justify-between gap-4 rounded-lg border border-line bg-paper/80 p-5"
+                className="card-interactive group flex h-full items-center justify-between gap-4 rounded-lg border border-line bg-paper p-5"
               >
                 <span>
                   <span className="block font-bold text-ink">{l.label}</span>

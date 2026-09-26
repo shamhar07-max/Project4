@@ -91,7 +91,7 @@ export function CommandPalette({ className }: { className?: string }) {
         </button>
       </DialogPrimitive.Trigger>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-night/70 backdrop-blur-md data-[state=open]:animate-[fade-in_0.2s_ease-out]" />
+        <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-ink/25 backdrop-blur-sm data-[state=open]:animate-[fade-in_0.2s_ease-out]" />
         <DialogPrimitive.Content
           aria-describedby={undefined}
           className="beam glass fixed left-1/2 top-[12vh] z-50 w-[min(40rem,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden rounded-xl data-[state=open]:animate-[menu-in_0.22s_var(--ease-out-quint)]"
@@ -112,9 +112,9 @@ export function CommandPalette({ className }: { className?: string }) {
               aria-label="Search the site"
               className="h-14 min-w-0 flex-1 bg-transparent text-base text-ink placeholder:text-muted focus:outline-none"
             />
-            <kbd className="rounded border border-line-strong px-1.5 py-0.5 font-mono text-xs text-muted">esc</kbd>
+            <kbd className="rounded border border-line-strong px-1.5 py-0.5 text-xs text-muted">esc</kbd>
           </div>
-          <p className="px-4 pt-3 font-mono text-xs uppercase tracking-[0.14em] text-muted">{q.trim() ? "Results" : "Jump to"}</p>
+          <p className="px-4 pt-3 text-xs uppercase tracking-[0.14em] text-muted">{q.trim() ? "Results" : "Jump to"}</p>
           {results.length ? (
             <ul id="palette-results" role="listbox" aria-label="Results" className="max-h-[50vh] overflow-y-auto p-2">
               {results.map((r, i) => (
@@ -127,7 +127,7 @@ export function CommandPalette({ className }: { className?: string }) {
                   onClick={() => go(r.path)}
                   className={cn(
                     "flex cursor-pointer items-start gap-3 rounded-md px-3 py-2.5",
-                    i === active ? "bg-ai-soft shadow-[inset_0_0_0_1px_rgb(45_226_196/0.35)]" : "",
+                    i === active ? "bg-ai-soft shadow-[inset_0_0_0_1px_rgb(23_104_63/0.35)]" : "",
                   )}
                 >
                   <FileSearch aria-hidden="true" className={cn("mt-0.5 size-4 shrink-0", i === active ? "text-ai" : "text-muted")} />
@@ -135,7 +135,7 @@ export function CommandPalette({ className }: { className?: string }) {
                     <span className="block text-sm font-semibold text-ink">{r.title}</span>
                     {r.summary ? <span className="mt-0.5 line-clamp-1 block text-xs text-muted">{r.summary}</span> : null}
                   </span>
-                  <span className="shrink-0 font-mono text-xs text-muted">{r.section}</span>
+                  <span className="shrink-0 text-xs text-muted">{r.section}</span>
                 </li>
               ))}
             </ul>
@@ -146,7 +146,7 @@ export function CommandPalette({ className }: { className?: string }) {
               <p className="mt-1 text-sm text-muted">Try fewer words, or ask us directly on the contact page.</p>
             </div>
           )}
-          <div className="flex items-center gap-4 border-t border-line px-4 py-2.5 font-mono text-xs text-muted">
+          <div className="flex items-center gap-4 border-t border-line px-4 py-2.5 text-xs text-muted">
             <span>↑↓ move</span>
             <span className="flex items-center gap-1">
               <CornerDownLeft className="size-3" aria-hidden="true" /> open

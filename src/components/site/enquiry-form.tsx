@@ -29,7 +29,7 @@ import { cn } from "@/lib/utils";
 
 const labelCls = "block text-sm font-semibold text-ink";
 const controlCls =
-  "mt-1.5 block w-full rounded-md border border-line-strong bg-fill px-3.5 text-body-sm text-ink placeholder:text-muted outline-none transition-[border-color,box-shadow,background-color] duration-300 data-[hovered]:border-muted data-[focused]:border-ai data-[focused]:bg-surface data-[focused]:shadow-[0_0_0_3px_var(--color-ai-soft),0_0_28px_-8px_var(--color-ai)] data-[invalid]:border-danger";
+  "mt-1.5 block w-full rounded-md border border-line-strong bg-surface px-3.5 text-body-sm text-ink placeholder:text-muted outline-none transition-[border-color,box-shadow,background-color] duration-300 data-[hovered]:border-muted data-[focused]:border-ai data-[focused]:bg-paper data-[focused]:shadow-[0_0_0_3px_var(--color-ai-soft),0_0_28px_-8px_var(--color-ai)] data-[invalid]:border-danger";
 const descCls = "mt-1.5 block text-sm text-muted";
 const errorCls = "mt-1.5 block text-sm font-medium text-danger";
 
@@ -51,7 +51,7 @@ function Field({ f }: { f: FieldDef }) {
         </AriaButton>
         {description}
         <FieldError className={errorCls} />
-        <Popover className="w-[var(--trigger-width)] overflow-auto rounded-md border border-line-strong bg-surface/95 p-1 shadow-2xl backdrop-blur-xl">
+        <Popover className="w-[var(--trigger-width)] overflow-auto rounded-md border border-white/70 bg-paper/95 p-1 shadow-xl backdrop-blur-xl">
           <ListBox className="max-h-72 outline-none">
             {f.options!.map((o) => (
               <ListBoxItem

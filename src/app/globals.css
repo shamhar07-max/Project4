@@ -1,14 +1,12 @@
 @import "tailwindcss";
 
 /*
- * DigitalBurj design tokens — AI theme (dark).
- * Brand colours come from the master artwork: burj red #FC3012 and the deep green-black
- * of the wordmark, which is now the page background. Token names are semantic:
- *   ink    = primary text (light)      paper   = page background (dark)
- *   night  = deepest panels            accent  = burj red, decorative
- *   accent-strong = red for text/icons on dark (AA)
- *   accent-deep   = red for filled buttons with white text (AA)
- *   ai     = teal "signal" colour used for AI states and glows
+ * DigitalBurj design tokens.
+ * Colours are sampled from the supplied master artwork:
+ *   ink    #051D18  (wordmark) — text, and dark "night" panels
+ *   accent #FC3012  (burj mark) — decorative use, large display only
+ *   accent-strong #CD2506 (burj shadow) — text, links and buttons (5.4:1 on white)
+ *   ai     = the brand success green, used for glows and "active" states
  */
 @theme {
   /* iOS / iPadOS 27 look: the platform system font (SF Pro on Apple devices). No webfont download. */
@@ -16,29 +14,29 @@
 
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 
-  --color-ink: #edf5f2;
-  --color-ink-2: #c2d1cc;
-  --color-muted: #8fa39d;
-  --color-line: #1a2a26;
-  --color-line-strong: #2a3d38;
-  --color-surface: #0b1715;
-  --color-fill: rgb(255 255 255 / 0.06);
-  --color-paper: #050d0b;
-  --color-night: #020605;
+  --color-ink: #051d18;
+  --color-ink-2: #1d2f2a;
+  --color-muted: #55635f;
+  --color-line: #e5e5ea;
+  --color-line-strong: #d1d1d6;
+  --color-surface: #f2f2f7;
+  --color-fill: rgb(118 118 128 / 0.12);
+  --color-paper: #ffffff;
+  --color-night: #051d18;
   --color-accent: #fc3012;
-  --color-accent-strong: #ff6a4d;
-  --color-accent-deep: #d42a0b;
-  --color-accent-hover: #b52205;
-  --color-ember: #c2410c;
-  --color-accent-soft: rgb(252 48 18 / 0.12);
-  --color-amber: #ffb347;
-  --color-ai: #2de2c4;
-  --color-ai-soft: rgb(45 226 196 / 0.12);
-  --color-success: #3ddc97;
-  --color-success-soft: rgb(61 220 151 / 0.12);
+  --color-accent-strong: #cd2506;
+  --color-accent-deep: #cd2506;
+  --color-accent-hover: #b01f04;
+  --color-ember: #cd2506;
+  --color-accent-soft: #fff1ee;
+  --color-amber: #cd2506;
+  --color-ai: #17683f;
+  --color-ai-soft: #e3f1e8;
+  --color-success: #17683f;
+  --color-success-soft: #e3f1e8;
   --color-whatsapp: #25d366;
-  --color-danger: #ff7b72;
-  --color-danger-soft: rgb(255 123 114 / 0.12);
+  --color-danger: #b42318;
+  --color-danger-soft: #fef3f2;
 
   /* Continuous, generous iOS 27 corner radii */
   --radius-sm: 8px;
@@ -92,7 +90,6 @@
     text-rendering: optimizeLegibility;
   }
   html {
-    color-scheme: dark;
     background: var(--color-paper);
   }
   body {
@@ -151,11 +148,10 @@
   }
 
   .eyebrow {
-    font-family: var(--font-mono);
     font-size: var(--text-eyebrow);
     letter-spacing: var(--text-eyebrow--letter-spacing);
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-muted);
   }
 
@@ -292,15 +288,16 @@
     will-change: auto;
   }
 
-  /* Dark frosted glass with a faint top highlight */
+  /* Frosted glass with a light edge highlight */
   .glass {
-    background: rgb(11 23 21 / 0.62);
-    -webkit-backdrop-filter: blur(22px) saturate(160%);
-    backdrop-filter: blur(22px) saturate(160%);
-    border: 1px solid rgb(255 255 255 / 0.08);
+    background: rgb(255 255 255 / 0.7);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgb(255 255 255 / 0.7);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.06),
-      0 20px 50px -24px rgb(0 0 0 / 0.8);
+      inset 0 1px 0 rgb(255 255 255 / 0.8),
+      0 1px 2px rgb(0 0 0 / 0.04),
+      0 12px 36px -14px rgb(5 29 24 / 0.22);
   }
   .glass-dark {
     background: rgb(5 29 24 / 0.55);
@@ -310,14 +307,14 @@
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
   }
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .glass { background: rgb(11 23 21 / 0.96); }
+    .glass { background: rgb(255 255 255 / 0.96); }
     .glass-dark { background: rgb(5 29 24 / 0.94); }
   }
 
   /* Interactive card: iOS card with soft elevation, lift and an accent rule */
   .card-interactive {
     position: relative;
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.03), 0 8px 24px -18px rgb(5 29 24 / 0.18);
     isolation: isolate;
     transition:
       transform 0.35s var(--ease-out-quint),
@@ -339,7 +336,7 @@
   .card-interactive:hover,
   .card-interactive:focus-visible {
     transform: translateY(-3px) scale(1.005);
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 24px 60px -28px rgb(252 48 18 / 0.45), 0 0 0 1px rgb(45 226 196 / 0.18);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 0.03), 0 22px 44px -22px rgb(5 29 24 / 0.32), 0 0 0 1px rgb(23 104 63 / 0.12);
   }
   .card-interactive:hover::before,
   .card-interactive:focus-visible::before {
@@ -424,7 +421,7 @@
 @layer components {
   /* Animated brand gradient for display text */
   .text-gradient {
-    background: linear-gradient(100deg, var(--color-accent-strong), var(--color-amber) 35%, var(--color-ai) 70%, var(--color-accent-strong));
+    background: linear-gradient(100deg, var(--color-accent-strong), var(--color-accent) 40%, var(--color-accent-hover) 70%, var(--color-accent-strong));
     background-size: 250% 100%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -471,7 +468,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: radial-gradient(380px circle at var(--mx, -999px) var(--my, -999px), rgb(45 226 196 / 0.10), transparent 60%);
+    background: radial-gradient(380px circle at var(--mx, -999px) var(--my, -999px), rgb(23 104 63 / 0.07), transparent 60%);
     opacity: 0;
     transition: opacity 0.3s;
     pointer-events: none;
@@ -484,19 +481,19 @@
   /* Background grid with a soft radial fade */
   .ai-grid {
     background-image:
-      linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+      linear-gradient(to right, rgb(5 29 24 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(5 29 24 / 0.05) 1px, transparent 1px);
     background-size: 56px 56px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
   }
   .ai-dots {
-    background-image: radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.08) 1px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, rgb(5 29 24 / 0.09) 1px, transparent 0);
     background-size: 22px 22px;
   }
   .ai-noise {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-    opacity: 0.05;
-    mix-blend-mode: overlay;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
   }
   .aurora-blob {
     position: absolute;
@@ -516,7 +513,7 @@
       radial-gradient(circle at 30% 75%, var(--color-accent), transparent 55%),
       radial-gradient(circle at 60% 25%, var(--color-amber), transparent 50%),
       var(--color-night);
-    box-shadow: 0 0 40px -6px rgb(45 226 196 / 0.55), 0 0 80px -20px rgb(252 48 18 / 0.6), inset 0 0 20px rgb(255 255 255 / 0.15);
+    box-shadow: 0 0 40px -8px rgb(23 104 63 / 0.45), 0 0 80px -20px rgb(252 48 18 / 0.5), inset 0 0 20px rgb(255 255 255 / 0.2);
     animation: orb-breathe 4s ease-in-out infinite;
   }
   .ai-orb::before {
@@ -524,7 +521,7 @@
     position: absolute;
     inset: -2px;
     border-radius: inherit;
-    background: conic-gradient(from 0deg, transparent, rgb(45 226 196 / 0.7), transparent 40%, rgb(252 48 18 / 0.7), transparent 75%);
+    background: conic-gradient(from 0deg, transparent, rgb(23 104 63 / 0.6), transparent 40%, rgb(252 48 18 / 0.7), transparent 75%);
     filter: blur(6px);
     animation: orb-spin 6s linear infinite;
     z-index: -1;

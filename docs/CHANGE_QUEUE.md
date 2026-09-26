@@ -58,3 +58,11 @@ Whole frontend restyled as an AI interface, using patterns from the 21st.dev "AI
 - Shared UI: gradient glow buttons, glowing form fields, radio/checkbox states, spinner, toast notifications, alert with icon, empty states, badges; footer with ASCII burj and oversized outline wordmark.
 - Not built, because they'd need content that doesn't exist and the content rules forbid inventing it: pricing, testimonials, client logos, team profiles, sign-in/sign-up, calendars/date pickers, maps, videos, dashboards with invented data.
 - QA: build (170), check:content 0, 164 pages crawled, no overflow at 375px, axe clean (incl. guide answer and palette), hero fits 1920×1080 down to 390×844.
+
+## Previous colours and font, hero fits small phones (2026-09-26)
+
+- Colours back to the earlier light palette (white, ink #051D18, burj red; the brand success green replaces the AI teal for glows). Dark panels (footer, CTA bands) are the earlier ink colour with white text.
+- Font back to the system font; monospace removed everywhere except the footer ASCII art, which needs it to line up.
+- Logo and division icons: transparent versions of the original artwork (`public/brand/light/`), so they sit cleanly on glass and tinted backgrounds.
+- Everything else from the AI makeover kept: site guide, command palette, atmosphere, bento, tabs, carousel, marquee, chart, toasts, etc.
+- Hero fits the first screen from 1920×1080 down to 320×568 (short phones hide the brand pill and suggestion chips; ≤600px tall also hides the intro line).

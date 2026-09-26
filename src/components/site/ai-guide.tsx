@@ -153,7 +153,7 @@ export function AiGuide() {
 
   return (
     <div className="mx-auto w-full max-w-2xl text-left">
-      <form onSubmit={onSubmit} className="beam glass group/prompt relative rounded-xl p-2 transition-shadow duration-500 focus-within:shadow-[0_0_0_1px_rgb(45_226_196/0.35),0_0_60px_-12px_rgb(45_226_196/0.45)]">
+      <form onSubmit={onSubmit} className="beam glass group/prompt relative rounded-xl p-2 transition-shadow duration-500 focus-within:shadow-[0_0_0_1px_rgb(23_104_63/0.35),0_0_60px_-12px_rgb(23_104_63/0.45)]">
         <label htmlFor="site-guide" className="sr-only">
           Ask the DigitalBurj site guide
         </label>
@@ -177,7 +177,7 @@ export function AiGuide() {
             <span className="sr-only">Ask</span>
           </button>
         </div>
-        <div className="flex items-center justify-between gap-3 border-t border-line px-3 pb-1 pt-2 font-mono text-xs text-muted">
+        <div className="flex items-center justify-between gap-3 border-t border-line px-3 pb-1 pt-2 text-xs text-muted">
           <span className="flex items-center gap-1.5">
             <span className="size-1.5 rounded-full bg-ai shadow-[0_0_8px_var(--color-ai)]" aria-hidden="true" />
             site guide · answers from this website
@@ -189,13 +189,13 @@ export function AiGuide() {
       </form>
 
       {phase === "idle" ? (
-        <ul className="mt-4 flex flex-wrap justify-center gap-2 max-sm:[&>li:nth-child(n+3)]:hidden [@media(max-height:820px)]:[&>li:nth-child(n+4)]:hidden" aria-label="Suggestions">
+        <ul className="mt-4 flex flex-wrap justify-center gap-2 max-sm:[&>li:nth-child(n+3)]:hidden [@media(max-height:820px)]:[&>li:nth-child(n+4)]:hidden max-sm:[@media(max-height:740px)]:hidden" aria-label="Suggestions">
           {suggestions.map((s, i) => (
             <li key={s} className="animate-rise" style={{ ["--d" as string]: `${500 + i * 70}ms` }}>
               <button
                 type="button"
                 onClick={() => void ask(s)}
-                className="rounded-full border border-line-strong bg-fill px-3.5 py-1.5 text-sm text-ink-2 backdrop-blur-md transition-colors hover:border-ai/50 hover:bg-ai-soft hover:text-ink"
+                className="rounded-full border border-line-strong bg-paper/80 px-3.5 py-1.5 text-sm text-ink-2 backdrop-blur-md transition-colors hover:border-ai/50 hover:bg-ai-soft hover:text-ink"
               >
                 {s}
               </button>
@@ -205,7 +205,7 @@ export function AiGuide() {
       ) : (
         <div ref={panelRef} aria-live="polite" className="glass animate-rise mt-4 scroll-mb-6 rounded-xl p-5">
           <div className="flex items-start gap-3">
-            <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full border border-line-strong bg-night text-xs font-semibold text-ink">
+            <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full border border-line-strong bg-surface text-xs font-semibold text-ink">
               You
             </span>
             <p className="pt-1 text-ink">{asked}</p>
@@ -213,7 +213,7 @@ export function AiGuide() {
           <div className="mt-4 flex items-start gap-3">
             <span aria-hidden="true" className="ai-orb mt-0.5 size-8 shrink-0" data-state={busy ? "thinking" : "idle"} />
             <div className="min-w-0 flex-1">
-              <ol className="space-y-1.5 font-mono text-xs">
+              <ol className="space-y-1.5 text-xs">
                 {steps.map((s, i) => {
                   const Icon = i === 0 ? FileText : i === 1 ? Search : Check;
                   return (
@@ -236,7 +236,7 @@ export function AiGuide() {
                   {streamed}
                   {phase === "done" && best ? (
                     <sup>
-                      <a href="#src-1" className="ml-1 font-mono text-ai">[1]</a>
+                      <a href="#src-1" className="ml-1 text-ai">[1]</a>
                     </sup>
                   ) : null}
                 </p>
@@ -245,16 +245,16 @@ export function AiGuide() {
                 <div className="mt-4">
                   {results.length ? (
                     <>
-                      <p className="font-mono text-xs uppercase tracking-[0.14em] text-muted">Sources</p>
+                      <p className="text-xs uppercase tracking-[0.14em] text-muted">Sources</p>
                       <ol className="mt-2 flex flex-wrap gap-2">
                         {results.map((r, i) => (
                           <li key={r.path} id={`src-${i + 1}`}>
                             <Link
                               href={r.path}
                               onClick={() => track("site_guide_source", { path: r.path })}
-                              className="inline-flex items-center gap-2 rounded-md border border-line-strong bg-night/60 px-2.5 py-1.5 text-sm text-ink transition-colors hover:border-ai/60 hover:bg-ai-soft"
+                              className="inline-flex items-center gap-2 rounded-md border border-line-strong bg-paper px-2.5 py-1.5 text-sm text-ink transition-colors hover:border-ai/60 hover:bg-ai-soft"
                             >
-                              <span className="font-mono text-xs text-ai">{i + 1}</span>
+                              <span className="text-xs text-ai">{i + 1}</span>
                               {r.title}
                               <span className="text-xs text-muted">· {r.section}</span>
                             </Link>

@@ -16,7 +16,7 @@ const burj = String.raw`
 
 export function Footer() {
   return (
-    <footer className="relative mt-24 overflow-hidden border-t border-line bg-night text-ink-2" aria-labelledby="footer-heading">
+    <footer className="relative mt-24 overflow-hidden bg-night text-white/80" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
@@ -28,10 +28,8 @@ export function Footer() {
             <Link href="/" aria-label="DigitalBurj home" className="inline-block">
               <Image src="/brand/dark/wordmark.webp" alt="DigitalBurj" width={800} height={152} className="h-7 w-auto" sizes="150px" />
             </Link>
-            <p className="mt-5 font-mono text-sm text-ai">
-              <span className="text-muted">$</span> learn --build --transform
-            </p>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">{site.description}</p>
+            <p className="mt-5 text-sm font-semibold tracking-[0.2em] text-white">LEARN. BUILD. TRANSFORM.</p>
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/70">{site.description}</p>
             <pre
               aria-hidden="true"
               className="mt-6 hidden select-none font-mono [font-size:0.625rem] leading-[1.15] text-accent/70 sm:block"
@@ -48,11 +46,11 @@ export function Footer() {
           <nav aria-label="Footer" className="grid grid-cols-2 gap-8 sm:grid-cols-3 xl:grid-cols-6">
             {footerNav.map((col) => (
               <div key={col.heading}>
-                <p className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-ink">{col.heading}</p>
+                <p className="text-sm font-semibold text-white">{col.heading}</p>
                 <ul className="mt-4 space-y-2.5">
                   {col.links.map((l) => (
                     <li key={l.href}>
-                      <Link href={l.href} className="link-underline text-sm text-muted transition-colors hover:text-ink">
+                      <Link href={l.href} className="link-underline text-sm text-white/70 transition-colors hover:text-white">
                         {l.label}
                       </Link>
                     </li>
@@ -62,12 +60,12 @@ export function Footer() {
             ))}
           </nav>
         </div>
-        <div className="mt-14 flex flex-col gap-4 border-t border-line pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-white/15 pt-6 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} DigitalBurj. All rights reserved.</p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {legalNav.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="hover:text-ink hover:underline">
+                <Link href={l.href} className="hover:text-white hover:underline">
                   {l.label}
                 </Link>
               </li>

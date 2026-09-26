@@ -13,7 +13,7 @@ export function FaqList({ faqs, title = "Questions" }: { faqs: Faq[]; title?: st
         <h2 id="faq-heading" className="text-h2 font-extrabold text-ink" data-reveal>
           {title}
         </h2>
-        <div className="divide-y divide-line self-start overflow-hidden rounded-lg border border-line bg-surface/70 px-5 backdrop-blur-md sm:px-6">
+        <div className="divide-y divide-line self-start overflow-hidden rounded-lg border border-line bg-surface px-5 sm:px-6">
           {faqs.map((f, i) => (
             <details key={f.q} className="faq-item group" data-reveal style={{ ["--i" as string]: i % 6 }}>
               <summary className="flex items-start justify-between gap-6 py-5 text-left transition-colors hover:text-ai">

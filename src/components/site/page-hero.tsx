@@ -24,7 +24,7 @@ export function PageHero({
     <section className={cn("relative overflow-hidden border-b border-line", className)}>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute -top-40 left-1/2 h-80 w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(252_48_18/0.18),transparent)]" />
-        <div className="absolute -right-20 top-10 size-72 rounded-full bg-[radial-gradient(closest-side,rgb(45_226_196/0.12),transparent)]" />
+        <div className="absolute -right-20 top-10 size-72 rounded-full bg-[radial-gradient(closest-side,rgb(23_104_63/0.12),transparent)]" />
       </div>
       <div className="container-site relative pb-14 pt-8 sm:pb-16 lg:pb-20">
         {crumbs ? <Breadcrumbs items={crumbs} /> : null}

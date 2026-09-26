@@ -55,16 +55,16 @@ export function AiAtmosphere() {
   return (
     <>
       <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-        <div className="aurora-blob -left-40 -top-40 size-[38rem] bg-accent/[0.16]" />
-        <div className="aurora-blob -right-40 top-1/4 size-[34rem] bg-ai/[0.10] [animation-delay:-8s]" />
-        <div className="aurora-blob bottom-[-12rem] left-1/3 size-[30rem] bg-amber/[0.07] [animation-delay:-15s]" />
+        <div className="aurora-blob -left-40 -top-40 size-[38rem] bg-accent/[0.07]" />
+        <div className="aurora-blob -right-40 top-1/4 size-[34rem] bg-ai/[0.07] [animation-delay:-8s]" />
+        <div className="aurora-blob bottom-[-12rem] left-1/3 size-[30rem] bg-amber/[0.04] [animation-delay:-15s]" />
         <div className="ai-grid absolute inset-0" />
         <div className="ai-noise absolute inset-0" />
       </div>
       <div
         ref={glow}
         aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 z-0 size-[400px] rounded-full bg-[radial-gradient(circle,rgb(45_226_196/0.07),transparent_65%)] opacity-0 transition-opacity duration-700"
+        className="pointer-events-none fixed left-0 top-0 z-0 size-[400px] rounded-full bg-[radial-gradient(circle,rgb(23_104_63/0.07),transparent_65%)] opacity-0 transition-opacity duration-700"
       />
       <div aria-hidden="true" className="pointer-events-none fixed inset-x-0 top-0 z-50 h-0.5">
         <div id="scroll-progress" className="scroll-progress h-full bg-[linear-gradient(90deg,var(--color-accent),var(--color-amber),var(--color-ai))]" />
