@@ -31,7 +31,8 @@ const arbitrarySize = /text-\[[0-9.]+(rem|px)\]/;
 const h3Weight = /text-h3 font-(extrabold|semibold)/;
 const adHocSectionPad = /\bpy-(1[0-9]|2[0-9]) sm:py-/;
 const wrongArrow = /ArrowUpRight/;
-const hexAllowed = new Set(["src/app/globals.css", "src/app/layout.tsx"]);
+// chat-widget.tsx passes a literal hex to the MyChatBot API, which cannot read CSS variables.
+const hexAllowed = new Set(["src/app/globals.css", "src/app/layout.tsx", "src/components/site/chat-widget.tsx"]);
 
 for (const f of files) {
   const lines = fs.readFileSync(f, "utf8").split("\n");
