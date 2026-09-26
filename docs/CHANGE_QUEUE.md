@@ -21,3 +21,8 @@ Standing item carried from earlier: temporary Cloudflare link. Blocked by the en
   - 21st.dev free tier allows 2 component retrievals per day; both were used (timeline earlier, hero now). Other components use the same motion language implemented in-house rather than further 21st.dev code.
 - (d) WhatsApp button on every page: set `NEXT_PUBLIC_WHATSAPP_NUMBER` (digits, international format). Hidden until set.
 - (e) MyChatBot: "DigitalBurj Assistant" drafted from site content and sent for approval (approval card). Not built until approved. After approval: create the website widget and set `NEXT_PUBLIC_CHAT_WIDGET_SRC` / `NEXT_PUBLIC_CHAT_WIDGET_ATTRS`.
+
+## Finalise log — Cloudflare preview
+- Live: https://digitalburj-preview.shamhar07.workers.dev (Worker `digitalburj-preview` on the shamhar07 account; the existing `digitalburj` Worker was not touched).
+- Serves the static export pushed to branch `preview-static` (from raw.githubusercontent.com, 5-minute edge cache). Marked `noindex` so it does not compete with the real domain. Enquiry forms report "not connected" on the preview.
+- To refresh after changes: rebuild the static export and force-push `preview-static`; the Worker needs no redeploy. To remove: delete the Worker in the Cloudflare dashboard (or ask Claude).
