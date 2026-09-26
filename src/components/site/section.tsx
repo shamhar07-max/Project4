@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { PhotoBg } from "./photo-bg";
 import { cn } from "@/lib/utils";
 
 export function Section({
@@ -25,17 +26,18 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "scroll-mt-24 section-pad",
-        tone === "surface" && "border-y border-line bg-surface/55 backdrop-blur-[2px]",
-        tone === "ink" && "relative overflow-hidden border-y border-line bg-night text-white",
+        "relative isolate scroll-mt-24 overflow-hidden section-pad",
+        tone === "surface" && "border-y border-line",
+        tone === "ink" && "border-y border-line bg-night text-white",
         className,
       )}
     >
+      <PhotoBg seed={title ?? id} tone={tone === "ink" ? "dark" : "light"} />
       <div className="container-site">
         {title ? (
           <div className="max-w-3xl" data-reveal>
             {eyebrow ? (
-              <p className={cn("eyebrow", tone === "ink" ? "text-accent" : "text-accent-strong")}>{eyebrow}</p>
+              <p className={cn("eyebrow", tone === "ink" ? "text-accent-soft" : "text-accent-strong")}>{eyebrow}</p>
             ) : null}
             <H className={cn("mt-3 text-h2 font-extrabold", tone === "ink" ? "text-white" : "text-ink")}>{title}</H>
             {intro ? (

@@ -324,5 +324,6 @@ export const legalNav: NavLink[] = [
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
   { label: "Cookies", href: "/cookies" },
+  { label: "Photo credits", href: "/credits" },
   { label: "Sitemap", href: "/sitemap" },
 ];

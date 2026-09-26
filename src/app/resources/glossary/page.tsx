@@ -4,6 +4,7 @@ import { PageHero } from "@/components/site/page-hero";
 import { JsonLd } from "@/components/site/json-ld";
 import { buildMetadata, definedTermSetJsonLd } from "@/lib/seo";
 import { tagLinkClass } from "@/components/ui/tag";
+import { PhotoBg } from "@/components/site/photo-bg";
 
 const description = "Plain-language definitions of business AI, automation, software and capability terms: AI agent, API, CRM, ERP, MVP, RBAC, SaaS, workflow automation and more.";
 export const metadata = buildMetadata({ title: "Glossary", description, path: "/resources/glossary" });
@@ -13,6 +14,8 @@ export default function GlossaryPage() {
   return (
     <>
       <PageHero crumbs={[{ name: "Resources", path: "/resources" }, { name: "Glossary", path: "/resources/glossary" }]} eyebrow="Resources" title="Glossary" lead="Each term has a direct definition, a short explanation, an example and related concepts." />
+      <div className="relative isolate overflow-hidden">
+        <PhotoBg seed="body" />
       <div className="container-site section-pad">
         <nav aria-label="Glossary terms" className="flex flex-wrap gap-2">
           {terms.map((t) => (
@@ -40,6 +43,7 @@ export default function GlossaryPage() {
             </div>
           ))}
         </dl>
+      </div>
       </div>
       <JsonLd data={definedTermSetJsonLd(terms.map((t) => ({ term: t.term, definition: t.definition, slug: t.slug })))} />
     </>

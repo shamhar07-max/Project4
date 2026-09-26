@@ -86,3 +86,11 @@ Whole frontend restyled as an AI interface, using patterns from the 21st.dev "AI
   - offer popup (free 30-minute process review) after 25s or on exit intent, snoozed 3 days after closing;
   - none of these appear on form or legal pages.
 - QA: build (170), check:content 0, 164 pages crawled, no overflow at 375px, axe clean (incl. cookie banner and offer popup), hero fits 1920×1080 down to 320×568.
+
+## Unsplash background photography (2026-09-26)
+
+- Every section now has a niche-related Unsplash photo as its background: the home hero, every page hero, all content sections, block sections, FAQs, related links, page bodies (contact, get started, articles, resources, glossary, legal, sitemap), CTA bands, the final CTA, the footer and the offer popup.
+- Photos are picked per route (`src/content/backgrounds.ts`): Business AI shows dashboards and operations; Studio shows code and wireframes; Academy shows students; Talent and Jobs show hiring and review; Industries shows logistics and Dubai; Company and Contact show Dubai. `src/components/site/photo-bg.tsx` renders them.
+- Readability: each photo's tonal range is compressed with a CSS filter and covered with the brand colour. Light sections use paper at 90%; dark panels use night at 80%. Even the worst-case pixel keeps every text colour at WCAG AA or better. Eyebrows on dark photo panels use accent-soft.
+- Images are hotlinked from images.unsplash.com as Unsplash asks, lazy-loaded with responsive sizes (640–2200px). Photographers are credited on the new `/credits` page, linked from the footer.
+- QA: build passes, check:content 0, 165 pages crawled, no overflow at 375px, axe clean, hero fits 1920×1080 down to 320×568.

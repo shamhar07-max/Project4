@@ -48,6 +48,7 @@ const staticRoutes: RouteEntry[] = [
   { path: "/privacy", title: "Privacy Policy", section: "Utility", indexable: true },
   { path: "/terms", title: "Terms of Use", section: "Utility", indexable: true },
   { path: "/cookies", title: "Cookie Policy", section: "Utility", indexable: true },
+  { path: "/credits", title: "Photo Credits", section: "Utility", indexable: true },
   { path: "/sitemap", title: "Sitemap", section: "Utility", indexable: true },
 ];
 

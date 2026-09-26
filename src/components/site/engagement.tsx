@@ -17,6 +17,7 @@ import { toast } from "./toaster";
 import { nudges, offer, quietPaths } from "@/content/promotions";
 import { CONSENT_KEY, readConsent, track } from "@/lib/analytics";
 import { whatsappHref } from "@/lib/whatsapp";
+import { PhotoBg } from "./photo-bg";
 
 function store(kind: "local" | "session") {
   try {
@@ -130,8 +131,9 @@ export function Engagement() {
         <DialogPrimitive.Portal>
           <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-ink/40 backdrop-blur-sm data-[state=open]:animate-[fade-in_0.2s_ease-out]" />
           <DialogPrimitive.Content className="fixed left-1/2 top-1/2 z-50 w-[min(28rem,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-xl bg-paper shadow-2xl data-[state=open]:animate-[menu-in_0.25s_var(--ease-out-quint)]">
-            <div className="bg-night px-6 pb-6 pt-7 text-white">
-              <p className="eyebrow text-accent">{offer.eyebrow}</p>
+            <div className="relative isolate overflow-hidden bg-night px-6 pb-6 pt-7 text-white">
+              <PhotoBg photo="whiteboard" tone="dark" />
+              <p className="eyebrow text-accent-soft">{offer.eyebrow}</p>
               <DialogPrimitive.Title className="mt-2 text-h3 font-bold">{offer.title}</DialogPrimitive.Title>
             </div>
             <div className="p-6">

@@ -3,6 +3,7 @@ import { whatsappHref } from "@/lib/whatsapp";
 import { PageHero } from "@/components/site/page-hero";
 import { EnquiryForm } from "@/components/site/enquiry-form";
 import { buildMetadata } from "@/lib/seo";
+import { PhotoBg } from "@/components/site/photo-bg";
 
 export const metadata = buildMetadata({
   title: "Contact",
@@ -23,6 +24,8 @@ export default function ContactPage() {
   return (
     <>
       <PageHero crumbs={[{ name: "Contact", path: "/contact" }]} eyebrow="Contact" title="Contact DigitalBurj" lead="Send a general message below, or use a dedicated form so we can respond with the right people." />
+      <div className="relative isolate overflow-hidden">
+        <PhotoBg seed="body" />
       <div className="container-site section-pad">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <EnquiryForm intent="contact" />
@@ -47,6 +50,7 @@ export default function ContactPage() {
             <p className="mt-6 text-sm text-muted">For media and support, choose the topic in the general form.</p>
           </aside>
         </div>
+      </div>
       </div>
     </>
   );

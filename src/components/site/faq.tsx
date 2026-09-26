@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import type { Faq } from "@/content/types";
+import { PhotoBg } from "./photo-bg";
 
 /**
  * FAQ answers use native <details>, so every answer is present in the rendered HTML
@@ -8,7 +9,8 @@ import type { Faq } from "@/content/types";
  */
 export function FaqList({ faqs, title = "Questions" }: { faqs: Faq[]; title?: string }) {
   return (
-    <section className="border-t border-line section-pad" aria-labelledby="faq-heading">
+    <section className="relative isolate overflow-hidden border-t border-line section-pad" aria-labelledby="faq-heading">
+      <PhotoBg seed={`faq-${title}`} />
       <div className="container-site grid gap-10 lg:grid-cols-[18rem_1fr]">
         <h2 id="faq-heading" className="text-h2 font-extrabold text-ink" data-reveal>
           {title}

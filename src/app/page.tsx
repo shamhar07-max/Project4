@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, BellRing, Check, CircleDashed, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/section";
+import { PhotoBg } from "@/components/site/photo-bg";
 import { StepList } from "@/components/site/blocks";
 import { TrackedLink } from "@/components/site/tracked-link";
 import { JsonLd } from "@/components/site/json-ld";
@@ -104,12 +105,13 @@ export default function HomePage() {
   return (
     <>
       {/* 01 Hero: AI chat interface over an aurora, with the division dock */}
-      <section className="relative -mt-16 overflow-hidden border-b border-line pt-16 sm:-mt-[4.25rem] sm:pt-[4.25rem] lg:-mt-[4.75rem] lg:pt-[4.75rem]">
+      <section className="relative isolate -mt-16 overflow-hidden border-b border-line pt-16 sm:-mt-[4.25rem] sm:pt-[4.25rem] lg:-mt-[4.75rem] lg:pt-[4.75rem]">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/2 top-[-18rem] h-[36rem] w-[64rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(252_48_18/0.10),transparent)]" />
           <div className="absolute right-[-10rem] top-40 size-[28rem] rounded-full bg-[radial-gradient(closest-side,rgb(23_104_63/0.14),transparent)]" />
           <div className="ai-grid absolute inset-0" />
         </div>
+        <PhotoBg seed="hero" priority />
         <div className="container-site relative pb-8 pt-6 text-center sm:pb-10 sm:pt-8 [@media(max-height:820px)]:pt-4 max-sm:[@media(max-height:740px)]:pb-4">
           <p className="animate-rise mx-auto inline-flex sm:mt-4 [@media(max-height:820px)]:mt-0 max-sm:[@media(max-height:740px)]:hidden items-center gap-2 rounded-full border border-line-strong bg-fill px-3 py-1 text-xs text-ink-2 backdrop-blur-md" style={{ ["--d" as string]: "80ms" }}>
             <span className="size-1.5 rounded-full bg-ai shadow-[0_0_8px_var(--color-ai)]" aria-hidden="true" />
@@ -168,7 +170,7 @@ export default function HomePage() {
       </section>
 
       {/* 02 Marquee */}
-      <div className="marquee overflow-hidden border-b border-line bg-surface/70 py-4" aria-label="What we work on">
+      <div className="marquee overflow-hidden border-b border-line bg-surface py-4" aria-label="What we work on">
         <ul className="marquee-track">
           {[...marqueeItems, ...marqueeItems].map((m, i) => (
             <li key={i} aria-hidden={i >= marqueeItems.length ? true : undefined} className="flex items-center gap-4 px-4 text-sm text-muted">
@@ -351,12 +353,13 @@ export default function HomePage() {
       {/* 12 Final CTA */}
       <section className="pb-4 pt-8">
         <div className="container-site">
-          <div className="relative overflow-hidden rounded-xl bg-night px-6 py-14 sm:px-12">
+          <div className="relative isolate overflow-hidden rounded-xl bg-night px-6 py-14 sm:px-12">
+            <PhotoBg photo="whiteboard" tone="dark" />
             <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-24 size-96 rounded-full bg-accent/20 blur-3xl" />
             <div aria-hidden="true" className="pointer-events-none absolute -bottom-40 left-10 size-96 rounded-full bg-ai/10 blur-3xl" />
             <div aria-hidden="true" className="ai-grid pointer-events-none absolute inset-0" />
             <div className="relative">
-              <p className="eyebrow text-accent">Next step</p>
+              <p className="eyebrow text-accent-soft">Next step</p>
               <h2 className="mt-3 max-w-2xl text-h2 font-extrabold text-white">Tell us what isn&apos;t working.</h2>
               <div className="mt-8 flex flex-wrap gap-3">
                 {finalCtas.map((c, i) => (

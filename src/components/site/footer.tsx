@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { footerNav, legalNav, site } from "@/lib/site";
 import { whatsappHref, whatsappNumber } from "@/lib/whatsapp";
+import { PhotoBg } from "./photo-bg";
 
 function formatNumber(n: string) {
   return `+${n}`;
@@ -9,7 +10,8 @@ function formatNumber(n: string) {
 
 export function Footer() {
   return (
-    <footer className="relative mt-24 overflow-hidden bg-night text-white/80" aria-labelledby="footer-heading">
+    <footer className="relative isolate mt-24 overflow-hidden bg-night text-white/80" aria-labelledby="footer-heading">
+      <PhotoBg photo="dubai" tone="dark" />
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>

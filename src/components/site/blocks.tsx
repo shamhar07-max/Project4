@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Block, Card } from "@/content/types";
 import { cn } from "@/lib/utils";
+import { PhotoBg } from "./photo-bg";
 
 export function FlowDiagram({ steps, caption, tone = "paper" }: { steps: string[]; caption?: string; tone?: "paper" | "ink" }) {
   return (
@@ -204,7 +205,8 @@ export function BlockSection({ block, index }: { block: Block; index: number }) 
   }
   const tinted = block.type === "flow" || block.type === "steps";
   return (
-    <section className={cn("section-pad", tinted ? "border-y border-line bg-surface/55" : index > 0 && "border-t border-line")}>
+    <section className={cn("relative isolate overflow-hidden section-pad", tinted ? "border-y border-line" : index > 0 && "border-t border-line")}>
+      <PhotoBg seed={block.heading} />
       <div className="container-site">
         <div className="max-w-3xl" data-reveal>
           <h2 className="text-h2 font-extrabold text-ink">{block.heading}</h2>

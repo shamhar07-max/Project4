@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import type { NavLink } from "@/lib/site";
+import { PhotoBg } from "./photo-bg";
 
 export function RelatedLinks({ links, title = "Related" }: { links: NavLink[]; title?: string }) {
   if (!links.length) return null;
   return (
-    <section className="border-t border-line section-pad" aria-labelledby="related-heading">
+    <section className="relative isolate overflow-hidden border-t border-line section-pad" aria-labelledby="related-heading">
+      <PhotoBg seed={`related-${title}`} />
       <div className="container-site">
         <h2 id="related-heading" className="text-h2 font-extrabold text-ink">
           {title}

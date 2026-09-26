@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Crumb } from "@/lib/seo";
 import { Breadcrumbs } from "./breadcrumbs";
+import { PhotoBg } from "./photo-bg";
 import { cn } from "@/lib/utils";
 
 export function PageHero({
@@ -21,7 +22,8 @@ export function PageHero({
   className?: string;
 }) {
   return (
-    <section className={cn("relative overflow-hidden border-b border-line", className)}>
+    <section className={cn("relative isolate overflow-hidden border-b border-line", className)}>
+      <PhotoBg seed="hero" priority />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute -top-40 left-1/2 h-80 w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(252_48_18/0.18),transparent)]" />
         <div className="absolute -right-20 top-10 size-72 rounded-full bg-[radial-gradient(closest-side,rgb(23_104_63/0.12),transparent)]" />

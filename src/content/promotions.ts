@@ -46,4 +46,4 @@ export const nudges: Nudge[] = [
 ];
 
 /** Pages where popups and nudges stay out of the way. */
-export const quietPaths = ["/get-started", "/contact", "/privacy", "/terms", "/cookies"];
+export const quietPaths = ["/get-started", "/contact", "/privacy", "/terms", "/cookies", "/credits"];

@@ -7,6 +7,7 @@ import { RelatedLinks } from "@/components/site/related";
 import { PrintButton } from "@/components/site/print-button";
 import { JsonLd } from "@/components/site/json-ld";
 import { buildMetadata, webPageJsonLd } from "@/lib/seo";
+import { PhotoBg } from "@/components/site/photo-bg";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -32,6 +33,8 @@ export default async function ResourcePage({ params }: { params: Promise<{ categ
       <PageHero crumbs={[{ name: "Resources", path: "/resources" }, { name: cat.title, path: `/resources/${category}` }, { name: r.title, path }]} eyebrow={`DigitalBurj ${cat.title.replace(/s$/, "")}`} title={r.title} lead={r.intro}>
         <PrintButton label={r.slug} />
       </PageHero>
+      <div className="relative isolate overflow-hidden">
+        <PhotoBg seed="body" />
       <div className="container-site section-pad">
         <p className="max-w-3xl rounded-lg bg-surface p-5 text-ink-2">
           <strong className="text-ink">How to use it: </strong>
@@ -65,6 +68,7 @@ export default async function ResourcePage({ params }: { params: Promise<{ categ
             </section>
           ))}
         </div>
+      </div>
       </div>
       <RelatedLinks links={resolveLinks(r.related)} />
       <JsonLd data={webPageJsonLd({ title: r.title, description: r.description, path })} />

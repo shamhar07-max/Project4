@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { PhotoBg } from "./photo-bg";
 import { TrackedLink } from "./tracked-link";
 
 export function CtaBand({
@@ -17,7 +18,8 @@ export function CtaBand({
   return (
     <section className="section-pad-compact">
       <div className="container-site">
-        <div className="relative overflow-hidden rounded-xl bg-night px-6 py-12 sm:px-12 sm:py-14" data-reveal>
+        <div className="relative isolate overflow-hidden rounded-xl bg-night px-6 py-12 sm:px-12 sm:py-14" data-reveal>
+          <PhotoBg seed={`cta-${heading}`} tone="dark" />
           <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 size-80 rounded-full bg-accent/20 blur-3xl" />
           <div aria-hidden="true" className="pointer-events-none absolute -bottom-32 left-1/4 size-80 rounded-full bg-ai/10 blur-3xl" />
           <div aria-hidden="true" className="ai-grid pointer-events-none absolute inset-0 opacity-60" />
