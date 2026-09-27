@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+
+Host: https://digitalburj.com
+Sitemap: https://digitalburj.com/sitemap.xml
