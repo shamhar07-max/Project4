@@ -1,6 +1,7 @@
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, X } from "lucide-react";
+import { ArrowRight, Briefcase, Check, Code2, GraduationCap, Sparkles, Users, Workflow, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Photo } from "@/components/site/photo";
 import { TrackedLink } from "@/components/site/tracked-link";
@@ -13,6 +14,7 @@ import { articles } from "@/content/insights";
 import { projects } from "@/content/portfolio";
 import { buildMetadata, webPageJsonLd } from "@/lib/seo";
 import { site } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 export const metadata = buildMetadata({
   title: `${site.name} | Business AI, Academy, Studio, Verified Talent & Jobs`,
@@ -23,11 +25,11 @@ export const metadata = buildMetadata({
 });
 
 const pillarList = [
-  { key: "business-ai", name: "Business AI", line: "Automation and AI for operations", icon: "/brand/dark/businessai.webp", w: 149, h: 164, href: "/business-ai" },
-  { key: "academy", name: "Academy", line: "Project-based technology courses", icon: "/brand/dark/academy.webp", w: 154, h: 154, href: "/academy" },
-  { key: "studio", name: "Studio", line: "Software and product development", icon: "/brand/dark/studio.webp", w: 159, h: 159, href: "/studio" },
-  { key: "talent", name: "Verified Talent", line: "Skill profiles with the proof attached", icon: "/brand/dark/verifiedtalent.webp", w: 58, h: 50, href: "/talent" },
-  { key: "jobs", name: "Jobs", line: "Job listings and shortlisting", icon: "/brand/dark/jobs.webp", w: 54, h: 50, href: "/jobs" },
+  { key: "business-ai", name: "Business AI", line: "Automation and AI for operations", icon: "/brand/light/businessai.webp", w: 149, h: 164, href: "/business-ai" },
+  { key: "academy", name: "Academy", line: "Project-based technology courses", icon: "/brand/light/academy.webp", w: 154, h: 154, href: "/academy" },
+  { key: "studio", name: "Studio", line: "Software and product development", icon: "/brand/light/studio.webp", w: 159, h: 159, href: "/studio" },
+  { key: "talent", name: "Verified Talent", line: "Skill profiles with the proof attached", icon: "/brand/light/verifiedtalent.webp", w: 58, h: 50, href: "/talent" },
+  { key: "jobs", name: "Jobs", line: "Job listings and shortlisting", icon: "/brand/light/jobs.webp", w: 54, h: 50, href: "/jobs" },
 ];
 
 const marqueeItems = [
@@ -38,25 +40,25 @@ const marqueeItems = [
 
 const tabs: DivisionTab[] = [
   {
-    key: "business-ai", name: "Business AI", icon: { src: "/brand/dark/businessai.webp", w: 149, h: 164 }, photo: "dashboard",
+    key: "business-ai", name: "Business AI", icon: { src: "/brand/light/businessai.webp", w: 149, h: 164 }, photo: "dashboard",
     title: "Most slow processes don't need AI first.",
     body: "They need fewer handoffs. We map the process, time it, cut what's unnecessary, and only then add automation. Anything that needs judgement stays with a person.",
     steps: ["Observe", "Measure", "Simplify", "Automate", "Measure again"], href: "/business-ai", cta: "Explore Business AI",
   },
   {
-    key: "academy", name: "Academy", icon: { src: "/brand/dark/academy.webp", w: 154, h: 154 }, photo: "students",
+    key: "academy", name: "Academy", icon: { src: "/brand/light/academy.webp", w: 154, h: 154 }, photo: "students",
     title: "Finish a course with work you can show.",
     body: "Every track is built around projects. You build it, we break it, you fix it, then you walk a reviewer through what you did and why.",
     steps: ["Learn", "Build", "Break", "Fix", "Explain"], href: "/academy", cta: "Explore Academy",
   },
   {
-    key: "studio", name: "Studio", icon: { src: "/brand/dark/studio.webp", w: 159, h: 159 }, photo: "code",
+    key: "studio", name: "Studio", icon: { src: "/brand/light/studio.webp", w: 159, h: 159 }, photo: "code",
     title: "Check demand before you build.",
     body: "Before full development we test whether people want the product, agree the smallest useful version, and write down what we won't build.",
     steps: ["Problem", "Demand check", "Scope", "Build", "Launch", "Measure"], href: "/studio", cta: "Explore Studio",
   },
   {
-    key: "talent", name: "Verified Talent", icon: { src: "/brand/dark/verifiedtalent.webp", w: 58, h: 50 }, photo: "review", badge: "In development",
+    key: "talent", name: "Verified Talent", icon: { src: "/brand/light/verifiedtalent.webp", w: 58, h: 50 }, photo: "review", badge: "In development",
     title: "Skills with the proof attached.",
     body: "Each skill on a profile will say where it came from: self-reported, assessed, or checked by a reviewer.",
     steps: ["Add a skill", "Attach the work", "Get it assessed", "Reviewed", "Share the profile"], href: "/talent", cta: "Explore Verified Talent",
@@ -96,19 +98,78 @@ const finalCtas = [
 ];
 
 
-const services: Record<string, string> = {
-  "business-ai": "Map the process, cut the steps that shouldn't exist, then automate what's left.",
-  academy: "Project-based courses. You build it, we break it, you fix it and explain it.",
-  studio: "Web apps, SaaS and internal tools, scoped after a demand check.",
-  talent: "Skill profiles that show where each skill came from. In development.",
-  jobs: "Listings where candidates attach their work. No job or visa guarantees.",
-};
 
-function Head({ eyebrow, title, className }: { eyebrow: string; title: string; className?: string }) {
+const services = [
+  { key: "business-ai", icon: Workflow, title: "Business AI", body: "Map the process, cut the steps that shouldn't exist, then automate what's left.", href: "/business-ai" },
+  { key: "studio", icon: Code2, title: "Studio", body: "Web apps, SaaS and internal tools, scoped after a demand check.", href: "/studio" },
+  { key: "academy", icon: GraduationCap, title: "Academy", body: "Project-based courses. You build it, we break it, you fix it and explain it.", href: "/academy" },
+];
+
+const requests = [
+  { text: "Our enquiries sit in WhatsApp for hours…", to: "Business AI" },
+  { text: "We need a booking app for our clinic…", to: "Studio", active: true },
+  { text: "Our team has to run the new system…", to: "Academy" },
+];
+
+const checklist = [
+  "Enquiries answered and logged the same day",
+  "Documents read, checked and filed",
+  "Leads routed to the right owner",
+  "Weekly reports that build themselves",
+  "A person approves anything that matters",
+];
+
+function Head({ eyebrow, title, intro, center = false, className }: { eyebrow: string; title: ReactNode; intro?: string; center?: boolean; className?: string }) {
   return (
-    <div className={className} data-reveal>
-      <p className="eyebrow text-accent-strong">{eyebrow}</p>
-      <h2 className="mt-4 max-w-4xl text-h2 font-normal uppercase text-ink">{title}</h2>
+    <div className={cn(center && "mx-auto text-center", "max-w-3xl", className)} data-reveal>
+      <p className={cn("inline-flex items-center gap-2 rounded-full border border-line bg-paper px-3 py-1 text-xs font-semibold text-ink-2")}>
+        <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+        {eyebrow}
+      </p>
+      <h2 className="mt-5 text-h2 font-semibold text-ink">{title}</h2>
+      {intro ? <p className={cn("mt-4 text-lead text-ink-2", center && "mx-auto max-w-2xl")}>{intro}</p> : null}
+    </div>
+  );
+}
+
+/** A small illustrative UI card, floating around the hero (quso.ai style). */
+function MiniCard({ label, children, className }: { label: string; children: ReactNode; className?: string }) {
+  return (
+    <div aria-hidden="true" className={cn("glass float-slow absolute hidden w-56 rounded-xl p-3 text-left xl:block", className)}>
+      <p className="text-[length:0.6875rem] font-semibold uppercase tracking-wider text-muted">{label}</p>
+      <div className="mt-2 space-y-1.5 text-xs text-ink-2">{children}</div>
+    </div>
+  );
+}
+
+/** CSS phone mockup (Sentient style). Purely illustrative. */
+function Phone({ title, children, className }: { title: string; children: ReactNode; className?: string }) {
+  return (
+    <div aria-hidden="true" className={cn("phone w-56 shrink-0", className)}>
+      <div className="phone-screen h-[27rem] px-4 pb-4 pt-3">
+        <div className="flex items-center justify-between text-[length:0.625rem] font-semibold text-ink">
+          <span>9:41</span>
+          <span className="h-4 w-16 rounded-full bg-ink" />
+          <span>●●●</span>
+        </div>
+        <p className="mt-5 text-[length:0.6875rem] text-muted">DigitalBurj</p>
+        <p className="text-base font-semibold tracking-tight text-ink">{title}</p>
+        <div className="mt-4 space-y-2">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+function Row({ k, v, done }: { k: string; v?: string; done?: boolean }) {
+  return (
+    <div className="flex items-center justify-between rounded-lg bg-white px-3 py-2 text-[length:0.6875rem] shadow-[0_1px_2px_rgb(11_12_12/0.06)]">
+      <span className="flex items-center gap-1.5 text-ink-2">
+        <span className={cn("grid size-3.5 place-items-center rounded-full", done ? "bg-accent-deep text-white" : "border border-line-strong")}>
+          {done ? <Check className="size-2.5" /> : null}
+        </span>
+        {k}
+      </span>
+      {v ? <span className="font-semibold text-ink">{v}</span> : null}
     </div>
   );
 }
@@ -117,297 +178,373 @@ export default function HomePage() {
   const featured = articles.slice(0, 3);
   return (
     <>
-      {/* 01 Hero: rim-lit portrait over a giant wordmark (STRUCT x Zenrixa) */}
-      <section className="relative isolate -mt-16 flex min-h-[100svh] flex-col overflow-hidden border-b border-line pt-16 sm:-mt-[4.25rem] sm:pt-[4.25rem] lg:-mt-[4.75rem] lg:pt-[4.75rem]">
+      {/* 01 Hero: CodeGuide headline over the quso.ai dotted canvas */}
+      <section className="relative isolate -mt-16 overflow-hidden pt-16 sm:-mt-[4.25rem] sm:pt-[4.25rem] lg:-mt-[4.75rem] lg:pt-[4.75rem]">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-          <div className="ember-glow absolute bottom-[-10%] left-1/2 h-[80%] w-[70rem] max-w-[140vw] -translate-x-1/2" />
-          <div className="ai-grid absolute inset-0 opacity-60" />
-          <p className="mega-outline absolute inset-x-0 bottom-[9%] select-none text-center text-mega font-semibold uppercase max-sm:bottom-[26%]">
-            DigitalBurj
-          </p>
-          <div className="fade-edges absolute bottom-0 left-1/2 h-[82%] w-[min(40rem,92vw)] -translate-x-1/2 max-lg:opacity-50 lg:h-[90%]">
-            <Photo photo="silhouette" priority sizes="(min-width: 1024px) 40rem, 92vw" className="[filter:brightness(.8)_saturate(1.1)] max-lg:[filter:brightness(.7)]" />
-          </div>
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--color-canvas)_0%,rgb(8_9_9/0.82)_30%,transparent_62%)] max-lg:bg-[linear-gradient(180deg,rgb(8_9_9/0.85)_0%,rgb(8_9_9/0.55)_45%,transparent_70%)]" />
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(180deg,transparent,var(--color-canvas))]" />
+          <div className="dot-canvas absolute inset-0" />
+          <svg className="absolute inset-x-0 top-0 h-[70%] w-full text-ink/10" viewBox="0 0 1440 600" preserveAspectRatio="none" fill="none">
+            <path d="M720 170 L180 0 M720 170 L420 0 M720 170 L1020 0 M720 170 L1260 0 M720 170 L0 330 M720 170 L1440 330" stroke="currentColor" strokeDasharray="3 6" />
+          </svg>
+          <div className="ember-glow absolute left-1/2 top-[45%] h-[26rem] w-[50rem] -translate-x-1/2" />
         </div>
 
-        <div className="container-site relative grid flex-1 content-start gap-10 pb-10 pt-10 sm:pt-14 lg:grid-cols-[minmax(0,1fr)_19rem] lg:pt-16 [@media(max-height:820px)]:pt-6">
-          <div>
-            <p className="animate-rise flex items-center gap-3 text-sm text-ink-2">
-              <span aria-hidden="true" className="h-4 w-px bg-accent" />
-              Technology company · {site.tagline}
-            </p>
-            <h1 className="animate-rise mt-6 max-w-2xl text-display font-medium text-ink [text-shadow:0_2px_30px_rgb(0_0_0/0.6)]" style={{ ["--d" as string]: "80ms" }}>
-              We build the systems. <span className="text-ink-2">And the skills to run them.</span>
-            </h1>
-            <p className="animate-rise mt-6 max-w-md text-lead text-ink-2 max-sm:[@media(max-height:700px)]:hidden" style={{ ["--d" as string]: "160ms" }}>
-              Automation and AI for operations, custom software, hands-on tech training, and hiring on work people have
-              actually done.
-            </p>
-            <div className="animate-rise mt-8 flex flex-wrap items-center gap-3" style={{ ["--d" as string]: "240ms" }}>
-              <TrackedLink
-                href="/contact"
-                eventLabel="home_hero_conversation"
-                className="group inline-flex h-12 items-center gap-3 rounded-full bg-ink pl-5 pr-1.5 text-sm font-semibold text-night transition-colors hover:bg-white"
-              >
-                Talk to us
-                <span className="grid size-9 place-items-center rounded-full bg-accent-deep text-white transition-transform group-hover:rotate-[-45deg]">
-                  <ArrowRight className="size-4" aria-hidden="true" />
-                </span>
-              </TrackedLink>
-              <a href="#services" className="inline-flex h-12 items-center rounded-full border border-line-strong bg-white/[0.04] px-5 text-sm font-semibold text-ink backdrop-blur-md transition-colors hover:border-white/50">
-                See what we do
-              </a>
-            </div>
+        <MiniCard label="Business AI" className="left-[4%] top-[22%] -rotate-3">
+          <Row k="Enquiry received" done />
+          <Row k="Details extracted" done />
+          <Row k="Owner assigned" />
+        </MiniCard>
+        <MiniCard label="Academy · module" className="bottom-[16%] left-[6%] rotate-2 [animation-delay:-2s]">
+          <Row k="Build it" done />
+          <Row k="Break it" done />
+          <Row k="Fix it" />
+        </MiniCard>
+        <MiniCard label="Studio · release" className="right-[4%] top-[20%] rotate-3 [animation-delay:-1s]">
+          <Row k="Scope agreed" done />
+          <Row k="Tested on devices" done />
+          <Row k="Launch" />
+        </MiniCard>
+        <MiniCard label="Verified Talent" className="bottom-[18%] right-[6%] -rotate-2 [animation-delay:-3s]">
+          <div className="flex flex-wrap gap-1">
+            <span className="rounded-full border border-line-strong px-2 py-0.5">self-declared</span>
+            <span className="rounded-full border border-line-strong px-2 py-0.5">assessed</span>
+            <span className="rounded-full bg-accent-soft px-2 py-0.5 text-accent-strong">verified</span>
           </div>
+        </MiniCard>
 
-          <aside aria-label="Divisions at a glance" className="animate-rise hidden space-y-5 lg:block" style={{ ["--d" as string]: "320ms" }}>
-            <Link href="/business-ai" className="glass group flex gap-4 rounded-xl p-3 transition-transform hover:-translate-y-1">
-              <span className="relative h-28 w-24 shrink-0 overflow-hidden rounded-lg">
-                <Photo photo="ember" sizes="96px" />
+        <div className="container-site relative pb-14 pt-10 text-center sm:pb-20 sm:pt-14 [@media(max-height:820px)]:pt-6">
+          <span className="animate-rise mx-auto grid size-16 place-items-center rounded-2xl border border-line bg-paper shadow-[0_20px_40px_-20px_rgb(11_12_12/0.35)] max-sm:[@media(max-height:740px)]:hidden">
+            <Image src="/brand/05_WEB_SOCIAL/favicon-app-128.png" alt="" width={128} height={128} className="size-11" priority />
+          </span>
+          <h1 className="animate-rise mx-auto mt-7 max-w-5xl text-display font-semibold text-ink max-sm:[@media(max-height:740px)]:mt-2" style={{ ["--d" as string]: "80ms" }}>
+            We build the systems.<br className="hidden sm:block" /> <span className="ink-gradient">And the skills to run them.</span>
+          </h1>
+          <p className="animate-rise mx-auto mt-6 max-w-2xl text-lead text-ink-2 max-sm:[@media(max-height:700px)]:hidden" style={{ ["--d" as string]: "160ms" }}>
+            Automation and AI for operations, custom software, hands-on tech training, and hiring on work people have
+            actually done.
+          </p>
+          <div className="animate-rise mt-8 flex flex-wrap justify-center gap-3" style={{ ["--d" as string]: "240ms" }}>
+            <a href="#services" className="inline-flex h-12 items-center rounded-full border border-line-strong bg-paper px-6 text-sm font-semibold text-ink shadow-[0_1px_2px_rgb(11_12_12/0.05)] transition-colors hover:border-ink/40">
+              See what we do
+            </a>
+            <TrackedLink
+              href="/contact"
+              eventLabel="home_hero_conversation"
+              className="group inline-flex h-12 items-center gap-3 rounded-full bg-ink pl-6 pr-1.5 text-sm font-semibold text-white shadow-[0_12px_30px_-12px_rgb(11_12_12/0.7)] transition-colors hover:bg-ink-2"
+            >
+              Talk to us
+              <span className="grid size-9 place-items-center rounded-full bg-accent-deep transition-transform group-hover:translate-x-0.5">
+                <ArrowRight className="size-4" aria-hidden="true" />
               </span>
-              <span className="flex flex-col py-1">
-                <span className="text-xs uppercase tracking-[0.16em] text-muted">Business AI</span>
-                <span className="mt-2 text-lg font-medium leading-snug text-ink">Fix the process. Then automate it.</span>
-                <span className="mt-auto inline-flex items-center gap-1 text-xs font-semibold text-accent-strong">
-                  Explore <ArrowRight className="size-3.5" aria-hidden="true" />
-                </span>
+            </TrackedLink>
+          </div>
+          <nav aria-label="DigitalBurj divisions" className="animate-rise mt-12 max-sm:[@media(max-height:740px)]:mt-6" style={{ ["--d" as string]: "320ms" }}>
+            <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+              {pillarList.map((p) => (
+                <li key={p.key}>
+                  <TrackedLink href={p.href} eventLabel={`home_dock_${p.key}`} className="flex items-center gap-2 text-sm font-semibold text-muted grayscale transition hover:text-ink hover:grayscale-0">
+                    <Image src={p.icon} alt="" width={p.w} height={p.h} className="h-5 w-auto" />
+                    {p.name}
+                    <span className="sr-only">: {p.line}</span>
+                  </TrackedLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </section>
+
+      {/* 02 Routing hub (CodeGuide diagram) */}
+      <section className="section-pad pt-4">
+        <div className="container-site">
+          <div className="relative grid items-center gap-8 rounded-[2rem] border border-line bg-paper px-5 py-12 shadow-[0_30px_60px_-40px_rgb(11_12_12/0.3)] sm:px-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-6 lg:py-16" data-reveal>
+            <ul className="space-y-3" aria-label="Example requests">
+              {requests.map((r) => (
+                <li
+                  key={r.text}
+                  className={cn(
+                    "flex items-center gap-3 rounded-full px-4 py-2.5 text-sm",
+                    r.active ? "border border-accent/30 bg-paper text-ink shadow-[0_10px_30px_-12px_rgb(252_48_18/0.45)]" : "text-muted",
+                  )}
+                >
+                  <Sparkles aria-hidden="true" className={cn("size-4 shrink-0", r.active ? "text-accent-strong" : "text-muted/60")} />
+                  {r.text}
+                </li>
+              ))}
+            </ul>
+            <div className="relative mx-auto grid size-56 place-items-center sm:size-72" aria-hidden="true">
+              <span className="flow-line absolute right-full top-1/2 hidden h-0.5 w-16 lg:block" />
+              <span className="flow-line absolute left-full top-1/2 hidden h-0.5 w-16 lg:block" />
+              <div className="hub-ring hub-ring-spin absolute inset-0 rounded-full" />
+              <div className="relative grid size-[82%] place-items-center rounded-full bg-paper text-center shadow-[inset_0_2px_20px_rgb(11_12_12/0.06)]">
+                <div>
+                  <Image src="/brand/05_WEB_SOCIAL/favicon-app-128.png" alt="" width={128} height={128} className="mx-auto size-12" />
+                  <p className="mt-3 font-semibold text-ink">DigitalBurj</p>
+                  <p className="text-xs text-muted">One team, five divisions</p>
+                </div>
+              </div>
+            </div>
+            <ul className="space-y-3" aria-label="Where each request goes">
+              {requests.map((r) => (
+                <li
+                  key={r.to}
+                  className={cn(
+                    "rounded-xl border px-5 py-3.5",
+                    r.active ? "border-line bg-paper shadow-[0_20px_40px_-20px_rgb(11_12_12/0.35)] lg:-ml-4 lg:scale-105" : "border-line/70 bg-canvas/60",
+                  )}
+                >
+                  <p className={cn("text-xs", r.active ? "text-accent-strong" : "text-muted")}>Goes to</p>
+                  <p className={cn("font-semibold", r.active ? "text-lg text-ink" : "text-ink-2")}>DigitalBurj {r.to}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <p className="mt-5 text-center text-sm text-muted">Tell us the problem in your own words. We route it to the team that can fix it.</p>
+        </div>
+      </section>
+
+      {/* 03 About (Aeline statement + bento) */}
+      <section id="about" className="scroll-mt-24 section-pad">
+        <div className="container-site">
+          <div className="text-center" data-reveal>
+            <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-2">
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" /> About us
+            </p>
+            <h2 className="mx-auto mt-5 max-w-4xl text-h2 font-semibold text-ink">
+              One technology partner for{" "}
+              <span className="inline-grid size-[1.1em] translate-y-[0.12em] place-items-center rounded-full bg-accent-soft align-baseline">
+                <Image src="/brand/light/businessai.webp" alt="" width={149} height={164} className="h-[0.6em] w-auto" />
+              </span>{" "}
+              automation, software{" "}
+              <span className="text-muted">
+                and{" "}
+                <span className="inline-grid size-[1.1em] translate-y-[0.12em] place-items-center rounded-full bg-ink align-baseline">
+                  <Image src="/brand/dark/academy.webp" alt="" width={154} height={154} className="h-[0.55em] w-auto" />
+                </span>{" "}
+                the skills to run them.
               </span>
-            </Link>
-            <div>
-              <p className="text-xs uppercase tracking-[0.16em] text-muted">Five divisions</p>
-              <ul className="mt-3 grid grid-cols-5 gap-2">
+            </h2>
+          </div>
+          <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-[1.1fr_1.2fr_1fr]">
+            <div className="relative min-h-80 overflow-hidden rounded-[1.5rem]" data-reveal>
+              <Photo photo="headset" sizes="(min-width: 1024px) 30vw, 100vw" />
+              <div className="absolute inset-x-4 bottom-4 rounded-xl bg-paper p-5">
+                <p className="text-4xl font-semibold tracking-tight text-ink">5</p>
+                <p className="mt-1 text-sm text-ink-2">Divisions: Business AI, Academy, Studio, Verified Talent and Jobs.</p>
+              </div>
+            </div>
+            <div className="flex flex-col rounded-[1.5rem] bg-surface p-7" data-reveal style={{ ["--i" as string]: 1 }}>
+              <p className="text-sm text-ink-2">How we work</p>
+              <p className="mt-2 text-4xl font-semibold tracking-tight text-ink">Learn. Build. Transform.</p>
+              <p className="mt-auto pt-8 text-body-sm text-ink-2">{site.description}</p>
+              <ul className="mt-5 flex -space-x-2" aria-label="Divisions">
                 {pillarList.map((p) => (
-                  <li key={p.key}>
-                    <TrackedLink
-                      href={p.href}
-                      eventLabel={`home_dock_${p.key}`}
-                      title={p.name}
-                      className="grid aspect-square place-items-center rounded-lg border border-line bg-white/[0.03] transition-colors hover:border-accent/60 hover:bg-accent/10"
-                    >
-                      <Image src={p.icon} alt="" width={p.w} height={p.h} className="h-6 w-auto" />
-                      <span className="sr-only">
-                        {p.name}: {p.line}
-                      </span>
-                    </TrackedLink>
+                  <li key={p.key} className="grid size-10 place-items-center rounded-full border-2 border-surface bg-paper">
+                    <Image src={p.icon} alt={p.name} width={p.w} height={p.h} className="h-5 w-auto" />
                   </li>
                 ))}
               </ul>
             </div>
-          </aside>
-        </div>
-
-        <div className="container-site relative pb-6">
-          <div className="hidden items-end gap-4 lg:flex">
-            <Link href="/academy" className="group relative w-52 overflow-hidden rounded-xl bg-[linear-gradient(140deg,var(--color-accent-deep),var(--color-accent-warm))] p-4 text-white shadow-[0_20px_50px_-20px_rgb(252_48_18/0.8)]">
-              <span aria-hidden="true" className="flex gap-1"><span className="h-1 w-5 rounded-full bg-white" /><span className="h-1 w-1.5 rounded-full bg-white/60" /><span className="h-1 w-1.5 rounded-full bg-white/60" /></span>
-              <span className="mt-5 block text-sm font-bold uppercase leading-tight">Academy</span>
-              <span className="mt-1 block text-sm leading-snug">Courses that end in a project.</span>
-            </Link>
-            <Link href="/studio" className="group flex w-72 items-center gap-3 rounded-xl bg-cream p-3 text-night">
-              <span className="flex-1">
-                <span className="block text-sm font-bold uppercase">Studio</span>
-                <span className="mt-1 block text-xs leading-snug text-stone">Web apps, SaaS and internal tools, from scope to launch.</span>
-              </span>
-              <span className="relative size-16 shrink-0 overflow-hidden rounded-lg">
-                <Photo photo="corridor" sizes="64px" />
-                <span className="absolute bottom-1 right-1 grid size-6 place-items-center rounded-full bg-night text-white">
-                  <ArrowRight className="size-3.5" aria-hidden="true" />
-                </span>
-              </span>
-            </Link>
-          </div>
-          <div className="glass mt-4 flex items-center justify-between rounded-full px-5 py-2.5 text-xs text-ink-2">
-            <span className="flex items-center gap-2"><span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />5 divisions</span>
-            <span className="hidden sm:inline">Business AI · Academy · Studio · Verified Talent · Jobs</span>
-            <a href="#about" className="flex items-center gap-1.5 hover:text-ink">
-              Scroll down <ArrowDown className="size-3.5" aria-hidden="true" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* 02 Division strip (in place of client logos: we only show our own divisions) */}
-      <div className="marquee overflow-hidden border-b border-line py-6" aria-label="What we work on">
-        <ul className="marquee-track">
-          {[...marqueeItems, ...marqueeItems].map((m, i) => (
-            <li key={i} aria-hidden={i >= marqueeItems.length ? true : undefined} className="flex items-center gap-5 px-5 text-lg font-light uppercase tracking-wide text-muted">
-              <span className="size-1.5 rotate-45 bg-accent" aria-hidden="true" />
-              {m}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* 03 About (NeoVision "The Digital Frontier") */}
-      <section id="about" className="scroll-mt-24 section-pad">
-        <div className="container-site grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="fade-edges relative aspect-[4/3.4] overflow-hidden" data-reveal>
-            <Photo photo="headset" sizes="(min-width: 1024px) 50vw, 100vw" className="photo-noir" />
-          </div>
-          <div data-reveal style={{ ["--i" as string]: 1 }}>
-            <p className="eyebrow text-accent-strong">About us</p>
-            <h2 className="mt-4 text-h1 font-normal uppercase text-ink">Learn. Build. Transform.</h2>
-            <ul className="mt-6 flex flex-wrap gap-2 text-xs text-ink-2">
-              {["Business AI", "Academy", "Studio", "Verified Talent", "Jobs"].map((t) => (
-                <li key={t} className="rounded-full border border-line-strong px-3 py-1">{t}</li>
-              ))}
-            </ul>
-            <p className="mt-6 max-w-lg text-body text-ink-2">{site.description}</p>
-            <div className="mt-8 flex flex-wrap items-center gap-5">
-              <Button asChild variant="outline">
-                <Link href="/company">About DigitalBurj</Link>
-              </Button>
-              <Link href="/company/how-we-work" className="group inline-flex items-center gap-3 text-sm font-semibold text-ink">
-                <span className="grid size-10 place-items-center rounded-full border border-line-strong transition-colors group-hover:border-accent group-hover:bg-accent/15">
-                  <ArrowRight className="size-4" aria-hidden="true" />
-                </span>
-                How we work
-              </Link>
+            <div className="grid gap-4" data-reveal style={{ ["--i" as string]: 2 }}>
+              <div className="rounded-[1.5rem] bg-accent-soft p-7">
+                <p className="text-sm text-ink-2">Every project</p>
+                <p className="mt-2 text-4xl font-semibold tracking-tight text-ink">5 steps</p>
+                <p className="mt-3 text-sm text-ink-2">Look, agree, build, launch, measure. We start from today&apos;s numbers.</p>
+              </div>
+              <div className="flex items-end justify-between rounded-[1.5rem] bg-ink p-7 text-white">
+                <p className="text-sm text-white/75">Industries we design for</p>
+                <p className="text-4xl font-semibold tracking-tight">{industries.length}</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 04 Light interlude (Zenrixa): statement + pill row */}
-      <section className="px-2 sm:px-4">
-        <div className="mx-auto max-w-[90rem] overflow-hidden rounded-[2rem] bg-cream text-night">
-          <div className="container-site grid gap-10 section-pad lg:grid-cols-[1fr_1.4fr] lg:items-center">
-            <div className="relative" data-reveal>
-              <div aria-hidden="true" className="absolute -left-24 -top-24 size-80 rounded-full bg-[radial-gradient(circle_at_1px_1px,rgb(5_6_6/0.25)_1px,transparent_0)] bg-[length:9px_9px] [mask-image:radial-gradient(closest-side,#000,transparent)]" />
-              <span className="relative inline-flex items-center gap-2 rounded-full bg-night/[0.06] px-3 py-1 text-xs font-semibold">
-                <span aria-hidden="true" className="size-1.5 rounded-full bg-night" />
-                What we do
-              </span>
-              <p className="relative mt-6 max-w-xs text-sm text-stone">Five divisions, one team. Use one of them, or several.</p>
-            </div>
-            <p className="text-2xl font-medium leading-snug tracking-tight sm:text-3xl" data-reveal>
-              We help businesses fix how work gets done{" "}
-              <span className="text-stone">through automation, custom software, practical training and hiring on real work.</span>
-            </p>
-          </div>
-          <div className="container-site -mt-4 pb-14 sm:pb-20">
-            <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4" aria-label="Learn, build, transform">
-              <li className="grid h-24 place-items-center rounded-full bg-white text-2xl font-medium sm:h-28 sm:text-3xl">Learn</li>
-              <li className="grid h-24 place-items-center rounded-full bg-[linear-gradient(120deg,var(--color-accent-deep),var(--color-accent-warm))] text-2xl font-medium text-white sm:h-28 sm:text-3xl">Build</li>
-              <li>
-                <Link href="/get-started" className="group grid h-24 place-items-center rounded-full bg-night text-white sm:h-28" aria-label="Get started">
-                  <ArrowRight className="size-10 transition-transform duration-500 group-hover:translate-x-2" aria-hidden="true" />
-                </Link>
-              </li>
-              <li className="grid h-24 place-items-center rounded-full bg-cream-2 text-2xl font-medium text-stone sm:h-28 sm:text-3xl">Transform</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* 05 Services (NeoVision "Our service") */}
+      {/* 04 Services (Aeline) */}
       <section id="services" className="scroll-mt-24 section-pad">
         <div className="container-site">
-          <Carousel label="Divisions" header={<Head eyebrow="Our divisions" title="What we do" />}>
-            {pillarList.map((p) => (
-              <li key={p.key} className="w-[17rem] shrink-0 snap-start sm:w-[22rem]">
-                <Link href={p.href} className="card-interactive group flex h-full flex-col items-center rounded-xl border border-line bg-paper px-6 py-9 text-center">
-                  <span className="grid size-14 place-items-center rounded-full border border-line-strong bg-white/[0.03] transition-colors group-hover:border-accent/60">
-                    <Image src={p.icon} alt="" width={p.w} height={p.h} className="h-6 w-auto" />
-                  </span>
-                  <span className="mt-6 text-lg font-medium text-ink">{p.name}</span>
-                  <span className="mt-3 flex-1 text-body-sm text-muted">{services[p.key]}</span>
-                  <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
-                    Learn more <ArrowRight className="size-4 text-accent-strong transition-transform group-hover:translate-x-1" aria-hidden="true" />
-                  </span>
-                </Link>
-              </li>
+          <Head center eyebrow="Services" title="Everything you need to change how work gets done" intro="Use one division or several. Each one starts from the problem, not the product." />
+          <div className="mt-8 text-center">
+            <Button asChild>
+              <TrackedLink href="/get-started" eventLabel="home_services_get_started">
+                Get started <ArrowRight aria-hidden="true" />
+              </TrackedLink>
+            </Button>
+          </div>
+          <div className="mt-12 grid gap-4 rounded-[2rem] border border-line bg-paper/70 p-3 sm:grid-cols-2 lg:grid-cols-4">
+            {services.map((s, i) => (
+              <Link key={s.key} href={s.href} className="card-interactive group flex min-h-64 flex-col rounded-[1.4rem] border border-line bg-paper p-6" data-reveal style={{ ["--i" as string]: i }}>
+                <span className="grid size-10 place-items-center rounded-xl bg-accent-soft text-accent-strong">
+                  <s.icon className="size-5" aria-hidden="true" />
+                </span>
+                <span className="mt-auto pt-10 text-lg font-semibold text-ink">{s.title}</span>
+                <span className="mt-2 text-body-sm text-muted">{s.body}</span>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
+                  Learn more <ArrowRight className="size-4 text-accent-strong transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                </span>
+              </Link>
             ))}
-          </Carousel>
-        </div>
-      </section>
-
-      {/* 06 Try it: the prompt bar (display only) */}
-      <section className="section-pad-compact">
-        <div className="container-site grid items-center gap-8 lg:grid-cols-[1fr_1.3fr]">
-          <div data-reveal>
-            <p className="eyebrow text-accent-strong">Start here</p>
-            <p className="mt-4 text-h2 font-normal uppercase text-ink">Describe what you need.</p>
-            <p className="mt-4 max-w-md text-body-sm text-ink-2">
-              A preview of how an enquiry starts. Type anything; to actually send it, use WhatsApp or the contact form.
-            </p>
-          </div>
-          <div data-reveal style={{ ["--i" as string]: 1 }}>
-            <HeroPrompt />
+            <div className="relative min-h-64 overflow-hidden rounded-[1.4rem]" data-reveal style={{ ["--i" as string]: 3 }}>
+              <Photo photo="students" sizes="(min-width: 1024px) 18rem, 50vw" />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 07 Divisions in depth (NeoVision "Limitless possibilities") */}
+      {/* 05 Showcase (Sentient phones) */}
+      <section className="section-pad overflow-hidden">
+        <div className="container-site">
+          <Head center eyebrow="In practice" title="One team. Endless possibilities." intro="What the work looks like once it's running: fewer handoffs, clear steps, and a person in charge of every decision." />
+          <div className="mt-8 text-center">
+            <Button asChild>
+              <TrackedLink href="/get-started/studio" eventLabel="home_showcase_start">
+                Start a project <ArrowRight aria-hidden="true" />
+              </TrackedLink>
+            </Button>
+          </div>
+          <div className="relative mt-14 flex items-end justify-center gap-4 sm:gap-8" data-reveal>
+            <div aria-hidden="true" className="ember-glow absolute bottom-0 left-1/2 h-72 w-[40rem] -translate-x-1/2" />
+            <Phone title="Enquiry flow" className="relative hidden translate-y-8 scale-90 md:block">
+              <Row k="WhatsApp message" done />
+              <Row k="Details extracted" done />
+              <Row k="CRM record" done />
+              <Row k="Owner assigned" done />
+              <Row k="Draft reply" />
+              <Row k="Person approves" />
+            </Phone>
+            <Phone title="Backend track" className="relative z-10">
+              <div className="rounded-xl bg-white p-3 shadow-[0_1px_2px_rgb(11_12_12/0.06)]">
+                <p className="text-[length:0.625rem] text-muted">This module</p>
+                <p className="text-sm font-semibold text-ink">Build · Break · Fix · Explain</p>
+                <div className="mt-3 flex h-20 items-end gap-1.5">
+                  {[40, 65, 50, 85, 60, 95, 70].map((h, i) => (
+                    <span key={i} className={cn("flex-1 rounded-t", i === 5 ? "bg-accent-deep" : "bg-ink/80")} style={{ height: `${h}%` }} />
+                  ))}
+                </div>
+              </div>
+              <Row k="Build your project" done />
+              <Row k="Fix the bugs we add" done />
+              <Row k="Explain it to a reviewer" />
+            </Phone>
+            <Phone title="Job listing" className="relative hidden translate-y-8 scale-90 md:block">
+              <div className="rounded-xl bg-white p-3 text-[length:0.6875rem] shadow-[0_1px_2px_rgb(11_12_12/0.06)]">
+                <p className="font-semibold text-ink">Backend developer</p>
+                <p className="text-muted">Named employer · closing date</p>
+                <div className="mt-2 flex flex-wrap gap-1">
+                  <span className="rounded-full bg-fill px-2 py-0.5">Node.js</span>
+                  <span className="rounded-full bg-fill px-2 py-0.5">SQL</span>
+                  <span className="rounded-full bg-fill px-2 py-0.5">APIs</span>
+                </div>
+              </div>
+              <Row k="Attach a project" done />
+              <Row k="Skills checked" done />
+              <Row k="Shortlist" />
+            </Phone>
+          </div>
+        </div>
+      </section>
+
+      {/* 06 Easy to start (Vital: checklist + card UI) */}
       <section className="section-pad">
         <div className="container-site">
-          <Head eyebrow="How each division works" title="One team. Five ways in." className="mb-12" />
+          <div className="grid items-center gap-12 overflow-hidden rounded-[2rem] border border-white bg-[linear-gradient(180deg,var(--color-paper),var(--color-surface))] px-6 py-12 shadow-[0_40px_80px_-50px_rgb(11_12_12/0.35)] sm:px-12 lg:grid-cols-2 lg:py-16">
+            <div data-reveal>
+              <h2 className="text-h2 font-semibold text-ink">
+                Easy to start.
+                <br />
+                <span className="font-normal text-ink-2">Built around your team.</span>
+              </h2>
+              <ul className="mt-8 space-y-3">
+                {checklist.map((c) => (
+                  <li key={c} className="flex items-center gap-3 text-body-sm text-ink-2">
+                    <Check aria-hidden="true" className="size-4 text-accent-strong" />
+                    {c}
+                  </li>
+                ))}
+              </ul>
+              <Link href="/business-ai" className="group mt-8 inline-flex items-center gap-3 text-sm font-semibold text-ink">
+                <span className="grid size-10 place-items-center rounded-full border border-line-strong bg-paper transition-colors group-hover:border-ink">
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </span>
+                Explore Business AI
+              </Link>
+            </div>
+            <div className="relative mx-auto w-full max-w-sm" data-reveal style={{ ["--i" as string]: 1 }} aria-hidden="true">
+              <div className="rounded-[1.75rem] bg-ink p-6 text-white shadow-[0_30px_60px_-30px_rgb(11_12_12/0.8)]">
+                <div className="flex items-center justify-between">
+                  <Image src="/brand/dark/wordmark.webp" alt="" width={800} height={152} className="h-4 w-auto" />
+                  <span className="text-[length:0.6875rem] text-white/75">Example workflow</span>
+                </div>
+                <p className="mt-10 text-xs text-white/75">Enquiry flow</p>
+                <p className="text-3xl font-semibold tracking-tight">4 of 6 steps</p>
+                <p className="text-xs text-white/75">run without anyone touching them</p>
+              </div>
+              <div className="-mt-6 mx-3 rounded-[1.5rem] bg-paper p-5 shadow-[0_30px_60px_-30px_rgb(11_12_12/0.45)]">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-muted">Automated</span>
+                  <span className="font-semibold text-ink">4 / 6</span>
+                </div>
+                <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-fill">
+                  <div className="animate-bar h-full w-2/3 origin-left rounded-full bg-accent-deep" />
+                </div>
+                <div className="mt-5 flex items-center justify-between text-sm">
+                  <span className="text-muted">Needs a person</span>
+                  <span className="font-semibold text-ink">Approval, exceptions</span>
+                </div>
+                <div className="mt-5 grid h-11 place-items-center rounded-full bg-ink text-sm font-semibold text-white">Review drafts</div>
+              </div>
+              <div className="mx-3 mt-3 flex items-center gap-3 rounded-xl bg-paper p-4 shadow-[0_20px_40px_-30px_rgb(11_12_12/0.45)]">
+                <Workflow className="size-5 text-accent-strong" />
+                <span className="flex-1 text-sm">
+                  <span className="block font-semibold text-ink">Logs</span>
+                  <span className="text-xs text-muted">Every automated action can be looked up later</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 07 Divisions in depth */}
+      <section className="section-pad">
+        <div className="container-site">
+          <Head eyebrow="How each division works" title="Pick a division." className="mb-12" />
           <DivisionTabs tabs={tabs} />
         </div>
       </section>
 
-      {/* 08 Philosophy (STRUCT) */}
-      <section className="section-pad border-y border-line bg-surface">
-        <div className="container-site grid gap-12 lg:grid-cols-[16rem_1fr] lg:gap-16">
-          <div className="flex flex-col justify-between gap-10" data-reveal>
-            <p className="text-sm text-ink-2"><span className="text-accent-strong">01/</span> how we work</p>
-            <div>
-              <p className="text-sm font-bold uppercase text-ink">Look. Agree. Build.</p>
-              <p className="mt-3 text-sm text-muted">We write down how the work is done today before we change anything, so we can show what moved.</p>
-            </div>
-          </div>
-          <div>
-            <p className="text-2xl font-normal leading-snug tracking-tight text-ink sm:text-4xl" data-reveal>
-              We don&apos;t start with software. <span className="text-accent-strong">We start with the process</span> and build only
-              what it needs.
+      {/* 08 Prompt bar (display only) */}
+      <section className="section-pad-compact">
+        <div className="container-site">
+          <div className="rounded-[2rem] border border-line bg-paper px-6 py-12 text-center sm:px-12" data-reveal>
+            <p className="text-h2 font-semibold text-ink">Describe what you need.</p>
+            <p className="mx-auto mt-3 max-w-md text-body-sm text-ink-2">
+              A preview of how an enquiry starts. Type anything; to actually send it, use WhatsApp or the contact form.
             </p>
-            <div className="mt-10 grid gap-4 md:grid-cols-[1.4fr_1fr]">
-              <div className="relative min-h-60 overflow-hidden rounded-xl" data-reveal>
-                <Photo photo="corridor" sizes="(min-width: 768px) 45vw, 100vw" />
-              </div>
-              <div className="flex flex-col rounded-xl bg-cream p-6 text-night" data-reveal style={{ ["--i" as string]: 1 }}>
-                <span aria-hidden="true" className="flex justify-end gap-1"><span className="h-1.5 w-6 rounded-full bg-night" /><span className="size-1.5 rounded-full bg-accent-deep" /><span className="size-1.5 rounded-full bg-accent-deep" /></span>
-                <p className="mt-auto pt-10 text-3xl font-medium tracking-tight">Measured, not assumed.</p>
-                <p className="mt-3 text-sm text-stone">Every project starts from today&apos;s numbers, and ends by comparing against them.</p>
-              </div>
+            <div className="mt-8">
+              <HeroPrompt />
             </div>
-            <ol className="mt-10 grid gap-6 border-t border-line pt-8 sm:grid-cols-5">
-              {framework.map((f, i) => (
-                <li key={f.title} data-reveal style={{ ["--i" as string]: i }}>
-                  <span className="text-xs text-accent-strong">{String(i + 1).padStart(2, "0")}</span>
-                  <p className="mt-2 font-semibold text-ink">{f.title}</p>
-                  <p className="mt-1 text-sm text-muted">{f.body}</p>
-                </li>
-              ))}
-            </ol>
-            <Link href="/company/how-we-work" className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-ink">
-              More on how we work <ArrowRight className="size-4 text-accent-strong transition-transform group-hover:translate-x-1" aria-hidden="true" />
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* 09 Jobs and talent */}
+      {/* 09 Hiring */}
       <section className="section-pad">
         <div className="container-site">
-          <Head eyebrow="DigitalBurj Jobs" title="Hiring on real work" className="mb-12" />
+          <Head eyebrow="DigitalBurj Jobs" title="Hiring on real work." className="mb-12" />
           <div className="grid gap-4 md:grid-cols-2">
             {[
-              { n: "01", t: "Looking for work", b: "Apply to open roles and attach projects you've built.", href: "/jobs/for-job-seekers", l: "For job seekers" },
-              { n: "02", t: "Hiring", b: "List the skills a role needs and look at candidates' work before you interview.", href: "/jobs/for-employers", l: "For employers" },
+              { t: "Looking for work", b: "Apply to open roles and attach projects you've built.", href: "/jobs/for-job-seekers", l: "For job seekers", Icon: Briefcase },
+              { t: "Hiring", b: "List the skills a role needs and look at candidates' work before you interview.", href: "/jobs/for-employers", l: "For employers", Icon: Users },
             ].map((c, i) => (
-              <Link key={c.href} href={c.href} className="card-interactive group flex flex-col rounded-xl border border-line bg-paper p-7" data-reveal style={{ ["--i" as string]: i }}>
-                <span className="flex items-start justify-between">
-                  <span className="text-5xl font-light text-ink-2">{c.n}</span>
-                  <span className="grid size-11 place-items-center rounded-full border border-line-strong transition-colors group-hover:border-accent group-hover:bg-accent/15">
-                    <ArrowRight className="size-4" aria-hidden="true" />
-                  </span>
+              <Link key={c.href} href={c.href} className="card-interactive group flex flex-col rounded-[1.5rem] border border-line bg-paper p-7" data-reveal style={{ ["--i" as string]: i }}>
+                <span className="grid size-11 place-items-center rounded-xl bg-accent-soft text-accent-strong">
+                  <c.Icon className="size-5" aria-hidden="true" />
                 </span>
-                <span className="mt-10 text-2xl font-medium text-ink">{c.t}</span>
+                <span className="mt-10 text-2xl font-semibold tracking-tight text-ink">{c.t}</span>
                 <span className="mt-2 text-body-sm text-ink-2">{c.b}</span>
-                <span className="mt-5 text-sm font-semibold text-accent-strong">{c.l}</span>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
+                  {c.l} <ArrowRight className="size-4 text-accent-strong transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                </span>
               </Link>
             ))}
           </div>
@@ -418,24 +555,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 10 Works (Zenrixa "Explore our works") */}
-      <section className="section-pad border-t border-line">
+      {/* 10 Portfolio */}
+      <section className="section-pad">
         <div className="container-site">
-          <div className="text-center" data-reveal>
-            <span className="inline-flex items-center gap-2 rounded-full bg-fill px-3 py-1 text-xs text-ink-2">
-              <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
-              Portfolio
-            </span>
-            <h2 className="mx-auto mt-5 max-w-3xl text-h1 font-medium text-ink">Our own products and ventures.</h2>
-          </div>
+          <Head center eyebrow="Portfolio" title="Our own products and ventures." />
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
             {projects.map((p, i) => (
               <li key={p.slug} className={i < 2 ? "lg:col-span-3" : "lg:col-span-2"} data-reveal style={{ ["--i" as string]: i % 3 }}>
                 <Link
                   href={`/portfolio/${p.slug}`}
-                  className={`group relative flex flex-col justify-between overflow-hidden rounded-[1.75rem] border border-line bg-night p-7 transition-colors hover:border-accent/50 ${i < 2 ? "min-h-80" : "min-h-56"}`}
+                  className={cn(
+                    "card-interactive group relative flex flex-col justify-between overflow-hidden rounded-[1.5rem] border border-line bg-paper p-7",
+                    i < 2 ? "min-h-72" : "min-h-52",
+                  )}
                 >
-                  <span aria-hidden="true" className="ember-glow absolute -bottom-1/2 left-1/2 h-full w-[140%] -translate-x-1/2 opacity-0 transition-opacity duration-700 group-hover:opacity-60" />
+                  <span aria-hidden="true" className="dot-canvas absolute inset-0 opacity-50" />
                   <span className="relative flex items-center justify-between text-xs text-muted">
                     <span>{String(i + 1).padStart(2, "0")}</span>
                     <span>{p.sector ?? "Sector to be confirmed"}</span>
@@ -443,8 +577,8 @@ export default function HomePage() {
                   <span className="relative text-center text-4xl font-semibold tracking-tight text-ink sm:text-5xl">{p.name}</span>
                   <span className="relative flex items-center justify-between">
                     <span className="text-xs uppercase tracking-wider text-muted">Details coming soon</span>
-                    <span className="grid size-12 place-items-center rounded-full bg-white/10 text-ink backdrop-blur-md transition-colors group-hover:bg-accent-deep">
-                      <ArrowRight className="size-5" aria-hidden="true" />
+                    <span className="grid size-11 place-items-center rounded-full bg-ink text-white transition-colors group-hover:bg-accent-deep">
+                      <ArrowRight className="size-4" aria-hidden="true" />
                     </span>
                   </span>
                 </Link>
@@ -460,14 +594,14 @@ export default function HomePage() {
       </section>
 
       {/* 11 Industries */}
-      <section className="section-pad border-t border-line">
+      <section className="section-pad">
         <div className="container-site">
-          <Carousel label="Industries" header={<Head eyebrow="Industries" title="Sectors we design for" />}>
+          <Carousel label="Industries" header={<Head eyebrow="Industries" title="Sectors we design for." />}>
             {industries.map((ind, i) => (
               <li key={ind.href} className="w-[17rem] shrink-0 snap-start sm:w-[20rem]">
-                <Link href={ind.href} className="card-interactive group flex h-full flex-col rounded-xl border border-line bg-paper p-6">
+                <Link href={ind.href} className="card-interactive group flex h-full flex-col rounded-[1.5rem] border border-line bg-paper p-6">
                   <span className="text-xs text-muted">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="mt-8 text-xl font-medium text-ink">{ind.title}</span>
+                  <span className="mt-8 text-xl font-semibold text-ink">{ind.title}</span>
                   <span className="mt-2 flex-1 text-body-sm text-ink-2">{ind.body}</span>
                   <ArrowRight aria-hidden="true" className="mt-5 size-4 text-muted transition-transform group-hover:translate-x-1 group-hover:text-accent-strong" />
                 </Link>
@@ -477,34 +611,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 12 Insights (NeoVision "Voices" layout, with our articles instead of testimonials) */}
-      <section className="relative section-pad overflow-hidden border-t border-line">
-        <svg aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 h-64 w-full text-white/10" viewBox="0 0 1440 260" preserveAspectRatio="none" fill="none">
-          <path d="M0 200 C 360 60, 720 260, 1080 120 S 1440 60, 1440 60" stroke="currentColor" strokeWidth="1.5" />
-        </svg>
-        <div className="container-site grid gap-12 lg:grid-cols-2">
-          <div data-reveal>
-            <p className="eyebrow text-accent-strong">Insights</p>
-            <h2 className="mt-4 text-h1 font-normal uppercase text-ink">Guides and articles</h2>
-            <div aria-hidden="true" className="hairline mt-8 h-px w-2/3" />
-            <p className="mt-8 max-w-md text-body-sm text-ink-2">
-              Plain-language notes on automation, AI and building software: what works, what doesn&apos;t, and how to decide.
-            </p>
+      {/* 12 Insights */}
+      <section className="section-pad">
+        <div className="container-site grid gap-12 lg:grid-cols-[1fr_1.2fr]">
+          <div>
+            <Head eyebrow="Insights" title="Guides and articles." intro="Plain-language notes on automation, AI and building software: what works, what doesn't, and how to decide." />
             <Button asChild variant="outline" className="mt-8">
               <Link href="/insights">All insights</Link>
             </Button>
           </div>
-          <ul className="space-y-4">
+          <ul className="space-y-3">
             {featured.map((a, i) => (
               <li key={a.slug} data-reveal style={{ ["--i" as string]: i }}>
-                <Link href={`/insights/${a.slug}`} className="glass group flex items-center gap-5 rounded-xl p-5 transition-transform hover:-translate-x-1">
+                <Link href={`/insights/${a.slug}`} className="card-interactive group flex items-center gap-5 rounded-[1.25rem] border border-line bg-paper p-5">
                   <span className="flex-1">
-                    <span className="text-xs text-muted">{a.kind}</span>
-                    <span className="mt-1.5 block font-medium text-ink">{a.title}</span>
+                    <span className="rounded-full bg-fill px-2.5 py-0.5 text-xs text-ink-2">{a.kind}</span>
+                    <span className="mt-2 block font-semibold text-ink">{a.title}</span>
                     <span className="mt-1 line-clamp-2 block text-sm text-muted">{a.description}</span>
                   </span>
-                  <span className="grid size-12 shrink-0 place-items-center rounded-full bg-white/[0.06] transition-colors group-hover:bg-accent-deep">
-                    <ArrowRight className="size-5 text-ink" aria-hidden="true" />
+                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-fill transition-colors group-hover:bg-ink group-hover:text-white">
+                    <ArrowRight className="size-4" aria-hidden="true" />
                   </span>
                 </Link>
               </li>
@@ -516,32 +642,25 @@ export default function HomePage() {
       {/* 13 FAQ */}
       <FaqList title="Quick answers" faqs={answers} />
 
-      {/* 14 Final CTA (NeoVision "Dive into the future") */}
+      {/* 14 Final CTA */}
       <section className="pb-4 pt-8">
         <div className="container-site">
-          <div className="relative isolate overflow-hidden rounded-[1.75rem] border border-line">
+          <div className="relative isolate overflow-hidden rounded-[2rem] bg-ink px-6 py-16 text-center sm:px-12 sm:py-20">
             <div aria-hidden="true" className="absolute inset-0 -z-10">
-              <Photo photo="dubai" sizes="(min-width: 1280px) 76rem, 100vw" className="[filter:grayscale(.6)_brightness(.5)]" />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(5_6_6/0.92),rgb(5_6_6/0.55)_60%,rgb(5_6_6/0.75))]" />
-              <div className="ember-glow absolute -bottom-1/3 -right-1/4 h-full w-3/4 opacity-70" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(255_255_255/0.12)_1px,transparent_0)] bg-[length:18px_18px] [mask-image:radial-gradient(ellipse_60%_70%_at_50%_50%,#000,transparent)]" />
+              <div className="absolute bottom-[-40%] left-1/2 h-[80%] w-[60%] -translate-x-1/2 rounded-full bg-accent/30 blur-3xl" />
             </div>
-            <div className="grid gap-10 px-6 py-16 sm:px-12 sm:py-20 lg:grid-cols-[1.4fr_1fr] lg:items-end">
-              <div>
-                <p className="eyebrow text-accent-strong">Next step</p>
-                <h2 className="mt-4 text-h1 font-normal uppercase text-white">Tell us what isn&apos;t working.</h2>
-              </div>
-              <div>
-                <p className="text-body-sm text-white/75">Pick the closest option and we&apos;ll route you to the right team. No sales script.</p>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {finalCtas.map((c, i) => (
-                    <Button key={c.href} asChild size="md" variant={i === 0 ? "primary" : "outline-inverse"}>
-                      <TrackedLink href={c.href} eventLabel={`home_final_${c.label}`}>
-                        {c.label}
-                      </TrackedLink>
-                    </Button>
-                  ))}
-                </div>
-              </div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/75">Next step</p>
+            <h2 className="mx-auto mt-4 max-w-3xl text-h1 font-semibold text-white">Tell us what isn&apos;t working.</h2>
+            <p className="mx-auto mt-4 max-w-lg text-body-sm text-white/75">Pick the closest option and we&apos;ll route you to the right team. No sales script.</p>
+            <div className="mt-8 flex flex-wrap justify-center gap-2">
+              {finalCtas.map((c, i) => (
+                <Button key={c.href} asChild variant={i === 0 ? "inverse" : "outline-inverse"}>
+                  <TrackedLink href={c.href} eventLabel={`home_final_${c.label}`}>
+                    {c.label}
+                  </TrackedLink>
+                </Button>
+              ))}
             </div>
           </div>
         </div>

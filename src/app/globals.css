@@ -14,36 +14,36 @@
 
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 
-  /* Noir theme: near-black canvas, light type, the burj orange as light. */
-  --color-canvas: #080909;
-  --color-ink: #f3f3f0;
-  --color-ink-2: #c4c8c6;
-  --color-muted: #8e9592;
-  --color-line: rgb(255 255 255 / 0.09);
-  --color-line-strong: rgb(255 255 255 / 0.18);
-  --color-surface: #0d0f0e;
-  --color-fill: rgb(255 255 255 / 0.06);
-  --color-paper: #121414;
-  --color-night: #050606;
+  /* Light SaaS theme: soft grey canvas, white cards, near-black type, burj orange as the accent. */
+  --color-canvas: #f4f4f2;
+  --color-ink: #0b0c0c;
+  --color-ink-2: #3a3e3c;
+  --color-muted: #646a67;
+  --color-line: rgb(11 12 12 / 0.08);
+  --color-line-strong: rgb(11 12 12 / 0.15);
+  --color-surface: #ecece9;
+  --color-fill: rgb(11 12 12 / 0.05);
+  --color-paper: #ffffff;
+  --color-night: #0b0c0c;
   --color-cream: #efeeea;
   --color-cream-2: #dcdad4;
   --color-stone: #62605b;
   --color-coal: #0b0c0c;
   --color-accent: #fc3012;
-  --color-accent-strong: #ff6a45;
+  --color-accent-strong: #cd2506;
   --color-accent-deep: #cd2506;
   --color-accent-warm: #d6320a;
   --color-accent-hover: #b01f04;
   --color-ember: #ff7a1a;
-  --color-accent-soft: #2a110b;
-  --color-amber: #ffb04a;
-  --color-ai: #45c98b;
-  --color-ai-soft: #0f2a1f;
-  --color-success: #45c98b;
-  --color-success-soft: #0f2a1f;
+  --color-accent-soft: #fff1ee;
+  --color-amber: #9a4d00;
+  --color-ai: #17683f;
+  --color-ai-soft: #e3f1e8;
+  --color-success: #17683f;
+  --color-success-soft: #e3f1e8;
   --color-whatsapp: #25d366;
-  --color-danger: #ff7b6e;
-  --color-danger-soft: #2d1210;
+  --color-danger: #b42318;
+  --color-danger-soft: #fef3f2;
 
   /* Continuous, generous iOS 27 corner radii */
   --radius-sm: 8px;
@@ -51,10 +51,10 @@
   --radius-lg: 22px;
   --radius-xl: 28px;
 
-  --text-display: clamp(2.6rem, 1.2rem + 5.2vw, 6.25rem);
-  --text-display--line-height: 0.96;
+  --text-display: clamp(2.4rem, 1.3rem + 4vw, 4.75rem);
+  --text-display--line-height: 1;
   --text-display--letter-spacing: -0.045em;
-  --text-h1: clamp(2.3rem, 1.4rem + 3.4vw, 4.75rem);
+  --text-h1: clamp(2.2rem, 1.4rem + 2.8vw, 4rem);
   --text-h1--line-height: 1;
   --text-h1--letter-spacing: -0.04em;
   --text-h2: clamp(1.85rem, 1.25rem + 2.2vw, 3.5rem);
@@ -101,7 +101,7 @@
   }
   html {
     background: var(--color-canvas);
-    color-scheme: dark;
+    color-scheme: light;
   }
   body {
     background: var(--color-canvas);
@@ -304,13 +304,14 @@
 
   /* Frosted glass with a light edge highlight */
   .glass {
-    background: rgb(18 20 20 / 0.62);
-    -webkit-backdrop-filter: blur(24px) saturate(160%);
-    backdrop-filter: blur(24px) saturate(160%);
-    border: 1px solid rgb(255 255 255 / 0.1);
+    background: rgb(255 255 255 / 0.72);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgb(255 255 255 / 0.9);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.08),
-      0 18px 50px -20px rgb(0 0 0 / 0.8);
+      inset 0 1px 0 rgb(255 255 255 / 0.9),
+      0 1px 2px rgb(11 12 12 / 0.04),
+      0 16px 40px -18px rgb(11 12 12 / 0.18);
   }
   .glass-dark {
     background: rgb(5 6 6 / 0.55);
@@ -320,14 +321,14 @@
     box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
   }
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .glass { background: rgb(18 20 20 / 0.96); }
+    .glass { background: rgb(255 255 255 / 0.97); }
     .glass-dark { background: rgb(5 6 6 / 0.94); }
   }
 
   /* Interactive card: iOS card with soft elevation, lift and an accent rule */
   .card-interactive {
     position: relative;
-    box-shadow: 0 20px 40px -30px rgb(0 0 0 / 0.9);
+    box-shadow: 0 1px 2px rgb(11 12 12 / 0.04), 0 12px 30px -20px rgb(11 12 12 / 0.16);
     isolation: isolate;
     transition:
       transform 0.35s var(--ease-out-quint),
@@ -349,7 +350,7 @@
   .card-interactive:hover,
   .card-interactive:focus-visible {
     transform: translateY(-3px) scale(1.005);
-    box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.95), 0 0 0 1px rgb(252 48 18 / 0.35), 0 0 40px -18px rgb(252 48 18 / 0.45);
+    box-shadow: 0 2px 4px rgb(11 12 12 / 0.04), 0 26px 50px -26px rgb(11 12 12 / 0.28), 0 0 0 1px rgb(252 48 18 / 0.18);
   }
   .card-interactive:hover::before,
   .card-interactive:focus-visible::before {
@@ -513,19 +514,19 @@
   /* Background grid with a soft radial fade */
   .ai-grid {
     background-image:
-      linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+      linear-gradient(to right, rgb(11 12 12 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(11 12 12 / 0.05) 1px, transparent 1px);
     background-size: 56px 56px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
   }
   .ai-dots {
-    background-image: radial-gradient(circle at 1px 1px, rgb(255 255 255 / 0.08) 1px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, rgb(11 12 12 / 0.14) 1px, transparent 0);
     background-size: 22px 22px;
   }
   .ai-noise {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-    opacity: 0.06;
-    mix-blend-mode: overlay;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
   }
   .aurora-blob {
     position: absolute;
@@ -639,43 +640,77 @@
 }
 
 /* ------------------------------------------------------------------
- * Noir: cinematic pieces used across the redesign.
+ * Light SaaS pieces (CodeGuide, quso.ai, Sentient, Aeline, Vital references)
  * ------------------------------------------------------------------ */
+@keyframes ring-spin { to { transform: rotate(360deg); } }
+@keyframes flow-dash { to { background-position: 40px 0; } }
+@keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @layer components {
-  /* Orange light bleeding in from an edge, like a rim-lit studio portrait */
-  .ember-glow {
-    background:
-      radial-gradient(60% 55% at 50% 45%, rgb(252 48 18 / 0.32), transparent 70%),
-      radial-gradient(40% 40% at 70% 70%, rgb(255 122 26 / 0.18), transparent 70%);
-    filter: blur(20px);
-  }
-  /* Giant outlined wordmark that fades out towards the bottom */
-  .mega-outline {
-    color: transparent;
-    -webkit-text-stroke: 1px rgb(255 255 255 / 0.16);
-    background: linear-gradient(180deg, rgb(255 255 255 / 0.14), rgb(255 255 255 / 0) 85%);
+  /* Headline gradient: ink into burj orange (CodeGuide's two-tone title) */
+  .ink-gradient {
+    background: linear-gradient(95deg, var(--color-ink) 0%, var(--color-ink) 35%, var(--color-accent-deep) 75%, var(--color-accent-warm));
     -webkit-background-clip: text;
     background-clip: text;
+    color: transparent;
   }
-  /* Photo that melts into the canvas on every edge */
-  .fade-edges {
-    -webkit-mask-image: radial-gradient(75% 70% at 50% 42%, #000 45%, transparent 100%);
-    mask-image: radial-gradient(75% 70% at 50% 42%, #000 45%, transparent 100%);
+  /* Dotted canvas with converging guide lines (quso.ai hero) */
+  .dot-canvas {
+    background-image: radial-gradient(circle at 1px 1px, rgb(11 12 12 / 0.16) 1px, transparent 0);
+    background-size: 18px 18px;
+    -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 40%, #000 35%, transparent 80%);
+    mask-image: radial-gradient(ellipse 75% 70% at 50% 40%, #000 35%, transparent 80%);
+  }
+  /* Soft orange light, used sparingly behind hero pieces */
+  .ember-glow {
+    background: radial-gradient(50% 50% at 50% 50%, rgb(252 48 18 / 0.16), transparent 70%);
+    filter: blur(24px);
+  }
+  /* Glowing hub ring (CodeGuide "AI Documentation" circle) */
+  .hub-ring {
+    background:
+      radial-gradient(circle at 50% 50%, #fff 58%, transparent 59%),
+      conic-gradient(from 200deg, var(--color-ink), var(--color-accent-deep) 30%, var(--color-ember) 45%, var(--color-ink) 70%, var(--color-ink));
+    box-shadow: 0 30px 80px -30px rgb(252 48 18 / 0.45), 0 20px 50px -25px rgb(11 12 12 / 0.5);
+  }
+  .hub-ring-spin {
+    animation: ring-spin 14s linear infinite;
+  }
+  /* Animated connector line between diagram nodes */
+  .flow-line {
+    background-image: linear-gradient(90deg, var(--color-accent) 50%, transparent 50%);
+    background-size: 10px 2px;
+    animation: flow-dash 1.2s linear infinite;
+  }
+  .float-slow {
+    animation: float-y 6s ease-in-out infinite;
+  }
+  /* Device frame for CSS phone mockups (Sentient / Vital) */
+  .phone {
+    border-radius: 2.4rem;
+    background: #0b0c0c;
+    padding: 0.45rem;
+    box-shadow: 0 40px 80px -40px rgb(11 12 12 / 0.55), inset 0 0 0 1.5px rgb(255 255 255 / 0.12);
+  }
+  .phone-screen {
+    border-radius: 2rem;
+    background: #fafaf9;
+    overflow: hidden;
+  }
+  .mega-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgb(11 12 12 / 0.08);
   }
   .fade-bottom {
     -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent);
     mask-image: linear-gradient(180deg, #000 55%, transparent);
   }
-  /* Two-tone statement copy (Zenrixa): lighter trailing words */
-  .tone-dim {
-    color: var(--color-muted);
-  }
-  /* Thin diagonal "circuit" rule, as in the NeoVision hero */
   .hairline {
-    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.18), transparent);
+    background: linear-gradient(90deg, transparent, rgb(11 12 12 / 0.16), transparent);
   }
-  /* Photo treatment: monochrome with a warm lift */
   .photo-noir {
-    filter: grayscale(0.35) contrast(1.05) brightness(0.9);
+    filter: saturate(0.9) contrast(1.02);
   }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hub-ring-spin, .flow-line, .float-slow { animation: none !important; }
 }

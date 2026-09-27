@@ -131,3 +131,23 @@ Whole frontend restyled as an AI interface, using patterns from the 21st.dev "AI
   - every page hero uses the same right-hand photo panel, with the Key points card as an opaque glass card on top.
 - `/credits` lists only the photos still in use.
 - QA: build passes, check:content 0, 165 pages crawled, no overflow at 375px, axe clean (a WhatsApp button's text colour was fixed on /contact), and the hero fits all 10 viewports.
+
+## Light SaaS redesign from the CodeGuide, quso.ai, Sentient/Lumini, Aeline and Vital references (2026-09-27)
+
+- Theme back to light and minimal:
+  - soft grey canvas, white cards and near-black type;
+  - the burj orange as the only accent, used in the headline gradient, icon chips, arrows and highlights;
+  - primary buttons are black capsules, as in the references;
+  - headings are sentence case and semibold, with tight tracking.
+- Logo: the header uses the original dark-text wordmark on light glass. The footer stays dark with the light wordmark.
+- Homepage rebuilt:
+  - CodeGuide/quso hero: logo tile, two-tone gradient headline, capsule buttons, a division "logo" row, a dotted canvas with guide lines, and four floating example UI cards on wide screens;
+  - CodeGuide routing hub: example requests flow into a spinning DigitalBurj ring and out to the division that handles them;
+  - Aeline "About us" statement with inline icon chips, plus a bento of true facts only (5 divisions, 5 steps, 6 industries) and a photo card;
+  - Aeline services grid with orange icon chips and a photo tile;
+  - Sentient three-phone showcase built in CSS: enquiry flow, backend track, job listing;
+  - Vital "Easy to start" checklist beside an example-workflow card UI;
+  - then division tabs, the prompt bar (display only), hiring, portfolio tiles, industries, insights, FAQ and a dark final CTA.
+- Inner pages: the hero is copy on the left and the route's photo in a rounded card on the right. On content pages the Key points card floats over the photo. Section headings match the homepage.
+- UI mockups are labelled or clearly illustrative. No client logos, testimonials or user counts from the references were copied.
+- QA: build passes, check:content 0, 165 pages crawled, no overflow at 375px, axe clean (including the cookie banner and offer popup), and the hero fits 1920×1080 down to 320×568.

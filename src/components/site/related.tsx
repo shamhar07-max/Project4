@@ -7,7 +7,7 @@ export function RelatedLinks({ links, title = "Related" }: { links: NavLink[]; t
   return (
     <section className="relative isolate overflow-hidden border-t border-line section-pad" aria-labelledby="related-heading">
       <div className="container-site">
-        <h2 id="related-heading" className="text-h2 font-normal uppercase text-ink">
+        <h2 id="related-heading" className="text-h2 font-semibold text-ink">
           {title}
         </h2>
         <ul className="mt-8 grid gap-2 rounded-xl border border-line bg-surface/60 p-2 backdrop-blur-md sm:grid-cols-2 lg:grid-cols-3">

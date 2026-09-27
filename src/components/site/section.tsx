@@ -37,7 +37,7 @@ export function Section({
             {eyebrow ? (
               <p className={cn("eyebrow", tone === "ink" ? "text-accent-strong" : "text-accent-strong")}>{eyebrow}</p>
             ) : null}
-            <H className={cn("mt-3 text-h2 font-normal uppercase", tone === "ink" ? "text-white" : "text-ink")}>{title}</H>
+            <H className={cn("mt-3 text-h2 font-semibold", tone === "ink" ? "text-white" : "text-ink")}>{title}</H>
             {intro ? (
               <div className={cn("mt-5 text-lead", tone === "ink" ? "text-white/75" : "text-ink-2")}>{intro}</div>
             ) : null}

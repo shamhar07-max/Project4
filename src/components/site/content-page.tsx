@@ -24,7 +24,7 @@ export function ContentPageView({ page, path, crumbs }: { page: ContentPage; pat
         lead={page.answer}
         aside={
           page.keyPoints?.length ? (
-            <div className="rounded-xl border border-line bg-paper/95 p-6 shadow-[0_30px_60px_-30px_rgb(0_0_0/0.9)] backdrop-blur-md">
+            <div className="glass rounded-xl p-6">
               <p className="eyebrow">Key points</p>
               <ul className="mt-4 space-y-3">
                 {page.keyPoints.map((k) => (

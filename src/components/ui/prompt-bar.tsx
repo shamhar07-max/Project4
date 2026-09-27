@@ -190,7 +190,7 @@ export default function PromptBar({
             aria-disabled={!canSend}
             className={cn(
               "ml-auto grid size-9 place-items-center rounded-full transition-colors",
-              canSend ? "bg-ink text-night hover:bg-ink-2" : "cursor-not-allowed bg-fill text-muted",
+              canSend ? "bg-ink text-white hover:bg-ink-2" : "cursor-not-allowed bg-fill text-muted",
             )}
           >
             <ArrowUp className="size-4" aria-hidden="true" />

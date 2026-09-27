@@ -27,13 +27,13 @@ export function CtaBand({
           </div>
           <div className="grid gap-10 px-6 py-14 sm:px-12 sm:py-16 lg:grid-cols-[1.4fr_1fr] lg:items-end">
             <div>
-              <p className="eyebrow text-accent-strong">Next step</p>
-              <h2 className="mt-4 text-h2 font-normal uppercase text-white">{heading}</h2>
+              <p className="eyebrow text-white/70">Next step</p>
+              <h2 className="mt-4 text-h2 font-semibold text-white">{heading}</h2>
             </div>
             <div>
               {body ? <p className="text-body-sm text-white/75">{body}</p> : null}
               <div className="mt-6 flex flex-wrap gap-2">
-                <Button asChild>
+                <Button asChild variant="inverse">
                   <TrackedLink href={href} eventLabel={label}>
                     {label}
                   </TrackedLink>

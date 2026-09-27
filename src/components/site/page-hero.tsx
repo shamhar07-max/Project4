@@ -4,6 +4,10 @@ import { Breadcrumbs } from "./breadcrumbs";
 import { HeroPhoto } from "./photo-bg";
 import { cn } from "@/lib/utils";
 
+/**
+ * Page hero in the light SaaS style: copy on the left, the route's photo in a rounded card on
+ * the right, and (on content pages) the key points as a floating glass card over the photo.
+ */
 export function PageHero({
   crumbs,
   eyebrow,
@@ -23,22 +27,21 @@ export function PageHero({
 }) {
   return (
     <section className={cn("relative isolate overflow-hidden border-b border-line", className)}>
-      <HeroPhoto />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="ember-glow absolute -bottom-1/2 right-[-10%] h-full w-[60%] opacity-70" />
-        <div className="ai-grid absolute inset-0 opacity-70" />
+        <div className="dot-canvas absolute inset-0 opacity-70" />
+        <div className="ember-glow absolute -right-40 top-10 size-[36rem]" />
       </div>
-      <div className="container-site relative pb-16 pt-8 sm:pb-20 lg:min-h-[30rem] lg:pb-24">
+      <div className="container-site relative pb-16 pt-8 sm:pb-20 lg:pb-24">
         {crumbs ? <Breadcrumbs items={crumbs} /> : null}
-        <div className={cn("mt-10 grid gap-10 lg:mt-14", aside ? "lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-16" : "")}>
+        <div className="mt-10 grid items-center gap-12 lg:mt-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] lg:gap-16">
           <div className="max-w-3xl">
             {eyebrow ? (
-              <p className="eyebrow animate-rise flex items-center gap-3 text-accent-strong">
-                <span aria-hidden="true" className="h-px w-8 bg-accent" />
+              <p className="animate-rise inline-flex items-center gap-2 rounded-full border border-line bg-paper px-3 py-1 text-xs font-semibold text-ink-2 shadow-[0_1px_2px_rgb(11_12_12/0.05)]">
+                <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
                 {eyebrow}
               </p>
             ) : null}
-            <h1 className="animate-rise mt-5 text-h1 font-medium text-ink" style={{ ["--d" as string]: "80ms" }}>
+            <h1 className="animate-rise mt-5 text-h1 font-semibold text-ink" style={{ ["--d" as string]: "80ms" }}>
               {title}
             </h1>
             {lead ? (
@@ -52,11 +55,10 @@ export function PageHero({
               </div>
             ) : null}
           </div>
-          {aside ? (
-            <div className="animate-rise lg:pt-2" style={{ ["--d" as string]: "300ms" }}>
-              {aside}
-            </div>
-          ) : null}
+          <div className="animate-rise relative" style={{ ["--d" as string]: "300ms" }}>
+            <HeroPhoto className={aside ? "aspect-[4/3] max-lg:hidden" : "aspect-[4/3]"} />
+            {aside ? <div className="relative lg:-mt-28 lg:mx-6">{aside}</div> : null}
+          </div>
         </div>
       </div>
     </section>

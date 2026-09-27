@@ -207,7 +207,7 @@ export function BlockSection({ block, index }: { block: Block; index: number }) 
     <section className={cn("relative isolate overflow-hidden section-pad", tinted ? "border-y border-line" : index > 0 && "border-t border-line")}>
       <div className="container-site">
         <div className="max-w-3xl" data-reveal>
-          <h2 className="text-h2 font-normal uppercase text-ink">{block.heading}</h2>
+          <h2 className="text-h2 font-semibold text-ink">{block.heading}</h2>
           {"intro" in block && block.intro ? (
             <p className="mt-4 text-lead text-ink-2">{block.intro}</p>
           ) : null}

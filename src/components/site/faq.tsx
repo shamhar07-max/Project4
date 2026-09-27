@@ -10,7 +10,7 @@ export function FaqList({ faqs, title = "Questions" }: { faqs: Faq[]; title?: st
   return (
     <section className="relative isolate overflow-hidden border-t border-line section-pad" aria-labelledby="faq-heading">
       <div className="container-site grid gap-10 lg:grid-cols-[18rem_1fr]">
-        <h2 id="faq-heading" className="text-h2 font-normal uppercase text-ink" data-reveal>
+        <h2 id="faq-heading" className="text-h2 font-semibold text-ink" data-reveal>
           {title}
         </h2>
         <div className="divide-y divide-line self-start overflow-hidden rounded-lg border border-line bg-surface px-5 sm:px-6">
