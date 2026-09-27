@@ -42,7 +42,7 @@ export function Toaster() {
       {items.map((t) => {
         const Icon = icons[t.tone];
         return (
-          <div key={t.id} role="status" className="animate-toast pointer-events-auto flex items-start gap-3 rounded-lg border border-line bg-paper p-4 shadow-xl">
+          <div key={t.id} role="status" className="animate-toast pointer-events-auto flex items-start gap-3 rounded-[1.25rem] border border-line bg-paper p-4 shadow-xl">
             <Icon
               aria-hidden="true"
               className={cn("mt-0.5 size-5 shrink-0", t.tone === "error" ? "text-danger" : t.tone === "success" ? "text-success" : "text-accent-strong")}

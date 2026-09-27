@@ -101,7 +101,7 @@ export function Engagement() {
         <div
           role="region"
           aria-label="Cookie consent"
-          className="animate-toast fixed bottom-5 left-5 z-50 w-[min(24rem,calc(100vw-2.5rem))] rounded-lg border border-line bg-paper p-5 shadow-2xl print:hidden"
+          className="animate-toast fixed bottom-5 left-5 z-50 w-[min(24rem,calc(100vw-2.5rem))] rounded-[1.25rem] border border-line bg-paper p-5 shadow-2xl print:hidden"
         >
           <div className="flex items-start gap-3">
             <Cookie aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-accent-strong" />

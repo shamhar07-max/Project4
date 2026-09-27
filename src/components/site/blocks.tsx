@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Block, Card } from "@/content/types";
 import { cn } from "@/lib/utils";
+import { SectionHead } from "./section";
 
 export function FlowDiagram({ steps, caption, tone = "paper" }: { steps: string[]; caption?: string; tone?: "paper" | "ink" }) {
   return (
@@ -77,7 +78,7 @@ export function StepList({ steps }: { steps: { title: string; body: string }[] }
             <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-line-strong bg-paper text-sm tabular-nums text-accent-strong shadow-[0_0_18px_-6px_var(--color-accent)]">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <div className="card-interactive flex-1 rounded-lg border border-line bg-paper p-5">
+            <div className="card-interactive flex-1 rounded-[1.25rem] border border-line bg-paper p-5">
               <h3 className="text-h3 font-bold text-ink">{s.title}</h3>
               <p className="mt-1.5 text-body-sm leading-relaxed text-ink-2">{s.body}</p>
             </div>
@@ -92,7 +93,7 @@ export function CardGrid({ items, columns = 3 }: { items: Card[]; columns?: 2 | 
   return (
     <ul
       className={cn(
-        "grid gap-4 sm:grid-cols-2",
+        "grid gap-3 rounded-[2rem] border border-line bg-paper/70 p-3 sm:grid-cols-2",
         columns === 3 && "lg:grid-cols-3",
         columns === 4 && "lg:grid-cols-4",
       )}
@@ -102,18 +103,18 @@ export function CardGrid({ items, columns = 3 }: { items: Card[]; columns?: 2 | 
           {c.href ? (
             <Link
               href={c.href}
-              className="card-interactive group flex w-full flex-col rounded-lg border border-line bg-paper p-6 hover:border-line-strong"
+              className="card-interactive group flex w-full flex-col rounded-[1.4rem] border border-line bg-paper p-6 hover:border-line-strong"
             >
               <h3 className="text-h3 font-bold text-ink">{c.title}</h3>
               <p className="mt-2 flex-1 text-body-sm leading-relaxed text-ink-2">{c.body}</p>
-              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-strong">
+              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
                 Learn more
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                <ArrowRight className="size-4 text-accent-strong transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 <span className="sr-only">about {c.title}</span>
               </span>
             </Link>
           ) : (
-            <div className="flex w-full flex-col rounded-lg border border-line bg-paper p-6">
+            <div className="flex w-full flex-col rounded-[1.4rem] border border-line bg-paper p-6">
               <h3 className="text-h3 font-bold text-ink">{c.title}</h3>
               <p className="mt-2 text-body-sm leading-relaxed text-ink-2">{c.body}</p>
             </div>
@@ -161,7 +162,7 @@ function BlockBody({ block }: { block: Block }) {
       return null;
     case "compare":
       return (
-        <div className="overflow-x-auto rounded-lg border border-line bg-paper" data-reveal>
+        <div className="overflow-x-auto rounded-[1.25rem] border border-line bg-paper" data-reveal>
           <table className="w-full min-w-[36rem] border-collapse text-left text-body-sm">
             <thead className="bg-surface text-xs uppercase tracking-[0.12em]">
               <tr>
@@ -194,7 +195,7 @@ export function BlockSection({ block, index }: { block: Block; index: number }) 
     return (
       <section className="section-pad-compact">
         <div className="container-site">
-          <div className="relative overflow-hidden rounded-lg border border-accent/25 bg-accent-soft px-6 py-7 sm:px-8" data-reveal>
+          <div className="relative overflow-hidden rounded-[1.5rem] border border-accent/20 bg-accent-soft px-6 py-8 sm:px-10" data-reveal>
             <h2 className="text-xl font-bold text-ink sm:text-2xl">{block.heading}</h2>
             <p className="mt-3 max-w-3xl text-body leading-relaxed text-ink-2">{block.body}</p>
           </div>
@@ -202,16 +203,11 @@ export function BlockSection({ block, index }: { block: Block; index: number }) 
       </section>
     );
   }
-  const tinted = block.type === "flow" || block.type === "steps";
+  void index;
   return (
-    <section className={cn("relative isolate overflow-hidden section-pad", tinted ? "border-y border-line" : index > 0 && "border-t border-line")}>
+    <section className="relative section-pad">
       <div className="container-site">
-        <div className="max-w-3xl" data-reveal>
-          <h2 className="text-h2 font-semibold text-ink">{block.heading}</h2>
-          {"intro" in block && block.intro ? (
-            <p className="mt-4 text-lead text-ink-2">{block.intro}</p>
-          ) : null}
-        </div>
+        <SectionHead title={block.heading} intro={"intro" in block && block.intro ? block.intro : undefined} />
         <div className="mt-8 sm:mt-10">
           <BlockBody block={block} />
         </div>

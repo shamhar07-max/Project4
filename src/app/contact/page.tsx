@@ -27,7 +27,7 @@ export default function ContactPage() {
       <div className="container-site section-pad">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <EnquiryForm intent="contact" />
-          <aside className="h-fit rounded-lg border border-line bg-surface p-6">
+          <aside className="h-fit rounded-[1.25rem] border border-line bg-paper p-6">
             <p className="eyebrow">Prefer WhatsApp?</p>
             <a
               href={whatsappHref()}

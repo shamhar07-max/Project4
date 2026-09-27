@@ -168,3 +168,12 @@ Whole frontend restyled as an AI interface, using patterns from the 21st.dev "AI
   - one legal row.
   The giant background wordmark is removed. The full list of pages is still on /sitemap.
 - QA: build passes, check:content 0, no broken links, no overflow at 375px, axe clean (including the cookie banner and offer popup), and the hero buttons are on screen at all 10 viewports.
+
+## Every page now follows the homepage design (2026-09-27)
+
+- Page hero: now sits in the same framed rounded panel as the homepage hero (dotted canvas, frame guides, warm gradient). It uses the same pill label, headline size and button pair: orange first action, grey second. The route's photo card sits on the right.
+- Section headings: one shared `SectionHead` component, used by the homepage and every inner section, block, FAQ and related-links list. It gives a pill label with an orange dot and a semibold sentence-case title.
+- No more grey banded sections or divider lines: every page sits on the same canvas as the homepage.
+- Card grids sit inside the homepage's rounded panel, with rounded cards and "Learn more" followed by an orange arrow. Steps, tables, callouts, forms and asides use the same radii.
+- Closing CTA: one shared component, identical to the homepage's: a centred black card with a dotted texture and orange glow. The homepage now uses it too.
+- QA: build passes, check:content 0, no broken links, no overflow at 375px, axe clean, and the hero fits all 10 viewports.

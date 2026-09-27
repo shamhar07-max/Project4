@@ -10,6 +10,8 @@ import { HeroPrompt } from "@/components/site/hero-prompt";
 import { DivisionTabs, type DivisionTab } from "@/components/site/division-tabs";
 import { Carousel } from "@/components/site/carousel";
 import { FaqList } from "@/components/site/faq";
+import { SectionHead } from "@/components/site/section";
+import { CtaBand } from "@/components/site/cta-band";
 import { articles } from "@/content/insights";
 import { projects } from "@/content/portfolio";
 import { buildMetadata, webPageJsonLd } from "@/lib/seo";
@@ -113,18 +115,7 @@ const checklist = [
   "A person approves anything that matters",
 ];
 
-function Head({ eyebrow, title, intro, center = false, className }: { eyebrow: string; title: ReactNode; intro?: string; center?: boolean; className?: string }) {
-  return (
-    <div className={cn(center && "mx-auto text-center", "max-w-3xl", className)} data-reveal>
-      <p className={cn("inline-flex items-center gap-2 rounded-full border border-line bg-paper px-3 py-1 text-xs font-semibold text-ink-2")}>
-        <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
-        {eyebrow}
-      </p>
-      <h2 className="mt-5 text-h2 font-semibold text-ink">{title}</h2>
-      {intro ? <p className={cn("mt-4 text-lead text-ink-2", center && "mx-auto max-w-2xl")}>{intro}</p> : null}
-    </div>
-  );
-}
+const Head = SectionHead;
 
 /** Frosted glass tile with a division icon, floating beside the hero (Quice style). */
 function GlassTile({ icon, w, h, className }: { icon: string; w: number; h: number; className?: string }) {
@@ -678,29 +669,12 @@ export default function HomePage() {
       {/* 13 FAQ */}
       <FaqList title="Quick answers" faqs={answers} />
 
-      {/* 14 Final CTA */}
-      <section className="pb-4 pt-8">
-        <div className="container-site">
-          <div className="relative isolate overflow-hidden rounded-[2rem] bg-ink px-6 py-16 text-center sm:px-12 sm:py-20">
-            <div aria-hidden="true" className="absolute inset-0 -z-10">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgb(255_255_255/0.12)_1px,transparent_0)] bg-[length:18px_18px] [mask-image:radial-gradient(ellipse_60%_70%_at_50%_50%,#000,transparent)]" />
-              <div className="absolute bottom-[-40%] left-1/2 h-[80%] w-[60%] -translate-x-1/2 rounded-full bg-accent/30 blur-3xl" />
-            </div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/75">Next step</p>
-            <h2 className="mx-auto mt-4 max-w-3xl text-h1 font-semibold text-white">Tell us what isn&apos;t working.</h2>
-            <p className="mx-auto mt-4 max-w-lg text-body-sm text-white/75">Pick the closest option and we&apos;ll route you to the right team. No sales script.</p>
-            <div className="mt-8 flex flex-wrap justify-center gap-2">
-              {finalCtas.map((c, i) => (
-                <Button key={c.href} asChild variant={i === 0 ? "inverse" : "outline-inverse"}>
-                  <TrackedLink href={c.href} eventLabel={`home_final_${c.label}`}>
-                    {c.label}
-                  </TrackedLink>
-                </Button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 14 Final CTA (shared with every page) */}
+      <CtaBand
+        heading="Tell us what isn't working."
+        body="Pick the closest option and we'll route you to the right team. No sales script."
+        actions={finalCtas}
+      />
 
       <JsonLd data={webPageJsonLd({ title: site.name, description: site.description, path: "/" })} />
     </>
