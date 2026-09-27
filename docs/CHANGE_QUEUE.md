@@ -151,3 +151,20 @@ Whole frontend restyled as an AI interface, using patterns from the 21st.dev "AI
 - Inner pages: the hero is copy on the left and the route's photo in a rounded card on the right. On content pages the Key points card floats over the photo. Section headings match the homepage.
 - UI mockups are labelled or clearly illustrative. No client logos, testimonials or user counts from the references were copied.
 - QA: build passes, check:content 0, 165 pages crawled, no overflow at 375px, axe clean (including the cookie banner and offer popup), and the hero fits 1920×1080 down to 320×568.
+
+## Hero, header and footer cleanup (Aeline, Stillwork, Quice, Refboard) (2026-09-27)
+
+- Hero:
+  - rebuilt inside an Aeline-style rounded container with Refboard frame guides and a dotted canvas;
+  - Stillwork "New" badge linking to the free process review;
+  - smaller two-line headline with the DigitalBurj mark as an inline tile;
+  - orange "Get started" and grey "Talk to us" buttons, as in Refboard;
+  - Quice-style frosted glass tiles with division icons, and an Aeline-style tilted row of five division cards (three compact cards on phones).
+- Removed the routing-hub circle below the hero. In its place is a Stillwork-style "Three ways to start" section with three pinned paper notes: an example workflow, a course module and the tools it works with.
+- Header: the mega-menu dropdowns are gone. It now has six plain links, with an underline on the current section, plus search and one orange Get Started button. The mobile menu is a single flat list.
+- Footer: now light and compact:
+  - logo, one line of description and WhatsApp;
+  - three short columns (Divisions, Explore, Company);
+  - one legal row.
+  The giant background wordmark is removed. The full list of pages is still on /sitemap.
+- QA: build passes, check:content 0, no broken links, no overflow at 375px, axe clean (including the cookie banner and offer popup), and the hero buttons are on screen at all 10 viewports.

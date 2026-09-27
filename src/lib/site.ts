@@ -327,3 +327,46 @@ export const legalNav: NavLink[] = [
   { label: "Photo credits", href: "/credits" },
   { label: "Sitemap", href: "/sitemap" },
 ];
+
+/** Top-level header links. Kept short on purpose: no mega menus. */
+export const primaryNav: NavLink[] = [
+  { label: "Business AI", href: "/business-ai" },
+  { label: "Studio", href: "/studio" },
+  { label: "Academy", href: "/academy" },
+  { label: "Talent & Jobs", href: "/jobs" },
+  { label: "Insights", href: "/insights" },
+  { label: "Company", href: "/company" },
+];
+
+/** Compact footer: three short columns. The full list lives on /sitemap. */
+export const footerColumns: { heading: string; links: NavLink[] }[] = [
+  {
+    heading: "Divisions",
+    links: [
+      { label: "Business AI", href: "/business-ai" },
+      { label: "Studio", href: "/studio" },
+      { label: "Academy", href: "/academy" },
+      { label: "Verified Talent", href: "/talent" },
+      { label: "Jobs", href: "/jobs" },
+    ],
+  },
+  {
+    heading: "Explore",
+    links: [
+      { label: "Solutions", href: "/solutions" },
+      { label: "Industries", href: "/industries" },
+      { label: "Portfolio", href: "/portfolio" },
+      { label: "Insights", href: "/insights" },
+      { label: "Resources", href: "/resources" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { label: "About", href: "/company" },
+      { label: "How we work", href: "/company/how-we-work" },
+      { label: "Careers", href: "/company/careers" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+];

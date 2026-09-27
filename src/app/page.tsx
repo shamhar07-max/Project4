@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Briefcase, Check, Code2, GraduationCap, Sparkles, Users, Workflow, X } from "lucide-react";
+import { ArrowRight, Briefcase, Check, Code2, GraduationCap, Users, Workflow, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Photo } from "@/components/site/photo";
 import { TrackedLink } from "@/components/site/tracked-link";
@@ -105,12 +105,6 @@ const services = [
   { key: "academy", icon: GraduationCap, title: "Academy", body: "Project-based courses. You build it, we break it, you fix it and explain it.", href: "/academy" },
 ];
 
-const requests = [
-  { text: "Our enquiries sit in WhatsApp for hours…", to: "Business AI" },
-  { text: "We need a booking app for our clinic…", to: "Studio", active: true },
-  { text: "Our team has to run the new system…", to: "Academy" },
-];
-
 const checklist = [
   "Enquiries answered and logged the same day",
   "Documents read, checked and filed",
@@ -132,13 +126,42 @@ function Head({ eyebrow, title, intro, center = false, className }: { eyebrow: s
   );
 }
 
-/** A small illustrative UI card, floating around the hero (quso.ai style). */
-function MiniCard({ label, children, className }: { label: string; children: ReactNode; className?: string }) {
+/** Frosted glass tile with a division icon, floating beside the hero (Quice style). */
+function GlassTile({ icon, w, h, className }: { icon: string; w: number; h: number; className?: string }) {
   return (
-    <div aria-hidden="true" className={cn("glass float-slow absolute hidden w-52 rounded-xl p-3 text-left 2xl:block", className)}>
-      <p className="text-[length:0.6875rem] font-semibold uppercase tracking-wider text-muted">{label}</p>
-      <div className="mt-2 space-y-1.5 text-xs text-ink-2">{children}</div>
-    </div>
+    <span
+      aria-hidden="true"
+      className={cn(
+        "float-slow absolute hidden size-20 place-items-center rounded-[1.4rem] border border-white/80 bg-[linear-gradient(145deg,rgb(255_255_255/0.85),rgb(255_255_255/0.35))] shadow-[inset_0_1px_0_rgb(255_255_255),0_24px_50px_-20px_rgb(11_12_12/0.35)] backdrop-blur-md lg:grid",
+        className,
+      )}
+    >
+      <Image src={icon} alt="" width={w} height={h} className="h-8 w-auto drop-shadow-[0_6px_10px_rgb(252_48_18/0.35)]" />
+    </span>
+  );
+}
+
+/** Paper note pinned to the page (Stillwork style), linking to a division. */
+function PinnedNote({ title, href, children, className }: { title: string; href: string; children: ReactNode; className?: string }) {
+  return (
+    <Link
+      href={href}
+      className={cn(
+        "group relative block rounded-[1.5rem] bg-[linear-gradient(160deg,var(--color-paper),var(--color-surface))] p-6 pt-10 shadow-[0_30px_60px_-35px_rgb(11_12_12/0.45)] transition-transform duration-500 hover:rotate-0 hover:-translate-y-1",
+        "after:absolute after:bottom-0 after:right-0 after:size-10 after:rounded-tl-2xl after:rounded-br-[1.5rem] after:bg-[linear-gradient(135deg,var(--color-cream-2),var(--color-paper)_60%)] after:shadow-[-4px_-4px_10px_-6px_rgb(11_12_12/0.25)]",
+        className,
+      )}
+    >
+      <span aria-hidden="true" className="absolute -top-3 left-1/2 -translate-x-1/2">
+        <span className="block size-6 rounded-full bg-[radial-gradient(circle_at_35%_30%,var(--color-ember),var(--color-accent-deep)_60%,var(--color-accent-hover))] shadow-[0_6px_10px_-2px_rgb(11_12_12/0.4)]" />
+        <span className="mx-auto block h-3 w-0.5 bg-ink/40" />
+      </span>
+      <span className="flex items-center justify-between text-sm font-semibold text-ink">
+        {title}
+        <ArrowRight className="size-4 text-accent-strong transition-transform group-hover:translate-x-1" aria-hidden="true" />
+      </span>
+      <div className="mt-5" aria-hidden="true">{children}</div>
+    </Link>
   );
 }
 
@@ -178,127 +201,140 @@ export default function HomePage() {
   const featured = articles.slice(0, 3);
   return (
     <>
-      {/* 01 Hero: CodeGuide headline over the quso.ai dotted canvas */}
-      <section className="relative isolate -mt-16 overflow-hidden pt-16 sm:-mt-[4.25rem] sm:pt-[4.25rem] lg:-mt-[4.75rem] lg:pt-[4.75rem]">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-          <div className="dot-canvas absolute inset-0" />
-          <svg className="absolute inset-x-0 top-0 h-[70%] w-full text-ink/10" viewBox="0 0 1440 600" preserveAspectRatio="none" fill="none">
-            <path d="M720 170 L180 0 M720 170 L420 0 M720 170 L1020 0 M720 170 L1260 0 M720 170 L0 330 M720 170 L1440 330" stroke="currentColor" strokeDasharray="3 6" />
-          </svg>
-          <div className="ember-glow absolute left-1/2 top-[45%] h-[26rem] w-[50rem] -translate-x-1/2" />
-        </div>
-
-        <MiniCard label="Business AI" className="left-[4%] top-[22%] -rotate-3">
-          <Row k="Enquiry received" done />
-          <Row k="Details extracted" done />
-          <Row k="Owner assigned" />
-        </MiniCard>
-        <MiniCard label="Academy · module" className="bottom-[16%] left-[6%] rotate-2 [animation-delay:-2s]">
-          <Row k="Build it" done />
-          <Row k="Break it" done />
-          <Row k="Fix it" />
-        </MiniCard>
-        <MiniCard label="Studio · release" className="right-[4%] top-[20%] rotate-3 [animation-delay:-1s]">
-          <Row k="Scope agreed" done />
-          <Row k="Tested on devices" done />
-          <Row k="Launch" />
-        </MiniCard>
-        <MiniCard label="Verified Talent" className="bottom-[18%] right-[6%] -rotate-2 [animation-delay:-3s]">
-          <div className="flex flex-wrap gap-1">
-            <span className="rounded-full border border-line-strong px-2 py-0.5">self-declared</span>
-            <span className="rounded-full border border-line-strong px-2 py-0.5">assessed</span>
-            <span className="rounded-full bg-accent-soft px-2 py-0.5 text-accent-strong">verified</span>
+      {/* 01 Hero: Aeline framed container, Stillwork badge + inline tile, Refboard guides, Quice glass tiles */}
+      <section className="relative -mt-16 px-2 pt-16 sm:-mt-[4.25rem] sm:px-4 sm:pt-[4.25rem] lg:-mt-[4.75rem] lg:pt-[4.75rem]">
+        <div className="relative isolate mx-auto max-w-[88rem] overflow-hidden rounded-[2rem] border border-white bg-[linear-gradient(180deg,var(--color-paper)_0%,var(--color-canvas)_55%,var(--color-accent-soft)_100%)] shadow-[0_30px_80px_-50px_rgb(11_12_12/0.35)]">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+            <div className="dot-canvas absolute inset-0 opacity-80" />
+            {/* Refboard-style frame guides */}
+            <div className="absolute inset-x-6 top-6 h-px bg-line-strong sm:inset-x-10" />
+            <div className="absolute inset-y-6 left-6 w-px bg-line-strong sm:left-10" />
+            <div className="absolute inset-y-6 right-6 w-px bg-line-strong sm:right-10" />
+            <div className="ember-glow absolute bottom-[-20%] left-1/2 h-[28rem] w-[60rem] -translate-x-1/2" />
           </div>
-        </MiniCard>
+          <GlassTile icon="/brand/light/businessai.webp" w={149} h={164} className="left-[7%] top-[18%] -rotate-12" />
+          <GlassTile icon="/brand/light/studio.webp" w={159} h={159} className="right-[8%] top-[14%] rotate-12 [animation-delay:-2s]" />
+          <GlassTile icon="/brand/light/academy.webp" w={154} h={154} className="left-[12%] top-[48%] rotate-6 scale-75 [animation-delay:-4s]" />
+          <GlassTile icon="/brand/light/jobs.webp" w={54} h={50} className="right-[12%] top-[46%] -rotate-6 scale-75 [animation-delay:-3s]" />
 
-        <div className="container-site relative pb-14 pt-10 text-center sm:pb-20 sm:pt-14 [@media(max-height:820px)]:pt-6">
-          <span className="animate-rise mx-auto grid size-16 place-items-center rounded-2xl border border-line bg-paper shadow-[0_20px_40px_-20px_rgb(11_12_12/0.35)] max-sm:[@media(max-height:740px)]:hidden">
-            <Image src="/brand/05_WEB_SOCIAL/favicon-app-128.png" alt="" width={128} height={128} className="size-11" priority />
-          </span>
-          <h1 className="animate-rise mx-auto mt-7 max-w-6xl text-display font-semibold text-ink max-sm:[@media(max-height:740px)]:mt-2" style={{ ["--d" as string]: "80ms" }}>
-            We build the systems.<br className="hidden sm:block" /> <span className="ink-gradient">And the skills to run them.</span>
-          </h1>
-          <p className="animate-rise mx-auto mt-6 max-w-2xl text-lead text-ink-2 max-sm:[@media(max-height:700px)]:hidden" style={{ ["--d" as string]: "160ms" }}>
-            Automation and AI for operations, custom software, hands-on tech training, and hiring on work people have
-            actually done.
-          </p>
-          <div className="animate-rise mt-8 flex flex-wrap justify-center gap-3" style={{ ["--d" as string]: "240ms" }}>
-            <a href="#services" className="inline-flex h-12 items-center rounded-full border border-line-strong bg-paper px-6 text-sm font-semibold text-ink shadow-[0_1px_2px_rgb(11_12_12/0.05)] transition-colors hover:border-ink/40">
-              See what we do
-            </a>
+          <div className="relative px-5 pb-10 pt-12 text-center sm:px-10 sm:pt-16 [@media(max-height:820px)]:pt-8">
             <TrackedLink
-              href="/contact"
-              eventLabel="home_hero_conversation"
-              className="group inline-flex h-12 items-center gap-3 rounded-full bg-ink pl-6 pr-1.5 text-sm font-semibold text-white shadow-[0_12px_30px_-12px_rgb(11_12_12/0.7)] transition-colors hover:bg-ink-2"
+              href="/get-started/business"
+              eventLabel="home_hero_badge"
+              className="animate-rise mx-auto inline-flex items-center gap-2 rounded-full border border-line bg-paper py-1 pl-1 pr-3 text-xs text-ink-2 shadow-[0_1px_2px_rgb(11_12_12/0.05)] transition-colors hover:border-ink/30 max-sm:[@media(max-height:740px)]:hidden"
             >
-              Talk to us
-              <span className="grid size-9 place-items-center rounded-full bg-accent-deep transition-transform group-hover:translate-x-0.5">
-                <ArrowRight className="size-4" aria-hidden="true" />
-              </span>
+              <span className="rounded-full bg-ink px-2 py-0.5 font-semibold text-white">New</span>
+              Free 30-minute process review
+              <ArrowRight className="size-3.5" aria-hidden="true" />
             </TrackedLink>
-          </div>
-          <nav aria-label="DigitalBurj divisions" className="animate-rise mt-12 max-sm:[@media(max-height:740px)]:mt-6" style={{ ["--d" as string]: "320ms" }}>
-            <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-              {pillarList.map((p) => (
-                <li key={p.key}>
-                  <TrackedLink href={p.href} eventLabel={`home_dock_${p.key}`} className="flex items-center gap-2 text-sm font-semibold text-muted grayscale transition hover:text-ink hover:grayscale-0">
-                    <Image src={p.icon} alt="" width={p.w} height={p.h} className="h-5 w-auto" />
-                    {p.name}
-                    <span className="sr-only">: {p.line}</span>
-                  </TrackedLink>
-                </li>
-              ))}
+            <h1 className="animate-rise mx-auto mt-6 max-w-5xl text-[length:clamp(2.1rem,1.1rem+3vw,3.9rem)] font-semibold leading-[1.05] tracking-[-0.04em] text-ink" style={{ ["--d" as string]: "80ms" }}>
+              <span className="block">
+                We build the systems{" "}
+                <span aria-hidden="true" className="relative mx-1 inline-grid size-[1.05em] -rotate-6 place-items-center rounded-[0.25em] border border-line bg-paper align-[-0.12em] shadow-[0_10px_20px_-10px_rgb(11_12_12/0.45)]">
+                  <Image src="/brand/05_WEB_SOCIAL/favicon-app-128.png" alt="" width={128} height={128} className="size-[0.7em]" priority />
+                </span>
+              </span>
+              <span className="ink-gradient block">and the skills to run them.</span>
+            </h1>
+            <p className="animate-rise mx-auto mt-5 max-w-xl text-lead text-ink-2 max-sm:[@media(max-height:700px)]:hidden" style={{ ["--d" as string]: "160ms" }}>
+              Automation and AI for operations, custom software, hands-on tech training, and hiring on real work.
+            </p>
+            <div className="animate-rise mt-8 flex flex-wrap justify-center gap-3" style={{ ["--d" as string]: "240ms" }}>
+              <TrackedLink
+                href="/get-started"
+                eventLabel="home_hero_get_started"
+                className="group inline-flex h-12 items-center gap-2 rounded-full bg-accent-deep px-6 text-sm font-semibold text-white shadow-[0_12px_30px_-12px_rgb(252_48_18/0.8)] transition-colors hover:bg-accent-hover"
+              >
+                Get started
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+              </TrackedLink>
+              <TrackedLink
+                href="/contact"
+                eventLabel="home_hero_conversation"
+                className="inline-flex h-12 items-center rounded-full bg-fill px-6 text-sm font-semibold text-ink transition-colors hover:bg-line-strong"
+              >
+                Talk to us
+              </TrackedLink>
+            </div>
+
+            {/* Aeline tilted card row */}
+            <ul aria-label="DigitalBurj divisions" className="animate-rise mx-auto mt-12 flex max-w-5xl items-center justify-center gap-2 [perspective:1400px] sm:gap-3 max-sm:[@media(max-height:740px)]:mt-6" style={{ ["--d" as string]: "320ms" }}>
+              {pillarList.map((p, i) => {
+                const tilt = ["[transform:rotateY(28deg)]", "[transform:rotateY(16deg)]", "", "[transform:rotateY(-16deg)]", "[transform:rotateY(-28deg)]"][i];
+                const center = i === 2;
+                return (
+                  <li key={p.key} className={cn(i === 0 || i === 4 ? "max-md:hidden" : "", "shrink-0 max-sm:[&>a]:[transform:none]")}>
+                    <TrackedLink
+                      href={p.href}
+                      eventLabel={`home_dock_${p.key}`}
+                      className={cn(
+                        "group flex h-32 w-[6.5rem] flex-col justify-between rounded-2xl border p-3 text-left transition-transform duration-500 hover:[transform:none] sm:h-44 sm:w-40 sm:p-4",
+                        tilt,
+                        center
+                          ? "glass h-36 w-[7rem] border-white bg-white/60 sm:h-48 sm:w-44"
+                          : i === 3
+                            ? "border-ink bg-ink text-white shadow-[0_20px_40px_-20px_rgb(11_12_12/0.6)]"
+                            : "border-line bg-paper shadow-[0_20px_40px_-24px_rgb(11_12_12/0.35)]",
+                      )}
+                    >
+                      <span className={cn("grid size-9 place-items-center rounded-xl", i === 3 ? "bg-white/10" : "bg-accent-soft")}>
+                        <Image src={i === 3 ? p.icon.replace("/light/", "/dark/") : p.icon} alt="" width={p.w} height={p.h} className="h-5 w-auto" />
+                      </span>
+                      <span>
+                        <span className={cn("block text-xs font-semibold sm:text-sm", i === 3 ? "text-white" : "text-ink")}>{p.name}</span>
+                        <span className={cn("mt-1 block text-xs leading-snug max-sm:hidden", i === 3 ? "text-white/75" : "text-muted")}>{p.line}</span>
+                      </span>
+                    </TrackedLink>
+                  </li>
+                );
+              })}
             </ul>
-          </nav>
+            <p className="mt-6 text-xs text-muted">Five divisions. Use one, or several.</p>
+          </div>
         </div>
       </section>
 
-      {/* 02 Routing hub (CodeGuide diagram) */}
-      <section className="section-pad pt-4">
+      {/* 02 Pinned notes (Stillwork) */}
+      <section className="section-pad">
         <div className="container-site">
-          <div className="relative grid items-center gap-8 rounded-[2rem] border border-line bg-paper px-5 py-12 shadow-[0_30px_60px_-40px_rgb(11_12_12/0.3)] sm:px-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-6 lg:py-16" data-reveal>
-            <ul className="space-y-3" aria-label="Example requests">
-              {requests.map((r) => (
-                <li
-                  key={r.text}
-                  className={cn(
-                    "flex items-center gap-3 rounded-full px-4 py-2.5 text-sm",
-                    r.active ? "border border-accent/30 bg-paper text-ink shadow-[0_10px_30px_-12px_rgb(252_48_18/0.45)]" : "text-muted",
-                  )}
-                >
-                  <Sparkles aria-hidden="true" className={cn("size-4 shrink-0", r.active ? "text-accent-strong" : "text-muted/60")} />
-                  {r.text}
-                </li>
-              ))}
-            </ul>
-            <div className="relative mx-auto grid size-56 place-items-center sm:size-72" aria-hidden="true">
-              <span className="flow-line absolute right-full top-1/2 hidden h-0.5 w-16 lg:block" />
-              <span className="flow-line absolute left-full top-1/2 hidden h-0.5 w-16 lg:block" />
-              <div className="hub-ring hub-ring-spin absolute inset-0 rounded-full" />
-              <div className="relative grid size-[82%] place-items-center rounded-full bg-paper text-center shadow-[inset_0_2px_20px_rgb(11_12_12/0.06)]">
-                <div>
-                  <Image src="/brand/05_WEB_SOCIAL/favicon-app-128.png" alt="" width={128} height={128} className="mx-auto size-12" />
-                  <p className="mt-3 font-semibold text-ink">DigitalBurj</p>
-                  <p className="text-xs text-muted">One team, five divisions</p>
+          <Head center eyebrow="Three ways to start" title="Start with one problem. We'll take it from there." />
+          <div className="mt-14 grid gap-10 md:grid-cols-3 md:gap-6">
+            <PinnedNote title="Automate a workflow" href="/business-ai" className="md:-rotate-2">
+              <div className="rounded-xl bg-paper p-3 text-left shadow-[0_10px_24px_-14px_rgb(11_12_12/0.4)]">
+                <p className="text-xs font-semibold text-ink">Enquiries from WhatsApp</p>
+                <p className="text-[length:0.6875rem] text-muted">Example workflow</p>
+                <p className="mt-3 flex justify-between text-[length:0.6875rem] text-ink-2"><span>Automated steps</span><span className="text-accent-strong">4 of 6</span></p>
+                <div className="mt-1 h-1.5 rounded-full bg-fill"><div className="h-full w-2/3 rounded-full bg-accent-deep" /></div>
+              </div>
+              <div className="ml-6 mt-3 rounded-xl bg-paper p-3 text-left shadow-[0_10px_24px_-14px_rgb(11_12_12/0.4)]">
+                <p className="text-xs font-semibold text-ink">Draft replies</p>
+                <p className="mt-2 flex justify-between text-[length:0.6875rem] text-ink-2"><span>Needs a person</span><span className="text-accent-strong">Approve</span></p>
+                <div className="mt-1 h-1.5 rounded-full bg-fill"><div className="h-full w-1/3 rounded-full bg-ink" /></div>
+              </div>
+            </PinnedNote>
+            <PinnedNote title="Learn by building" href="/academy" className="md:translate-y-6 md:rotate-1">
+              <div className="mx-auto grid size-32 place-items-center rounded-full bg-[conic-gradient(var(--color-accent-deep)_0_65%,var(--color-fill)_65%_100%)]">
+                <div className="grid size-24 place-items-center rounded-full bg-paper text-center">
+                  <span>
+                    <span className="block text-xs text-muted">Module</span>
+                    <span className="block text-lg font-semibold text-ink">Fix it</span>
+                  </span>
                 </div>
               </div>
-            </div>
-            <ul className="space-y-3" aria-label="Where each request goes">
-              {requests.map((r) => (
-                <li
-                  key={r.to}
-                  className={cn(
-                    "rounded-xl border px-5 py-3.5",
-                    r.active ? "border-line bg-paper shadow-[0_20px_40px_-20px_rgb(11_12_12/0.35)] lg:-ml-4 lg:scale-105" : "border-line/70 bg-canvas/60",
-                  )}
-                >
-                  <p className={cn("text-xs", r.active ? "text-accent-strong" : "text-muted")}>Goes to</p>
-                  <p className={cn("font-semibold", r.active ? "text-lg text-ink" : "text-ink-2")}>DigitalBurj {r.to}</p>
-                </li>
-              ))}
-            </ul>
+              <div className="mt-4 flex justify-center gap-1.5 text-[length:0.6875rem]">
+                {["Build", "Break", "Fix", "Explain"].map((s, i) => (
+                  <span key={s} className={cn("rounded-full px-2 py-0.5", i === 2 ? "bg-ink text-white" : "bg-fill text-ink-2")}>{s}</span>
+                ))}
+              </div>
+            </PinnedNote>
+            <PinnedNote title="Fits the tools you use" href="/business-ai/crm-automation" className="md:rotate-2">
+              <div className="grid grid-cols-3 gap-2">
+                {["WhatsApp", "Email", "CRM", "Sheets", "Docs", "Forms"].map((t, i) => (
+                  <span key={t} className={cn("grid h-14 place-items-center rounded-xl bg-paper text-[length:0.6875rem] font-semibold text-ink shadow-[0_8px_18px_-10px_rgb(11_12_12/0.35)]", i % 2 ? "rotate-3" : "-rotate-3")}>{t}</span>
+                ))}
+              </div>
+            </PinnedNote>
           </div>
-          <p className="mt-5 text-center text-sm text-muted">Tell us the problem in your own words. We route it to the team that can fix it.</p>
         </div>
       </section>
 
