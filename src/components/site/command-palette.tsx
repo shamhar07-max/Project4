@@ -82,7 +82,7 @@ export function CommandPalette({ className }: { className?: string }) {
         <button
           type="button"
           className={cn(
-            "group flex size-10 items-center justify-center rounded-full border border-line-strong bg-fill text-sm text-muted transition-colors hover:border-ai/50 hover:text-ink",
+            "group flex size-10 items-center justify-center rounded-full border border-line-strong bg-fill text-sm text-muted transition-colors hover:border-accent/50 hover:text-ink",
             className,
           )}
         >
@@ -130,7 +130,7 @@ export function CommandPalette({ className }: { className?: string }) {
                     i === active ? "bg-accent/15 shadow-[inset_0_0_0_1px_rgb(252_48_18/0.45)]" : "",
                   )}
                 >
-                  <FileSearch aria-hidden="true" className={cn("mt-0.5 size-4 shrink-0", i === active ? "text-ai" : "text-muted")} />
+                  <FileSearch aria-hidden="true" className={cn("mt-0.5 size-4 shrink-0", i === active ? "text-accent" : "text-muted")} />
                   <span className="min-w-0 flex-1">
                     <span className="block text-sm font-semibold text-ink">{r.title}</span>
                     {r.summary ? <span className="mt-0.5 line-clamp-1 block text-xs text-muted">{r.summary}</span> : null}

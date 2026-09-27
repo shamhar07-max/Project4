@@ -7,7 +7,6 @@ import { RelatedLinks } from "@/components/site/related";
 import { PrintButton } from "@/components/site/print-button";
 import { JsonLd } from "@/components/site/json-ld";
 import { buildMetadata, webPageJsonLd } from "@/lib/seo";
-import { PhotoBg } from "@/components/site/photo-bg";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -34,7 +33,6 @@ export default async function ResourcePage({ params }: { params: Promise<{ categ
         <PrintButton label={r.slug} />
       </PageHero>
       <div className="relative isolate overflow-hidden">
-        <PhotoBg seed="body" />
       <div className="container-site section-pad">
         <p className="max-w-3xl rounded-lg bg-surface p-5 text-ink-2">
           <strong className="text-ink">How to use it: </strong>

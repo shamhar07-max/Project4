@@ -58,7 +58,7 @@ function MegaPanel({ item }: { item: NavItem }) {
       </div>
       <div className="flex flex-col justify-between gap-6 border-t border-line/70 bg-fill/50 p-6 md:border-l md:border-t-0">
         <div>
-          <p className="eyebrow flex items-center gap-2 text-ai"><span aria-hidden="true" className="size-1.5 rounded-full bg-ai shadow-[0_0_8px_var(--color-ai)]" />DigitalBurj</p>
+          <p className="eyebrow flex items-center gap-2 text-accent"><span aria-hidden="true" className="size-1.5 rounded-full bg-accent shadow-[0_0_8px_var(--color-accent)]" />DigitalBurj</p>
           <p className="mt-2 text-xl font-bold tracking-tight text-ink">{item.title}</p>
           <p className="mt-2 text-sm leading-relaxed text-muted">{item.summary}</p>
         </div>

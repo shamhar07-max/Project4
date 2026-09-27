@@ -29,7 +29,7 @@ import { cn } from "@/lib/utils";
 
 const labelCls = "block text-sm font-semibold text-ink";
 const controlCls =
-  "mt-1.5 block w-full rounded-md border border-line-strong bg-surface px-3.5 text-body-sm text-ink placeholder:text-muted outline-none transition-[border-color,box-shadow,background-color] duration-300 data-[hovered]:border-muted data-[focused]:border-ai data-[focused]:bg-paper data-[focused]:shadow-[0_0_0_3px_var(--color-ai-soft),0_0_28px_-8px_var(--color-ai)] data-[invalid]:border-danger";
+  "mt-1.5 block w-full rounded-md border border-line-strong bg-surface px-3.5 text-body-sm text-ink placeholder:text-muted outline-none transition-[border-color,box-shadow,background-color] duration-300 data-[hovered]:border-muted data-[focused]:border-accent data-[focused]:bg-paper data-[focused]:shadow-[0_0_0_3px_rgb(252_48_18/0.18),0_0_28px_-8px_var(--color-accent)] data-[invalid]:border-danger";
 const descCls = "mt-1.5 block text-sm text-muted";
 const errorCls = "mt-1.5 block text-sm font-medium text-danger";
 
@@ -83,13 +83,13 @@ function Field({ f }: { f: FieldDef }) {
             <Radio
               key={o}
               value={o}
-              className="flex h-11 cursor-pointer items-center gap-2.5 rounded-full border border-line-strong px-4 transition-colors text-body-sm text-ink data-[hovered]:border-muted data-[selected]:border-ai data-[selected]:bg-ai-soft data-[selected]:shadow-[0_0_20px_-8px_var(--color-ai)] data-[focus-visible]:ring-2 data-[focus-visible]:ring-ai/40 data-[invalid]:border-danger"
+              className="flex h-11 cursor-pointer items-center gap-2.5 rounded-full border border-line-strong px-4 transition-colors text-body-sm text-ink data-[hovered]:border-muted data-[selected]:border-accent data-[selected]:bg-accent/10 data-[selected]:shadow-[0_0_20px_-8px_var(--color-accent)] data-[focus-visible]:ring-2 data-[focus-visible]:ring-accent/40 data-[invalid]:border-danger"
             >
               {({ isSelected }) => (
                 <>
                   <span
                     aria-hidden="true"
-                    className={cn("size-4 rounded-full border-2", isSelected ? "border-[5px] border-ai" : "border-line-strong")}
+                    className={cn("size-4 rounded-full border-2", isSelected ? "border-[5px] border-accent" : "border-line-strong")}
                   />
                   {o}
                 </>
@@ -212,7 +212,7 @@ export function EnquiryForm({ intent }: { intent: string }) {
             <span
               aria-hidden="true"
               className={cn(
-                "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded border-2 group-data-[focus-visible]:ring-2 group-data-[focus-visible]:ring-ai/40 group-data-[invalid]:border-danger",
+                "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded border-2 group-data-[focus-visible]:ring-2 group-data-[focus-visible]:ring-accent/40 group-data-[invalid]:border-danger",
                 isSelected ? "border-accent-strong bg-accent-deep" : "border-line-strong",
               )}
             >

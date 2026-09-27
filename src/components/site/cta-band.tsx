@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { PhotoBg } from "./photo-bg";
+import { Photo } from "./photo";
 import { TrackedLink } from "./tracked-link";
 
+/** Closing call to action. Same design as the homepage's final CTA ("Dive into the future"). */
 export function CtaBand({
   heading = "Start with the problem you need to solve.",
   body,
@@ -18,27 +19,33 @@ export function CtaBand({
   return (
     <section className="section-pad-compact">
       <div className="container-site">
-        <div className="relative isolate overflow-hidden rounded-xl bg-night px-6 py-12 sm:px-12 sm:py-14" data-reveal>
-          <PhotoBg seed={`cta-${heading}`} tone="dark" />
-          <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 size-80 rounded-full bg-accent/20 blur-3xl" />
-          <div aria-hidden="true" className="pointer-events-none absolute -bottom-32 left-1/4 size-80 rounded-full bg-ai/10 blur-3xl" />
-          <div aria-hidden="true" className="ai-grid pointer-events-none absolute inset-0 opacity-60" />
-          <div className="relative max-w-2xl">
-            <h2 className="text-h2 font-medium text-white">{heading}</h2>
-            {body ? <p className="mt-4 text-lead text-white/75">{body}</p> : null}
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <TrackedLink href={href} eventLabel={label}>
-                  {label}
-                </TrackedLink>
-              </Button>
-              {secondary ? (
-                <Button asChild size="lg" variant="outline-inverse">
-                  <TrackedLink href={secondary.href} eventLabel={secondary.label}>
-                    {secondary.label}
+        <div className="relative isolate overflow-hidden rounded-[1.75rem] border border-line" data-reveal>
+          <div aria-hidden="true" className="absolute inset-0 -z-10">
+            <Photo photo="dubai" sizes="(min-width: 1280px) 76rem, 100vw" className="[filter:grayscale(.6)_brightness(.5)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(5_6_6/0.92),rgb(5_6_6/0.55)_60%,rgb(5_6_6/0.75))]" />
+            <div className="ember-glow absolute -bottom-1/3 -right-1/4 h-full w-3/4 opacity-70" />
+          </div>
+          <div className="grid gap-10 px-6 py-14 sm:px-12 sm:py-16 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+            <div>
+              <p className="eyebrow text-accent-strong">Next step</p>
+              <h2 className="mt-4 text-h2 font-normal uppercase text-white">{heading}</h2>
+            </div>
+            <div>
+              {body ? <p className="text-body-sm text-white/75">{body}</p> : null}
+              <div className="mt-6 flex flex-wrap gap-2">
+                <Button asChild>
+                  <TrackedLink href={href} eventLabel={label}>
+                    {label}
                   </TrackedLink>
                 </Button>
-              ) : null}
+                {secondary ? (
+                  <Button asChild variant="outline-inverse">
+                    <TrackedLink href={secondary.href} eventLabel={secondary.label}>
+                      {secondary.label}
+                    </TrackedLink>
+                  </Button>
+                ) : null}
+              </div>
             </div>
           </div>
         </div>

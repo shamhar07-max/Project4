@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { Crumb } from "@/lib/seo";
 import { Breadcrumbs } from "./breadcrumbs";
-import { HeroPhoto, PhotoBg } from "./photo-bg";
+import { HeroPhoto } from "./photo-bg";
 import { cn } from "@/lib/utils";
 
 export function PageHero({
@@ -23,7 +23,7 @@ export function PageHero({
 }) {
   return (
     <section className={cn("relative isolate overflow-hidden border-b border-line", className)}>
-      {aside ? <PhotoBg seed="hero" priority /> : <HeroPhoto />}
+      <HeroPhoto />
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="ember-glow absolute -bottom-1/2 right-[-10%] h-full w-[60%] opacity-70" />
         <div className="ai-grid absolute inset-0 opacity-70" />

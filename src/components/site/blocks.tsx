@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { Block, Card } from "@/content/types";
 import { cn } from "@/lib/utils";
-import { PhotoBg } from "./photo-bg";
 
 export function FlowDiagram({ steps, caption, tone = "paper" }: { steps: string[]; caption?: string; tone?: "paper" | "ink" }) {
   return (
@@ -22,7 +21,7 @@ export function FlowDiagram({ steps, caption, tone = "paper" }: { steps: string[
                 tone === "ink" ? "border-white/20 bg-white/5" : "border-line bg-paper",
               )}
             >
-              <span className={cn(" text-xs tabular-nums", tone === "ink" ? "text-accent" : "text-ai")}>
+              <span className={"text-xs tabular-nums text-accent-strong"}>
                 {String(i + 1).padStart(2, "0")}
               </span>
               {s}
@@ -75,7 +74,7 @@ export function StepList({ steps }: { steps: { title: string; body: string }[] }
                 )}
               />
             ) : null}
-            <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-line-strong bg-paper text-sm tabular-nums text-ai shadow-[0_0_18px_-6px_var(--color-ai)]">
+            <span className="relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-line-strong bg-paper text-sm tabular-nums text-accent-strong shadow-[0_0_18px_-6px_var(--color-accent)]">
               {String(i + 1).padStart(2, "0")}
             </span>
             <div className="card-interactive flex-1 rounded-lg border border-line bg-paper p-5">
@@ -146,7 +145,7 @@ function BlockBody({ block }: { block: Block }) {
         >
           {block.items.map((item, i) => (
             <li key={item} data-reveal style={{ ["--i" as string]: i % 8 }} className="flex gap-3 border-b border-line pb-3 text-body-sm text-ink-2">
-              <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 rounded-full bg-ai shadow-[0_0_8px_var(--color-ai)]" />
+              <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_8px_var(--color-accent)]" />
               <span>{item}</span>
             </li>
           ))}
@@ -206,10 +205,9 @@ export function BlockSection({ block, index }: { block: Block; index: number }) 
   const tinted = block.type === "flow" || block.type === "steps";
   return (
     <section className={cn("relative isolate overflow-hidden section-pad", tinted ? "border-y border-line" : index > 0 && "border-t border-line")}>
-      <PhotoBg seed={block.heading} index={index} />
       <div className="container-site">
         <div className="max-w-3xl" data-reveal>
-          <h2 className="text-h2 font-medium text-ink">{block.heading}</h2>
+          <h2 className="text-h2 font-normal uppercase text-ink">{block.heading}</h2>
           {"intro" in block && block.intro ? (
             <p className="mt-4 text-lead text-ink-2">{block.intro}</p>
           ) : null}

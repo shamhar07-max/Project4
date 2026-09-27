@@ -5,7 +5,6 @@ import { getStartedIntents, intentTitle } from "@/content/registry";
 import { PageHero } from "@/components/site/page-hero";
 import { EnquiryForm } from "@/components/site/enquiry-form";
 import { buildMetadata } from "@/lib/seo";
-import { PhotoBg } from "@/components/site/photo-bg";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -27,7 +26,6 @@ export default async function IntentPage({ params }: { params: Promise<{ intent:
     <>
       <PageHero crumbs={[{ name: "Get Started", path: "/get-started" }, { name: intentTitle(intent) ?? def.title, path: `/get-started/${intent}` }]} eyebrow="Get started" title={def.title} lead={def.intro} />
       <div className="relative isolate overflow-hidden">
-        <PhotoBg seed="body" />
       <div className="container-site section-pad">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <EnquiryForm intent={intent} />

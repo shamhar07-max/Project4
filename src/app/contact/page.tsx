@@ -3,7 +3,6 @@ import { whatsappHref } from "@/lib/whatsapp";
 import { PageHero } from "@/components/site/page-hero";
 import { EnquiryForm } from "@/components/site/enquiry-form";
 import { buildMetadata } from "@/lib/seo";
-import { PhotoBg } from "@/components/site/photo-bg";
 
 export const metadata = buildMetadata({
   title: "Contact",
@@ -25,7 +24,6 @@ export default function ContactPage() {
     <>
       <PageHero crumbs={[{ name: "Contact", path: "/contact" }]} eyebrow="Contact" title="Contact DigitalBurj" lead="Send a general message below, or use a dedicated form so we can respond with the right people." />
       <div className="relative isolate overflow-hidden">
-        <PhotoBg seed="body" />
       <div className="container-site section-pad">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <EnquiryForm intent="contact" />
@@ -35,7 +33,7 @@ export default function ContactPage() {
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex h-10 items-center gap-2 rounded-full bg-whatsapp px-4 text-sm font-semibold text-ink hover:brightness-95"
+              className="mt-3 inline-flex h-10 items-center gap-2 rounded-full bg-whatsapp px-4 text-sm font-semibold text-night hover:brightness-95"
             >
               Chat on WhatsApp
             </a>

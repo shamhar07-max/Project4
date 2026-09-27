@@ -10,7 +10,6 @@ import { RelatedLinks } from "@/components/site/related";
 import { CtaBand } from "@/components/site/cta-band";
 import { JsonLd } from "@/components/site/json-ld";
 import { articleJsonLd, buildMetadata, webPageJsonLd } from "@/lib/seo";
-import { PhotoBg } from "@/components/site/photo-bg";
 
 /** /insights/{category} and /insights/{article} share one segment; slugs never collide. */
 export const dynamicParams = false;
@@ -56,7 +55,6 @@ export default async function InsightPage({ params }: { params: Promise<{ slug: 
         title={a.title}
       />
       <div className="relative isolate overflow-hidden">
-        <PhotoBg seed="body" />
       <article className="container-site grid gap-12 section-pad lg:grid-cols-[minmax(0,1fr)_18rem]">
         <div className="prose-db">
           <p className="!text-lead font-medium text-ink">{a.answer}</p>

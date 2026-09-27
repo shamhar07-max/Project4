@@ -1,8 +1,8 @@
 /**
- * Background photography from Unsplash (https://unsplash.com/license). Images are hotlinked
- * from images.unsplash.com as the Unsplash guidelines ask, and every photographer is credited
- * on /credits. Photos are used only as section backgrounds, always under a readability overlay
- * (see components/site/photo-bg.tsx).
+ * Photography from Unsplash (https://unsplash.com/license). Images are hotlinked from
+ * images.unsplash.com as the Unsplash guidelines ask, and every photographer is credited on
+ * /credits. Photos appear only in page heroes and in the homepage's content blocks; sections
+ * have no background photos.
  */
 export type Photo = {
   /** images.unsplash.com base URL, without query string */
@@ -24,13 +24,6 @@ export const photos = {
     subject: "Burj Khalifa and Downtown Dubai at sunrise",
     position: "center 35%",
   },
-  devTeam: {
-    src: "https://images.unsplash.com/photo-1551434678-e076c223a692",
-    photographer: "Tim van der Kuip",
-    profile: "https://unsplash.com/@timmykp",
-    page: "https://unsplash.com/photos/CPs2X8JYmS8",
-    subject: "Developers working at their desks",
-  },
   dashboard: {
     src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
     photographer: "Luke Chesser",
@@ -51,20 +44,6 @@ export const photos = {
     profile: "https://unsplash.com/@cdr6934",
     page: "https://unsplash.com/photos/ieic5Tq8YMk",
     subject: "Source code on a screen",
-  },
-  html: {
-    src: "https://images.unsplash.com/photo-1542831371-29b0f74f9713",
-    photographer: "Florian Olivo",
-    profile: "https://unsplash.com/@florianolv",
-    page: "https://unsplash.com/photos/4hbJ-eymZ1o",
-    subject: "Lines of HTML",
-  },
-  startup: {
-    src: "https://images.unsplash.com/photo-1690378820474-b468b8ee64d3",
-    photographer: "Lyubomyr Reverchuk",
-    profile: "https://unsplash.com/@lreverchuk",
-    page: "https://unsplash.com/photos/rtD_lcsN6_U",
-    subject: "Team around a table with laptops",
   },
   whiteboard: {
     src: "https://images.unsplash.com/photo-1557804506-669a67965ba0",
@@ -149,40 +128,27 @@ export const photos = {
 
 export type PhotoKey = keyof typeof photos;
 
-/** Photos per top-level route. The first entry is the page hero. */
-const pools: Record<string, PhotoKey[]> = {
-  "": ["dubai", "devTeam", "whiteboard", "code", "students", "handshake", "warehouse", "sketch", "desk"],
-  "business-ai": ["dashboard", "reporting", "whiteboard", "warehouse", "startup"],
-  solutions: ["reporting", "dashboard", "warehouse", "whiteboard", "startup"],
-  studio: ["code", "sketch", "devTeam", "html", "startup"],
-  academy: ["students", "whiteboard", "html", "devTeam", "desk"],
-  talent: ["handshake", "review", "startup", "devTeam", "whiteboard"],
-  jobs: ["review", "handshake", "devTeam", "startup", "desk"],
-  industries: ["warehouse", "dubai", "reporting", "dashboard", "whiteboard"],
-  portfolio: ["sketch", "code", "review", "devTeam", "html"],
-  insights: ["desk", "sketch", "whiteboard", "reporting"],
-  resources: ["desk", "reporting", "sketch", "whiteboard"],
-  company: ["dubai", "whiteboard", "startup", "desk", "handshake"],
-  contact: ["dubai", "desk", "handshake"],
-  "get-started": ["whiteboard", "handshake", "desk", "startup"],
+/** Hero photo per top-level route (page heroes are the only place route photos appear). */
+const heroes: Record<string, PhotoKey> = {
+  "": "dubai",
+  "business-ai": "dashboard",
+  solutions: "reporting",
+  studio: "code",
+  academy: "students",
+  talent: "handshake",
+  jobs: "review",
+  industries: "warehouse",
+  portfolio: "sketch",
+  insights: "desk",
+  resources: "desk",
+  company: "dubai",
+  contact: "dubai",
+  "get-started": "whiteboard",
 };
-const fallback: PhotoKey[] = ["dubai", "desk", "whiteboard"];
 
-function hash(s: string) {
-  let h = 0;
-  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
-  return h;
-}
-
-/** Picks a photo for a section: the route decides the subject, the seed spreads sections across the pool. */
-export function photoFor(pathname: string, seed: string, index?: number): Photo {
-  const top = pathname.split("/")[1] ?? "";
-  const pool = pools[top] ?? fallback;
-  if (seed === "hero") return photos[pool[0]];
-  const rest = pool.length > 1 ? pool.slice(1) : pool;
-  // With a position, neighbouring sections never share a photo.
-  const i = index ?? hash(`${pathname}|${seed}`);
-  return photos[rest[i % rest.length]];
+/** The hero photo for a route. */
+export function photoFor(pathname: string): Photo {
+  return photos[heroes[pathname.split("/")[1] ?? ""] ?? "dubai"];
 }
 
 /** Unique photographer credits, for /credits. */

@@ -116,3 +116,18 @@ Whole frontend restyled as an AI interface, using patterns from the 21st.dev "AI
 - Page heroes: the route's photo sits in a panel on the right that fades into the page, with an orange glow and grid. Section backgrounds use a darker, part-monochrome photo treatment. The worst-case backdrop keeps muted text at 4.9:1 or better.
 - New photos are credited on /credits: Jahanzeb Ahsan, Lux Interaction and Kiwihug.
 - QA: build passes, check:content 0, 165 pages crawled, no overflow at 375px, axe clean (including the cookie banner and offer popup), and the hero buttons are on screen at every size from 1920×1080 down to 320×568.
+
+## Background photos removed; inner pages aligned with the homepage (2026-09-27)
+
+- Removed every Unsplash background photo from sections, page bodies, FAQs, related links, legal pages, the footer and the offer popup.
+- Photos now appear only in:
+  - page heroes: one per route, in the right-hand panel;
+  - the homepage's content images added in the noir redesign: hero portrait, glass card, Studio card, the About headset photo, the philosophy image and the division-tab photos;
+  - the closing CTA, which uses the homepage's "Dive into the future" design (Dubai photo) on every page.
+- Consistency with the homepage:
+  - every section heading uses the homepage style (uppercase, regular weight, orange eyebrow);
+  - tinted sections use the same surface as the homepage's philosophy block;
+  - step numbers, flow chips, focus glows, menus and search use the burj orange instead of the old green;
+  - every page hero uses the same right-hand photo panel, with the Key points card as an opaque glass card on top.
+- `/credits` lists only the photos still in use.
+- QA: build passes, check:content 0, 165 pages crawled, no overflow at 375px, axe clean (a WhatsApp button's text colour was fixed on /contact), and the hero fits all 10 viewports.

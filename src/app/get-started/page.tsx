@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/site/page-hero";
 import { buildMetadata } from "@/lib/seo";
-import { PhotoBg } from "@/components/site/photo-bg";
 
 export const metadata = buildMetadata({
   title: "Get Started",
@@ -27,7 +26,6 @@ export default function GetStartedPage() {
     <>
       <PageHero crumbs={[{ name: "Get Started", path: "/get-started" }]} eyebrow="Get started" title="What would you like to do?" lead="Choose the option closest to your goal and we will take you to the right team." />
       <div className="relative isolate overflow-hidden">
-        <PhotoBg seed="body" />
       <div className="container-site section-pad">
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {choices.map((c) => (

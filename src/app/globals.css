@@ -262,7 +262,7 @@
 }
 @keyframes chip-highlight {
   0%, 100% { border-color: var(--color-line-strong); box-shadow: none; }
-  40% { border-color: var(--color-ai); box-shadow: 0 0 0 3px var(--color-ai-soft), 0 0 24px -4px var(--color-ai); }
+  40% { border-color: var(--color-accent); box-shadow: 0 0 0 3px rgb(252 48 18 / 0.18), 0 0 24px -4px var(--color-accent); }
 }
 @keyframes menu-in {
   from { opacity: 0; transform: translateY(-6px) scale(0.99); }

@@ -2,7 +2,6 @@ import Link from "next/link";
 import { allRoutes, type Section } from "@/content/registry";
 import { PageHero } from "@/components/site/page-hero";
 import { buildMetadata } from "@/lib/seo";
-import { PhotoBg } from "@/components/site/photo-bg";
 
 export const metadata = buildMetadata({ title: "Sitemap", description: "Every public page on digitalburj.com, organised by section: Business AI, Academy, Studio, Verified Talent, Jobs, Insights and more.", path: "/sitemap" });
 
@@ -14,7 +13,6 @@ export default function HtmlSitemapPage() {
     <>
       <PageHero crumbs={[{ name: "Sitemap", path: "/sitemap" }]} title="Sitemap" lead="Every public page on this website, by section." />
       <div className="relative isolate overflow-hidden">
-        <PhotoBg seed="body" />
       <div className="container-site grid gap-10 section-pad sm:grid-cols-2 lg:grid-cols-3">
         {order.map((s) => {
           const items = routes.filter((r) => r.section === s);

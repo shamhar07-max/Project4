@@ -24,7 +24,7 @@ export function ContentPageView({ page, path, crumbs }: { page: ContentPage; pat
         lead={page.answer}
         aside={
           page.keyPoints?.length ? (
-            <div className="rounded-lg border border-line bg-surface p-6">
+            <div className="rounded-xl border border-line bg-paper/95 p-6 shadow-[0_30px_60px_-30px_rgb(0_0_0/0.9)] backdrop-blur-md">
               <p className="eyebrow">Key points</p>
               <ul className="mt-4 space-y-3">
                 {page.keyPoints.map((k) => (
@@ -49,8 +49,8 @@ export function ContentPageView({ page, path, crumbs }: { page: ContentPage; pat
       {page.blocks.map((b, i) => (
         <BlockSection key={b.heading} block={b} index={i} />
       ))}
-      {page.faqs?.length ? <FaqList faqs={page.faqs} index={page.blocks.length} /> : null}
-      <RelatedLinks links={related} index={page.blocks.length + (page.faqs?.length ? 1 : 0)} />
+      {page.faqs?.length ? <FaqList faqs={page.faqs} /> : null}
+      <RelatedLinks links={related} />
       {page.cta ? <CtaBand heading={page.cta.heading} body={page.cta.body} label={page.cta.label} href={page.cta.href} /> : null}
       <JsonLd data={webPageJsonLd({ title: page.h1, description: page.description, path })} />
     </>

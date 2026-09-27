@@ -1,6 +1,4 @@
 import type { ReactNode } from "react";
-import type { PhotoKey } from "@/content/backgrounds";
-import { PhotoBg } from "./photo-bg";
 import { cn } from "@/lib/utils";
 
 export function Section({
@@ -12,7 +10,6 @@ export function Section({
   tone = "paper",
   className,
   headingLevel = 2,
-  photo,
 }: {
   id?: string;
   eyebrow?: string;
@@ -22,7 +19,6 @@ export function Section({
   tone?: "paper" | "surface" | "ink";
   className?: string;
   headingLevel?: 2 | 3;
-  photo?: PhotoKey;
 }) {
   const H = headingLevel === 2 ? "h2" : "h3";
   return (
@@ -30,19 +26,18 @@ export function Section({
       id={id}
       className={cn(
         "relative isolate scroll-mt-24 overflow-hidden section-pad",
-        tone === "surface" && "border-y border-line",
+        tone === "surface" && "border-y border-line bg-surface",
         tone === "ink" && "border-y border-line bg-night text-white",
         className,
       )}
     >
-      <PhotoBg seed={title ?? id} photo={photo} tone={tone === "ink" ? "dark" : "light"} />
       <div className="container-site">
         {title ? (
           <div className="max-w-3xl" data-reveal>
             {eyebrow ? (
               <p className={cn("eyebrow", tone === "ink" ? "text-accent-strong" : "text-accent-strong")}>{eyebrow}</p>
             ) : null}
-            <H className={cn("mt-3 text-h2 font-medium", tone === "ink" ? "text-white" : "text-ink")}>{title}</H>
+            <H className={cn("mt-3 text-h2 font-normal uppercase", tone === "ink" ? "text-white" : "text-ink")}>{title}</H>
             {intro ? (
               <div className={cn("mt-5 text-lead", tone === "ink" ? "text-white/75" : "text-ink-2")}>{intro}</div>
             ) : null}

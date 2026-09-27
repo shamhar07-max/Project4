@@ -514,7 +514,7 @@ export default function HomePage() {
       </section>
 
       {/* 13 FAQ */}
-      <FaqList title="Quick answers" faqs={answers} photo="students" />
+      <FaqList title="Quick answers" faqs={answers} />
 
       {/* 14 Final CTA (NeoVision "Dive into the future") */}
       <section className="pb-4 pt-8">
