@@ -135,7 +135,7 @@ function Head({ eyebrow, title, intro, center = false, className }: { eyebrow: s
 /** A small illustrative UI card, floating around the hero (quso.ai style). */
 function MiniCard({ label, children, className }: { label: string; children: ReactNode; className?: string }) {
   return (
-    <div aria-hidden="true" className={cn("glass float-slow absolute hidden w-56 rounded-xl p-3 text-left xl:block", className)}>
+    <div aria-hidden="true" className={cn("glass float-slow absolute hidden w-52 rounded-xl p-3 text-left 2xl:block", className)}>
       <p className="text-[length:0.6875rem] font-semibold uppercase tracking-wider text-muted">{label}</p>
       <div className="mt-2 space-y-1.5 text-xs text-ink-2">{children}</div>
     </div>
@@ -215,7 +215,7 @@ export default function HomePage() {
           <span className="animate-rise mx-auto grid size-16 place-items-center rounded-2xl border border-line bg-paper shadow-[0_20px_40px_-20px_rgb(11_12_12/0.35)] max-sm:[@media(max-height:740px)]:hidden">
             <Image src="/brand/05_WEB_SOCIAL/favicon-app-128.png" alt="" width={128} height={128} className="size-11" priority />
           </span>
-          <h1 className="animate-rise mx-auto mt-7 max-w-5xl text-display font-semibold text-ink max-sm:[@media(max-height:740px)]:mt-2" style={{ ["--d" as string]: "80ms" }}>
+          <h1 className="animate-rise mx-auto mt-7 max-w-6xl text-display font-semibold text-ink max-sm:[@media(max-height:740px)]:mt-2" style={{ ["--d" as string]: "80ms" }}>
             We build the systems.<br className="hidden sm:block" /> <span className="ink-gradient">And the skills to run them.</span>
           </h1>
           <p className="animate-rise mx-auto mt-6 max-w-2xl text-lead text-ink-2 max-sm:[@media(max-height:700px)]:hidden" style={{ ["--d" as string]: "160ms" }}>
